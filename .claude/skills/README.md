@@ -37,6 +37,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-languages` | ours | 82-language catalogue, enabled set, switcher, translations as files, search-open set and its guards, one language while building, the translation debt | — not proven |
 | `use-machine-copy` | ours | what a public page gives machines: Markdown copy, llms.txt, llms-full.txt; a widget's own markdown.ts; first-source facts about head markup | — not proven |
 | `use-site-menu` | ours | header and footer menus as settings: nav.top/footer, labels, topMenu/footerPages switches, CONFIG copy, links and language, no build, live check | — not proven |
+| `soft-navigation` | ours | internal links through next/link, header in the shared layout, no navigation by hand; prove a soft navigation by the window marker and an RSC request on every address; the Cloudflare copy answering HTML is the core's defect | — not proven |
 | `use-shadcn` | ours | the gatekeeper: widgets, tools and blocks only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |
 | `design-taste-frontend` | vendored, Leon Lin, MIT | anti-generic landing design — `SOURCE.md` | — not proven |

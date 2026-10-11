@@ -108,7 +108,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 | Nature | Skills |
 |---|---|
 | every element, both | `own-service-props-detection`, `node-elements-detection`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal); `order-summary` (worker) |
-| builder | `use-page-tree`, `use-typography`, `build-widget`, `use-tools`, `use-shadcn`, `use-highlight`, `deploy-element`, `github-element`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `copywriting`, `copy-editing`, `describe-element`, `passport-description`, `self-review` |
+| builder | `use-page-tree`, `use-typography`, `build-widget`, `use-tools`, `use-shadcn`, `use-highlight`, `deploy-element`, `github-element`, `soft-navigation`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `copywriting`, `copy-editing`, `describe-element`, `passport-description`, `self-review` |
 | worker | none yet — a work skill says «Work skill» at the start of its description, and only those go into the passport |
 <!-- PROOF 3 END -->
 
@@ -160,7 +160,7 @@ you finish by returning the link `#block=<bid>` of what you changed. A container
 **Before you build, load the skill of that work** — the laws above say what must come out, the skills say how, with the
 names of the guards: `use-page-tree` (pages, blocks) · `use-typography` (text) · `build-widget` (widgets and their doors) ·
 `use-tools` (tools) · `use-shadcn` (components) · `use-highlight` (addresses, both directions) · `use-machine-copy` (what a
-public page gives agents: its Markdown copy, llms.txt — a widget brings its own `markdown.ts`) · `deploy-element` (how a change reaches visitors) · `github-element` (saving the work to its repository). ✗ 2026-10-07: a widget built
+public page gives agents: its Markdown copy, llms.txt — a widget brings its own `markdown.ts`) · `soft-navigation` (links, header and menu — moving between pages without a reload, and how to prove it on the own domain) · `deploy-element` (how a change reaches visitors) · `github-element` (saving the work to its repository). ✗ 2026-10-07: a widget built
 from reading code alone and a guard named wrong — both were in the skill that was not opened.
 <!-- PROOF 5 END -->
 
