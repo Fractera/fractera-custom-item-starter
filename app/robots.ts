@@ -56,6 +56,9 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     : SERVICE_DISALLOW.flatMap(p => [p, ...SUPPORTED_LANGUAGES.map(l => `/${l}${p}`)]);
   const disallow = [...(cfg.seo?.disallowPaths ?? []), ...servicePaths];
   const isAllowed = cfg.seo?.indexing !== "disallow";
+  // Icons cut from the own logo live under `/api` (node step 413): the longer Allow wins over `Disallow: /api`, so a search
+  // engine can take the favicon for its results — Google takes a favicon only from what it may crawl.
+  const allow = ["/", "/api/config-image/icon-"];
 
   // 🔒 БЕЗ ПОСТОЯННОГО АДРЕСА САЙТ НЕ ИНДЕКСИРУЕТСЯ ВОВСЕ (256-4).
   //
@@ -85,17 +88,17 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
 
   return {
     rules: [
-      { userAgent: "Googlebot", allow: "/", disallow },
-      { userAgent: "Bingbot", allow: "/", disallow, crawlDelay: 1 },
-      { userAgent: "GPTBot", allow: "/", disallow, crawlDelay: 1 },
+      { userAgent: "Googlebot", allow, disallow },
+      { userAgent: "Bingbot", allow, disallow, crawlDelay: 1 },
+      { userAgent: "GPTBot", allow, disallow, crawlDelay: 1 },
       // 431 (владелец 2026-10-07: «Разрешить, как другим»): токен Google — учится ли Gemini на страницах; на поиск не влияет.
-      { userAgent: "Google-Extended", allow: "/", disallow },
-      { userAgent: "OAI-SearchBot", allow: "/", disallow },
-      { userAgent: "ChatGPT-User", allow: "/", disallow },
-      { userAgent: "anthropic-ai", allow: "/", disallow, crawlDelay: 1 },
-      { userAgent: "ClaudeBot", allow: "/", disallow, crawlDelay: 1 },
-      { userAgent: "PerplexityBot", allow: "/", disallow, crawlDelay: 1 },
-      { userAgent: "*", allow: "/", disallow, crawlDelay: 1 },
+      { userAgent: "Google-Extended", allow, disallow },
+      { userAgent: "OAI-SearchBot", allow, disallow },
+      { userAgent: "ChatGPT-User", allow, disallow },
+      { userAgent: "anthropic-ai", allow, disallow, crawlDelay: 1 },
+      { userAgent: "ClaudeBot", allow, disallow, crawlDelay: 1 },
+      { userAgent: "PerplexityBot", allow, disallow, crawlDelay: 1 },
+      { userAgent: "*", allow, disallow, crawlDelay: 1 },
     ],
     sitemap: sitemapUrl,
     host: cfg.url,
