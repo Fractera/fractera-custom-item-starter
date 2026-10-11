@@ -56,6 +56,8 @@ export const appConfigSchema = z.looseObject({
     "homePage-light": imageSlot,
   }),
   logo: z.string().nullable(),
+  // Узел, шаг 452 (владелец 2026-10-11): квадратный знак для значка вкладки и иконок — если логотип широкий или тёмный.
+  iconMark: z.string().nullable().optional(),
 
   icons: z.looseObject({
     faviconAny: z.string().optional(),

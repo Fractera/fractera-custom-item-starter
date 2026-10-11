@@ -121,6 +121,7 @@ const en: FieldsUi = {
   fields: {
     'author.image': { label: 'Photo' },
     logo: { label: 'Logo' },
+    iconMark: { label: 'Tab icon (square)', hint: 'A square mark for the browser tab and app icons. Empty — the icons are cut from the logo.' },
     'images.ogImage': { label: 'OG / social image' },
     'images.homePage-light': { label: 'Home illustration (light)' },
     'images.homePage-dark': { label: 'Home illustration (dark)' },
@@ -284,6 +285,7 @@ const ru: FieldsUi = {
   fields: {
     'author.image': { label: 'Фотография' },
     logo: { label: 'Логотип' },
+    iconMark: { label: 'Значок вкладки (квадратный)', hint: 'Квадратный знак для вкладки браузера и иконок приложения. Пусто — иконки нарезаются из логотипа.' },
     'images.ogImage': { label: 'Картинка для соцсетей (OG)' },
     'images.homePage-light': { label: 'Иллюстрация главной (светлая)' },
     'images.homePage-dark': { label: 'Иллюстрация главной (тёмная)' },

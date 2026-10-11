@@ -19,7 +19,14 @@ export function logoIconUrl(size: LogoIconSize): string {
 
 /** True when the head must take the icons from the element's own logo. */
 export function usesLogoIcons(cfg: AppConfig): boolean {
-  return !cfg.iconSet && typeof cfg.logo === "string" && cfg.logo.length > 0
+  return !cfg.iconSet && !!iconSource(cfg)
+}
+
+/** The picture the icons are cut from: the square mark (step 452) or the logo. */
+export function iconSource(cfg: AppConfig): string | null {
+  const mark = typeof cfg.iconMark === "string" && cfg.iconMark.length > 0 ? cfg.iconMark : null
+  const logo = typeof cfg.logo === "string" && cfg.logo.length > 0 ? cfg.logo : null
+  return mark ?? logo
 }
 
 /** `icon-192` → 192; anything else → null. */

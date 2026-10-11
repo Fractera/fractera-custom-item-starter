@@ -25,6 +25,7 @@
 
 import { getAppConfig } from "@/config/app-config"
 import { iconUrl } from "@/config/app-config.defaults"
+import { iconSource } from "@/lib/logo-icons"
 import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 
@@ -34,7 +35,8 @@ export const dynamic = "force-dynamic"
 
 export async function GET(request: Request) {
   const cfg = getAppConfig()
-  const source = cfg.logo ?? iconUrl(cfg, "favicon_32") ?? iconUrl(cfg, "icon_192")
+  // Шаг 452: квадратный знак для значков, если задан, сильнее широкого логотипа.
+  const source = iconSource(cfg) ?? iconUrl(cfg, "favicon_32") ?? iconUrl(cfg, "icon_192")
 
   if (source) {
     try {

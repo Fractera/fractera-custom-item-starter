@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { configImagePair, defaultSlotImage, type ImageSlot } from "@/lib/config-images";
 import { getAppConfig } from "@/config/app-config";
-import { type LogoIconSize, parseLogoIconSlot } from "@/lib/logo-icons";
+import { iconSource, type LogoIconSize, parseLogoIconSlot } from "@/lib/logo-icons";
 import { readFile } from "node:fs/promises";
 import { join, normalize } from "node:path";
 import sharp from "sharp";
@@ -41,8 +41,9 @@ async function logoIcon(request: Request, size: LogoIconSize): Promise<Response>
     shipped
       ? new NextResponse(null, { status: 307, headers: { Location: shipped, "Cache-Control": "no-store" } })
       : new NextResponse("No icon", { status: 404 });
-  if (cfg.iconSet || !cfg.logo) return fallback();
-  const src = await logoBytes(request, cfg.logo);
+  const source = iconSource(cfg);
+  if (cfg.iconSet || !source) return fallback();
+  const src = await logoBytes(request, source);
   if (!src) return fallback();
   try {
     // The apple-touch size gets a white field: iOS draws a transparent icon on black.

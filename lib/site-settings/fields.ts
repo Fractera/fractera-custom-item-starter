@@ -204,6 +204,7 @@ export const SECTIONS: readonly Section[] = [
     group: "metaMedia",
     fields: [
       { path: "logo", type: "image", crop: "square" },
+      { path: "iconMark", type: "image", crop: "square" },
       { path: "images.ogImage", type: "image", crop: "horizontal" },
       { path: "images.homePage-light", type: "image" },
       { path: "images.homePage-dark", type: "image" },

@@ -140,6 +140,16 @@
         }
       ]
     },
+    "iconMark": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "icons": {
       "type": "object",
       "properties": {

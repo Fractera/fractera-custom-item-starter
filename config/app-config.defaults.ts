@@ -103,6 +103,8 @@ export interface AppConfig {
   // Object-storage references (media URL like /api/media/{id}/file) or null when unset.
   images: Record<RegularImageType, string | null>;
   logo: string | null;
+  /** Квадратный знак для значка вкладки и иконок (шаг 452); пусто — иконки из `logo`. */
+  iconMark?: string | null;
 
   // Individual icon URLs (used when no generated set is present).
   icons: {
