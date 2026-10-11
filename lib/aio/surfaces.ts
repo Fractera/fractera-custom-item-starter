@@ -72,11 +72,11 @@ export function publicSurfaces(lang: string): Surface[] {
     const page = wordsIn(child, lang)
     surfaces.push({
       subPath: `/${child.slug}`,
-      title: page.title,
-      description: page.description,
+      title: page.title.split("%SITE%").join(home.siteName),
+      description: page.description.split("%SITE%").join(home.siteName),
       section: 'legal',
       body: () =>
-        [`# ${page.title}`, '', `> ${page.description}`, '', blocksToMarkdown(page.blocks, home.siteName, widgetText(lang))].join('\n').trim(),
+        [`# ${page.title.split("%SITE%").join(home.siteName)}`, "", `> ${page.description.split("%SITE%").join(home.siteName)}`, '', blocksToMarkdown(page.blocks, home.siteName, widgetText(lang))].join('\n').trim(),
     })
   }
 

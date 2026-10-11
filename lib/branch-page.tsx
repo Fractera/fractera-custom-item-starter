@@ -77,14 +77,21 @@ function contentOf(page: TreePage, lang: string, segments: string[]) {
   const w = wordsIn(page, lang)
   const roles = allowedRoles(page, segments)?.join(', ')
   // `%SITE%` в тексте — имя сайта (соглашение данных; прежний каталог подставлял его сам, блок `p` из «Блоков» — нет).
+  // Узел, шаг 450-1: подставляется в КАЖДУЮ строку страницы — заголовок, описание, заголовки секций, lead, h2, пункты списков, FAQ.
+  // ✗ До этого — только в `text-p`, и на странице «Cookie» в заголовке так и стояло «%SITE%».
   const site = brand().name
-  const blocks = fillElementLinks(w.blocks).map((b) => {
-    if (b.kind !== 'text-p') return b
-    let text = b.text.split('%SITE%').join(site)
-    if (roles) text = text.replace('{roles}', roles)
+  const fill = <T,>(v: T): T => {
+    if (typeof v === 'string') return v.split('%SITE%').join(site) as T
+    if (Array.isArray(v)) return v.map(fill) as T
+    if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x)])) as T
+    return v
+  }
+  const blocks = fill(fillElementLinks(w.blocks)).map((b) => {
+    if (b.kind !== 'text-p' || !roles) return b
+    const text = b.text.replace('{roles}', roles)
     return text === b.text ? b : { ...b, text }
   })
-  return { title: w.title, description: w.description, keywords: w.keywords ?? '', blocks, faq: w.faq }
+  return { title: fill(w.title), description: fill(w.description), keywords: w.keywords ?? '', blocks, faq: fill(w.faq) }
 }
 
 type Crumb = { label: string; href?: string }

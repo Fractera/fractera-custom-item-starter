@@ -93,6 +93,9 @@ export function blocksToMarkdown(blocks: Block[], siteName: string, widget?: Wid
       .trim(),
     siteName,
   )
+    // Узел, шаг 450-1: голый `%SITE%` (заголовок секции, пункт списка) — тоже имя сайта, как на самой странице.
+    .split('%SITE%')
+    .join(siteName)
 }
 
 /**
