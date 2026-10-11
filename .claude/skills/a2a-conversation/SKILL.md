@@ -3,6 +3,10 @@ name: a2a-conversation
 description: Every-element skill (both modes). Work with any other element of the node through Google's A2A protocol with one command, `npm run a2a` — find who can do a job, read its card and passport, send it a task or call its code skill, follow the task, and answer tasks that other elements send to you. Use this whenever a task needs something this element does not do itself (signing users in, storing rows or files, project settings, design, another element's ability) — even if the person never says «A2A»; whenever a line «A2A task <id> from <who>…» is pasted into your terminal; and whenever the person comments on a conversation with a neighbour in Telegram or the terminal.
 ---
 
+> **Three protocols (owner 2026-10-11).** Talking to an element of THIS node is **i2i**: meet it as A2A describes below, and aim
+> at a connector — an agreed API call — so that the next time no model is needed (build). Working for an outside agent through
+> Lagrix is **a2a** (working). Exchanging whole elements with other Fractera projects is **f2f** (build) — not this skill.
+
 <!-- PROOF · PROVEN 2026-10-06: answered A2A tasks with npm run a2a -- reply (three live runs) · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
 
 # A2A conversation

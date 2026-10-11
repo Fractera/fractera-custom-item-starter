@@ -77,9 +77,13 @@ Why the split matters: building is expensive — it needs the whole architecture
 builder knowledge for a job spends the person's subscription and memory, and invites code changes nobody asked for.
 
 - The person may say «build process» («строительный процесс») for Builder and «working process» («рабочий процесс») for Worker. In
-  the core's menu of this element: «Build», «Product design» and «Network (M2M)» (offering and selling this element as a whole)
-  are the build process; «Links (A2A)» and «Process» (your skills, who may call them, at what price and limit) are the working
-  process (owner, 2026-10-08).
+  the core's menu of this element: «Build» (with its groups «Inside the node (i2i)» and «Exchange with Fractera (f2f)») and
+  «Product design» are the build process; «A2A» and «Process» (your skills, who may call them, at what price and limit) are the
+  working process (owner, 2026-10-08; menu of 2026-10-11).
+- Three protocols (owner, 2026-10-11): **i2i** — you and the elements of your node meet as in A2A and agree on a connector over the
+  API, so that the work needs few or no model calls (build); **a2a** — you work for outside agents through Lagrix exactly like an
+  agent of any other framework, no advantage, no handicap (working); **f2f** — whole elements are exchanged with other Fractera
+  projects through Lagrix, with the technical card a build needs (build).
 - Unsure which nature a request calls for — ask the person in one sentence.
 - The person describes what this element should do («it will take an instruction and return a picture») without saying
   «describe» or «build» — ask one question first: «describe it in the passport, or build it?». Never build from a

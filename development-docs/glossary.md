@@ -30,13 +30,14 @@ The person speaks by voice and in their own language: their word goes in the sec
 
 | Term | The person may say | What it means |
 |---|---|---|
-| **A2A** | «а-два-а», «агент-агент» | Elements of ONE node talking to each other, directly, over Google's A2A protocol (Fractera meaning; the protocol itself is also called A2A). |
-| **M2M** | «эм-два-эм», «сеть» | Nodes talking to each other; also an outside agent calling this element through the tunnel. |
+| **i2i** | «ай-ту-ай», «элемент-элемент» | Elements of ONE node: they meet as in A2A, then agree on a connector over the API so that their work needs few or no model calls. Build process; tabs in the core's «Build → Inside the node (i2i)». |
+| **a2a** | «а-два-а», «агент-агент» | This element working for outside agents through Lagrix over Google's A2A protocol — exactly like an agent of any other framework, no advantage, no handicap. Working process; the core's «A2A». |
+| **f2f** | «эф-ту-эф» | Whole elements exchanged with other Fractera projects through Lagrix: the same discovery plus the technical card a build needs. Build process; the core's «Build → Exchange with Fractera (f2f)». |
 | **passport** | «паспорт», «описание о себе» | `OWN-SERVICE-PROPS/` — what the element tells the outside about itself; its main door. Skill `describe-element`. |
 | **A2A card** | «визитка» | The standard card served at `/.well-known/agent-card.json`, built from `OWN-SERVICE-PROPS/A2A-CARD.json` plus the passport. |
 | **skill (of the card)** | «навык», «способность» | One thing the element can do for others, a row of the card's `skills`. Not the same as an agent skill in `.claude/skills/`. |
 | **HTTP door** | «дверь», «http-door» | A route other elements call over plain HTTP, not over A2A; in the card such a skill carries the tag `http-door`. |
-| **showcase · offer** | «витрина», «карточка», «предложение» | What the element offers for work, with price, who may use it and limit — `OWN-SERVICE-PROPS/A2A-OFFERS.json`, shown on the core's «Links (A2A) → A2A» page. Today an example: nothing in it is callable, it is not in the card. |
+| **showcase · offer** | «витрина», «карточка», «предложение» | What the element offers for work, with price, who may use it and limit — `OWN-SERVICE-PROPS/A2A-OFFERS.json`, shown on the core's «A2A → A2A» page. Today an example: nothing in it is callable, it is not in the card. |
 | **catalog** | «каталог» | What an element can give away — blocks, sections — through find · get · contribute. On the core's page «Catalog» also lists the node's elements. |
 | **node key** | «ключ узла» | The key elements of one node use to call each other; an outside agent does not have it. |
 | **order** | «заказ» | A job the element did for another agent over A2A — working process, kept by skill `order-summary`, never in `development-docs/`. |
