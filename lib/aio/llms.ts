@@ -2,6 +2,10 @@ import { publicSurfaces, mdUrlFor, type Surface } from './surfaces'
 import { urlFor } from '@/lib/seo/alternates'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { SUPPORTED_LANGUAGES, SINGLE_LANG_MODE } from '@/config/translations/translations.config'
+import LLMS_EXTRA_JSON from './llms-extra.generated.json'
+
+// 451-5: документы для llms-full.txt, собранные `scripts/build-llms-extra.mjs` из `assets/llms-extra/<язык>/`.
+const LLMS_EXTRA = LLMS_EXTRA_JSON as Record<string, { file: string; text: string }[]>
 
 // `llms.txt` и `llms-full.txt` — что именно мы публикуем и по какой форме (шаг 505).
 //
@@ -91,5 +95,10 @@ export function buildLlmsFullTxt(lang: string): string {
   for (const s of surfaces) {
     out.push('---', '', `<!-- ${urlFor(lang, s.subPath)} -->`, '', s.body(), '')
   }
-  return out.join('\n').replace(/\n{3,}/g, '\n\n')
+  const pages = out.join('\n').replace(/\n{3,}/g, '\n\n')
+  // 451-5: документы из `assets/llms-extra/<язык>/` — ДОСЛОВНО, после страниц и вне схлопывания пустых строк (иначе текст
+  // документа менялся бы). Нет документов на этом языке — берутся английские; нет и их — файл как прежде, только страницы.
+  const extra = LLMS_EXTRA[lang]?.length ? LLMS_EXTRA[lang] : LLMS_EXTRA.en ?? []
+  if (extra.length === 0) return pages
+  return [pages.replace(/\n+$/, '\n'), ...extra.map((d) => `\n---\n\n<!-- document: ${d.file} -->\n\n${d.text}`)].join('')
 }
