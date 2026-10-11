@@ -44,7 +44,7 @@ export function CookieBanner({
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-6 py-5 sm:flex-row sm:items-center">
         <p className="text-sm leading-relaxed text-muted-foreground">
           {before}
-          <Link href={`/${lang}/legal/cookies`} className="text-foreground underline hover:no-underline">
+          <Link href={`/${lang}/cookies`} className="text-foreground underline hover:no-underline">
             {strings.policyLinkLabel}
           </Link>
           {after}

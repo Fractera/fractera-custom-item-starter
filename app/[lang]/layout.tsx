@@ -33,6 +33,7 @@ import { blockHighlightWords } from "@/components/block-highlight/block-highligh
 import { TaskReport } from "@/components/task-report/task-report.client";
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n";
 import { taskReportWords } from "@/components/task-report/task-report.i18n";
+import { needsCookieBanner } from "@/lib/policy-tools";
 
 // Root layout for the localized public surface (step 131). This zone OWNS <html>/
 // <body> — the language comes from the [lang] route param (known at build), NOT from
@@ -94,7 +95,7 @@ export default async function LangLayout({
   // баннер без текста, а он делит сообщение по метке ссылки и упал бы.
   // Analytics on → the banner is on too (owner 2026-10-11: «if need cookie banner for it, you must activate it in start add
   // GA»): Google Analytics sets cookies, so a visitor is asked first. Search Console needs no banner — it is a meta tag.
-  const bannerOn = featureOn("cookieBanner") || Boolean(cfg.analytics.enabled && cfg.analytics.googleAnalyticsId);
+  const bannerOn = featureOn("cookieBanner") || needsCookieBanner(cfg);
   // Копия сайта на устройстве посетителя — решение владельца, а не наше
   // умолчание (2026-08-13). Выключенный режим не просто «не регистрируем»: он
   // СНИМАЕТ воркер и стирает кеши у тех, кому он уже достался.

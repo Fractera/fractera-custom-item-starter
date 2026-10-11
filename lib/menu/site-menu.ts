@@ -2,6 +2,8 @@ import "server-only"
 import { getMenuGroups, type MenuGroup } from "@/lib/menu/group-menus"
 import { navGroupsFromConfig, defaultFooterGroups } from "@/lib/menu/nav-config"
 import { featureOn } from "@/config/platform-config"
+import { getAppConfig } from "@/config/app-config"
+import { needsPolicyPages } from "@/lib/policy-tools"
 
 // МЕНЮ ПРОЕКТА — ОДНО НА ВСЕ СЛУЖБЫ УЗЛА (шаг 283-1).
 //
@@ -23,7 +25,8 @@ export function resolveTopGroups(lang: string): MenuGroup[] {
 
 /** Группы подвала так, как их рисует подвал: пусто, пока страницы подвала не включены в панели. */
 export function resolveFooterGroups(lang: string): MenuGroup[] {
-  const pagesOn = featureOn("footerPages")
+  // An outside tool (Google Analytics, Search Console) shows the policy pages too (node step 449).
+  const pagesOn = featureOn("footerPages") || needsPolicyPages(getAppConfig())
   const fromConfig = pagesOn ? navGroupsFromConfig("footer", lang) : null
   return pagesOn ? (fromConfig ?? [...defaultFooterGroups(lang), ...getMenuGroups("footer", lang)]) : []
 }
