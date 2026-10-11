@@ -49,11 +49,12 @@ export function CookieBanner({
           </Link>
           {after}
         </p>
+        {/* «Reject» looks exactly like «Accept» (node step 450, AEPD cookie guide 2023: same level, same visibility). */}
         <div className="flex shrink-0 gap-3">
           <Button type="button" onClick={() => consent("accepted")}>
             {strings.accept}
           </Button>
-          <Button type="button" variant="outline" onClick={() => consent("rejected")}>
+          <Button type="button" onClick={() => consent("rejected")}>
             {strings.reject}
           </Button>
         </div>
