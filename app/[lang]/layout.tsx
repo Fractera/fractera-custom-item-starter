@@ -92,7 +92,9 @@ export default async function LangLayout({
   // Слова баннера: СВОИ на 82 языках, поверх них — то, что владелец изменил в
   // панели. Порядок именно такой: пустая настройка не имеет права оставить
   // баннер без текста, а он делит сообщение по метке ссылки и упал бы.
-  const bannerOn = featureOn("cookieBanner");
+  // Analytics on → the banner is on too (owner 2026-10-11: «if need cookie banner for it, you must activate it in start add
+  // GA»): Google Analytics sets cookies, so a visitor is asked first. Search Console needs no banner — it is a meta tag.
+  const bannerOn = featureOn("cookieBanner") || Boolean(cfg.analytics.enabled && cfg.analytics.googleAnalyticsId);
   // Копия сайта на устройстве посетителя — решение владельца, а не наше
   // умолчание (2026-08-13). Выключенный режим не просто «не регистрируем»: он
   // СНИМАЕТ воркер и стирает кеши у тех, кому он уже достался.
@@ -147,7 +149,9 @@ export default async function LangLayout({
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
             <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
+              {/* Consent Mode v2: denied until the visitor accepts in the banner; an earlier choice (localStorage
+                  `fractera-cookie-consent`, written by the banner) is applied before the first hit. */}
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var c=null;try{c=localStorage.getItem('fractera-cookie-consent')}catch(e){}var g=c==='accepted'?'granted':'denied';gtag('consent','default',{analytics_storage:g,ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','${gaId}');`}
             </Script>
           </>
         )}
