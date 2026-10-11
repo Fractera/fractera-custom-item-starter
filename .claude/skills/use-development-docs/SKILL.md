@@ -10,7 +10,7 @@ description: >
   says — a commit tells what changed, never what was decided, what is half done or what comes next.
 ---
 
-<!-- PROOF · PARTIAL 2026-10-07: loaded first after «yes», current-step.md kept on events; no plan in steps-new/; the pre-steps intake (added 2026-10-07) NOT proven · report: development-docs/proofs/2026-10-07-node-skills.md -->
+<!-- PROOF · PARTIAL 2026-10-07: loaded first after «yes», current-step.md kept on events; no plan in steps-new/; the pre-steps intake (added 2026-10-07) and glossary, backlog, cancelled, reports (added 2026-10-08, step 435-5) NOT proven · report: development-docs/proofs/2026-10-07-node-skills.md -->
 
 # use-development-docs
 
@@ -27,6 +27,8 @@ Everything here is English; the person's own words stay verbatim in quotes «…
    Then `pre-steps/` — a non-empty intake is named to the person before you choose what to do.
 2. An active step → its plan in `steps-new/`. The task touches an area built before → the matching files in `steps-done/`.
 3. Something fails → `anti-patterns.md`: the dead end may already be paid for.
+4. A word of the person or a term that can be read two ways → `glossary.md` before acting on it. Something «seems missing» →
+   `cancelled.md` before rebuilding it: it may have been dropped on purpose. Choosing what to do next → `backlog.md` too.
 
 ## `current-step.md` — written on events, not at the end
 
@@ -77,7 +79,19 @@ One exception: the person's decision that changes a rule of `CLAUDE.md` or a ski
 - A closed step that gets a new substep is closed again as a whole — no «addendum» files.
 - A cause found the hard way → `anti-patterns.md`: symptom, cause, cure. A live proof of a part of `CLAUDE.md` or a skill →
   `proofs/` and its mark (README, «Proof marks»). A text left in one language → `translation-debt.md` (skill `use-languages`).
+- Left undone or promised → a line in `backlog.md`; the line leaves with the commit that closes the gap. The person cancelled
+  or rolled back something → `cancelled.md` with their words and what replaced it. A term now used in two places →
+  `glossary.md` in the same commit. The last step of a capability → `reports/feature-…`; an error that took real time →
+  `reports/errors-…` (forms in `reports/README.md`).
 - `current-step.md`: «Active step: none» or the next one, the last commit, the next action.
+
+## Notes and records — what a new element is born with
+
+Two kinds of content live here. **Useful notes** (`glossary.md`, `anti-patterns.md`) hold from the first day and travel to every
+element born from this one. **Records** (`current-step.md`, `steps-new/`, `steps-done/`, `backlog.md`, `cancelled.md`,
+`reports/`, `pre-steps/`, `translation-debt.md`) are about this element's own building: a new element gets them as empty forms,
+never with the history of the element it was born from. No document of the set is ever deleted because it is empty — an empty
+form is how the next agent knows where to write (`npm run check:dev-docs` fails when one is missing).
 
 ## Do not
 

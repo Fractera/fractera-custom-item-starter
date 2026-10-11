@@ -37,6 +37,8 @@ could not run is said so — never swapped for an easier one.
 ## Steps — every building task goes through them, however small
 
 The documents in `development-docs/` are how building survives an ended session; skill `use-development-docs` has the details.
+A word of the person, a term in this file or a skill that can be read two ways → `development-docs/glossary.md` first; a new
+term that two places use → into the glossary in the same commit.
 
 1. **On wake into building:** read `current-step.md`, then `pre-steps/` — a non-empty intake is named to the person first.
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
@@ -50,11 +52,18 @@ The documents in `development-docs/` are how building survives an ended session;
    again as a whole — `steps-done/<N>.md` rewritten, never an addendum file.
 6. **Closing:** `steps-done/<N>.md` (what, how, commits, the evidence of each check, what is not checked, mistakes), the plan
    leaves `steps-new/` and a handled request moves to `pre-steps/handled/` in the same commit, `current-step.md` updated.
+   In the same commit: left undone or promised → `backlog.md`; cancelled by the person → `cancelled.md`; a cause found the
+   hard way → `anti-patterns.md`; the last step of a capability → `reports/feature-…`. Every document of `development-docs/`
+   exists from birth, empty or not — never delete one because it is empty.
 
 `current-step.md` is rewritten on every event — a decision (verbatim), a commit (hash), a found defect, before a long
 operation — not only at the end: if the session ended now, nothing from the last half hour may be lost.
 
-<!-- PROOF 2 START · «Two natures» · PARTIAL 2026-10-06: worker path proven (A2A task done, answered with reply, order summary); builder path, «unsure — ask», «describe or build?» NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
+**Commit messages and annotated tag messages are written in English only** (owner of the node, 2026-10-09): auditors and fund
+representatives will read this history. The person's verbatim words in another language go into `development-docs/`, not into
+a commit message.
+
+<!-- PROOF 2 START · «Two natures» · PARTIAL 2026-10-06: worker path proven (A2A task done, answered with reply, order summary); builder path, «unsure — ask», «describe or build?», the build/working process line (2026-10-08) NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
 ## Two natures — know which one you are in
 
 | | **Builder** | **Worker** |
@@ -67,6 +76,10 @@ operation — not only at the end: if the session ended now, nothing from the la
 Why the split matters: building is expensive — it needs the whole architecture and most skills. A job needs a few. Loading
 builder knowledge for a job spends the person's subscription and memory, and invites code changes nobody asked for.
 
+- The person may say «build process» («строительный процесс») for Builder and «working process» («рабочий процесс») for Worker. In
+  the core's menu of this element: «Build», «Product design» and «Network (M2M)» (offering and selling this element as a whole)
+  are the build process; «Links (A2A)» and «Process» (your skills, who may call them, at what price and limit) are the working
+  process (owner, 2026-10-08).
 - Unsure which nature a request calls for — ask the person in one sentence.
 - The person describes what this element should do («it will take an instruction and return a picture») without saying
   «describe» or «build» — ask one question first: «describe it in the passport, or build it?». Never build from a

@@ -22,10 +22,12 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `deploy-element` | ours | how a change reaches visitors: build or not, Preview in the core vs Preview before deploy, what to advise, never Accept/Deploy yourself | 🟨 2026-10-07: loaded, right; «Update» line changed after |
 | `github-element` | ours | saving the work to the element's own repository: Telegram — at once, terminal — on request; the core's push command and its answers | 🟨 2026-10-07: loaded first, step kept; no plan in steps-new |
 | `use-tests-before-dev-finish` | ours | proving a change before «done»: planned checks, machine + behaviour, spoil-and-restore, measurements that lie here | 🟨 2026-10-07: law kept, skill not loaded |
-| `use-development-docs` | ours | carrying building in development-docs/: current-step.md first and on every event, steps small and larger, substep = commit, mid-step tasks, closing | 🟨 2026-10-07: law kept, skill not loaded |
+| `use-development-docs` | ours | carrying building in development-docs/: current-step.md first and on every event, steps small and larger, substep = commit, mid-step tasks, closing; when glossary, backlog, cancelled, reports, anti-patterns are read and written; notes vs empty records | 🟨 2026-10-07: law kept, skill not loaded |
 | `use-auth` | ours | sign-in by the node's auth element, roles and inheritance, locks of a branch, a page and a door, bypasses, guests, a new role | — not proven |
 | `use-element-tree` | ours | the exact file tree of the element and the folders every branch must have; the guards that keep it | — not proven |
 | `cloudflare-connection` | ours | the tunnel, the temporary address, the own domain with subdomains, the copy in Workers — gains and limits | — not proven |
+| `connect-own-domain` | ours | the person asks «connect my domain»: buy it, the node adds the zone and gives two name servers, the registrar step (browser or words), measure ≤5 min, old domain → come back in 3–4 h, attach to this element | — not proven |
+| `own-domain-sign-in` | ours | sign-in on this element's own domain goes through the node's sign-in center — why, what to tell the person, the cost of direct sign-in, how to check it is alive and the env marker that breaks it | — not proven |
 | `computer-off` | ours | what still works with the computer off (the Cloudflare copy) and what waits for it | — not proven |
 | `project-origin` | ours | a project only from the person's own fork of fractera/agi; updates; moving to a new computer | — not proven |
 | `github-repositories` | ours | one private repository per element: created by a button, renamed with the element, tokens, import, restore | — not proven |

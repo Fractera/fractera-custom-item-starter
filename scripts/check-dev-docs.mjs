@@ -32,6 +32,17 @@ else {
   }
 }
 
+// Rule 3 (step 435-5, the person 2026-10-08: «Глоссари это неотъемлемая часть архитектуры документов которые должна существовать
+// в каждом элементе»): every document of the set exists from birth. Without this rule a document vanished silently — the menu of
+// the core shows only existing files, and the glossary, backlog and cancelled list were gone for days with every check green.
+const REQUIRED = [
+  "current-step.md", "steps-new/", "steps-done/", "pre-steps/", "glossary.md", "anti-patterns.md", "backlog.md", "cancelled.md",
+  "reports/", "proofs/", "owner-decisions-on-skill-changes.md", "translation-debt.md",
+];
+for (const name of REQUIRED) {
+  if (!fs.existsSync(path.join(DOCS, name))) problems.push(`development-docs/${name} is required and missing (README, «Every document below exists from the element's birth»)`);
+}
+
 // Rule 2: no Cyrillic outside quotes.
 const CYRILLIC = /[Ѐ-ӿ]/;
 const QUOTED = /«[^»]*»|"[^"]*"|“[^”]*”/g;

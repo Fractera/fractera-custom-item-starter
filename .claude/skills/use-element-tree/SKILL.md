@@ -27,7 +27,8 @@ description: >
 │   ├── current-step.md
 │   ├── steps-new/ · steps-done/
 │   ├── pre-steps/ (README.md, handled/)
-│   ├── anti-patterns.md
+│   ├── glossary.md · anti-patterns.md     ← useful notes, carried to every element born from this one
+│   ├── backlog.md · cancelled.md · reports/ (README.md)
 │   ├── proofs/
 │   ├── owner-decisions-on-skill-changes.md
 │   └── translation-debt.md
