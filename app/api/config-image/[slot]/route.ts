@@ -1,6 +1,61 @@
 // @api serve a settings image slot at one stable address
 import { NextResponse } from "next/server";
 import { configImagePair, defaultSlotImage, type ImageSlot } from "@/lib/config-images";
+import { getAppConfig } from "@/config/app-config";
+import { type LogoIconSize, parseLogoIconSlot } from "@/lib/logo-icons";
+import { readFile } from "node:fs/promises";
+import { join, normalize } from "node:path";
+import sharp from "sharp";
+
+// `icon-<size>` (node step 413): a square PNG cut from the element's own logo for the page head and the manifest
+// (`lib/logo-icons.ts`). No logo, or the picture cannot be read → 307 to the shipped icon of that size, so the tab never
+// stays empty. Read per request, like every setting: a new logo shows without a rebuild.
+const SHIPPED: Record<LogoIconSize, (c: ReturnType<typeof getAppConfig>) => string | null | undefined> = {
+  32: (c) => c.icons.icon32,
+  48: (c) => c.icons.icon48,
+  180: (c) => c.icons.appleTouch,
+  192: (c) => c.icons.icon192,
+  512: (c) => c.icons.icon512,
+};
+
+async function logoBytes(request: Request, logo: string): Promise<Buffer | null> {
+  // A file of this element's `public/` is read from disk; an uploaded one (`/api/media/...`) through the same origin.
+  if (logo.startsWith("/") && !logo.startsWith("/api/")) {
+    const root = join(process.cwd(), "public");
+    const file = normalize(join(root, logo));
+    if (!file.startsWith(root)) return null;
+    try { return await readFile(file); } catch { /* not a public file — try the origin */ }
+  }
+  try {
+    const res = await fetch(new URL(logo, request.url), { cache: "no-store" });
+    return res.ok ? Buffer.from(await res.arrayBuffer()) : null;
+  } catch {
+    return null;
+  }
+}
+
+async function logoIcon(request: Request, size: LogoIconSize): Promise<Response> {
+  const cfg = getAppConfig();
+  const shipped = SHIPPED[size](cfg);
+  const fallback = () =>
+    shipped
+      ? new NextResponse(null, { status: 307, headers: { Location: shipped, "Cache-Control": "no-store" } })
+      : new NextResponse("No icon", { status: 404 });
+  if (cfg.iconSet || !cfg.logo) return fallback();
+  const src = await logoBytes(request, cfg.logo);
+  if (!src) return fallback();
+  try {
+    // The apple-touch size gets a white field: iOS draws a transparent icon on black.
+    const clear = { r: 0, g: 0, b: 0, alpha: 0 };
+    const pad = Math.round(size * (size === 180 ? 0.08 : 0.04));
+    const inner = await sharp(src, { density: 384 }).resize(size - pad * 2, size - pad * 2, { fit: "contain", background: clear }).png().toBuffer();
+    const png = await sharp({ create: { width: size, height: size, channels: 4, background: size === 180 ? "#ffffff" : clear } })
+      .composite([{ input: inner, gravity: "center" }]).png().toBuffer();
+    return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png", "Cache-Control": "public, max-age=300" } });
+  } catch {
+    return fallback();
+  }
+}
 
 // Картинка слота настроек ПО СТАБИЛЬНОМУ АДРЕСУ.
 //
@@ -41,6 +96,8 @@ export async function GET(
   { params }: { params: Promise<{ slot: string }> },
 ) {
   const { slot: raw } = await params;
+  const iconSize = parseLogoIconSlot(raw);
+  if (iconSize) return logoIcon(request, iconSize);
   const parsed = parseSlot(raw);
   if (!parsed) {
     return new NextResponse("Unknown image slot", { status: 404 });

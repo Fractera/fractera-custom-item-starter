@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { iconUrl } from '@/config/app-config.defaults'
+import { logoIconUrl, usesLogoIcons } from '@/lib/logo-icons'
 import { urlFor } from '@/lib/seo/alternates'
 
 // Манифест устанавливаемого приложения — НА ЯЗЫК (шаг 504).
@@ -28,6 +29,11 @@ export function buildManifest(lang: string): MetadataRoute.Manifest {
       icons.push({ src: i512, sizes: '512x512', type: 'image/png', purpose: 'any' })
       icons.push({ src: i512, sizes: '512x512', type: 'image/png', purpose: 'maskable' })
     }
+  } else if (usesLogoIcons(cfg)) {
+    // The element's own logo (node step 413) — cut by the door; maskable keeps the same picture.
+    icons.push({ src: logoIconUrl(192), sizes: '192x192', type: 'image/png', purpose: 'any' })
+    icons.push({ src: logoIconUrl(512), sizes: '512x512', type: 'image/png', purpose: 'any' })
+    icons.push({ src: logoIconUrl(512), sizes: '512x512', type: 'image/png', purpose: 'maskable' })
   } else {
     if (cfg.icons.icon192) icons.push({ src: cfg.icons.icon192, sizes: '192x192', type: 'image/png', purpose: 'any' })
     if (cfg.icons.icon512) icons.push({ src: cfg.icons.icon512, sizes: '512x512', type: 'image/png', purpose: 'any' })

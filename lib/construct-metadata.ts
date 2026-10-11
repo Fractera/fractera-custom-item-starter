@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { AppConfig, ContentType } from "@/config/app-config.defaults";
 import { iconUrl, resolveBrandName, twitterHandle } from "@/config/app-config.defaults";
 import { getAppConfig, configValueForLang } from "@/config/app-config";
+import { logoIconUrl, usesLogoIcons } from "@/lib/logo-icons";
 
 // Build a Next Metadata object from the live site config (Admin -> Site Settings).
 // Ported from the 22slots construct-metadata, trimmed to the Shell's single-language reality
@@ -48,6 +49,14 @@ function buildIcons(cfg: AppConfig): NonNullable<Metadata["icons"]> {
     push(iconUrl(cfg, "icon_192"), "icon", "192x192", "image/png");
     push(iconUrl(cfg, "icon_512"), "icon", "512x512", "image/png");
     push(iconUrl(cfg, "apple_touch_icon"), "apple-touch-icon", "180x180", "image/png");
+  } else if (usesLogoIcons(cfg)) {
+    // The element's own logo (node step 413): every size is cut from it by the door; `/favicon.ico` follows it too.
+    push("/favicon.ico", "icon", "any");
+    push(logoIconUrl(32), "icon", "32x32", "image/png");
+    push(logoIconUrl(48), "icon", "48x48", "image/png");
+    push(logoIconUrl(192), "icon", "192x192", "image/png");
+    push(logoIconUrl(512), "icon", "512x512", "image/png");
+    push(logoIconUrl(180), "apple-touch-icon", "180x180", "image/png");
   } else {
     push(cfg.icons.faviconAny, "icon", "any", "image/x-icon");
     push(cfg.icons.icon32, "icon", "32x32", "image/png");
