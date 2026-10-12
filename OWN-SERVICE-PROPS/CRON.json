@@ -1,0 +1,28 @@
+{
+  "why": "Step 465 (owner 2026-10-12): what this element CAN run on a schedule — the catalog of events (handlers written in advance). Changed only by the build process (code + rebuild). The person's schedule is NOT here: it is data, `data/cron.json` (outside git) — the working process edits it, no code, no commit, no rebuild (465-4, owner: «автоматизация рабочего процесса не должна приводить к сборке проекта»). `seed` is the schedule a new element starts with: on its first start (no `data/cron.json` yet — the «registration») the server writes it there once; an entry with `afterHours` becomes a one-time entry at «now + N hours» (465-5, owner: one automatic task 24 hours after registration). `{address}` in a message is the element's main address. The core draws events + schedule as the calendar under «Process → Cron automations»; the element's server checks the clock once a minute (lib/cron/). Times are the local time of the computer. A missed run (computer off) is not caught up. Skill: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks. Never published in /.well-known/agent-card.json.",
+  "events": [
+    {
+      "id": "telegram-message",
+      "name": "Message in Telegram",
+      "description": "Sends the schedule's own text (field «message») to this element's Telegram bot. Any reminder is this event with its text — no new code."
+    },
+    {
+      "id": "daily-project-reminder",
+      "name": "Project reminder",
+      "description": "Sends a message to this element's Telegram bot: a reminder that you have a project at the element's main address, with the link."
+    }
+  ],
+  "seed": {
+    "repeatsPaused": false,
+    "schedules": [
+      {
+        "id": "welcome",
+        "event": "telegram-message",
+        "name": "Welcome from your calendar",
+        "message": "This is an automatic message from your calendar in the project {address}: have a good mood!",
+        "afterHours": 24,
+        "enabled": true
+      }
+    ]
+  }
+}
