@@ -26,6 +26,8 @@ export type Block = Addressed & (
   | { kind: 'text-p' | 'text-lead' | 'text-small' | 'text-code'; text: string }
   | { kind: 'text-list'; items: string[]; ordered?: boolean }
   | { kind: 'text-quote'; text: string; cite?: string }
+  // 458-4: таблица — документы Lagrix несут таблицы (словарь, риски, перечень документов). Ячейки — строки с разметкой в строке.
+  | { kind: 'text-table'; head: string[]; rows: string[][]; align?: ('left' | 'center' | 'right' | null)[] }
   // 423: виджет своей ветки на своём месте в последовательности (`<ветка>/_widgets/index.tsx`).
   | { kind: `widget-static-${string}` | `widget-dynamic-${string}` }
 )

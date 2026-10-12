@@ -63,6 +63,12 @@ function lines(block: Block, widget?: WidgetText): string[] {
       return [`> ${block.text}`, ...(block.cite ? [`> — ${block.cite}`] : [])]
     case 'text-code':
       return ['```', block.text, '```']
+    case 'text-table': {
+      const row = (cells: string[]) => `| ${cells.map((c) => c.replace(/\|/g, '\\|')).join(' | ')} |`
+      const RULE: Record<string, string> = { left: ':---', center: ':---:', right: '---:' }
+      const rule = block.head.map((_, i) => RULE[block.align?.[i] ?? ''] ?? '---')
+      return [row(block.head), `| ${rule.join(' | ')} |`, ...block.rows.map(row)]
+    }
   }
   // 428: виджет ветки несёт свой текст (лендинг — поле `landing` данных, форма — свои строки), и в копию он приходит через
   // `markdown(lang)` в папке виджета. 🪦 Здесь стояло «его слова уже в машинной версии» — неверно: главная отдавала 159 байт.

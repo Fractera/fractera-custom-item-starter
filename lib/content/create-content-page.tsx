@@ -157,7 +157,7 @@ export function createContentPage<C extends ContentPageContent>(config: ContentP
     const seoTitle = c.seoTitle ?? c.title
     // Social snippet image MUST be an absolute URL — Telegram/Facebook/LinkedIn
     // scrapers ignore relative og:image paths. (JSON-LD below already uses abs().)
-    const ogImageUrl = abs(meta.ogImage)
+    const ogImageUrl = abs(meta.ogImage.replace('{lang}', lang))
     return {
       // `absolute` по той же причине, что и у поста: корневой шаблон
       // `%s | <имя сайта>` иначе добавит имя второй раз.
@@ -204,7 +204,7 @@ export function createContentPage<C extends ContentPageContent>(config: ContentP
     const c = resolve(lang)
     const { breadcrumbs, backHref, backLabel } = chrome?.(lang, c) ?? {}
     const url = `${SITE}/${lang}${meta.subPath}`
-    const ogImageUrl = abs(meta.ogImage)
+    const ogImageUrl = abs(meta.ogImage.replace('{lang}', lang))
 
 
     // 🔒 ВЫКЛЮЧАТЕЛЬ FAQ БЫЛ МЁРТВЫМ (шаг 522, 2026-08-20). Панель его предлагала,

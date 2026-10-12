@@ -33,6 +33,9 @@ const ALLOWED = new Map([
   ['app/[lang]/(publicLayer)/index.md/route.ts', 'главная для агентов (markdown)'],
   ['app/[lang]/(publicLayer)/[slug]/page.tsx', 'РЕБЁНОК публичной ветки — все страницы _pages/'],
   ['app/[lang]/(publicLayer)/[slug]/index.md/route.ts', 'markdown-двойник любого ребёнка публичной ветки'],
+  // сниппеты страниц (шаг узла 458-3; владелец 2026-10-12: «Картинка рядом со страницей»): PNG при первом запросе, без пересборки
+  ['app/[lang]/(publicLayer)/snippet.png/route.ts', 'сниппет главной'],
+  ['app/[lang]/(publicLayer)/[slug]/snippet.png/route.ts', 'сниппет любого ребёнка публичной ветки'],
   ['app/api/own-service-props/route.ts', 'паспорт элемента — главная дверь (шаг узла 417; владелец 2026-10-06: «сервер который возвращает этот файл наружу, пока … без ключа»)'],
   ['app/api/a2a/route.ts', 'конечная точка A2A (привязка JSON-RPC, A2A v1.0; владелец 2026-10-05: «сейчас, делай конечную точку A2A»)'],
   ['app/.well-known/agent-card.json/route.ts', 'визитка A2A элемента (спецификация A2A v1.0, шаг узла 406-3)'],

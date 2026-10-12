@@ -11,6 +11,8 @@ import { PageHeader } from './page-header.server'
 import { PageCover } from './page-cover.server'
 import { BackLink } from './back-link.server'
 import { PageShell } from './page-shell'
+import { Toc, tocOf, withHeadingIds } from '@/components/blocks/block-toc'
+import { getPageUi } from '@/lib/content/page-ui'
 
 // PORTED FROM THE PLATFORM'S MARKETING SITE (2026-08-11). Three couplings were
 // cut on the way in, and none of them is a loss for a starter: a sponsorship
@@ -117,6 +119,8 @@ export type StandardContentPageProps = {
   /** Ссылка «назад» — на уровень выше. Нет уровня выше — нет и ссылки. */
   backHref?: string
   backLabel?: string
+  /** 458-11: «вперёд» — следующая страница по порядку, в той же полосе, что «назад». */
+  next?: { href: string; label: string; title: string }
   /**
    * Open slot for architect-discretion sections (e.g. the sponsorship section),
    * injected by the route entry and rendered directly ABOVE the FAQ. May be one
@@ -146,6 +150,7 @@ export function StandardContentPage({
   faq,
   backHref,
   backLabel,
+  next,
   sections,
 }: StandardContentPageProps) {
   // Словарь подписей МЕХАНИЗМА — им пользуются рендереры видов: кнопка `docref`,
@@ -154,8 +159,9 @@ export function StandardContentPage({
   const blockUi = getPostBodyUi(lang)
 
 
-  // 🪦 ОГЛАВЛЕНИЕ УБРАНО ИЗ ШАБЛОНА (314-2): его вид жил в удалённом каталоге `sections/`, а в «Блоках» оглавления нет.
-  // Понадобится — блок заводится в «Блоках» и ставится сюда командой.
+  // 🪦 ОГЛАВЛЕНИЕ УБРАНО ИЗ ШАБЛОНА (314-2) — и ВОЗВРАЩЕНО шагом 458-8 по слову владельца: «каждой странице должна содержать
+  // элементы TOC». Вид — `toc` каталога секций «Блоков» (там он есть, но в реестр установки не выложен), файлом
+  // `components/blocks/block-toc.tsx`; список считает шаблон из заголовков ленты.
 
   // ── ТРИ ЗОНЫ ШИРИНЫ, И ГРАНИЦА МЕЖДУ НИМИ — ЗАКОН СТРАНИЦЫ (2026-08-15) ────
   //
@@ -178,7 +184,9 @@ export function StandardContentPage({
   // колонки, а внутри неё остаётся текст.
   // Первым экраном считается любой из двух видов hero, несущих H1: сетка и первый экран по центру (304-1).
   const heroBlock = blocks.find(b => b.kind === 'block-hero-centered')
-  const bodyBlocks = blocks.filter(b => b !== heroBlock)
+  // 458-8: у заголовков ленты — адреса, по ним строится оглавление (вид toc из «Блоков», список считает шаблон, а не автор).
+  const bodyBlocks = withHeadingIds(blocks.filter(b => b !== heroBlock))
+  const toc = tocOf(bodyBlocks)
 
   return (
     /* 🔒 ОБОЛОЧКА — ОБЩАЯ, А НЕ СВОЯ (2026-08-19). Здесь стоял собственный
@@ -236,6 +244,9 @@ export function StandardContentPage({
             абзац и действия. */}
         {afterHeader}
 
+        {/* 3. Оглавление (458-8): разделы и подразделы ленты; меньше двух разделов — его нет. */}
+        <Toc items={toc} heading={getPageUi(lang).tocHeading} />
+
         {/* 4–7, 9. Body blocks (callout, H2/H3, quote, CTA, docref download, …).
             Без первого экрана и завершающей секции: они нарисованы снаружи этой
             колонки, потому что подчиняются другой ширине. */}
@@ -257,7 +268,7 @@ export function StandardContentPage({
         {/* Ссылка «назад» — ПРИМИТИВ `BackLink`, последний элемент страницы.
             Ведёт на уровень выше; у корня сайта такого уровня нет, поэтому её
             может не быть вовсе (шаг 508). */}
-        {backHref && <BackLink href={backHref} label={backLabel} />}
+        {backHref && <BackLink href={backHref} label={backLabel} next={next} />}
 
     </PageShell>
   )

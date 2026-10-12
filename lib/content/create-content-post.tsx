@@ -88,11 +88,15 @@ export type ContentPostConfig = {
     breadcrumbs: Breadcrumb[]
     backHref: string
     backLabel: string
+    /** 458-11: следующая страница по порядку — «вперёд» рядом с «назад». */
+    next?: { href: string; label: string; title: string }
   }
   /** <title> suffix, e.g. (lang) => 'Fractera News'. */
   titleSuffix: (lang: string) => string
   /** "min read" label; defaults to 'min read'. */
   minLabel?: (lang: string) => string
+  /** 458-5: разметка после тела поста (оглавление документов на корне /docs) — слот `afterBody` шаблона страницы. */
+  afterBody?: (lang: string) => ReactNode
 }
 
 function abs(path: string): string {
@@ -172,7 +176,7 @@ export function createContentPost(config: ContentPostConfig) {
   async function Page({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params
     const post = resolve(lang)
-    const { breadcrumbs, backHref, backLabel } = chrome(lang, post)
+    const { breadcrumbs, backHref, backLabel, next } = chrome(lang, post)
     const url = `${brand().siteUrl}/${lang}${subPath}`
     const ogImage = snippetImage(post)
 
@@ -214,16 +218,8 @@ export function createContentPost(config: ContentPostConfig) {
         keywords: post.keywords ?? post.tags.join(', '),
         ...(ogImage ? { image: ogImage } : {}),
       },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: breadcrumbs.map((b, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: b.label,
-          item: i === breadcrumbs.length - 1 ? url : abs(b.href ?? subPath),
-        })),
-      },
+      // 🪦 458-4: здесь стояла вторая разметка `BreadcrumbList` — её уже ставят видимые крошки (`components/nav/breadcrumbs.server.tsx`,
+      // с главной сайта первым пунктом). Две разметки одного пути спорили бы друг с другом в выдаче.
       // 🪦 314-2: разметку `FAQPage` ставит сам блок `faq` из «Блоков» рядом с видимыми вопросами; здесь она была бы второй.
     ]
 
@@ -254,6 +250,8 @@ export function createContentPost(config: ContentPostConfig) {
           faq={faq}
           backHref={backHref}
           backLabel={backLabel}
+          next={next}
+          afterBody={config.afterBody?.(lang)}
         />
       </>
     )

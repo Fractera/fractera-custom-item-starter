@@ -38,9 +38,13 @@ Plain text is not a block on purpose: a block is a section with its own spacing 
 { "kind": "text-list", "items": ["Dig", "Plant", "Water"], "ordered": true }
 { "kind": "text-quote", "text": "Less water, more roots.", "cite": "A gardener" }
 { "kind": "text-code", "text": "npm run pages:refresh" }
+{ "kind": "text-table", "head": ["Term", "Meaning"], "rows": [["Node", "Your own computer"]], "align": [null, null] }
 ```
 
-- Inside a line: `**bold**` and `[link](address)`; an external link opens in a new tab. Nothing else — no raw HTML.
+- Inside a line: `**bold**`, `*italic*`, code in backticks and `[link](address)`; an address starting with `/` is a soft `Link`
+  (skill soft-navigation), an external one opens in a new tab. Nothing else — no raw HTML.
+- `text-table` (node step 458-4): head and rows of strings, each cell takes the same inline marks; the table scrolls sideways
+  inside its frame on a phone.
 - `id` on a heading makes an anchor: `/<lang>/<page>#planting`.
 - **There is no `text-h1`.** The page's `title` is its only H1, drawn by the page itself; a second H1 hurts search.
 - Each item gets a `bid` like every element of the sequence: `npm run blocks:ids` stamps it; you answer with its link

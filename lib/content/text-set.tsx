@@ -1,11 +1,12 @@
 import { H2, H3, H4, Lead, P, Small } from '@/components/ui/typography'
 import { inline } from '@/lib/blocks/inline'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import type { BlockSet } from '@/components/blocks/page-body'
 
 // ТИПОГРАФИКА СТРАНИЦЫ — третий вид элемента страницы (узел, шаг 423; владелец 2026-10-07: страница — последовательность
 // виджетов, блоков «и обычной Typography»). Блок — оформленная секция из реестра «Блоков»; виджет — работа ветки; `text-*` —
 // голый текст, нарисованный примитивами `components/ui/typography` и токенами «Дизайна». Живёт в элементе, не в реестре:
-// это его дизайн-система. Внутри строки — `**жирный**` и `[ссылка](адрес)` (`inline`).
+// это его дизайн-система. Внутри строки — `**жирный**`, `*курсив*`, код в обратных кавычках и `[ссылка](адрес)` (`inline`); 458-4 — таблица `text-table`.
 // 🔒 `text-h1` нет намеренно: заголовок H1 страницы ставит фабрика из `title`, второй H1 вредит поиску.
 
 type Text = { blockKey?: string; text: string; id?: string }
@@ -31,6 +32,26 @@ export const TEXT_SET: BlockSet = {
       {cite ? <Small>— {cite}</Small> : null}
     </blockquote>
   ),
+  // 458-4: таблица — рамка и строки примитивов shadcn `components/ui/table`; на телефоне таблица прокручивается вбок внутри себя.
+  'text-table': ({ blockKey: k = 'table', head, rows, align }: { blockKey?: string; head: string[]; rows: string[][]; align?: ('left' | 'center' | 'right' | null)[] }) => {
+    const cls = (i: number) => (align?.[i] === 'center' ? 'text-center' : align?.[i] === 'right' ? 'text-right' : '')
+    return (
+      <div className="overflow-x-auto rounded-md border border-border">
+        <Table>
+          <TableHeader>
+            <TableRow>{head.map((h, i) => <TableHead key={`${k}-h${i}`} className={`whitespace-normal ${cls(i)}`}>{inline(h, `${k}-h${i}`)}</TableHead>)}</TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows.map((r, ri) => (
+              <TableRow key={`${k}-r${ri}`}>
+                {r.map((c, ci) => <TableCell key={`${k}-${ri}-${ci}`} className={`whitespace-normal align-top leading-7 ${cls(ci)}`}>{inline(c, `${k}-${ri}-${ci}`)}</TableCell>)}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    )
+  },
   'text-code': ({ text }: Text) => (
     <pre className="overflow-x-auto rounded-md border border-border bg-muted p-4 text-sm"><code>{text}</code></pre>
   ),

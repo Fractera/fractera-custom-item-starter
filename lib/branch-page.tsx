@@ -11,6 +11,13 @@ import { branchChild, branchRoot, wordsIn, type TreePage } from '@/lib/page-tree
 import { ownId } from '@/lib/own-id'
 import { brand } from '@/lib/brand'
 import { ALL_ROLES, rolesThatSee } from '@/lib/roles'
+import { snippetPath } from '@/lib/snippet/page-snippet'
+
+/** 458-3: картинка страницы для соцсетей — её свой сниппет рядом с ней (`<страница>/snippet.png`); своя картинка в `meta.ogImage`
+ *  сильнее, а прежняя общая `/og-default.png` больше не подставляется (у публичной страницы всегда есть своя). Закрытые ветки
+ *  сниппетов не имеют — им остаётся общая картинка. */
+const ogImageOf = (own: string | undefined, segments: string[], subPath: string) =>
+  own && own !== '/og-default.png' ? own : isPublic(segments) ? snippetPath(subPath) : '/og-default.png'
 
 // СТРАНИЦЫ ВЕТКИ ИЗ ДЕРЕВА ДАННЫХ (node step 314-2). Два файла маршрута на ветку и больше ни одного: корень
 // (`<ветка>/page.tsx` → `rootPage`) и ребёнок (`<ветка>/[slug]/page.tsx` → `childRoute`). Всё остальное — данные.
@@ -123,7 +130,7 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
       // 340-2: закрытые ветки (кабинеты, гость) закрыты от поиска своим layout; страница обязана это знать, иначе печатает
       // набор hreflang, который поисковик не учтёт (сторож: noindex-with-hreflang).
       closedBranch: !isPublic(opts.segments),
-      meta: { subPath: opts.subPath, ogImage: page.meta.ogImage ?? '/og-default.png', service: page.meta.service },
+      meta: { subPath: opts.subPath, ogImage: ogImageOf(page.meta.ogImage, opts.segments, opts.subPath), service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),
       // 423: виджеты ветки рисуются там, где стоят в последовательности `blocks`.
       widgets: opts.widgets,
@@ -170,7 +177,7 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
     const factory = createContentPage({
       data: { overrides: page.overrides },
       closedBranch: !isPublic(opts.segments),
-      meta: { subPath: `${opts.subPath}/${slug}`, ogImage: page.meta.ogImage ?? '/og-default.png', service: page.meta.service },
+      meta: { subPath: `${opts.subPath}/${slug}`, ogImage: ogImageOf(page.meta.ogImage, opts.segments, `${opts.subPath}/${slug}`), service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),
       widgets: opts.widgets,
       chrome: (lang, c) => {
