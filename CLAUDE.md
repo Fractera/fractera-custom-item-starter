@@ -183,5 +183,5 @@ or others inside Russian or English words are a frequent model artifact. Names a
 
 **The file tree of this element matches the skill `use-element-tree` exactly** — load it before you create, move, rename or
 delete any file or folder. Guards refuse a build that leaves it; a change of the tree itself is the person's decision.
-Something of the starting tree is gone (`npm run check:tree` prints `нет …`) → the skill's section «Restore the starting
+Something of the starting tree is gone (`npm run check:tree` lists a missing path) → the skill's section «Restore the starting
 architecture»: find the removing commit, ask the person, restore from git history or the template tag (node step 462).
