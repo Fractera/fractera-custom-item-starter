@@ -8,6 +8,7 @@ description: >
   `OWN-SERVICE-PROPS/SUBSCRIPTIONS.json`. The thing you cannot guess: the element draws NO settings screen for the service — it
   describes the service in one file, and the core's «Process → Subscriptions» tab draws the description, the key fields, the
   «Check» button and the payment history from it; the element's job is the server side only.
+  Russian phrasings of the person: «подключи сервис», «API-ключ», «подписка», «оплата сервиса», «баланс», «история платежей».
 ---
 
 <!-- PROOF · NOT PROVEN yet: written in node step 463 from a hard-coded example («AI search machine»); never run by an agent -->

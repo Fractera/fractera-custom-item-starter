@@ -8,6 +8,7 @@ description: >
   in Telegram»; whenever the project has no `public/images/snippet/background.webp` and the person wants one; and before you
   report that a new page is finished. The thing you cannot guess: the snippet is not a file you create — it is a route next to the
   page, and a page you add without that route falls back to a picture with no words.
+  Russian phrasings of the person: «сниппет», «превью ссылки», «картинка для соцсетей», «обложка страницы», «фон для сниппета».
 ---
 
 <!-- PROOF · NOT PROVEN yet: written in node step 458-3; the function and the background script were run by hand, the routes

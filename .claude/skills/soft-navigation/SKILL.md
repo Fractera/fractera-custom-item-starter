@@ -5,9 +5,10 @@ description: >
   menu, fonts and islands stay mounted and nothing blinks — and how to prove it, at home and on the own domain. Load it whenever a
   task adds or changes a link, a menu, a header, a footer, a layout, a redirect or a button that leads to another page; whenever
   the person says «the menu blinks», «the page reloads», «the header flickers», «state is lost when I switch pages»; and before
-  you report that navigation works. The thing you cannot guess: correct code is not enough — on the own domain the pages are
-  served from the Cloudflare copy, and if that copy answers Next's navigation request with HTML, every click becomes a full
-  reload although every link in the code is a `Link`.
+  you report that navigation works. The thing you cannot guess: correct code is not enough — on the own domain every request passes the core's Cloudflare
+  Worker (home first, the copy when home is silent — node step 458-10), and if anything on that path answers Next's navigation
+  request with HTML, every click becomes a full reload although every link in the code is a `Link`.
+  Russian phrasings of the person: «меню моргает», «страница перезагружается», «шапка мигает», «переход без перезагрузки».
 ---
 
 <!-- PROOF · NOT PROVEN yet: written in node step 455-2 from a measured defect, never checked by a live agent run -->

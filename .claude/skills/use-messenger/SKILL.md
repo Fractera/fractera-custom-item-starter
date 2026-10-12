@@ -6,6 +6,7 @@ description: >
   Messenger», `components/messenger/`, a conversation, a message list, a prompt input — and before you add any chat UI anywhere.
   The thing you cannot guess: the UI of a messenger is built ONLY from ai-elements components; the vendored skill says HOW, this one
   says WHEN and which rules of this element win.
+  Russian phrasings of the person: «мессенджер», «чат», «переписка», «H2H», «H2A», «окно беседы».
 ---
 
 <!-- PROOF · NOT PROVEN yet: written in node step 459 -->

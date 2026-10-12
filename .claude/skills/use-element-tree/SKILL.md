@@ -9,6 +9,7 @@ description: >
   route file appears outside the closed list, or a widget sits outside its branch, and deleting a branch must leave nothing behind.
   Load it too whenever a page, a branch or a file of the starting tree is missing or was deleted, or `check:tree` prints `нет …` —
   the section «Restore the starting architecture» brings the element back from its git history or its template tag.
+  Russian phrasings of the person: «дерево проекта», «куда положить файл», «удалили страницу», «верни как было», «стартовая архитектура».
 ---
 
 <!-- PROOF · PARTIAL 2026-10-07: the tree kept, the skill never loaded; pre-steps/ in the tree (added 2026-10-07) NOT proven · report: development-docs/proofs/2026-10-07-node-skills.md -->
