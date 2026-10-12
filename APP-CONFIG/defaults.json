@@ -47,9 +47,7 @@
     "robotsFollow": true,
     "disallowPaths": [
       "/api",
-      "/api/*",
-      "/_next",
-      "/_next/*"
+      "/api/*"
     ],
     "locales": [
       "en"
