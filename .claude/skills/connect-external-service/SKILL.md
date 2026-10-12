@@ -28,8 +28,15 @@ Owner, 2026-10-12: «…мы единственное что делаем это
 | the keys it needs | same entry → `keys[]` — `{ env, label, secret }` | only the **names** of environment variables (`AI_SEARCH_MACHINE_API_KEY`); values live in the element's `.env.local`, never in a file in git |
 | server code | `lib/integrations/<id>/` — `client.ts` (calls the provider), `check.ts` (status, balance, payments) | `import "server-only"`; reads the key from `process.env`; no key → a clear «not connected» result, never a throw on import |
 | the check door | `app/api/integrations/<id>/check/route.ts` (a line in `scripts/check-routes.mjs`) — path in `check` of the entry | `GET` → `{ ok, connected, balance?: {amount, currency}, payments: [{date, description, amount, currency, status}] }`; node key only (`X-Settings-Key`), the core calls it, never a visitor |
-| the screen | **the core**, «Process → Subscriptions» (`agi-code/app/[lang]/(architectLayer)/_components/subscriptions-view.client.tsx`) | the element draws no settings page for a service; a new field on the screen = a new field in `SUBSCRIPTIONS.json`, and the core renders it |
+| the screen | **the core**: «Process → Subscriptions» opens in the left menu into **one item per service**, each its OWN PAGE `/<lang>/<element>/process/subscriptions/<id>` (`agi-code/app/[lang]/(architectLayer)/_components/subscriptions-view.client.tsx`) | the element draws no settings page for a service; a new field on the screen = a new field in `SUBSCRIPTIONS.json`, and the core renders it |
 | where the service is used | the element's own code calls `lib/integrations/<id>/client.ts` | one place calls the provider; widgets and doors call that place |
+
+## 🔒 One service — one page (owner, 2026-10-12)
+
+«…создал выпадающий список и положил первый … и в навыки указал что нужно создавать отдельные страницы а не валить в одну кучу».
+Every service is a separate entry in `services[]` with its own `id`; the core gives it its own menu item and its own page. Never
+put two services into one entry, never build one screen that lists every service's keys and payments together — a person
+looks at one bill at a time, and a link to one service must open that service.
 
 ## Order of work
 
@@ -45,5 +52,5 @@ Buying a subscription, entering a key, spending money, choosing between two prov
 
 ## Today
 
-`SUBSCRIPTIONS.json` carries one EXAMPLE — «AI search machine» (`example: true`): the tab shows it, the key fields do not save and
-«Check» shows the example payments. Nothing is called. No `lib/integrations/` and no door exist yet — the first real service builds them.
+`SUBSCRIPTIONS.json` carries one EXAMPLE — «Exa», the AI search engine (`example: true`): the menu shows «Subscriptions → Exa», its page
+has the description, the key field `EXA_API_KEY` (does not save) and «Check» shows the example payments. Nothing is called. No `lib/integrations/` and no door exist yet — the first real service builds them.

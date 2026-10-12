@@ -1,17 +1,16 @@
 {
   "example": true,
-  "why": "Step 463 (owner 2026-10-12): a hard-coded example of how an outside paid service appears on the core tab «Process → Subscriptions» — what it does, which keys it needs, the «Check» button and the payment history. Nothing here is saved or called; it never goes into /.well-known/agent-card.json. Skill: connect-external-service.",
+  "why": "Step 463 (owner 2026-10-12): a hard-coded example of how an outside paid service appears in the core under «Process → Subscriptions» — the menu item opens into one page per service (/process/subscriptions/<id>) with its description, the keys it needs, the «Check» button and the payment history. Nothing here is saved or called; it never goes into /.well-known/agent-card.json. Skill: connect-external-service.",
   "services": [
     {
-      "id": "ai-search-machine",
-      "name": "AI search machine",
-      "description": "Searches the web with a language model and returns answers with sources — for the help desk, articles and product research. Paid per request on the provider's side.",
-      "docs": "https://example.com/ai-search-machine/docs",
+      "id": "exa",
+      "name": "Exa",
+      "description": "AI search engine: searches the web with a language model and returns pages with their content — for the help desk, articles and product research. Paid per request on the provider's side.",
+      "docs": "https://docs.exa.ai",
       "keys": [
-        { "env": "AI_SEARCH_MACHINE_API_KEY", "label": "API key", "secret": true },
-        { "env": "AI_SEARCH_MACHINE_PROJECT_ID", "label": "Project ID", "secret": false }
+        { "env": "EXA_API_KEY", "label": "API key", "secret": true }
       ],
-      "check": "/api/integrations/ai-search-machine/check",
+      "check": "/api/integrations/exa/check",
       "examplePayments": [
         { "date": "2026-10-01", "description": "Top-up", "amount": "20.00", "currency": "USD", "status": "paid" },
         { "date": "2026-10-05", "description": "1 240 search requests", "amount": "-6.20", "currency": "USD", "status": "charged" },
