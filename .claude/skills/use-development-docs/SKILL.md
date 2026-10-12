@@ -15,6 +15,8 @@ description: >
 # use-development-docs
 
 > A hint, not a law: if you know a better way for the case in front of you — do it your way and say so. The freedom is in HOW
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 > you build; whether the work is carried in these documents is not optional.
 
 What each file holds, who writes it and when it is opened — `development-docs/README.md`; this skill is how to use them.

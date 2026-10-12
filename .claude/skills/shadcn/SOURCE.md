@@ -22,3 +22,5 @@ never overwritten, and louder than this skill wherever they collide.
    another vendor's agent).
 3. **Deliberately not installed:** `migrate-radix-to-base` from the same repository. This element carries both Radix and
    Base UI; a migration is a project-wide rewrite — the owner's decision, not an agent's.
+
+Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).

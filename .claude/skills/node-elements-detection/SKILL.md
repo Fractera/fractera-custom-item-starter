@@ -1,11 +1,13 @@
 ---
 name: node-elements-detection
-description: Every-element skill (both modes). Learn the architecture of the node you live in — every other element (the native ones like sign-in, data, project settings, design, the root site, blocks, and the custom ones), what each does, its address and whether it runs — and how to work with them: always through A2A, never by reading their code. Use this at the start of every session after own-service-props-detection, and whenever a task touches something outside this element — users and sign-in, storing data or files, settings, design, or any ability another element might already have — even if the person does not name the other element.
+description: Both natures (every element). Learn the architecture of the node you live in — every other element (the native ones like sign-in, data, project settings, design, the root site, blocks, and the custom ones), what each does, its address and whether it runs — and how to work with them: always through A2A, never by reading their code. Use this at the start of every session after own-service-props-detection, and whenever a task touches something outside this element — users and sign-in, storing data or files, settings, design, or any ability another element might already have — even if the person does not name the other element.
 ---
 
 <!-- PROOF · PROVEN 2026-10-06: npm run passport -- project run first on wake; no core files · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
 
 # The node around me — from my passport
+
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 

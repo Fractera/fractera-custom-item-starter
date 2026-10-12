@@ -1,7 +1,7 @@
 ---
 name: connect-google-analytics
 description: >
-  Connecting Google Analytics and Google Search Console to THIS element when the person asks: «add Google Analytics», «here is
+  Builder skill. Connecting Google Analytics and Google Search Console to THIS element when the person asks: «add Google Analytics», «here is
   my Google tag G-…», «connect Search Console», «подключи аналитику», «добавь тег Google», or pastes the gtag.js snippet. Both are
   settings on the element's «Site settings» page, never code: the measurement ID turns the tag on every page at once, and the
   element by itself turns on the cookie banner and the footer with the Cookie and Privacy pages, where a Google Analytics section
@@ -10,6 +10,8 @@ description: >
 ---
 
 > A hint, not a law. You know a better way for the case in front of you — do it and say so.
+
+**Process: build** — this skill changes the element as a thing: settings that change every page, a file in `public/`, a commit, a rebuild for the file; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## What the person gets
 

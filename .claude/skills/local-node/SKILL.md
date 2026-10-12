@@ -1,7 +1,7 @@
 ---
 name: local-node
 description: >
-  How a Fractera node works fully on the person's own computer without being public on the internet — the agents, the data and
+  Both natures. How a Fractera node works fully on the person's own computer without being public on the internet — the agents, the data and
   the automations at home, with the Telegram bot as a remote control — what it is good for, what it cannot do, and how to switch
   between private and public. Load it whenever the person says they do not need a website, «only agents», «just for me», «home
   automation», «keep it private», «I only want to buy services from other agents», asks whether the node is useful without a
@@ -14,6 +14,8 @@ description: >
 # local-node
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
 
 ## What it is
 

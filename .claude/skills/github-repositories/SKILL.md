@@ -1,7 +1,7 @@
 ---
 name: github-repositories
 description: >
-  How every element of a Fractera node keeps itself on GitHub as its own repository — created by the person's button, named
+  Builder skill. How every element of a Fractera node keeps itself on GitHub as its own repository — created by the person's button, named
   after the fork and the element's address, renamed together with the element, a common token or the element's own, importing
   another repository, and how the node is restored from them. Load it whenever the person asks where an element is stored, how
   to export an element as a separate service, «create a repository», «rename the element», «use another repository», «what
@@ -15,6 +15,8 @@ description: >
 # github-repositories
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## One element — one repository
 

@@ -18,6 +18,8 @@ description: >
 
 > Not a hint: the element's tree matches this file exactly (CLAUDE.md). Changing the tree itself is the person's decision.
 
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+
 ## The tree
 
 ```

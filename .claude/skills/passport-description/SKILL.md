@@ -7,6 +7,8 @@ description: Builder skill. Write this element's passport texts — name, short 
 
 # Passport description
 
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 
 The passport (`OWN-SERVICE-PROPS/README.md`) is the element's main door: the node core indexes it, anyone gets it with one request,

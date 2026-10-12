@@ -1,7 +1,7 @@
 ---
 name: project-origin
 description: >
-  How a Fractera project is born and stays updatable — only from the person's own fork of github.com/fractera/agi, cloned to
+  Builder skill. How a Fractera project is born and stays updatable — only from the person's own fork of github.com/fractera/agi, cloned to
   their own computer; why any other copy is refused; how updates come («Sync fork» for the node, «Update» for an element); how
   a node is restored on a new computer. Load it whenever the person asks how to install, start, move or copy the project, «can I
   download it as a zip», «my friend gave me his copy», «how do I get updates», «I have a new computer», or sees
@@ -14,6 +14,8 @@ description: >
 # project-origin
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## How a project is born
 

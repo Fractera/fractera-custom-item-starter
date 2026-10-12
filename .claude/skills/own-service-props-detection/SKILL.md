@@ -1,11 +1,13 @@
 ---
 name: own-service-props-detection
-description: Every-element skill (both modes). Learn who you are inside this node from the element's passport — your id and name, your address on the internet and on this machine, your port and folder, your version, what you are for, what you sell, and who you cooperate with. Use this at the start of every session (CLAUDE.md asks for it on wake), and any time you are about to state, use or guess your own port, address, domain, project, role, skills or partners — even inside another task, such as building a link, a redirect or a call to yourself.
+description: Both natures (every element). Learn who you are inside this node from the element's passport — your id and name, your address on the internet and on this machine, your port and folder, your version, what you are for, what you sell, and who you cooperate with. Use this at the start of every session (CLAUDE.md asks for it on wake), and any time you are about to state, use or guess your own port, address, domain, project, role, skills or partners — even inside another task, such as building a link, a redirect or a call to yourself.
 ---
 
 <!-- PROOF · PROVEN 2026-10-06: npm run passport -- me run first on wake, read whole · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
 
 # Who I am — from my passport
+
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 

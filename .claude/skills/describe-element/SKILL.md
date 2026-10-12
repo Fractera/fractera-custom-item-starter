@@ -7,6 +7,8 @@ description: Builder skill. Describe this element with an A2A card (Google A2A v
 
 # describe-element
 
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+
 Result: `OWN-SERVICE-PROPS/A2A-CARD.json` (the body of the card; name, description and version come from the passport
 `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`) describes the element truthfully; `npm run check:passport` is green; the node's
 record is refreshed with `npm run describe:publish`. The standard is `lib/a2a/STANDARD.md` in the node's core (fields from

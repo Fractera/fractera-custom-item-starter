@@ -15,6 +15,8 @@ description: >
 # deploy-element
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. Not optional: the live
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 > site is changed only by the person's button.
 
 ## What needs a build

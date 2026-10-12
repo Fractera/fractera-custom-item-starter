@@ -1,7 +1,7 @@
 ---
 name: computer-off
 description: >
-  What this Fractera element can and cannot do while the person's computer is off, asleep or has its lid closed — which pages
+  Both natures. What this Fractera element can and cannot do while the person's computer is off, asleep or has its lid closed — which pages
   still open, what visitors see instead of the rest, what happens to sign-in, forms, the agents, Telegram and A2A — and the role
   of the Cloudflare copy. Load it whenever the person asks «what if I close the laptop», «does the site work at night», «why
   did the bot not answer», «visitors saw "the owner is offline"», and before you promise anything that needs the computer to be
@@ -13,6 +13,8 @@ description: >
 # computer-off
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
 
 ## Still works — from Cloudflare (own domain only)
 

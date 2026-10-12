@@ -1,6 +1,6 @@
 ---
 name: order-summary
-description: Every-element skill (work mode). Save a short summary of an order — work this element did for another agent over A2A — when that work is closed. Use it before telling the node «done» on any task that came over A2A, whatever the work was (a page section, a picture, a service in the physical world). Not for the element's own development: that goes to development-docs/.
+description: Work skill (every element). Save a short summary of an order — work this element did for another agent over A2A — when that work is closed. Use it before telling the node «done» on any task that came over A2A, whatever the work was (a page section, a picture, a service in the physical world). Not for the element's own development: that goes to development-docs/.
 ---
 
 <!-- PROOF · PROVEN 2026-10-06: wrote an order summary after each live A2A task · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
@@ -8,6 +8,8 @@ description: Every-element skill (work mode). Save a short summary of an order �
 # order-summary
 
 > A hint, not a law: if you know a better way for the case in front of you, do it your way and say so.
+
+**Process: working** — the running element does its job: data only, no commit, no push, no rebuild; answer in one or two lines.
 
 Result: `SERVICE_DATA_DIR/orders/<order>.md` exists, has no personal data, and lets anyone find the order by kind and tags and
 reach the raw conversation by its number.

@@ -91,3 +91,5 @@ loss is caught by `npx tsc --noEmit` with the file and line named — this is me
 exists and is not automatic — whoever re-vendors these components runs `npx tsc --noEmit` **before**
 believing the update went well. Putting it into `prebuild` is a separate decision about everybody's
 build time, and it is not taken here.
+
+Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).

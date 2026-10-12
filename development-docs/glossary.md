@@ -23,8 +23,8 @@ The person speaks by voice and in their own language: their word goes in the sec
 
 | Term | The person may say | What it means |
 |---|---|---|
-| **build process** | «строительный процесс», «строительство» | Everything that changes the element as a thing: code, design, texts, deploy, and offering or selling the whole element. Your **Builder** nature (`CLAUDE.md`, «Two natures»). In the core's menu: «Build», «Product design», «Network (M2M)». |
-| **working process** | «рабочий процесс», «работа элемента» | What the running element does: its work skills, calls from neighbours and outside agents, to whom it gives them, at what price and limit. Your **Worker** nature. In the core's menu: «Links (A2A)», «Process». |
+| **build process** | «строительный процесс», «строительство» | Everything that changes the element as a thing: code, design, texts, deploy, a new ability, and offering or selling the whole element. Your **Builder** nature (`CLAUDE.md`, «Two natures»). **What follows:** git changes — a commit, a push to GitHub, a rebuild («Preview & Deploy»); the answer is the full form — the three confirming lines, the plan, the person's «yes» (`CLAUDE.md`, «Confirm the request first»). In the core's menu: «Build» (with «Inside the node (i2i)» and «Exchange with Fractera (f2f)») and «Product design». |
+| **working process** | «рабочий процесс», «работа элемента» | What the running element does: its work skills, reminders and schedules, calls from neighbours and outside agents, to whom it gives them, at what price and limit. Your **Worker** nature. **What follows:** only data changes (`data/`, outside git) — no code, no commit, no push, no rebuild; the answer is one or two lines, like any Claude Code agent, no restatement and no «yes?». The test: **will git change after this?** Yes — it is the build process. Owner of the node, 2026-10-12: «автоматизация рабочего процесса не должна приводить к сборке проекта». In the core's menu: «A2A» and «Process». |
 
 ## Talking to others
 

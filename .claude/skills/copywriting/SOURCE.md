@@ -8,3 +8,5 @@
 - **In this element:** page words live in the page data (`_data` / `_pages/<slug>/<lang>.json`), `en` and `ru` at least; a
   public page never states what does not exist without the person's yes. The skill's `.agents/product-marketing.md` context
   file is optional: without it the skill asks its questions.
+
+Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).

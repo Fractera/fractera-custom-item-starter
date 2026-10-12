@@ -15,6 +15,8 @@ description: >
 
 > A hint, not a law. If you know a better way for the case in front of you, do it and say so — except the rule marked 🔒.
 
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+
 ## 🔒 The rule (owner, 2026-10-12, verbatim)
 «В навыки и в readme жёстко требовать ограничения на использование в дизайне ui/ux только библиотеке ai-elements».
 

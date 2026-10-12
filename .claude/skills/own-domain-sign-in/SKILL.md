@@ -1,7 +1,7 @@
 ---
 name: own-domain-sign-in
 description: >
-  How sign-in works when THIS element lives on its own domain (for example mybrand.com), and what to tell the person. Load it
+  Builder skill. How sign-in works when THIS element lives on its own domain (for example mybrand.com), and what to tell the person. Load it
   when the person asks «why did sign-in send me to another address?», «Google sign-in does not work on my domain», «I want sign-in
   right on my domain», «sign-in shows an error 525 / a strange address», or after connecting an own domain (skill
   connect-own-domain, last step). The thing you cannot guess: the jump to the node's sign-in center (auth.<node zone>) is the
@@ -14,6 +14,8 @@ description: >
 # own-domain-sign-in
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## How it works
 

@@ -15,6 +15,8 @@ description: >
 # use-page-tree
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. The one thing
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 > that is not optional: a new page never arrives as a new route file.
 
 > The whole file tree of the element, the starting tree it must keep and how to restore a deleted page or branch live in the

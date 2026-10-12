@@ -8,3 +8,5 @@
   copy by hand: a hand edit disappears on the next update and nobody will know it existed.
 - **When it is used, and what our rules override:** skill `custom-design` next to this folder. It is the gatekeeper; this skill
   answers only HOW to design.
+
+Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).

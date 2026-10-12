@@ -12,11 +12,22 @@ Cloudflare tunnel: a temporary address after the first start, the person's own d
 copy of the public pages answers from Cloudflare. With no public address at all the node is still whole: the agents work at
 home and the person drives them from Telegram, which needs no domain.
 
-## Confirm the request first
+## Confirm the request first — in the build process only
 
-People often cannot say exactly what they want, and a misunderstood task costs far more than one message. Before any work that
-changes or produces something — building or a job — answer first with three lines in the person's language, and start only after
-their «yes» or correction:
+Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
+The test: **will git change after this?** Yes — it is building, whatever it looked like.
+
+**Working process** — the running element does its job: a reminder, a schedule entry, an answer, an order. Only data changes
+(`data/`, outside git): no code, no commit, no push, no rebuild. Do it and answer in one or two lines, like any Claude Code agent:
+what is done and when it will happen. No restatement, no plan, no «yes?». Ask one short question only when the request is truly
+ambiguous (which date, which time, to whom). Never «test» by sending the person the real message early. Owner of the node,
+2026-10-12: a job is answered the way any Claude Code agent answers, and automating the working process never leads to a
+build — only the build process does. If a job turns out to need new
+code — that part is building: say so in one line and switch to the three lines below.
+
+**Build process** — the request changes this element as a thing: code, design, texts, deploy. People often cannot say exactly
+what they want, and a misunderstood build costs far more than one message. Before any building answer first with three lines in
+the person's language, and start only after their «yes» or correction:
 
 > If I understood you right, you are asking for … .
 > To do it I will … — what I will touch, and what I will not.
@@ -27,7 +38,7 @@ If the work turns out to need more than you named — code instead of data, othe
 the «yes» covered your plan, not a different one. A plain question is answered at once. A task from another agent over A2A has no person to wait for: put the same three lines at
 the top of your reply instead.
 
-## Plan the checks before the work
+## Plan the checks before the work — building
 
 The checks that will prove the work done are named **before** it starts — in that confirming message, so the person agrees with
 them: what you will run (the full `npm run prebuild`, a guard spoiled on purpose, a live request) and what the person will see,
@@ -71,7 +82,7 @@ a commit message.
 | what you do | program yourself: pages, design, data, your own code | the job this element was made for |
 | when | the person, in your terminal or in a review, asks to change this element | an A2A task from another agent, or a person's task in Telegram that is one of your jobs |
 | skills | builder skills + every-element skills; development documents: read `development-docs/current-step.md` first, keep it on every event (skill `use-development-docs`) | your work skills + every-element skills — builder skills stay closed |
-| you return | a commit; the person sees it on this element's «Preview & Deploy» page (preview → accept) — skill `deploy-element` | the result of the job — to the caller over A2A or to the person in Telegram — and an order summary (`order-summary`) |
+| you return | a commit; the person sees it on this element's «Preview & Deploy» page (preview → accept) — skill `deploy-element` | the result of the job — to the caller over A2A or to the person in Telegram — and an order summary (`order-summary`); changed data only, never a commit or a rebuild; a short answer |
 
 Why the split matters: building is expensive — it needs the whole architecture and most skills. A job needs a few. Loading
 builder knowledge for a job spends the person's subscription and memory, and invites code changes nobody asked for.
@@ -107,9 +118,17 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 
 | Nature | Skills |
 |---|---|
-| every element, both | `own-service-props-detection`, `node-elements-detection`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal); `order-summary` (worker) |
-| builder | `use-page-tree`, `use-typography`, `build-widget`, `use-tools`, `use-shadcn`, `use-highlight`, `deploy-element`, `github-element`, `soft-navigation`, `connect-external-service`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `copywriting`, `copy-editing`, `describe-element`, `passport-description`, `self-review` |
-| worker | none yet — a work skill says «Work skill» at the start of its description, and only those go into the passport |
+| both — building or a job | `a2a-conversation`, `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| builder | `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| worker | `order-summary` — a work skill offered to other agents also goes into the passport |
+| builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
+
+**A skill starts with its process** (owner of the node, 2026-10-12: an agent that creates a skill must first decide whether
+it belongs to the working or to the build process). Creating or rewriting a skill in `.claude/skills/`: first decide
+its process; the `description` starts with `Builder skill.`, `Work skill.` or `Both natures.`; the body says what follows
+(build: code, commit, rebuild, the three confirming lines; work: data only, no commit, no rebuild, a short answer); the skill goes
+into this table. A vendor skill (a `SOURCE.md` beside it) keeps its own text — its process is the line `Process: …` in its
+`SOURCE.md`. `npm run prebuild` fails on a skill without a process (`scripts/check-skill-process.mjs`).
 <!-- PROOF 3 END -->
 
 <!-- PROOF 4 START · «Outbound A2A guard» · PROVEN 2026-10-07: live task gyr1i → roman, the agent's reply with an owner word got 422, the agent answered again without it; key reply 422 and email mask on the live door; send blocked before the network · report: /code completed-steps/419-main.md -->

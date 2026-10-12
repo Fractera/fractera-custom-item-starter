@@ -1,7 +1,7 @@
 ---
 name: connect-own-domain
 description: >
-  Connecting the person's own domain to THIS element when they ask in chat: «connect my domain», «I bought mybrand.com»,
+  Builder skill. Connecting the person's own domain to THIS element when they ask in chat: «connect my domain», «I bought mybrand.com»,
   «put my site on mybrand.dev», «подключи мой домен». You lead the whole way in the conversation: the person buys the domain and
   opens their registrar; you add the domain to the node and get the two Cloudflare name servers through the node's doors; you
   guide (or, with a browser, fill) the name-server change at the registrar; you measure until the domain is active and attach it
@@ -15,6 +15,8 @@ description: >
 # connect-own-domain
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## What you never do
 

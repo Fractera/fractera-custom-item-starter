@@ -14,6 +14,8 @@ description: >
 # use-auth
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. Not optional: no
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 > own sign-in, no password, no role list outside `lib/roles.ts`.
 
 ## Who signs people in

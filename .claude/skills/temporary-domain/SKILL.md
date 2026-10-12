@@ -1,7 +1,7 @@
 ---
 name: temporary-domain
 description: >
-  The free temporary Cloudflare address a Fractera node gets on its first start — what it is for, why it cannot be a permanent
+  Builder skill. The free temporary Cloudflare address a Fractera node gets on its first start — what it is for, why it cannot be a permanent
   link (not on a business card, not in an advert, not in a contract), what is closed on it, what to do when it stops opening,
   and why the person should switch to their own domain as early as possible. Load it whenever the person shares or asks about
   a `*.trycloudflare.com` address, «my link stopped working», error 1016/1033, «can I print this link», «why is there no
@@ -14,6 +14,8 @@ description: >
 # temporary-domain
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## What it is
 

@@ -1,7 +1,7 @@
 ---
 name: cloudflare-connection
 description: >
-  How this Fractera node reaches the internet through Cloudflare — the tunnel from the home computer, the temporary address of
+  Builder skill. How this Fractera node reaches the internet through Cloudflare — the tunnel from the home computer, the temporary address of
   the first start, the person's own domain with a subdomain per element, the copy of public pages in Cloudflare Workers — what it
   gives and what it limits. Load it whenever the person asks about the internet, the address of the site, a domain, HTTPS,
   Cloudflare, «why is my site not opening», error 1016/1033/530, «is it safe», «does it cost money», and before you explain where
@@ -15,6 +15,8 @@ description: >
 # cloudflare-connection
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 
 ## How it works
 

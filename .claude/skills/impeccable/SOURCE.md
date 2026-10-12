@@ -15,3 +15,5 @@
 - **Update:** `npx impeccable install --providers=claude --scope=project` in a scratch folder, or clone the repository, then copy
   the skill folder over this one without hooks and agents, and write the new commit here. Never edit the copy by hand.
 - **When it is used, and what our rules override:** skill `custom-design` next to this folder.
+
+Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).

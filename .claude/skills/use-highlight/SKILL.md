@@ -15,6 +15,8 @@ description: >
 # use-highlight
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. The one thing that
+
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
 > is not optional: every container you draw has an address.
 
 ## The two directions
