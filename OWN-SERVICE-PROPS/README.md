@@ -33,6 +33,7 @@ No private data: the file is public. A key is never here, not even its variable 
 | `OWN-SERVICE-PROPS.json` | what only the agent or the person knows |
 | `A2A-CARD.json` | the Google A2A card body — skills, examples, the node extension; its name, description and version come from this passport when it is served (`/.well-known/agent-card.json`), never a second copy |
 | `A2A-OFFERS.json` | optional, not in a newly born element — the showcase of the core's «Links (A2A) → A2A» page: what the element offers, at what price, to whom, with what limit. Today an EXAMPLE (`"example": true`, step 435-4) to agree the shape; never part of the A2A card, nothing in it is callable. `access`: `registered` · `everyone`; `limit`: `null` = no limit or `{count, per: "day" \| "hour"}`; `price.unit`: `request` · `message` |
+| `SUBSCRIPTIONS.json` | the outside paid services the element uses, shown on the core's «Process → Subscriptions» tab: description, the keys it needs (environment variable NAMES, never values), the check door, the payment history. Today an EXAMPLE (`"example": true`, step 463 — «AI search machine»); never part of the A2A card. Skill `connect-external-service` |
 | `README.md` | this page: why the file exists and the rule for a field |
 | `server.ts` | the door: the file + fields computed at the moment of the request; `app/api/own-service-props/route.ts` only re-exports it |
 

@@ -108,7 +108,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 | Nature | Skills |
 |---|---|
 | every element, both | `own-service-props-detection`, `node-elements-detection`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal); `order-summary` (worker) |
-| builder | `use-page-tree`, `use-typography`, `build-widget`, `use-tools`, `use-shadcn`, `use-highlight`, `deploy-element`, `github-element`, `soft-navigation`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `copywriting`, `copy-editing`, `describe-element`, `passport-description`, `self-review` |
+| builder | `use-page-tree`, `use-typography`, `build-widget`, `use-tools`, `use-shadcn`, `use-highlight`, `deploy-element`, `github-element`, `soft-navigation`, `connect-external-service`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `copywriting`, `copy-editing`, `describe-element`, `passport-description`, `self-review` |
 | worker | none yet — a work skill says «Work skill» at the start of its description, and only those go into the passport |
 <!-- PROOF 3 END -->
 
