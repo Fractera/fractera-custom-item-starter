@@ -17,6 +17,9 @@ description: >
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. The one thing
 > that is not optional: a new page never arrives as a new route file.
 
+> The whole file tree of the element, the starting tree it must keep and how to restore a deleted page or branch live in the
+> skill `use-element-tree` (sections «Tree» and «Restore the starting architecture»; guard `npm run check:tree`, node step 462).
+
 ## The rule
 
 **A page is a folder of data. A branch has code only at its root.** Each branch is `layout.tsx` + `page.tsx` (its root)
