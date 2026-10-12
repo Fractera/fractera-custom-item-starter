@@ -1,0 +1,10 @@
+{
+  "title": "H2H Messenger",
+  "description": "Conversations between people, found through the Lagrix network.",
+  "blocks": [
+    {
+      "kind": "widget-dynamic-messenger-h2h",
+      "bid": "d00cg"
+    }
+  ]
+}

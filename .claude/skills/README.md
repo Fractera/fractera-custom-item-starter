@@ -38,6 +38,8 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-machine-copy` | ours | what a public page gives machines: Markdown copy, llms.txt, llms-full.txt; a widget's own markdown.ts; first-source facts about head markup | — not proven |
 | `use-site-menu` | ours | header and footer menus as settings: nav.top/footer, labels, topMenu/footerPages switches, CONFIG copy, links and language, no build, live check | — not proven |
 | `soft-navigation` | ours | internal links through next/link, header in the shared layout, no navigation by hand; prove a soft navigation by the window marker and an RSC request on every address; the Cloudflare copy answering HTML is the core's defect | — not proven |
+| `use-messenger` | ours | the gatekeeper of ai-elements: messenger branches messenger-h2h / messenger-h2a and the drawer buttons; 🔒 messenger UI only from ai-elements; what is not built | — not proven |
+| `ai-elements` | vendored (Vercel) | how to install and use ai-elements components; `SOURCE.md` — origin and update | — vendored |
 | `page-snippet` | ours | every public page has its own 1200×630 snippet at `<page>/snippet.png`, drawn on the first request (no rebuild) from title, description and the project background, tinted with the design primary; the background script asks the customer, names the price, or makes a free pattern | — not proven |
 | `use-shadcn` | ours | the gatekeeper: widgets, tools and blocks only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |

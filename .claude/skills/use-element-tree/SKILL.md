@@ -93,6 +93,12 @@ description: >
     │       ├── layout.tsx · page.tsx · _data/ · [...slug]/page.tsx · README.md
     │       ├── _components/README.md · _libs/README.md · _widgets/README.md
     │       └── _pages/ admin/ · users/ · site-settings/
+    │   ├── messenger-h2h/          ← 459: H2H Messenger — only the architect; UI only from ai-elements (skill use-messenger)
+    │   │   ├── layout.tsx · page.tsx (list of conversations) · _data/ {meta,en,ru}.json · README.md
+    │   │   ├── _components/README.md · _libs/README.md · _widgets/README.md
+    │   │   ├── _widgets/dynamic/widget-dynamic-messenger-h2h/  ← the window
+    │   │   └── [...slug]/page.tsx · README.md   ← /<lang>/messenger-h2h/<conversation>, dynamic
+    │   └── messenger-h2a/          ← 459: H2A Messenger — the same shape
     │
     └── (guestLayer)/
         └── guest/

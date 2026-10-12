@@ -54,6 +54,14 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/admin/layout.tsx', 'замок ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/page.tsx', 'КОРЕНЬ ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/[...slug]/page.tsx', 'РЕБЁНОК ветки admin: страница и страница в папке роли (402)'],
+  // ветка «messenger-h2h» (шаг узла 459, владелец 2026-10-12: «H2H Messenger – H2A Messenger … только при входе архитектора»)
+  ['app/[lang]/(protectedLayer)/messenger-h2h/layout.tsx', 'замок ветки messenger-h2h: только архитектор'],
+  ['app/[lang]/(protectedLayer)/messenger-h2h/page.tsx', 'КОРЕНЬ ветки messenger-h2h: список бесед'],
+  ['app/[lang]/(protectedLayer)/messenger-h2h/[...slug]/page.tsx', 'РЕБЁНОК ветки messenger-h2h: одна беседа, динамический маршрут'],
+  // ветка «messenger-h2a» (шаг узла 459, владелец 2026-10-12: «H2H Messenger – H2A Messenger … только при входе архитектора»)
+  ['app/[lang]/(protectedLayer)/messenger-h2a/layout.tsx', 'замок ветки messenger-h2a: только архитектор'],
+  ['app/[lang]/(protectedLayer)/messenger-h2a/page.tsx', 'КОРЕНЬ ветки messenger-h2a: список бесед'],
+  ['app/[lang]/(protectedLayer)/messenger-h2a/[...slug]/page.tsx', 'РЕБЁНОК ветки messenger-h2a: одна беседа, динамический маршрут'],
   // ветка «гостевая»
   ['app/[lang]/(guestLayer)/guest/layout.tsx', 'замок гостевой ветки: гостевой вход'],
   ['app/[lang]/(guestLayer)/guest/page.tsx', 'КОРЕНЬ гостевой ветки'],
