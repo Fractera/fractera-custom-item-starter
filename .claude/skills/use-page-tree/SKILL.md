@@ -79,6 +79,9 @@ A production build is always the whole app; the only lever is how many route fil
 - Every language repeats the same sequence with its own words (same kinds, same order, same `bid`); `check:page-sequence`
   refuses anything else, an unknown kind and any `tool-*` — tools live only inside widgets (skill `use-tools`).
 - A page of one widget: the sequence holds only it; `meta.json` → `"bare": true` drops the page frame.
+- **Which `block-*` a page may name** = the keys of `BLOCK_SET` in `lib/content/blocks/registry.tsx` — read them before you
+  propose a block. A component in `components/blocks/` is not enough (✗ node step 464: an agent offered `block-cta-button`, which
+  lives only inside the hero and is not in the set — the guard would refuse the page).
 - **A block** the set does not have comes from the Blocks element: `npx shadcn add @fractera/block-<name>` (the address in
   `BLOCKS_REGISTRY_URL`), then one line in `lib/content/blocks/registry.tsx`, its type in `lib/content/blocks/types.ts` and its
   Markdown line in `lib/aio/blocks-to-markdown.ts`. Never draw a section by hand.

@@ -11,7 +11,7 @@ description: >
   Russian phrasings of the person: «текст», «абзац», «заголовок», «список», «таблица», «цитата», «код на странице».
 ---
 
-<!-- PROOF · PROVEN 2026-10-07: loaded first; text-lead, text-h2, text-list drawn live, one H1 · report: development-docs/proofs/2026-10-07-page-skills.md -->
+<!-- PROOF · PROVEN 2026-10-07 and again 2026-10-12 with text-table (after the port to roman) · reports: development-docs/proofs/2026-10-07-page-skills.md, 2026-10-12-six-skills.md (in roman) -->
 
 # use-typography
 

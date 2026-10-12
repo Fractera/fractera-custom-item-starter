@@ -1,4 +1,4 @@
-✅ 2026-10-07 |🟨 2026-10-07: law kept, skill not loaded |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |# Skills of this element's agent
+✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-07 |🟨 2026-10-07: law kept, skill not loaded |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |# Skills of this element's agent
 
 Claude Code reads the skills of the agent that works in this folder from here: one folder per skill, `SKILL.md` inside.
 
@@ -23,25 +23,25 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `github-element` | ours | saving the work to the element's own repository: Telegram — at once, terminal — on request; the core's push command and its answers | 🟨 2026-10-07: loaded first, step kept; no plan in steps-new |
 | `use-tests-before-dev-finish` | ours | proving a change before «done»: planned checks, machine + behaviour, spoil-and-restore, measurements that lie here | 🟨 2026-10-07: law kept, skill not loaded |
 | `use-development-docs` | ours | carrying building in development-docs/: current-step.md first and on every event, steps small and larger, substep = commit, mid-step tasks, closing; when glossary, backlog, cancelled, reports, anti-patterns are read and written; notes vs empty records | 🟨 2026-10-07: law kept, skill not loaded |
-| `use-auth` | ours | sign-in by the node's auth element, roles and inheritance, locks of a branch, a page and a door, bypasses, guests, a new role | — not proven |
-| `use-element-tree` | ours | the exact file tree of the element and the folders every branch must have; the guards that keep it | — not proven |
+| `use-auth` | ours | sign-in by the node's auth element, roles and inheritance, locks of a branch, a page and a door, bypasses, guests, a new role | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
+| `use-element-tree` | ours | the exact file tree of the element and the folders every branch must have; the guards that keep it | ✅ 2026-10-12 |
 | `cloudflare-connection` | ours | the tunnel, the temporary address, the own domain with subdomains, the copy in Workers — gains and limits | — not proven |
 | `connect-google-analytics` | ours | the person gives a Google tag or a Search Console code: only the ID into «Site settings», banner + footer + policy pages turn on by themselves, check the page and GA Realtime of the property with THAT stream | 🟨 the steps were done live on lagrix 2026-10-11 by the node agent; not run by an element agent |
-| `connect-external-service` | ours | an outside paid service: its entry in OWN-SERVICE-PROPS/SUBSCRIPTIONS.json (keys by name only), server code in lib/integrations/<id>/, the check door; the core draws the Subscriptions tab | — not proven |
+| `connect-external-service` | ours | an outside paid service: its entry in OWN-SERVICE-PROPS/SUBSCRIPTIONS.json (keys by name only), server code in lib/integrations/<id>/, the check door; the core draws the Subscriptions tab | ✅ 2026-10-12 |
 | `connect-own-domain` | ours | the person asks «connect my domain»: buy it, the node adds the zone and gives two name servers, the registrar step (browser or words), measure ≤5 min, old domain → come back in 3–4 h, attach to this element | — not proven |
 | `own-domain-sign-in` | ours | sign-in on this element's own domain goes through the node's sign-in center — why, what to tell the person, the cost of direct sign-in, how to check it is alive and the env marker that breaks it | — not proven |
-| `computer-off` | ours | what still works with the computer off (the Cloudflare copy) and what waits for it | — not proven |
+| `computer-off` | ours | what still works with the computer off (the Cloudflare copy) and what waits for it | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
 | `project-origin` | ours | a project only from the person's own fork of fractera/agi; updates; moving to a new computer | — not proven |
 | `github-repositories` | ours | one private repository per element: created by a button, renamed with the element, tokens, import, restore | — not proven |
 | `temporary-domain` | ours | the free trycloudflare address: not permanent, read-only panel, when it dies, switch to an own domain early | — not proven |
-| `local-node` | ours | a private node at home: agents, data, automations, Telegram as the remote, a buyer node over A2A | — not proven |
-| `use-languages` | ours | 82-language catalogue, enabled set, switcher, translations as files, search-open set and its guards, one language while building, the translation debt | — not proven |
+| `local-node` | ours | a private node at home: agents, data, automations, Telegram as the remote, a buyer node over A2A | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
+| `use-languages` | ours | 82-language catalogue, enabled set, switcher, translations as files, search-open set and its guards, one language while building, the translation debt | ✅ 2026-10-07 (report 2026-10-07-node-skills.md) |
 | `use-machine-copy` | ours | what a public page gives machines: Markdown copy, llms.txt, llms-full.txt; a widget's own markdown.ts; first-source facts about head markup | — not proven |
 | `use-site-menu` | ours | header and footer menus as settings: nav.top/footer, labels, topMenu/footerPages switches, CONFIG copy, links and language, no build, live check | — not proven |
-| `soft-navigation` | ours | internal links through next/link, header in the shared layout, no navigation by hand; prove a soft navigation by the window marker and an RSC request on every address; the Cloudflare copy answering HTML is the core's defect | — not proven |
-| `use-messenger` | ours | the gatekeeper of ai-elements: messenger branches messenger-h2h / messenger-h2a and the drawer buttons; 🔒 messenger UI only from ai-elements; what is not built | — not proven |
+| `soft-navigation` | ours | internal links through next/link, header in the shared layout, no navigation by hand; prove a soft navigation by the window marker and an RSC request on every address; the Cloudflare copy answering HTML is the core's defect | ✅ 2026-10-12 |
+| `use-messenger` | ours | the gatekeeper of ai-elements: messenger branches messenger-h2h / messenger-h2a and the drawer buttons; 🔒 messenger UI only from ai-elements; what is not built | ✅ 2026-10-12 |
 | `ai-elements` | vendored (Vercel) | how to install and use ai-elements components; `SOURCE.md` — origin and update | — vendored |
-| `page-snippet` | ours | every public page has its own 1200×630 snippet at `<page>/snippet.png`, drawn on the first request (no rebuild) from title, description and the project background, tinted with the design primary; the background script asks the customer, names the price, or makes a free pattern | — not proven |
+| `page-snippet` | ours | every public page has its own 1200×630 snippet at `<page>/snippet.png`, drawn on the first request (no rebuild) from title, description and the project background, tinted with the design primary; the background script asks the customer, names the price, or makes a free pattern | ✅ 2026-10-12 (after a fix) |
 | `use-shadcn` | ours | the gatekeeper: widgets, tools and blocks only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |
 | `design-taste-frontend` | vendored, Leon Lin, MIT | anti-generic landing design — `SOURCE.md` | — not proven |

@@ -11,7 +11,7 @@ description: >
   Russian phrasings of the person: «подключи сервис», «API-ключ», «подписка», «оплата сервиса», «баланс», «история платежей».
 ---
 
-<!-- PROOF · NOT PROVEN yet: written in node step 463 from a hard-coded example («AI search machine»); never run by an agent -->
+<!-- PROOF · PROVEN 2026-10-12 · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
 
 # connect-external-service
 

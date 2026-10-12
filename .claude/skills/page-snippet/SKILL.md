@@ -11,8 +11,7 @@ description: >
   Russian phrasings of the person: «сниппет», «превью ссылки», «картинка для соцсетей», «обложка страницы», «фон для сниппета».
 ---
 
-<!-- PROOF · NOT PROVEN yet: written in node step 458-3; the function and the background script were run by hand, the routes
-     were not yet served by a build -->
+<!-- PROOF · PROVEN 2026-10-12 after a fix (the background line) · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
 
 # page-snippet
 
@@ -52,7 +51,9 @@ If `public/images/snippet/background.webp` is missing and the person wants a rea
 4. Look at the result (open the file), then open one page's `snippet.png` and look at the title on it.
 5. No key, or they do not want to pay → `node scripts/snippet-background.mjs --pattern`.
 
-The background reaches the site with the next deploy: it is a file in `public/`.
+The background is read from the element folder at every draw (`lib/snippet/page-snippet.ts` → `elementRoot()`): it reaches the
+site with no rebuild, as soon as the 5-minute cache of each snippet runs out (measured in node step 458). Corrected in node step 464:
+the skill used to say «with the next deploy», and an agent repeated it.
 
 ## Prove it
 

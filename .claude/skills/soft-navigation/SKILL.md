@@ -11,7 +11,7 @@ description: >
   Russian phrasings of the person: «меню моргает», «страница перезагружается», «шапка мигает», «переход без перезагрузки».
 ---
 
-<!-- PROOF · NOT PROVEN yet: written in node step 455-2 from a measured defect, never checked by a live agent run -->
+<!-- PROOF · PROVEN 2026-10-12 · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
 
 # soft-navigation
 

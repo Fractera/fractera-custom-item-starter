@@ -9,7 +9,7 @@ description: >
   Russian phrasings of the person: «мессенджер», «чат», «переписка», «H2H», «H2A», «окно беседы».
 ---
 
-<!-- PROOF · NOT PROVEN yet: written in node step 459 -->
+<!-- PROOF · PROVEN 2026-10-12 · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
 
 # use-messenger
 
