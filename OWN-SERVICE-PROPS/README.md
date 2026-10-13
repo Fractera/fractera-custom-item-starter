@@ -53,6 +53,7 @@ No private data: the file is public. A key is never here, not even its variable 
 | `framework` | birth (template), then agent | the framework inside: `next`, `react`, `express`, … — an agent decides whether to connect this element to its project (owner 2026-10-07) |
 | `visibility` | person | `network` — seen outside the node; `node` — through the tunnel it answers as absent |
 | `calls` | template, then agent | elements this element cooperates with — node-private, returned only with the node key (see «Where `calls` comes from») |
+| `messengers` | template, then person | which ways of talking the element has, true or false: `h2a` (the person and this agent), `h2h` (people through their agents), `a2a` (agents); the core shows the H2A / H2H sections and the new A2A pages by these flags and takes them into its registry (owner 2026-10-13, step 472) |
 | `marketplace` | person | `listed`, `price`, `currency` — empty strings while not for sale |
 | `nostr` | agent | `tags` for search; `description` empty = the short description (one text, not two copies) |
 

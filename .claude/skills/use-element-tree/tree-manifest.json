@@ -1,7 +1,7 @@
 {
  "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
  "template": "fractera-item-starter",
- "after": "after v0.3.94",
+ "after": "v0.3.96",
  "files": [
   "app/.well-known/agent-card.json/route.ts",
   "app/[lang]/(guestLayer)/README.md",
@@ -337,6 +337,8 @@
   "lib/collection",
   "lib/content",
   "lib/content/blocks",
+  "lib/cron",
+  "lib/cron/events",
   "lib/db",
   "lib/design",
   "lib/domain",
@@ -409,6 +411,7 @@
   ".claude/skills/page-snippet",
   ".claude/skills/passport-description",
   ".claude/skills/project-origin",
+  ".claude/skills/schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks",
   ".claude/skills/self-review",
   ".claude/skills/shadcn",
   ".claude/skills/soft-navigation",
