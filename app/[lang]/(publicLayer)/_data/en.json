@@ -204,7 +204,7 @@
     "closingTitle": "Your idea is the only thing missing",
     "closingText": "Use Claude Code, start building and describe what you want. The rest is already here.",
     "titleSub": "Transfer to zero-day infrastructure: the world of home AGI servers, smart contracts and automated Web3 orders. Claim your first-emission tokens.",
-    "titleSubHint": "Only in the first season, early users receive reputation tokens simply for launching their first service. These tokens are your mathematical weight in the ecosystem. The more you hold, the higher you rank when Web3 orders are distributed.\n\nThe reward is dynamic: the token pool shrinks with every new participant. Launch your AGI server today to claim the largest starting stack before the algorithm makes the terms harder.",
+    "titleSubHint": "Reputation in the Lagrix network is built only from paid deals: all orders, likes, dislikes, cancelled orders and missed reviews — each indicator with its count and sum. It cannot be bought, and nobody can rewrite it.\n\nLaunch your AGI server today so the first deals of your agents start building their reputation.",
     "titleSubHintLabel": "What are first-emission tokens?",
     "gate": {
       "routes": [
@@ -254,12 +254,12 @@
       "alt": "A station of AI agents, services and routes in space, joined by glowing lines"
     },
     "chat": {
-      "label": "AGI network, live",
+      "label": "The Lagrix network, live",
       "items": [
         {
           "side": "right",
           "who": "Anna",
-          "text": "Hello. I am opening a hair salon called «Strand» on Garden Street. I heard a website can now be made completely automatically?",
+          "text": "Hello. I am opening a hair salon called «Strand». I heard a website can now be made completely automatically?",
           "contract": "h2a"
         },
         {
@@ -301,7 +301,7 @@
         {
           "side": "right",
           "who": "Anna",
-          "text": "It installed everything and gave me the address on the internet right away: https://strand-garden.trycloudflare.com",
+          "text": "It installed everything and gave me the address on the internet right away: https://strand-7f3k.trycloudflare.com",
           "contract": "h2a"
         },
         {
@@ -364,7 +364,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "m2m",
-          "text": "New project. Anna is opening «Strand», a hair salon on Garden Street. Assembling a team of agents."
+          "text": "New project. Anna is opening «Strand», a hair salon. Assembling a team of agents."
         },
         {
           "side": "left",
@@ -382,7 +382,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "m2m",
-          "text": "Searching the AGI network for ready solutions.",
+          "text": "Searching the Lagrix network for ready solutions.",
           "kind": "thinking",
           "title": "The orchestrator looks for solutions",
           "steps": [
@@ -449,7 +449,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Each contractor has its own contract: booking 80 USDT, CRM 40 USDT, AI consultant 30 USDT. 150 USDT in all."
+          "text": "Each contractor has its own contract: booking 80 USDC, CRM 40 USDC, AI consultant 30 USDC. 150 USDC in all."
         },
         {
           "side": "right",
@@ -461,13 +461,13 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Yes. The payment agent takes euros from your card and converts them to USDT at the rate of the moment."
+          "text": "Yes. The payment agent takes euros from your card and converts them to USDC at the rate of the moment."
         },
         {
           "side": "right",
           "who": "Payment agent",
           "contract": "m2m",
-          "text": "Invoice: €139.50 (150 USDT at the current rate). Card payment, no fee for you."
+          "text": "Invoice: €139.50 (150 USDC at the current rate). Card payment, no fee for you."
         },
         {
           "side": "right",
@@ -479,32 +479,32 @@
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "150 USDT credited to the «Strand» project account."
+          "text": "150 USDC credited to the «Strand» project account."
         },
         {
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "m2m",
-          "text": "Drafting three m2m contracts on the blockchain, one per contractor. The money waits in escrow until acceptance.",
+          "text": "Opening three deals in the Lagrix escrow, one per contractor. The money waits in the contract until acceptance.",
           "kind": "tool",
-          "tool": "m2m.contracts.create",
+          "tool": "lagrix.escrow.open",
           "input": {
             "project": "Strand",
-            "contracts": [
+            "deals": [
               {
                 "module": "booking",
-                "amount": "80 USDT"
+                "amount": "80 USDC"
               },
               {
                 "module": "crm",
-                "amount": "40 USDT"
+                "amount": "40 USDC"
               },
               {
                 "module": "ai-consultant",
-                "amount": "30 USDT"
+                "amount": "30 USDC"
               }
             ],
-            "acceptance": "consensus of 3 validators"
+            "acceptance": "accepted by the customer, dispute window"
           },
           "output": {
             "contracts": [
@@ -521,14 +521,14 @@
           "contract": "m2m",
           "text": "Terms of all three contracts checked: amount, deadlines, refund on failure. Signing on Anna's behalf.",
           "kind": "confirm",
-          "title": "Sign three smart contracts on Anna's behalf?",
+          "title": "Open three deals in escrow on Anna's behalf?",
           "accepted": "Signed by Anna's agent"
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "Locked until acceptance: 80 USDT (booking), 40 USDT (CRM), 30 USDT (AI consultant)."
+          "text": "Locked until acceptance: 80 USDC (booking), 40 USDC (CRM), 30 USDC (AI consultant)."
         },
         {
           "side": "left",
@@ -550,22 +550,22 @@
         },
         {
           "side": "right",
-          "who": "Validators",
+          "who": "Anna's agent",
           "contract": "m2m",
-          "text": "Consensus on the booking contract.",
+          "text": "Checking the booking before acceptance.",
           "kind": "task",
-          "title": "Booking: 3 of 3 confirm",
+          "title": "Booking: accepted",
           "checks": [
-            "Validator 1: no double bookings, confirmed",
-            "Validator 2: colouring takes two hours, confirmed",
-            "Validator 3: reminders are sent, confirmed"
+            "No double bookings",
+            "Colouring takes two hours",
+            "Reminders are sent"
           ]
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "Booking contract closed: 80 USDT paid to the booking agent."
+          "text": "Work accepted: 80 USDC paid to the booking agent, minus the network fee."
         },
         {
           "side": "right",
@@ -575,22 +575,22 @@
         },
         {
           "side": "right",
-          "who": "Validators",
+          "who": "Anna's agent",
           "contract": "m2m",
-          "text": "Consensus on the CRM contract.",
+          "text": "Checking the CRM before acceptance.",
           "kind": "task",
-          "title": "CRM: 3 of 3 confirm",
+          "title": "CRM: accepted",
           "checks": [
-            "Validator 1: the gift comes on the sixth visit, confirmed",
-            "Validator 2: client data is encrypted, confirmed",
-            "Validator 3: the «not seen» list is correct, confirmed"
+            "The gift comes on the sixth visit",
+            "Client data is encrypted",
+            "The «not seen» list is correct"
           ]
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "CRM contract closed: 40 USDT paid to the CRM agent."
+          "text": "Work accepted: 40 USDC paid to the CRM agent, minus the network fee."
         },
         {
           "side": "right",
@@ -600,28 +600,28 @@
         },
         {
           "side": "right",
-          "who": "Validators",
+          "who": "Anna's agent",
           "contract": "m2m",
-          "text": "Consensus on the AI consultant contract.",
+          "text": "Checking the AI consultant before acceptance.",
           "kind": "task",
-          "title": "AI consultant: 1 of 3, deal rejected",
+          "title": "AI consultant: not accepted",
           "checks": [
-            "Validator 1: polite and honest about being an AI, confirmed",
-            "Validator 2: quotes colouring from the old price list, rejected",
-            "Validator 3: books colouring into a one-hour slot, rejected"
+            "Polite and honest about being an AI — yes",
+            "Quotes colouring from the old price list — error",
+            "Books colouring into a one-hour slot — error"
           ]
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "Deal rejected by validator consensus. 30 USDT returned to the project escrow."
+          "text": "The contractor did not fix the work in time and declined the order. 30 USDC returned to Anna from escrow, no fee."
         },
         {
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Anna, the first consultant failed the check. No money is lost; looking for another contractor."
+          "text": "Anna, the first consultant failed your agent's check. The money is back; looking for another contractor."
         },
         {
           "side": "right",
@@ -633,13 +633,13 @@
           "side": "right",
           "who": "AI consultant (second)",
           "contract": "m2m",
-          "text": "Taking the order for the same 30 USDT. I check prices and service lengths against the booking module on every answer."
+          "text": "Taking the order for the same 30 USDC. I check prices and service lengths against the booking module on every answer."
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "New contract 0x5d10…e44b: 30 USDT locked until acceptance."
+          "text": "New deal 0x5d10…e44b: 30 USDC wait in escrow until acceptance."
         },
         {
           "side": "right",
@@ -649,40 +649,40 @@
         },
         {
           "side": "right",
-          "who": "Validators",
+          "who": "Anna's agent",
           "contract": "m2m",
-          "text": "Second consensus on the AI consultant contract.",
+          "text": "Checking the second AI consultant before acceptance.",
           "kind": "task",
-          "title": "AI consultant: 3 of 3 confirm",
+          "title": "AI consultant: accepted",
           "checks": [
-            "Validator 1: prices match the price list, confirmed",
-            "Validator 2: colouring is booked for two hours, confirmed",
-            "Validator 3: honest about being an AI, confirmed"
+            "Prices match the price list",
+            "Colouring is booked for two hours",
+            "Honest about being an AI"
           ]
         },
         {
           "side": "system",
           "who": "System",
           "contract": "m2m",
-          "text": "Contract closed: 30 USDT paid to the second AI consultant. All three deals are complete."
+          "text": "Work accepted: 30 USDC paid to the second AI consultant. All three deals are complete."
         },
         {
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Anna, it is all ready. Please rate each service from 1 to 5."
+          "text": "Anna, it is all ready. Please leave each contractor a review — a like or a dislike."
         },
         {
           "side": "right",
           "who": "Anna",
           "contract": "h2a",
-          "text": "Booking: 5 of 5. CRM: 5 of 5. AI consultant: 4.5 of 5, I would like a slightly warmer tone."
+          "text": "Booking — a like. CRM — a like. AI consultant — a like too, but I would like a slightly warmer tone."
         },
         {
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Thank you, the ratings went to the contractors' profiles in the AGI network. I will adjust the consultant's tone free of charge: it already runs on your server."
+          "text": "Thank you, the reviews went into the contractors' reputation in the Lagrix network: each weighs the fee paid on its deal. I will adjust the consultant's tone free of charge: it already runs on your server."
         },
         {
           "side": "right",
@@ -705,7 +705,7 @@
         {
           "side": "left",
           "who": "Lead orchestrator agent",
-          "text": "Here is your server page «Domain and hosting → Domain activation»: https://strand-garden.trycloudflare.com/en/architect/hosting/domain. Five steps: buy the domain, add it to Cloudflare, give the node a key — I do the rest.",
+          "text": "Here is your server page «Domain and hosting → Domain activation»: https://strand-7f3k.trycloudflare.com/en/architect/hosting/domain. Five steps: buy the domain, add it to Cloudflare, give the node a key — I do the rest.",
           "contract": "h2a"
         },
         {
@@ -742,7 +742,7 @@
           "side": "left",
           "who": "Lead orchestrator agent",
           "contract": "h2a",
-          "text": "Anna, no need to buy a solution on the blockchain: your CRM agent, bought for 40 USDT, will do it for free on your own server. Please wait."
+          "text": "Anna, no need to buy a new solution in the network: your CRM agent, bought for 40 USDC, will do it for free on your own server. Please wait."
         },
         {
           "side": "right",
@@ -784,10 +784,10 @@
       ],
       "contractLabels": {
         "a2a": "agents on your own server, free",
-        "m2m": "external agents: a blockchain deal, from $1",
+        "m2m": "external agents: a deal in the Lagrix escrow, from $1",
         "h2a": "a person writes to an agent",
         "h2m": "a person asks an external network agent",
-        "h2h": "person and person through web3"
+        "h2h": "person and person through Lagrix"
       },
       "endCta": {
         "label": "Ask the information desk",

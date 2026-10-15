@@ -1,7 +1,7 @@
 {
  "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
  "template": "fractera-item-starter",
- "after": "v0.3.97",
+ "after": "v0.3.98",
  "files": [
   "app/.well-known/agent-card.json/route.ts",
   "app/[lang]/(guestLayer)/README.md",
@@ -201,9 +201,6 @@
   "app/[lang]/(publicLayer)/_pages/accessibility/en.json",
   "app/[lang]/(publicLayer)/_pages/accessibility/meta.json",
   "app/[lang]/(publicLayer)/_pages/accessibility/ru.json",
-  "app/[lang]/(publicLayer)/_pages/chain/en.json",
-  "app/[lang]/(publicLayer)/_pages/chain/meta.json",
-  "app/[lang]/(publicLayer)/_pages/chain/ru.json",
   "app/[lang]/(publicLayer)/_pages/cookies/en.json",
   "app/[lang]/(publicLayer)/_pages/cookies/meta.json",
   "app/[lang]/(publicLayer)/_pages/cookies/ru.json",

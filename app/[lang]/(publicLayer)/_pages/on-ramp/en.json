@@ -5,7 +5,7 @@
   "blocks": [
     {
       "kind": "text-p",
-      "text": "You pay by card in euros or dollars, as in any shop. A licensed exchange provider sells you USDT at the current rate, and the amount goes straight to your project's account. You do not need to buy crypto in advance.",
+      "text": "You pay by card in euros or dollars, as in any shop. A licensed exchange provider sells you USDC at the current rate, and the amount goes straight to your project's account. You do not need to buy crypto in advance.",
       "bid": "qjlb8"
     },
     {
@@ -16,7 +16,7 @@
     },
     {
       "kind": "text-p",
-      "text": "The payment agent issues an invoice in your currency. You pay it by card in the exchange provider's window; the provider buys USDT and credits it to the project account. In the «Strand» story Anna paid €139.50 and the project received 150 USDT.",
+      "text": "The payment agent issues an invoice in your currency. You pay it by card in the exchange provider's window; the provider buys USDC and credits it to the project account. In the «Strand» story Anna paid €139.50 and the project received 150 USDC.",
       "bid": "wq89h"
     },
     {
@@ -38,7 +38,7 @@
     },
     {
       "kind": "text-p",
-      "text": "A contractor paid in USDT can sell it with the same provider and receive money on a card in their own currency.",
+      "text": "A contractor paid in USDC can sell it with the same provider and receive money on a card in their own currency.",
       "bid": "vg50d"
     },
     {
