@@ -104,12 +104,18 @@ function contentOf(page: TreePage, lang: string, segments: string[]) {
 type Crumb = { label: string; href?: string }
 
 /**
- * АДРЕС СТРАНИЦЫ ДЛЯ ПОДСВЕТКИ (317-2): обёртка `display: contents` (на вёрстку не влияет) с `data-page` — адрес страницы —
- * и `data-file` — файл данных, из которого нарисован этот язык. Рамка подсветки берёт отсюда «страница · файл», а из
- * блока — его `bid`; этого достаточно, чтобы агент открыл ровно тот абзац.
+ * АДРЕС СТРАНИЦЫ ДЛЯ ПОДСВЕТКИ (317-2): обёртка с `data-page` — адрес страницы — и `data-file` — файл данных, из которого
+ * нарисован этот язык. Рамка подсветки берёт отсюда «страница · файл», а из блока — его `bid`; этого достаточно, чтобы агент
+ * открыл ровно тот абзац.
+ *
+ * 🛑 ОБЁРТКА — ОБЫЧНЫЙ БЛОК, А НЕ `display: contents`. После перехода по ссылке Next прокручивает к первому элементу новой
+ * страницы и пропускает элементы без собственной коробки; у `contents` коробки нет, следующим соседом шёл подвал — и каждая
+ * новая страница открывалась прокрученной в самый низ. ✗ Оплачено владельцем 2026-10-16 (lagrix.dev/ru/f2f): «не открывает
+ * новые страницы а просто прокручивают … книзу». Подсветка умеет оба вида (`boxOf` в block-highlight).
  */
 function PageAddress({ page, file, children }: { page: string; file: string; children: React.ReactNode }) {
-  return <div data-page={page} data-file={file} style={{ display: 'contents' }}>{children}</div>
+  // `scroll-mt-16`: Next ставит начало страницы к верху окна, а там липкая шапка (57 px) — без отступа крошки ушли бы под неё.
+  return <div data-page={page} data-file={file} className="scroll-mt-16">{children}</div>
 }
 
 function dataFile(tree: TreePage, dir: string[], lang: string): string {
