@@ -97,6 +97,9 @@ const PUBLIC_API_PREFIXES = [
   // Заявка на разработку от агента автоматизации (133): та же машина, тот же
   // секрет. Соседняя api/architect/pre-step закрыта РОЛЬЮ — у машины сессии нет.
   "/api/intake/request",
+  // 518-7: поиск по страницам отзывов — то же, что и так видно в списке `/reviews`. Запись (POST, DELETE) стережёт сам обработчик:
+  // ключ элемента или вход архитектора.
+  "/api/reviews",
 ];
 
 // Non-content root pages that live at the ROOT and never take a language prefix

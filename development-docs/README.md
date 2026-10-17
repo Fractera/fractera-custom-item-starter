@@ -33,6 +33,7 @@ How to use them — what to read when, what to write on which event, how a step 
 | `proofs/` | one file per proof: how a part of `CLAUDE.md` or a skill was proven live (the method, the runs, the transcript evidence) and what stays unproven | the agent, right after a live proof (rules below, «Proof marks») | before changing a proven section; when deciding what to prove next |
 | `owner-decisions-on-skill-changes.md` | what a self-review proposed and what the person answered, verbatim | skill `self-review` | before every self-review |
 | `translation-debt.md` | texts left in one language while building: path, what, which languages it owes, why deferred | the agent, the same day a text is left untranslated (skill `use-languages`) | before translating; before launch in more languages |
+| `design-brief-reviews.md` | the design brief of the reviews branch `/<lang>/reviews`: mode, direction contract, blocks and their rules (skill impeccable, node step 518-3) | the agent, before changing how a review page looks | before any change to the look of the reviews branch |
 
 ## Proof marks
 

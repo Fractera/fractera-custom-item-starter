@@ -1,0 +1,146 @@
+/* The look of one review page (node step 518-3; brief development-docs/design-brief-reviews.md). Design tokens only. */
+
+/* The timeline: one 1 px rule, a dot per event, the date in a fixed-width left column — one width for every row, so the text column
+   starts at one x; newest on top. At most 1000 px high with its own scroll; a fade at the bottom edge says there is more. */
+.timelineFrame {
+  position: relative;
+  margin-top: 1rem;
+}
+.timeline {
+  max-height: 1000px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: grid;
+  grid-template-columns: max-content 0.75rem 1fr;
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+  padding: 0.25rem 0.5rem 2rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
+}
+.event {
+  display: contents;
+}
+/* Every child names its column: the 518-3 measurement found a pseudo-element of the list taking a cell and pushing the dates out of
+   their column. */
+.event time {
+  grid-column: 1;
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+.event > p {
+  grid-column: 3;
+}
+/* The rail: one cell per row that stretches over the row; its line runs down into the gap to the next row, its dot sits at the top. */
+.dot {
+  grid-column: 2;
+  position: relative;
+  align-self: stretch;
+  justify-self: center;
+  width: 0.625rem;
+}
+.dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.45rem;
+  bottom: -1.5rem;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--border);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--background);
+}
+.timeline > li:last-of-type .dot::before {
+  display: none;
+}
+.timeline > li:first-of-type .dot::after {
+  outline: 2px solid color-mix(in oklch, var(--primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/* The rating scale 0…10: a measurement — every step a tick, the steps up to the score filled, the score itself marked. */
+.scale {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 0.25rem;
+  max-width: 34rem;
+}
+.scale li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.scale li::before {
+  content: "";
+  width: 100%;
+  height: 0.5rem;
+  border-radius: calc(var(--radius) * 0.25);
+  background: var(--muted);
+}
+.scale li.on::before {
+  background: var(--primary);
+}
+.scale li[data-current] {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.printOnly {
+  display: none;
+}
+
+.body ::selection {
+  background: color-mix(in oklch, var(--primary) 25%, transparent);
+}
+
+/* Print as PDF: the record alone — no site header, footer, breadcrumbs or buttons; black on white; the address at the end. */
+@media print {
+  :global([data-project-header]),
+  :global([data-project-footer]),
+  :global(nav[aria-label="Breadcrumb" i]),
+  :global([data-review-actions]),
+  :global([data-review-originals]) {
+    display: none !important;
+  }
+  .body {
+    color: #000;
+  }
+  .timeline {
+    max-height: none;
+    overflow: visible;
+    mask-image: none;
+  }
+  /* The links travel into the PDF in full: the page's address and every original photo (the on-screen disclosure is hidden here). */
+  .printOnly {
+    display: block;
+    border-top: 1px solid #ccc;
+    padding-top: 0.75rem;
+  }
+  .printOnly a {
+    color: #000;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+  }
+  .scale li.on::before {
+    background: #000;
+  }
+  .scale li::before {
+    background: #ddd;
+  }
+}

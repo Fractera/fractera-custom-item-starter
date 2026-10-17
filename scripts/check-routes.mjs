@@ -33,6 +33,14 @@ const ALLOWED = new Map([
   ['app/[lang]/(publicLayer)/index.md/route.ts', 'главная для агентов (markdown)'],
   ['app/[lang]/(publicLayer)/[slug]/page.tsx', 'РЕБЁНОК публичной ветки — все страницы _pages/'],
   ['app/[lang]/(publicLayer)/[slug]/index.md/route.ts', 'markdown-двойник любого ребёнка публичной ветки'],
+  // ветка «reviews» (шаг узла 518-2; владелец 2026-10-17: «раздел отзывы добавили к стартовому шаблоны нашего маршрута в публичный слой»,
+  // «каждый новый отзыв должен создаваться без нового развёртывания … быть статическим»): страницы — строки слоя данных, не папки _pages/
+  ['app/[lang]/(publicLayer)/reviews/page.tsx', 'КОРЕНЬ ветки reviews: список страниц отзывов элемента'],
+  ['app/[lang]/(publicLayer)/reviews/index.md/route.ts', 'список страниц отзывов для агентов (markdown)'],
+  ['app/[lang]/(publicLayer)/reviews/snippet.png/route.ts', 'сниппет списка отзывов'],
+  ['app/[lang]/(publicLayer)/reviews/[slug]/page.tsx', 'РЕБЁНОК ветки reviews: одна страница отзыва из слоя данных, рисуется при первом заходе'],
+  ['app/[lang]/(publicLayer)/reviews/[slug]/index.md/route.ts', 'страница отзыва для агентов (markdown)'],
+  ['app/[lang]/(publicLayer)/reviews/[slug]/snippet.png/route.ts', 'сниппет страницы отзыва'],
   // сниппеты страниц (шаг узла 458-3; владелец 2026-10-12: «Картинка рядом со страницей»): PNG при первом запросе, без пересборки
   ['app/[lang]/(publicLayer)/snippet.png/route.ts', 'сниппет главной'],
   ['app/[lang]/(publicLayer)/[slug]/snippet.png/route.ts', 'сниппет любого ребёнка публичной ветки'],
@@ -86,6 +94,7 @@ const ALLOWED = new Map([
   ['app/api/media/upload/route.ts', 'загрузка медиа'],
   ['app/api/menu/[lang]/route.ts', 'меню проекта'],
   ['app/api/revalidate/route.ts', 'перерисовать страницы'],
+  ['app/api/reviews/route.ts', 'запись страницы отзыва агентом элемента в слой данных с перерисовкой (шаг узла 518-1; владелец 2026-10-17: «каждый новый отзыв должен создаваться без нового развёртывания»)'],
   ['app/[lang]/(protectedLayer)/admin/api/settings/app/route.ts', 'дверь виджета widget-dynamic-site-settings: свои настройки элемента (324-8, 422 — дверь в своей ветке)'],
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],
@@ -106,6 +115,12 @@ walk(join(ROOT, 'app'))
 
 const extra = found.filter((f) => !ALLOWED.has(f))
 const pagesRouter = existsSync(join(ROOT, 'pages'))
+// 518-2: папка данных с именем ветки столкнулась бы со статическим сегментом `reviews/` — страница-папка молча пропала бы за веткой.
+const branchClash = existsSync(join(ROOT, 'app', '[lang]', '(publicLayer)', '_pages', 'reviews'))
+if (branchClash) {
+  console.error('===ROUTES_FAILED=== app/[lang]/(publicLayer)/_pages/reviews — имя занято веткой reviews/ (страницы отзывов — строки слоя данных, шаг 518)')
+  process.exit(1)
+}
 if (extra.length || pagesRouter) {
   console.error('===ROUTES_FAILED=== файл маршрута вне закрытого списка:')
   for (const f of extra) console.error(`  ${f}`)
