@@ -48,6 +48,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `impeccable` | vendored, Paul Bakaus, Apache-2.0 | design direction from the audience's world — `SOURCE.md` (without hooks and agents) | — not proven |
 | `copywriting` | vendored, Corey Haines, MIT | writes page copy: headlines, value, calls to action — `SOURCE.md` | — not proven |
 | `copy-editing` | vendored, Corey Haines, MIT | edits existing copy line by line — `SOURCE.md` | — not proven |
+| `humanizer` | vendored, blader, MIT | removes the signs of AI writing from any text a person reads, the product quiz too — `SOURCE.md`, `CLAUDE.md` «Texts» | — not proven |
 | `order-summary` | ours | a short summary of an order done for another agent over A2A, outside git, no personal data | ✅ 2026-10-06 |
 | `review-order` | ours | recall a closed order with the person, agree on the review, publish the review page at `/<lang>/reviews/<slug>` through `/api/reviews` (no commit, no rebuild) | 🟨 2026-10-17: the door proven (node step 518), the conversation not |
 | `self-review` | ours | on the person's «review» (in their language): at most three proposals to improve the skills, nothing changed without «yes» | — not proven |

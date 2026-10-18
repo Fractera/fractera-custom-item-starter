@@ -117,7 +117,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 
 | Nature | Skills |
 |---|---|
-| both — building or a job | `a2a-conversation`, `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| both — building or a job | `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: every text a person reads, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | builder | `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | worker | `order-summary`, `review-order` (recall a closed order with your person, agree on the review and publish the review page at `/<lang>/reviews/<slug>` through `/api/reviews` — no commit, no rebuild; the review itself is not sent while the network does not exist), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
@@ -191,6 +191,16 @@ names of the guards: `use-page-tree` (pages, blocks) · `use-typography` (text) 
 public page gives agents: its Markdown copy, llms.txt — a widget brings its own `markdown.ts`) · `soft-navigation` (links, header and menu — moving between pages without a reload, and how to prove it on the own domain) · `deploy-element` (how a change reaches visitors) · `github-element` (saving the work to its repository). ✗ 2026-10-07: a widget built
 from reading code alone and a guard named wrong — both were in the skill that was not opened.
 <!-- PROOF 5 END -->
+
+## Texts
+
+🔒 **Every text a person or a visitor reads goes through `humanizer`** (node step 536; the person, verbatim:
+«если речь заходит о описании контента, текстов используют навык humalize, это также в равной степени будет использоваться для квиза»):
+page copy, review pages, the passport and the A2A card, messages, and the product quiz when the element has one. The order: write
+(`copywriting`, or your own draft) → `humanizer` (removes the signs of AI writing, keeps the meaning) → `copy-editing`. Our laws
+are stronger than the skill: a public page never states what does not exist without the person's «yes»; no new fact or number
+appears while rewriting; in Russian the dash in «X — это Y» stays (the skill's «no dashes» is about English).
+
 
 ## How you report
 
