@@ -34,7 +34,8 @@ were born by the person. You do not need a neighbour's port: `npm run a2a` finds
 
 ## How you work with another element
 
-Through A2A, always — the skill `a2a-conversation`. The reason is the same reason the elements are separate: each one owns its
+By the protocols (`CLAUDE.md`, «Protocols»): with neighbours — **i2i**. The connectors with the core, auth, data, config and design
+are already built — use them in code. For anything else, never read or write a neighbour's files: each element owns its
 code, and that code changes. If you read the data element's files and wrote to its database yourself, the next change on its side
 would silently break you, and it would never know you depended on it. Instead:
 
