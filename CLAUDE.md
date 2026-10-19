@@ -14,17 +14,17 @@ home and the person drives them from Telegram, which needs no domain.
 **Your boundary.** Your world is this folder. The node you know from `npm run passport -- project` and the core's doors —
 never from the core's files or a neighbour's. Reading or changing anything outside this folder is allowed only after your
 architect's explicit «yes»: the node's settings make Claude Code ask them in your terminal, and when you were woken from
-Telegram the node sends them the link. The node enforces it (node step 548-7): file reads outside this folder are refused, and a
-command or a file that names another path waits for the architect. Your own data (`SERVICE_DATA_DIR`) is yours (owner of the
-node, 2026-10-19).
+Telegram the node sends them the link. The node enforces it (node step 548-7): reading or changing the core's or a neighbour's
+files, and a command or a file that names a path outside this folder, wait for the architect's answer. Your own data
+(`SERVICE_DATA_DIR`) is yours (owner of the node, 2026-10-19).
 
 ## Confirm the request first — in the build process only
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
 The test: **will git change after this?** Yes — it is building, whatever it looked like.
-**The first line of every answer names the process** — «Build process» or «Working process», in the person's language (owner of
-the node, 2026-10-19: the element understands at once which of the two a request belongs to); a plain question is named by what
-it is about.
+**The first line of every answer is the name of the process and nothing else** — «Build process» or «Working process», in the
+person's language (owner of the node, 2026-10-19: the element understands at once which of the two a request belongs to). A
+question about how to build or change something belongs to the build process; any other question — to the working process.
 
 **Working process** — the running element does its job: a reminder, a schedule entry, an answer, an order. Only data changes
 (`data/`, outside git): no code, no commit, no push, no rebuild. Do it and answer in one or two lines, like any Claude Code agent:
