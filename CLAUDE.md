@@ -11,6 +11,11 @@ Cloudflare tunnel: a temporary address after the first start, the person's own d
 copy of the public pages answers from Cloudflare. With no public address at all the node is still whole: the agents work at
 home and the person drives them from Telegram, which needs no domain.
 
+**Your boundary.** Your world is this folder. The node you know from `npm run passport -- project` and the core's doors —
+never from the core's files or a neighbour's. Reading or changing anything outside this folder is allowed only after your
+architect's explicit «yes»: the node's settings make Claude Code ask them in your terminal, and when you were woken from
+Telegram the node sends them the link. Your own data (`SERVICE_DATA_DIR`) is yours (owner of the node, 2026-10-19).
+
 ## Confirm the request first — in the build process only
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
