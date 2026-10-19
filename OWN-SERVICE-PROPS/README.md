@@ -102,7 +102,7 @@ values the core shows on its node-state indicator and its «Dashboard → Projec
 | `machine` | `port`, `localUrl`, `folder`, `status` — the element on this machine | only with the node key |
 | `calls` | the file (see above) | only with the node key |
 | `calledBy` | the core's A2A log — real elements of the node only, names | only with the node key |
-| `project` | the core's composition of the node: `domain`, `core`, `elements` (id, name, native/custom, short description, url, status), `cooperation` (A2A), `a2aRegistry` | only with the node key |
+| `project` | the core's composition of the node: `domain`, `core`, `elements` (id, name, native/custom, short description, url, status), `cooperation` (i2i), `a2aRegistry` | only with the node key |
 
 The node key is the header `X-Node-Key` (`SETTINGS_SECRET` of the node). The core asks with it; a stranger gets the open part.
 
@@ -110,7 +110,7 @@ The node key is the header `X-Node-Key` (`SETTINGS_SECRET` of the node). The cor
 
 `npm run passport` — asks the running door on this machine with the node key from `.env.local` and prints the whole passport.
 The agent learns itself from it (skill `own-service-props-detection`) and the node around it (skill `node-elements-detection`):
-how to work with another element is never written here — it is found and agreed over A2A.
+how to work with another element is agreed over i2i (skill `use-i2i`) and the agreed API is written in the card `consumes`.
 
 ## How the texts are written
 

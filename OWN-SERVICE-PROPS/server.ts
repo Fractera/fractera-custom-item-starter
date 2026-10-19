@@ -137,7 +137,7 @@ async function project(core: string | null, zone: string): Promise<Record<string
     domain: zone,
     core: core ?? "",
     elements,
-    // Владелец 2026-10-06: как работать с соседом, паспорт не объясняет — сосед находится и договаривается по A2A.
+    // Владелец 2026-10-06: как работать с соседом, паспорт не объясняет — сосед находится в реестре ядра, а об API договариваются по i2i.
     cooperation: "i2i: the connectors with the core, auth, data, config and design are built — use them in code; for a new need find the element in the core's registry, agree an API with its agent (npm run a2a), then call that API with no model.",
     a2aRegistry: core ? `${core}/api/node/a2a` : "",
   }

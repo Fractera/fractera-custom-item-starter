@@ -1,6 +1,6 @@
 ---
 name: node-elements-detection
-description: Both natures (every element). Learn the architecture of the node you live in — every other element (the native ones like sign-in, data, project settings, design, the root site, blocks, and the custom ones), what each does, its address and whether it runs — and how to work with them: always through A2A, never by reading their code. Use this at the start of every session after own-service-props-detection, and whenever a task touches something outside this element — users and sign-in, storing data or files, settings, design, or any ability another element might already have — even if the person does not name the other element.
+description: Both natures (every element). Learn the architecture of the node you live in — every other element (the native ones like sign-in, data, project settings, design, the root site, blocks, and the custom ones), what each does, its address and whether it runs — and that you work with them over i2i (skill use-i2i), never by reading their code. Use this at the start of every session after own-service-props-detection, and whenever a task touches something outside this element — users and sign-in, storing data or files, settings, design, or any ability another element might already have — even if the person does not name the other element.
 ---
 
 <!-- PROOF · PROVEN 2026-10-06: npm run passport -- project run first on wake; no core files · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
@@ -29,7 +29,7 @@ were born by the person. You do not need a neighbour's port: `npm run a2a` finds
 |---|---|
 | `domain`, `core` | the node's domain and its core on this machine |
 | `elements` | every element: `id`, `name`, `kind` (native / custom), `description`, `url`, `status` |
-| `cooperation` | how elements work together — A2A |
+| `cooperation` | how elements work together — i2i (skill `use-i2i`) |
 | `a2aRegistry` | where to look up who can do a job |
 
 ## How you work with another element
@@ -42,7 +42,8 @@ would silently break you, and it would never know you depended on it. Instead:
 1. Pick candidates from `elements` (short descriptions), then read a candidate's full passport to decide — the two looks are in `a2a-conversation`.
 2. Ask its agent what it already offers. If it fits, use it.
 3. If nothing fits, agree on the API you need; the other side builds it, then you use it.
-4. Once the cooperation started, record the partner in `calls` (skill `a2a-conversation`).
+4. Once an API is agreed, record the link in your card `consumes` with its protocol and API, and the partner's id in `calls`
+   (skill `use-i2i`).
 
 An element that is in `elements` but not in the registry has no A2A card yet: it cannot be talked to today. Tell the person
 instead of going around it.

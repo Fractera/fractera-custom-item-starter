@@ -1,6 +1,6 @@
 ---
 name: order-summary
-description: Work skill (every element). Save a short summary of an order — work this element did for another agent over A2A — when that work is closed. Use it before telling the node «done» on any task that came over A2A, whatever the work was (a page section, a picture, a service in the physical world). Not for the element's own development: that goes to development-docs/.
+description: Work skill (every element). Save a short summary of an order — work this element did for an agent of another node (a2a) — when that work is closed. Use it before telling the node «done» on any order from another node, whatever the work was (a page section, a picture, a service in the physical world). Not for the element's own development: that goes to development-docs/.
 ---
 
 <!-- PROOF · PROVEN 2026-10-06: wrote an order summary after each live A2A task · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->

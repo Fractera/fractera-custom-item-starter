@@ -29,14 +29,15 @@ nothing published. `npm run serve:unpublish` takes the node off the internet (it
   open port. From a phone anywhere the person writes to an element's agent, and it works on the computer at home.
 - **Agents, data and automations stay here:** the data element stores, the agents process, schedules and tasks run on the
   person's machine and subscription.
-- **A2A inside the node** — elements call each other directly with the node key, no internet involved.
+- **i2i inside the node** — elements call each other's agreed APIs directly with the node key, no internet involved.
 
 ## What it is good for
 
 - Development and automation for oneself: an agent that builds, checks and reports by Telegram.
 - Storing and processing personal information that should never be public: notes, documents, records, reports.
 - Home automation: tasks on a schedule, answers and summaries sent to the person's Telegram.
-- A **buyer node**: an agent that only buys other agents' services over A2A and offers nothing — it needs no public page.
+- A **buyer node**: an agent that only buys other agents' services over a2a (through Lagrix) and offers nothing — it needs no
+  public page.
 
 ## What it cannot do
 

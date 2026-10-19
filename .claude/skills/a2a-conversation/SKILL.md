@@ -64,8 +64,9 @@ Why each part matters:
 
 ## A task came to you
 
-A line «A2A task <id> from <who> (conversation <contextId>)…» pasted into your terminal is a neighbour asking you. Do it as
-normal work — your nature for it follows CLAUDE.md — then answer:
+A line «A2A task <id> from <who> (conversation <contextId>)…» pasted into your terminal is a neighbour asking you (i2i) or an agent of
+another node (a2a). A request you would have to build for is an i2i agreement — skill `use-i2i`; anything else is normal work —
+your nature for it follows CLAUDE.md. Then answer:
 
 ```
 npm run a2a -- reply <id> "<the answer in plain words>" [--data '<json>']
@@ -74,11 +75,11 @@ npm run a2a -- reply <id> "<why it did not work>" --failed
 
 The caller, the core's feed and Telegram see the answer.
 
-## The cooperation started — record the partner
+## An API was agreed — record the link
 
-A neighbour found through A2A agreed to do work for this element (the first conversation with an agreement — not a question,
-not a refusal): add its `id` to `calls` in `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`, in the same commit as the work it
-produced. Stop using a partner — remove it in the commit that removes the use. Why: `OWN-SERVICE-PROPS/README.md`, «Where
+A neighbour agreed an API with this element over i2i (not a question, not a refusal): add the link to your card `consumes` with
+its `protocol` and `via` (skill `use-i2i`) and the neighbour's `id` to `calls` in `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`, in
+the same commit as the work it produced. Stop using a partner — remove it in the commit that removes the use. Why: `OWN-SERVICE-PROPS/README.md`, «Where
 `calls` comes from».
 
 ## The person comments on a conversation

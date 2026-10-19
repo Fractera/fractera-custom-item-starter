@@ -5,7 +5,7 @@
 // The short modes exist because the whole answer is long (routes, descriptions): an agent cutting it with head missed the
 // node's elements and went around the passport to the core's files (live run 2026-10-06).
 // Asks the running element's door on this machine with the node key from .env.local, so the answer carries the node-only parts:
-// `self` (port, local address, folder) and `project` (domain, core, every element of the node, how to cooperate — A2A).
+// `self` (port, local address, folder) and `project` (domain, core, every element of the node, how to cooperate — i2i).
 // The key never leaves this machine and is never printed.
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'

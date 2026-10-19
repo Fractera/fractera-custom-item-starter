@@ -85,15 +85,15 @@ a commit message.
 | what you do | program yourself: pages, design, data, your own code | the job this element was made for |
 | when | the person, in your terminal or in a review, asks to change this element | an A2A task from another agent, or a person's task in Telegram that is one of your jobs |
 | skills | builder skills + every-element skills; development documents: read `development-docs/current-step.md` first, keep it on every event (skill `use-development-docs`) | your work skills + every-element skills — builder skills stay closed |
-| you return | a commit; the person sees it on this element's «Preview & Deploy» page (preview → accept) — skill `deploy-element` | the result of the job — to the caller over A2A or to the person in Telegram — and an order summary (`order-summary`); changed data only, never a commit or a rebuild; a short answer |
+| you return | a commit; the person sees it on this element's «Preview & Deploy» page (preview → accept) — skill `deploy-element` | the result of the job — to the caller over the A2A wire (a neighbour — i2i, an agent of another node — a2a) or to the person in Telegram — and an order summary (`order-summary`); changed data only, never a commit or a rebuild; a short answer |
 
 Why the split matters: building is expensive — it needs the whole architecture and most skills. A job needs a few. Loading
 builder knowledge for a job spends the person's subscription and memory, and invites code changes nobody asked for.
 
 - The person may say «build process» («строительный процесс») for Builder and «working process» («рабочий процесс») for Worker. In
   the core's menu of this element: «Build» (with its groups «Inside the node (i2i)» and «Exchange with Fractera (f2f)») and
-  «Product design» are the build process; «A2A» and «Process» (your skills, who may call them, at what price and limit) are the
-  working process (owner, 2026-10-08; menu of 2026-10-11).
+  «Product design» are the build process; «Working process» — «Process», «A2A: your orders», «A2A: your work», «Reviews» — is the
+  working process (owner, 2026-10-08; menu of 2026-10-18).
 - **You are a custom element** (owner, 2026-10-19): you are born from `fractera-custom-item-starter` by the node's button «Create
   WEB4 ITEM» (passport `elementType: custom`). Native elements — the root ones of every node — come only from
   `fractera-native-item-starter`, are never sold and never join an outside network.

@@ -30,9 +30,11 @@ The person speaks by voice and in their own language: their word goes in the sec
 
 | Term | The person may say | What it means |
 |---|---|---|
-| **i2i** | «ай-ту-ай», «элемент-элемент» | Elements of ONE node: they meet as in A2A, then agree on a connector over the API so that their work needs few or no model calls. Build process; tabs in the core's «Build → Inside the node (i2i)». |
-| **a2a** | «а-два-а», «агент-агент» | This element working for outside agents through Lagrix over Google's A2A protocol — exactly like an agent of any other framework, no advantage, no handicap. Working process; the core's «A2A». |
+| **H2A** | «эйч-ту-эй», «человек и агент» | A person and their own agent: Telegram, the core's native chat, the terminal. A file they send is saved and passed on as a link. |
+| **i2i** | «ай-ту-ай», «элемент-элемент» | Elements of ONE node and the core: their agents meet over the A2A wire only to agree an API; then the work runs over that API with no model. Build process; tabs in the core's «Build → Inside the node (i2i)». |
+| **a2a** | «а-два-а», «агент-агент» | This element working with agents of other nodes through Lagrix — for them or ordering from them, in USDC or free — over Google's A2A protocol, exactly like an agent of any other framework, no advantage, no handicap; never development. Working process; the core's «A2A». |
 | **f2f** | «эф-ту-эф» | Whole elements exchanged with other Fractera projects through Lagrix: the same discovery plus the technical card a build needs. Build process; the core's «Build → Exchange with Fractera (f2f)». |
+| **H2H** | «эйч-ту-эйч», «человек и человек» | People through their agents; the other side's agent checks the request first (Lagrix document 21). Text; files as links. |
 | **passport** | «паспорт», «описание о себе» | `OWN-SERVICE-PROPS/` — what the element tells the outside about itself; its main door. Skill `describe-element`. |
 | **A2A card** | «визитка» | The standard card served at `/.well-known/agent-card.json`, built from `OWN-SERVICE-PROPS/A2A-CARD.json` plus the passport. |
 | **skill (of the card)** | «навык», «способность» | One thing the element can do for others, a row of the card's `skills`. Not the same as an agent skill in `.claude/skills/`. |
@@ -40,7 +42,7 @@ The person speaks by voice and in their own language: their word goes in the sec
 | **showcase · offer** | «витрина», «карточка», «предложение» | What the element offers for work, with price, who may use it and limit — `OWN-SERVICE-PROPS/A2A-OFFERS.json`, shown on the core's «A2A → A2A» page. Today an example: nothing in it is callable, it is not in the card. |
 | **catalog** | «каталог» | What an element can give away — blocks, sections — through find · get · contribute. On the core's page «Catalog» also lists the node's elements. |
 | **node key** | «ключ узла» | The key elements of one node use to call each other; an outside agent does not have it. |
-| **order** | «заказ» | A job the element did for another agent over A2A — working process, kept by skill `order-summary`, never in `development-docs/`. |
+| **order** | «заказ» | A job the element did for an agent of another node (a2a) — working process, kept by skill `order-summary`, never in `development-docs/`. |
 
 ## Building records
 
