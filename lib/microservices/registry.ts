@@ -25,7 +25,7 @@
 import { readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 import type { Registry, RegistryEntry } from "./types"
-import paths from "@/lib/agi-items/paths.cjs"
+import paths from "@/lib/web4-items/paths.cjs"
 
 const { REGISTRY_FILE } = paths
 

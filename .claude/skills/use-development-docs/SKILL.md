@@ -10,7 +10,7 @@ description: >
   says — a commit tells what changed, never what was decided, what is half done or what comes next.
 ---
 
-<!-- PROOF · PARTIAL 2026-10-07: loaded first after «yes», current-step.md kept on events; no plan in steps-new/; the pre-steps intake (added 2026-10-07) and glossary, backlog, cancelled, reports (added 2026-10-08, step 435-5) NOT proven · report: development-docs/proofs/2026-10-07-node-skills.md -->
+<!-- PROOF · PARTIAL 2026-10-07: loaded first after «yes», current-step.md kept on events; no plan in steps-new/; the pre-steps intake (added 2026-10-07) and glossary, backlog, cancelled, reports (added 2026-10-08, step 435-5) and the `Serves:` line (added 2026-10-18, node step 536-2) NOT proven · report: development-docs/proofs/2026-10-07-node-skills.md -->
 
 # use-development-docs
 
@@ -64,6 +64,10 @@ Every building task is a step, even a five-line fix. The number is the next one 
 - A substep closes with a commit, and its hash goes into `current-step.md` at once. A summary without a commit hash is an
   unclosed substep.
 - The work turns out bigger or different from the agreed plan — stop and ask before doing it; the «yes» covered the plan.
+- **One line `Serves:`** (node step 536-2) in the plan, in every summary in `steps-done/`, and in `current-step.md` while a small
+  step is active: the numbers of the product quiz items the step serves (`development-docs/product/`), for example
+  `Serves: S-03, R-02`, or `Serves: none`. The core reads only this line to show, next to each item of the quiz, which steps work
+  on it and in what state (planned · in progress · done). The quiz itself keeps no list of steps: a second list would drift.
 
 ## A task in the middle of a step
 

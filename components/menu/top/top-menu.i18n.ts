@@ -19,7 +19,7 @@ export type TopMenuUi = {
   openRight: string
   closeRight: string
   /** Зарезервированные кнопки верхнего меню без перехода (261-6). */
-  /** 277: Store после Core, A2A после AGI — тоже без перехода. */
+  /** 277: Store после Core, A2A после WEB4 — тоже без перехода. */
   store: string
   a2a: string
   nostr: string

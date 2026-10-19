@@ -38,7 +38,7 @@ Possible, not supported automatically, **not recommended**. The person would hav
 1. connect and set up every provider again for this domain — at Google: authorized redirect `https://<domain>/api/auth/callback/google`
    and the domain itself;
 2. rework: `proxy.ts`, `lib/runtime-urls.ts`, `app/api/auth/callback/route.ts` (this element);
-   `AGI-ITEMS/core/auth/lib/auth/auth.config.ts` (providers); `lib/domain/public-auth.cjs` in the core (cookies and allowed origins
+   `WEB4-ITEMS/core/auth/lib/auth/auth.config.ts` (providers); `lib/domain/public-auth.cjs` in the core (cookies and allowed origins
    of the sign-in service).
 The same text stands on the core page «Settings → Domain», orange card «Sign-in on your own domain» — send the person there.
 

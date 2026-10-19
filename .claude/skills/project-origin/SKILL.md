@@ -1,7 +1,7 @@
 ---
 name: project-origin
 description: >
-  Builder skill. How a Fractera project is born and stays updatable — only from the person's own fork of github.com/fractera/agi, cloned to
+  Builder skill. How a Fractera project is born and stays updatable — only from the person's own fork of github.com/fractera/web4, cloned to
   their own computer; why any other copy is refused; how updates come («Sync fork» for the node, «Update» for an element); how
   a node is restored on a new computer. Load it whenever the person asks how to install, start, move or copy the project, «can I
   download it as a zip», «my friend gave me his copy», «how do I get updates», «I have a new computer», or sees
@@ -19,7 +19,7 @@ description: >
 
 ## How a project is born
 
-1. The person presses **«Fork»** on `github.com/fractera/agi` — their own fork, not someone else's, not a zip, not a clone of the
+1. The person presses **«Fork»** on `github.com/fractera/web4` — their own fork, not someone else's, not a zip, not a clone of the
    original.
 2. An AI agent on **their own computer** (never a cloud session — install refuses there with `===CLOUD_REFUSED===`) clones that
    fork, runs `npm install`, `npm run build`, `npm run serve:start`.
@@ -27,7 +27,7 @@ description: >
    watchdog, and puts the panel on a temporary Cloudflare address (skill `temporary-domain`).
 
 `scripts/check-origin.mjs` (first step of the build and of the start) asks GitHub whether `origin` is a direct fork of
-`fractera/agi`; anything else stops with «You are trying to install a non-original Fractera project».
+`fractera/web4`; anything else stops with «You are trying to install a non-original Fractera project».
 
 ## Why only a fork
 
@@ -43,6 +43,6 @@ fork loses that road for good, and the person would carry every fix by hand.
 
 ## Moving to a new computer
 
-Clone **the person's own fork** (never a new fork): the node reads its snapshot `AGI-ITEMS-REGISTRY/agi-items.node.json` and
+Clone **the person's own fork** (never a new fork): the node reads its snapshot `WEB4-ITEMS-REGISTRY/web4-items.node.json` and
 clones every element from the person's repositories (skill `github-repositories`). Not restored yet: the own domain, the tunnel
 and the data — say so.

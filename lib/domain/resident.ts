@@ -21,7 +21,7 @@ const isWindows = process.platform === "win32"
 // `.cmd` без оболочки (EINVAL после CVE-2024-27980).
 const PM2 = isWindows ? "pm2.cmd" : "pm2"
 
-export const DOMAIN_RESIDENT = "fractera-agi-domain"
+export const DOMAIN_RESIDENT = "fractera-web4-domain"
 
 function pm2(args: string[]) {
   const r = spawnSync(PM2, args, {

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,8 +23,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@features/*": ["./lib/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@features/*": [
+        "./lib/*"
+      ]
     }
   },
   "include": [
@@ -29,7 +37,14 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    ".next-a/types/**/*.ts",
+    ".next-a/dev/types/**/*.ts",
+    ".next-b/types/**/*.ts",
+    ".next-b/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "AGI-ITEMS"]
+  "exclude": [
+    "node_modules",
+    "WEB4-ITEMS"
+  ]
 }

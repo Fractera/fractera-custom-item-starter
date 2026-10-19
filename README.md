@@ -3,7 +3,7 @@
 The site of a Fractera node — what a visitor sees at the root of the domain.
 
 It is a **replaceable element**, like the node's auth and data elements: its own repository, its
-own port, a pinned tag in the node's `AGI-ITEMS-REGISTRY/agi-items.json`. To put a different site in
+own port, a pinned tag in the node's `WEB4-ITEMS-REGISTRY/web4-items.json`. To put a different site in
 its place (for example a barbershop site from the marketplace), change `repo` and `version` of the
 `root` line there and run `npm run services:install` in the node. The node's core is not touched.
 

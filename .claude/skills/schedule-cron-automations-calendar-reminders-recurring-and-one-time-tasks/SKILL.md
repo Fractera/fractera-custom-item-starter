@@ -7,7 +7,7 @@ description: >
   Telegram — asks to remind, notify, schedule, repeat, «every morning», «at 10», «on Fridays», «stop the reminders», «what do I have
   tomorrow», and whenever you touch `data/cron.json`, `OWN-SERVICE-PROPS/CRON.json` or `lib/cron/`. The thing you cannot guess: a
   reminder is DATA — one entry in `data/cron.json` (outside git) with its own text; no code, no commit, no push, no rebuild, and a
-  one-line answer. The core draws it as the calendar under «Process → Cron automations»; the element's server reads it once a minute.
+  one-line answer. The core draws it as the calendar under «Working process → Process → Cron automations»; the element's server reads it once a minute.
   Russian phrasings of the person: «напомни», «напоминай каждый день», «по будням», «раз в неделю», «каждый месяц», «поставь на
   паузу», «выключи все напоминания», «включи напоминания», «что у меня по расписанию», «крон», «расписание», «календарь».
 ---

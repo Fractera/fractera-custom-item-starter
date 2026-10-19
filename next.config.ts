@@ -6,7 +6,7 @@ import type { NextConfig } from "next"
 // refuses to run with `output: standalone`, so the passport names the server file.
 //
 // The ROOT IS THIS FOLDER, named explicitly. Inside a node the site lives in
-// AGI-ITEMS/core/root, and Next, seeing the node's lockfile above, took the node for
+// WEB4-ITEMS/core/root, and Next, seeing the node's lockfile above, took the node for
 // the project root and tried to compile the node's own proxy.ts.
 const root = path.resolve(__dirname)
 

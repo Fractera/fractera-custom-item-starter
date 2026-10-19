@@ -292,7 +292,7 @@ export function LandingAgent({ lang }: { lang: string }) {
         <section data-block="l6kqq" className={s.versus}>
           <div data-block="x066g" className={s.wrap}>
             <h2 data-block="co2y3" className={s.versusTitle}>{x.compare.title}</h2>
-            <p data-block="oysml" className={s.versusSub}>{x.compare.sub}</p>
+            {x.compare.sub && <p data-block="oysml" className={s.versusSub}>{x.compare.sub}</p>}
             {/* Телефон: переключатель вместо двух карточек подряд (владелец 2026-09-30). */}
             <VersusTabs labels={[x.compare.left.who, x.compare.right.who]}>
             {/* Владелец 2026-09-30: бейджи одной ширины — по самому длинному ярлыку обеих карточек (моноширинный: ширина в ch точна). */}

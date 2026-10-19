@@ -1,6 +1,6 @@
 // Сторож паспорта A2A этого элемента. Стандарт и сторож живут в ядре узла (`lib/a2a/STANDARD.md`,
 // `scripts/check-passport.mjs`); здесь только вызов — своей копии у элемента нет, чтобы копии не разошлись.
-// Ядро ищется по `NODE_ITEMS_FILE` (реестр узла лежит в его корне), иначе — три папки вверх (AGI-ITEMS/<kind>/<id>).
+// Ядро ищется по `NODE_ITEMS_FILE` (реестр узла лежит в его корне), иначе — три папки вверх (WEB4-ITEMS/<kind>/<id>).
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'

@@ -7,7 +7,7 @@ import { SUPPORTED_LANGUAGES } from "@/config/translations/translations.config";
 // сборка отвечает и кто именно, — без них живой ответ не отличить от ответа
 // сироты на порту, поднятой прошлой сессией.
 //
-// 🔒 ХЭШ БЕРЁТСЯ ИЗ ДВУХ ИСТОЧНИКОВ ПО ПОРЯДКУ, И ПОРЯДОК ВАЖЕН. `AGI_COMMIT`
+// 🔒 ХЭШ БЕРЁТСЯ ИЗ ДВУХ ИСТОЧНИКОВ ПО ПОРЯДКУ, И ПОРЯДОК ВАЖЕН. `WEB4_COMMIT`
 // кладёт `server.js` при старте — он читает живой `git rev-parse` и потому знает
 // правду в режиме разработки. `NEXT_PUBLIC_GIT_COMMIT` задаёт сборка — он
 // остаётся единственным источником там, где `.git` не доехал (человек скачал
@@ -44,9 +44,9 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     ok: true,
     ts: Date.now(),
-    commit: process.env.AGI_COMMIT || process.env.NEXT_PUBLIC_GIT_COMMIT || null,
+    commit: process.env.WEB4_COMMIT || process.env.NEXT_PUBLIC_GIT_COMMIT || null,
     builtAt: process.env.NEXT_PUBLIC_BUILT_AT ?? null,
-    startedAt: process.env.AGI_STARTED_AT ?? null,
+    startedAt: process.env.WEB4_STARTED_AT ?? null,
     // Порт и pid нужны не человеку, а разбору: по ним видно, ТОТ ли процесс
     // отвечает, который считает себя сервером, — и на том ли порту он стоит,
     // на котором его ищут.

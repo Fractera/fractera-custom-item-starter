@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { authEnvOverrides, publicAuth } from "./public-auth.cjs"
 import { restartService } from "./resident"
-import { itemDir } from "@/lib/agi-items/paths.cjs"
+import { itemDir } from "@/lib/web4-items/paths.cjs"
 import { listServices } from "@/lib/microservices/registry"
 
 // ОКРУЖЕНИЕ СЛУЖБЫ ВХОДА ПЕРЕВОДИТСЯ НА ДОМЕН ТОЙ ЖЕ КНОПКОЙ (259-8).

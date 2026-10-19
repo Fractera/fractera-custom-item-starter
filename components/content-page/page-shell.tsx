@@ -90,9 +90,7 @@ export function PageShell({
   children,
 }: PageShellProps) {
   return (
-    // `scroll-mt-16`: после перехода по ссылке Next ставит этот `main` к верху окна, а там липкая шапка (57 px) — без отступа
-    // начало страницы уходило под неё (замер 2026-10-16: документ открывался с scrollY=57).
-    <main className="min-h-screen scroll-mt-16 bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       {jsonLd}
       {hero}
       {afterHero}

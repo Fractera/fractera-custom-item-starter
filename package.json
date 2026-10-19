@@ -52,6 +52,7 @@
     "check:passport": "node scripts/check-passport.mjs",
     "review:digest": "node scripts/review-digest.mjs",
     "check:dev-docs": "node scripts/check-dev-docs.mjs",
+    "check:product": "node scripts/check-product.mjs",
     "order:save": "node scripts/order-save.mjs",
     "passport": "node scripts/passport.mjs",
     "a2a": "node scripts/a2a.mjs",
@@ -60,9 +61,7 @@
     "check:tools-map": "node scripts/check-tools-map.mjs",
     "check:page-sequence": "node scripts/check-page-sequence.mjs",
     "check:a2a-card": "node scripts/check-a2a-card.mjs",
-    "check:tree": "node scripts/check-tree.mjs",
-    "check:skill-process": "node scripts/check-skill-process.mjs",
-    "tree:manifest": "node scripts/tree-manifest.mjs"
+    "check:tree": "node scripts/check-tree.mjs"
   },
   "dependencies": {
     "@a2a-js/sdk": "1.3.0",

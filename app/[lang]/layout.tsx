@@ -9,6 +9,9 @@ import { buildDesignCss } from "@/lib/design-css";
 import { DrawerProvider } from "@/providers/drawer-provider.client";
 import { TopMenu } from "@/components/menu/top/top-menu.server";
 import { FooterMenu } from "@/components/menu/footer/footer-menu.server";
+import { StarterBanner } from "./(publicLayer)/_components/starter-banner.client";
+import { starterBannerStrings } from "./(publicLayer)/_components/starter-banner.i18n";
+import { ownId } from "@/lib/own-id";
 import { DrawerMenu } from "@/components/menu/drawer/drawer-menu.server";
 import { ViewportBadge } from "@/components/dev/viewport-badge.client";
 import { viewportBadgeWords } from "@/components/dev/viewport-badge.i18n";
@@ -178,7 +181,9 @@ export default async function LangLayout({
 
                 🔒 СТАТИКУ НЕ ЛОМАЕТ: это островок, слушатель прокрутки живёт
                 внутри него, а макет остаётся серверным и ничего не спрашивает. */}
-            {/* 🪦 314-2: полоса «сайт ещё не ваш» root убрана из шаблона — первый экран элемента говорит это сам. */}
+            {/* 542 (владелец 2026-10-19): жёлтая вывеска стартера — та же, что у root («единственное что мы оставляем это выпадающее
+                жёлтая вывеска»); выезжает сразу, ссылка ведёт на «Подписку Claude Code» этого элемента в ядре. 🪦 314-2 её снимал. */}
+            <StarterBanner strings={starterBannerStrings(lang)} lang={lang} dropOnLoad href={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/subscription` : undefined} />
             {children}
             <FooterMenu lang={lang} />
             {/* Left & right slide-in drawers (shadcn Sheet), controlled by the same

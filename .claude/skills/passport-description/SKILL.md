@@ -45,7 +45,7 @@ two copies). Never touch `id`, `visibility`, `calls`, `marketplace` — those ar
 ## Written for search by meaning
 
 Name the problem in the words of the one who has it, then the solution. Use the plain words a searcher types and their common
-synonyms; avoid our internal terms (AGI ITEM, node, element) unless the reader needs them. Concrete nouns and verbs, no slogans.
+synonyms; avoid our internal terms (WEB4 ITEM, node, element) unless the reader needs them. Concrete nouns and verbs, no slogans.
 No personal data — the file is public.
 
 ## Before writing

@@ -6,7 +6,7 @@ description: >
   check door live, what the core draws and what the element never draws. Load it whenever a task needs a third-party API or key,
   whenever the person names a service to «connect», «subscribe to» or «pay for», and whenever you touch
   `OWN-SERVICE-PROPS/SUBSCRIPTIONS.json`. The thing you cannot guess: the element draws NO settings screen for the service — it
-  describes the service in one file, and the core's «Process → Subscriptions» tab draws the description, the key fields, the
+  describes the service in one file, and the core's «Working process → Process → Subscriptions» tab draws the description, the key fields, the
   «Check» button and the payment history from it; the element's job is the server side only.
   Russian phrasings of the person: «подключи сервис», «API-ключ», «подписка», «оплата сервиса», «баланс», «история платежей».
 ---
@@ -30,7 +30,7 @@ Owner, 2026-10-12: «…мы единственное что делаем это
 | the keys it needs | same entry → `keys[]` — `{ env, label, secret }` | only the **names** of environment variables (`AI_SEARCH_MACHINE_API_KEY`); values live in the element's `.env.local`, never in a file in git |
 | server code | `lib/integrations/<id>/` — `client.ts` (calls the provider), `check.ts` (status, balance, payments) | `import "server-only"`; reads the key from `process.env`; no key → a clear «not connected» result, never a throw on import |
 | the check door | `app/api/integrations/<id>/check/route.ts` (a line in `scripts/check-routes.mjs`) — path in `check` of the entry | `GET` → `{ ok, connected, balance?: {amount, currency}, payments: [{date, description, amount, currency, status}] }`; node key only (`X-Settings-Key`), the core calls it, never a visitor |
-| the screen | **the core**: «Process → Subscriptions» opens in the left menu into **one item per service**, each its OWN PAGE `/<lang>/<element>/process/subscriptions/<id>` (`agi-code/app/[lang]/(architectLayer)/_components/subscriptions-view.client.tsx`) | the element draws no settings page for a service; a new field on the screen = a new field in `SUBSCRIPTIONS.json`, and the core renders it |
+| the screen | **the core**: «Working process → Process → Subscriptions» opens in the left menu into **one item per service**, each its OWN PAGE `/<lang>/<element>/workflow/process/subscriptions/<id>` (`agi-code/app/[lang]/(architectLayer)/_components/subscriptions-view.client.tsx`) | the element draws no settings page for a service; a new field on the screen = a new field in `SUBSCRIPTIONS.json`, and the core renders it |
 | where the service is used | the element's own code calls `lib/integrations/<id>/client.ts` | one place calls the provider; widgets and doors call that place |
 
 ## 🔒 One service — one page (owner, 2026-10-12)

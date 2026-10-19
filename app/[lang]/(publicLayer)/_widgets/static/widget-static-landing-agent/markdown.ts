@@ -64,7 +64,7 @@ export function markdown(lang: string): string {
 
   if (x.compare) {
     head(2, x.compare.title)
-    para(x.compare.sub)
+    if (x.compare.sub) para(x.compare.sub)
     for (const side of [x.compare.left, x.compare.right]) {
       head(3, side.who ? `${side.who} — ${side.label}` : side.label)
       para(side.text)

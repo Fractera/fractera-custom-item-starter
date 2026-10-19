@@ -25,7 +25,7 @@ export type LandingExtra = {
   /** Секция «Fractera vs LLM» (владелец 2026-09-30): два табло — пеший маршрут и магистраль; станций карты ровно четыре. */
   compare?: {
     title: string
-    sub: string
+    sub?: string
     left: { who: string; label: string; text: string; stations: [string, string]; deadEnd: string; products?: { name: string; icon: "chat" | "code" | "cowork" | "platform" }[]; items: { tag: string; text: string }[] }
     right: { who: string; label: string; text: string; hub: string; here?: string; stations: [string, string, string, string]; ring?: { name: string; stations: string[]; free: string[] }; items: { tag: string; text: string }[] }
     mapLabel: string

@@ -45,7 +45,7 @@ the old history is pushed to the element's repository first). A public repositor
 
 ## Restoring the node
 
-The node pushes only one file to the person's fork — the snapshot `AGI-ITEMS-REGISTRY/agi-items.node.json` (which elements,
+The node pushes only one file to the person's fork — the snapshot `WEB4-ITEMS-REGISTRY/web4-items.node.json` (which elements,
 which repositories). On a new computer cloning the fork brings every element back from its repository (skill `project-origin`).
 
 ## What you do

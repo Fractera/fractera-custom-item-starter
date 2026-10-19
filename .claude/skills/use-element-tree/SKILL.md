@@ -145,7 +145,7 @@ Owner, 2026-10-12: «я не уверен в том что однажды как
 лишние страницы, и тогда задача навыка была предоставить решение чтобы вернуть проект к нужной стабильной стартовой архитектуры».
 
 **The source of truth is never your memory.** It is two things: the element's own git history, and the template tag it came from
-(`tree-manifest.json` → `template`, `after`; the node's current tag — `AGI-ITEMS-REGISTRY/item-template.json` in the core).
+(`tree-manifest.json` → `template`, `after`; the node's current tag — `WEB4-ITEMS-REGISTRY/item-template.json` in the core).
 
 1. **See what is missing.** `npm run check:tree` — every `нет <path>` line is a path of the starting tree that is gone.
 2. **Find when it went.** `git log --diff-filter=D --name-only --format='%h %ad %s' -- <path>` — the commit that removed it and its
