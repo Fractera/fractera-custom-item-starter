@@ -37,8 +37,10 @@ try {
   const links = (ext.consumes ?? []).map((c) => `${c.from} — ${c.protocol ?? 'protocol not recorded'} — ${via(c.via)} — ${c.why}`)
   // 548-9 (owner 2026-10-19: the element first understands «какие у него есть способы взаимодействия с внешним миром»): the
   // protocols this element may use, from its type and passport flags; the details — skill use-protocols.
-  const native = p.elementType === 'native'
-  const m = p.messengers ?? {}
+  // The door does not always carry the passport flags — then they are read from the passport file itself.
+  const own = (() => { try { return JSON.parse(readFileSync(join(process.cwd(), 'OWN-SERVICE-PROPS', 'OWN-SERVICE-PROPS.json'), 'utf8')) } catch { return {} } })()
+  const native = (p.elementType ?? own.elementType) === 'native'
+  const m = p.messengers ?? own.messengers ?? {}
   const protocols = [
     m.h2a !== false && 'H2A — your person and you (Telegram, this terminal)',
     'i2i — the elements of this node and the core: an API agreed once, then no model',
@@ -55,7 +57,7 @@ try {
   const lang = env.NEXT_PUBLIC_LANG || 'en'
   const out = mode === 'me'
     ? {
-        links, protocols, elementType: p.elementType, messengers: p.messengers,
+        links, protocols, elementType: p.elementType ?? own.elementType, messengers: m,
         id: p.id, name: p.name, shortDescription: p.shortDescription, accepts: p.accepts, returns: p.returns, designSkill: p.designSkill, isFracteraArchitecture: p.isFracteraArchitecture, framework: p.framework, skills: p.skills, tools: p.tools,
         visibility: p.visibility,
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
