@@ -1,7 +1,7 @@
 {
   "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
   "template": "fractera-item-starter",
-  "after": "after v0.3.102",
+  "after": "after v0.3.103",
   "files": [
     "app/.well-known/agent-card.json/route.ts",
     "app/[lang]/(guestLayer)/README.md",
@@ -189,8 +189,6 @@
     "app/[lang]/(publicLayer)/[slug]/page.tsx",
     "app/[lang]/(publicLayer)/[slug]/snippet.png/route.ts",
     "app/[lang]/(publicLayer)/_components/README.md",
-    "app/[lang]/(publicLayer)/_components/starter-banner.client.tsx",
-    "app/[lang]/(publicLayer)/_components/starter-banner.i18n.ts",
     "app/[lang]/(publicLayer)/_data/en.json",
     "app/[lang]/(publicLayer)/_data/meta.json",
     "app/[lang]/(publicLayer)/_data/ru.json",
@@ -288,7 +286,9 @@
     "app/not-found.tsx",
     "app/og-default.png/route.ts",
     "app/robots.ts",
-    "app/sitemap.ts"
+    "app/sitemap.ts",
+    "components/shell/starter-banner.client.tsx",
+    "components/shell/starter-banner.i18n.ts"
   ],
   "dirs": [
     ".claude/skills",
