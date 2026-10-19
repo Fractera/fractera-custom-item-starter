@@ -1,6 +1,6 @@
 # reference-title — the home page of the reference starter template
 
-Node step 542 (owner, 2026-10-19): the home page of `fractera-item-starter` has one line in the centre of the screen, «Reference
+Node step 542 (owner, 2026-10-19): the home page of `fractera-custom-item-starter` has one line in the centre of the screen, «Reference
 starter template», and nothing else. The yellow starter sign above it lives in `app/[lang]/layout.tsx`.
 
 - **Words** — the `title` of the home page data `(publicLayer)/_data/<lang>.json`; `words.ts` reads it, no text in code.

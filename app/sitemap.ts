@@ -4,8 +4,6 @@ import { SUPPORTED_LANGUAGES } from "@/config/translations/translations.config"
 import { urlFor } from "@/lib/seo/alternates"
 import { indexableLanguages } from "@/lib/seo/translation-state"
 import { branchRoot, branchChildren } from "@/lib/page-tree"
-import { listReviews } from "@/lib/reviews/store"
-import { translatedPage } from "@/app/[lang]/(publicLayer)/reviews/_libs/reviews-view"
 
 // ГЛАВНАЯ КАРТА САЙТА — страницы, множество которых конечно и авторское.
 //
@@ -41,8 +39,6 @@ import { translatedPage } from "@/app/[lang]/(publicLayer)/reviews/_libs/reviews
 // 314-2: страницы публичной ветки — из дерева данных (`lib/page-tree.ts`): корень и дети `(publicLayer)/_pages/<slug>/`.
 // Списка руками нет — новая папка страницы попадает в карту сама.
 
-// 518-2: страницы отзывов — строки слоя данных, не папки; карта читает их при каждой перерисовке (раз в пять минут и по двери
-// `/api/reviews`). Слой данных не ответил — в карте нет только отзывов, остальное на месте. Образцы (`noindex`) не перечисляются.
 export const revalidate = 300
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -82,18 +78,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       out.push({ url: urlFor(lang, `/${page.slug}`), changeFrequency: "weekly", priority: 0.5 })
     }
   }
-
-  // Корень ветки отзывов: свои слова есть на en и ru (`reviews/_data`), значит и в карте он на тех из них, что открыты поиску.
-  for (const lang of indexableLanguages({ overrides: { ru: { title: "ru" } } })) {
-    out.push({ url: urlFor(lang, "/reviews"), changeFrequency: "weekly", priority: 0.4 })
-  }
-  try {
-    for (const review of (await listReviews()).filter((r) => !r.noindex)) {
-      for (const lang of indexableLanguages(translatedPage(review))) {
-        out.push({ url: urlFor(lang, `/reviews/${review.slug}`), lastModified: review.updatedAt, changeFrequency: "monthly", priority: 0.4 })
-      }
-    }
-  } catch { /* the data layer did not answer: the map keeps every other page */ }
 
   return out.filter((row, i) => out.findIndex(r => r.url === row.url) === i)
 }

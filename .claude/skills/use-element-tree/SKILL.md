@@ -154,7 +154,7 @@ Owner, 2026-10-12: «я не уверен в том что однажды как
    is not undone — it becomes an exception instead (step 5).
 4. **Restore.** From the element's own history: `git checkout <commit>^ -- <path>` (the version right before the removal). The path
    never existed in this element (born from an older template) → take it from the template tag:
-   `git clone --depth 1 --branch <tag> https://github.com/Fractera/fractera-item-starter.git <scratch>` and copy the path over.
+   `git clone --depth 1 --branch <tag> https://github.com/Fractera/fractera-custom-item-starter.git <scratch>` and copy the path over.
    Then `npm run prebuild` — every guard green, `check:tree` prints `===TREE_OK===`.
 5. **Record an intended removal.** `development-docs/tree-exceptions.json`:
    `{ "paths": { "app/[lang]/(publicLayer)/_pages/chain": "owner 2026-10-12: «Another remove»" } }` — the person's words, verbatim.

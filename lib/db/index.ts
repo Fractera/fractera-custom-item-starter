@@ -362,49 +362,7 @@ const SCHEMA = `
     payload    TEXT NOT NULL,
     updated_at TEXT NOT NULL
   );
-  -- ── Страницы отзывов элемента (шаг узла 518-1, владелец 2026-10-17) ─────────
-  --
-  -- Страница, которую элемент публикует как АВТОР отзыва о партнёре (Lagrix, документ 25), — строка здесь, а не файл в git:
-  -- «каждый новый отзыв должен создаваться без нового развёртывания». Читает и пишет lib/reviews/store.ts.
-  -- 🔒 Слой данных ОДИН на узел: колонка element (id элемента из паспорта) в каждом ключе, иначе roman и lagrix видели бы
-  -- страницы друг друга. Тексты по языкам — одной колонкой JSON, как переводы товаров: колонка на язык не масштабируется.
-  CREATE TABLE IF NOT EXISTS review_pages (
-    element     TEXT NOT NULL,
-    slug        TEXT NOT NULL,
-    order_no    TEXT NOT NULL,
-    counterpart TEXT NOT NULL,
-    -- provider | customer — в какой роли элемент был в этой сделке
-    role        TEXT NOT NULL,
-    -- like | dislike — отзыв, к которому привязана эта страница
-    verdict     TEXT NOT NULL,
-    score       INTEGER NOT NULL,
-    recommend   INTEGER NOT NULL,
-    texts       TEXT NOT NULL,
-    noindex     INTEGER NOT NULL DEFAULT 0,
-    -- 518-7: всё, по чему ищут (тексты на всех языках, контрагент, номер заказа), в нижнем регистре JS — SQLite не сворачивает
-    -- регистр кириллицы, и LIKE по сырому тексту не нашёл бы «Секция» по «секция».
-    search_text TEXT NOT NULL DEFAULT '',
-    created_at  TEXT NOT NULL,
-    updated_at  TEXT NOT NULL,
-    PRIMARY KEY (element, slug)
-  );
-  CREATE TABLE IF NOT EXISTS review_events (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    element     TEXT NOT NULL,
-    slug        TEXT NOT NULL,
-    happened_at TEXT NOT NULL,
-    texts       TEXT NOT NULL
-  );
-  CREATE TABLE IF NOT EXISTS review_images (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    element     TEXT NOT NULL,
-    slug        TEXT NOT NULL,
-    position    INTEGER NOT NULL,
-    media_id    TEXT NOT NULL,
-    media_url   TEXT NOT NULL,
-    width       INTEGER,
-    height      INTEGER
-  );
+  -- 🪦 Страницы отзывов (шаг узла 518) убраны из эталонного шаблона: владелец 2026-10-19, «Публичные отзывы в шаблоне».
 `
 
 // The architecture three streams (projects / pages / endpoints) and their tasks
@@ -718,8 +676,6 @@ const LATE_COLUMNS = [
   `ALTER TABLE fact_registry ADD COLUMN lifecycle    TEXT`,
   `ALTER TABLE fact_registry ADD COLUMN schedules    TEXT NOT NULL DEFAULT 'none'`,
   `ALTER TABLE fact_registry ADD COLUMN model        TEXT NOT NULL DEFAULT 'cheap'`,
-  // 518-7: таблица страниц отзывов уже стоит в слое данных (518-1) — колонка поиска приезжает только лестницей.
-  `ALTER TABLE review_pages ADD COLUMN search_text TEXT NOT NULL DEFAULT ''`,
 ]
 
 async function initRemoteSchema() {

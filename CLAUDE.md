@@ -123,7 +123,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 |---|---|
 | both — building or a job | `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: every text a person reads, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | builder | `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
-| worker | `order-summary`, `review-order` (recall a closed order with your person, agree on the review and publish the review page at `/<lang>/reviews/<slug>` through `/api/reviews` — no commit, no rebuild; the review itself is not sent while the network does not exist), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
+| worker | `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
 
 **A skill starts with its process** (owner of the node, 2026-10-12: an agent that creates a skill must first decide whether
@@ -171,12 +171,6 @@ the route and everything that served it is gone, no tails. Only what two or more
 
 **Languages are files.** A translation is one more language file next to the base; until it exists the page answers in the
 default language.
-
-**Review pages — the one branch whose pages are data-layer rows** (node step 518): `/<lang>/reviews` (the list with server search and
-pages) and `/<lang>/reviews/<slug>` (one review page this element published as the author of a review it gave a partner). The agent writes
-them through `POST /api/reviews` (skill `review-order`); they appear without a rebuild and stay static. Read
-`app/[lang]/(publicLayer)/reviews/README.md` before touching them; the look — `development-docs/design-brief-reviews.md`. The footer's
-default links carry «Reviews» (`lib/menu/nav-config.ts`); the footer itself is on only when the person turns it on.
 
 **What a page is made of.** Data, not a route file: one sequence of `block-*` · `text-*` · `widget-static-*` /
 `widget-dynamic-*`, the same in every language. The look comes only from the design tokens through blocks, typography and

@@ -114,9 +114,6 @@ const DEFAULT_FOOTER: { id: string; href: string; label: string }[] = [
   // Адрес и заголовок самой страницы при этом полные — обрезка живёт только в
   // кнопке. Владелец переименует пункт в панели, если захочет иначе.
   { id: "accessibility", href: "/accessibility", label: "Accessible" },
-  // Шаг узла 518-4 (владелец 2026-10-17: «Индекс и пункт в подвале»): ветка `/reviews` — страницы отзывов элемента. Пункт по умолчанию:
-  // появляется, когда человек включает подвал, и убирается, как остальные, его собственным `nav.footer`.
-  { id: "reviews", href: "/reviews", label: "Reviews" },
 ];
 
 export function defaultFooterGroups(lang: string): MenuGroup[] {

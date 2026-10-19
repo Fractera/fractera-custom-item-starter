@@ -147,12 +147,6 @@ A new branch (a new root) is new code and a decision of the person: ask first, t
 `scripts/check-routes.mjs` with the reason. A behaviour that more than one page needs becomes a widget or a block kind,
 and the pages stay data.
 
-**The second form of a branch — pages from the data layer** (node step 518): `/<lang>/reviews` keeps its pages as rows of the node's
-data layer, not as folders, because the agent publishes them while the element runs (a working process: no commit, no rebuild). The
-same rules hold — one root, one `[slug]/page.tsx`, drawn on the first visit and kept static (`revalidate`), redrawn by the door that writes
-them (`app/api/reviews`, `revalidatePath`), metadata through the same factory. Its look lives in the branch's own `_components/`. A folder
-`(publicLayer)/_pages/reviews` would collide with it and is refused. Its README: `app/[lang]/(publicLayer)/reviews/README.md`.
-
 ## Proof this rule is guarded
 
 Add `app/[lang]/(publicLayer)/x/page.tsx` → `npm run build` stops with `===ROUTES_FAILED===`; remove it →

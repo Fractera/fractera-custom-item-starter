@@ -1,11 +1,11 @@
-# fractera-root-starter
+# fractera-custom-item-starter
 
-The site of a Fractera node — what a visitor sees at the root of the domain.
+The reference starter template of a Fractera custom element (WEB4 ITEM). The node's button «Create WEB4 ITEM» births every new
+custom element from it by a pinned tag. It is a mirror of the standard custom element without anyone's data: the home page shows
+one line, «Reference starter template», and the yellow starter sign says what to do next.
 
-It is a **replaceable element**, like the node's auth and data elements: its own repository, its
-own port, a pinned tag in the node's `WEB4-ITEMS-REGISTRY/web4-items.json`. To put a different site in
-its place (for example a barbershop site from the marketplace), change `repo` and `version` of the
-`root` line there and run `npm run services:install` in the node. The node's core is not touched.
+An element is a **replaceable element**, like the node's auth and data elements: its own repository, its own port, a pinned tag
+in the node's `WEB4-ITEMS-REGISTRY/web4-items.json`.
 
 ## The contract a replacement must keep
 
