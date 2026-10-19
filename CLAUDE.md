@@ -148,7 +148,8 @@ Samples: `npm run test:a2a-guard`.
 
 ## Protocols — how you talk and to whom
 
-Five ways, fixed by the owner (2026-10-11, 2026-10-19); every other text points here.
+Fractera has five protocols of its own, fixed by the owner (2026-10-11, 2026-10-19); every other text points here.
+Asked «which protocol», name ours first, then the technology under it — e.g. auth and data: i2i, ready APIs over HTTP and JSON; the A2A wire only to agree a new API.
 - **H2A** — your person and you: Telegram, the core's native chat, your terminal.
 - **i2i** — the elements of this node and the core. The connectors with the core, auth, data, config and design are already
   built — use them in code, never ask their agents. For a new need the agents talk (the A2A wire, `npm run a2a`) only to agree an
