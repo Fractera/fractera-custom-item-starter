@@ -63,11 +63,15 @@ No private data: the file is public. A key is never here, not even its variable 
 - **Born with four.** `auth`, `data`, `config`, `design` are there because the element template was built to cooperate with
   these four services of the node from its first start: sign-in, stored data, project settings, design. They are the template's
   decision, not something this element found.
-- **Every later entry has one origin: A2A.** An entry is added only when the agent found a suitable element through A2A discovery
-  and the cooperation actually started — the first conversation in which the other side agreed to do the work (skill
-  `a2a-conversation`). The agent adds the other element's `id` in the same commit as the work that the cooperation produced.
+- **Every later entry has one origin: an i2i agreement.** An entry is added only when the agent found a suitable element in the
+  node and the two agreed an API — the conversation in which the other side agreed to build and serve it (skill `use-i2i`;
+  commands — `a2a-conversation`). The agent adds the other element's `id` in the same commit as the work that the cooperation produced.
 - **Not added:** an element that was only looked at, asked once without an agreement, or refused.
 - **Removed:** when the element stops using that partner — in the same commit that removes the use.
+
+**The link itself lives in the card** `A2A-CARD.json`, extension `consumes`: `skill`, `from`, `why`, `protocol` (`i2i` | `a2a`) and
+`via` — the API (`{ kind: "http", method, path, base, key }`, `{ kind: "mcp", tool, path, base, key }` or `{ kind: "a2a-skill", skill }`).
+`npm run passport -- me` prints these links first; `npm run check:a2a-card` refuses a link without its protocol and API.
 
 `calledBy` is the other direction and is never written: the door reads it from the node's A2A log.
 

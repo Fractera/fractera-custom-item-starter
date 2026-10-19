@@ -176,22 +176,71 @@
             {
               "skill": "sign-in",
               "from": "auth",
-              "why": "sessions, sign-in on its own domain, guest visitors"
+              "why": "sessions, sign-in on its own domain, guest visitors",
+              "protocol": "i2i",
+              "via": {
+                "kind": "http",
+                "method": "GET",
+                "path": "/api/session",
+                "base": "AUTH_SERVICE_URL",
+                "key": "the visitor's session cookie",
+                "also": "GET /api/auth/ticket on this element's own domain"
+              }
             },
             {
               "skill": "stored-data",
               "from": "data",
-              "why": "media files and table rows; never a database file of its own"
+              "why": "media files and table rows; never a database file of its own",
+              "protocol": "i2i",
+              "via": {
+                "kind": "http",
+                "method": "GET, POST",
+                "path": "/api/*",
+                "base": "REMOTE_DATA_URL",
+                "key": "X-Data-Secret (DATA_SECRET)"
+              }
             },
             {
               "skill": "project-settings",
               "from": "config",
-              "why": "name, texts and languages of the project, unless the CONFIG link is off"
+              "why": "name, texts and languages of the project, unless the CONFIG link is off",
+              "protocol": "i2i",
+              "via": {
+                "kind": "mcp",
+                "path": "/mcp",
+                "tool": "get_project_settings",
+                "base": "CONFIG_SERVICE_URL",
+                "key": "SETTINGS_SECRET",
+                "also": "settings_version"
+              }
             },
             {
               "skill": "design-tokens",
               "from": "design",
-              "why": "colours, fonts and corners of every page"
+              "why": "colours, fonts and corners of every page",
+              "protocol": "i2i",
+              "via": {
+                "kind": "mcp",
+                "path": "/mcp",
+                "tool": "get_project_settings",
+                "base": "DESIGN_SERVICE_URL",
+                "key": "SETTINGS_SECRET",
+                "also": "subscribe"
+              }
+            },
+            {
+              "skill": "node-registry",
+              "from": "core",
+              "why": "who in the node can do a job; the core wakes this element's agent and is told when it is done",
+              "protocol": "i2i",
+              "via": {
+                "kind": "http",
+                "method": "GET",
+                "path": "/api/node/a2a?q=",
+                "base": "the core (logs/runtime.json)",
+                "key": "X-Node-Key (SETTINGS_SECRET)",
+                "also": "POST /api/agents/wake, POST /api/agents/done"
+              }
             }
           ],
           "process": [

@@ -7,7 +7,7 @@
 // Asks the running element's door on this machine with the node key from .env.local, so the answer carries the node-only parts:
 // `self` (port, local address, folder) and `project` (domain, core, every element of the node, how to cooperate — A2A).
 // The key never leaves this machine and is never printed.
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const env = Object.fromEntries(
@@ -26,8 +26,18 @@ try {
   if (!r.ok) throw new Error(`the door answered ${r.status}`)
   const p = await r.json()
   const mode = process.argv[2]
+  // 548 (owner 2026-10-19): with whom this element works, by which protocol and API — read from its card, printed first.
+  const cardFile = join(process.cwd(), 'OWN-SERVICE-PROPS', 'A2A-CARD.json')
+  const card = existsSync(cardFile) ? JSON.parse(readFileSync(cardFile, 'utf8')) : null
+  const ext = (card?.capabilities?.extensions ?? []).find((e) => /\/a2a\/ext\/node\//.test(e?.uri ?? ''))?.params ?? {}
+  const via = (v) => !v ? 'no API recorded'
+    : v.kind === 'mcp' ? `MCP ${v.tool} at ${v.base}${v.path ?? ''}, key ${v.key}${v.also ? `; also ${v.also}` : ''}`
+    : v.kind === 'a2a-skill' ? `A2A code skill ${v.skill}`
+    : `${v.method ?? ''} ${v.path} at ${v.base}, key ${v.key}${v.also ? `; also ${v.also}` : ''}`
+  const links = (ext.consumes ?? []).map((c) => `${c.from} — ${c.protocol ?? 'protocol not recorded'} — ${via(c.via)} — ${c.why}`)
   const out = mode === 'me'
     ? {
+        links, elementType: p.elementType, messengers: p.messengers,
         id: p.id, name: p.name, shortDescription: p.shortDescription, accepts: p.accepts, returns: p.returns, designSkill: p.designSkill, isFracteraArchitecture: p.isFracteraArchitecture, framework: p.framework, skills: p.skills, tools: p.tools,
         visibility: p.visibility,
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
