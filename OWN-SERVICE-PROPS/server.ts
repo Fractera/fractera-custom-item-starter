@@ -113,7 +113,7 @@ async function calledBy(id: string): Promise<string[]> {
   }
 }
 
-type Row = { id: string; custom: boolean; service: string; title: string | null; description: string | null; link: string | null; status: string }
+type Row = { id: string; custom: boolean; service: string; title: string | null; description: string | null; link: string | null; status: string; role?: string | null }
 
 /** The node's composition as the core sees it (Dashboard → Projects), for this element's own agent. */
 async function project(core: string | null, zone: string): Promise<Record<string, unknown>> {
@@ -128,6 +128,8 @@ async function project(core: string | null, zone: string): Promise<Record<string
         name: x.service,
         kind: x.custom ? "custom" : "native",
         description: x.description ?? x.title ?? "",
+        // 548-10: the role the node gives this element in one sentence (the core's roles) — what it does for the others.
+        role: x.role ?? null,
         url: x.link ?? "",
         status: x.status,
       }))

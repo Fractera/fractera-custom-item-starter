@@ -5,7 +5,7 @@ description: >
   Load it when the person wants a new product («I want to make…», «let's plan it»); when a task comes from the core's quiz page
   («Product quiz, item S-03 …», «Product quiz: let's continue…», «…start deep planning…»); when the person asks for something that
   adds or changes what the product does («and also I need…»: a new role, a new kind of thing, a new money flow, an outside
-  service); and when a building step closes. Not for page texts, design, a bug inside a confirmed scenario, or a worker job. The
+  service); after the node (i2i) and the network (f2f) found nothing ready for a new capability; and when a building step closes. Not for page texts, design, a bug inside a confirmed scenario, or a worker job. The
   thing you cannot guess: only the person confirms an item, in words — you never mark one confirmed yourself, and changing a
   confirmed item turns it back into a draft.
 ---

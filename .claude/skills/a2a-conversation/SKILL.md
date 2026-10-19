@@ -37,7 +37,8 @@ Roles: the **person** sets the goal and talks only to their own agent — you; *
    message — not after.
 
 Not in the registry → no A2A card yet → it cannot be talked to today: tell the person instead of going around it. Nothing in the
-node fits → say so plainly: the network of other nodes is not reachable yet.
+node fits → say so plainly and go on in `use-protocols`, «Before you build a new capability» (f2f for a custom element, then the
+product quiz).
 
 ## Talk to it
 

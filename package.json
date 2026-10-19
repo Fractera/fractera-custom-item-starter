@@ -61,7 +61,8 @@
     "check:tools-map": "node scripts/check-tools-map.mjs",
     "check:page-sequence": "node scripts/check-page-sequence.mjs",
     "check:a2a-card": "node scripts/check-a2a-card.mjs",
-    "check:tree": "node scripts/check-tree.mjs"
+    "check:tree": "node scripts/check-tree.mjs",
+    "f2f": "node scripts/f2f.mjs"
   },
   "dependencies": {
     "@a2a-js/sdk": "1.3.0",

@@ -61,12 +61,14 @@ in `links` is a defect — say so and offer to record it (`describe-element`).
 
 ## Nobody in the node can do it
 
-Do not grow someone else's job inside yourself. Tell your person and point to the core: its main agent looks in Lagrix first
-(f2f) and only then creates a new element with that purpose.
+Do not grow someone else's job inside yourself. The order goes on in `use-protocols`, «Before you build a new capability»: a
+custom element searches the network for a whole element (f2f), then the product quiz builds it here when it is your role; a job
+that is not your role goes to the core's main agent, which creates a new element for it.
 
 ## Never
 
 - read or write a neighbour's files or database — its code changes and you would break silently;
 - ask the auth, data, config or design agents for what their API already gives;
 - spend a model on a job an agreed API covers;
+- wake a neighbour's agent for anything but agreeing an API: a door that exists is called, not asked about;
 - build into yourself a capability a neighbour already has.

@@ -35,9 +35,27 @@ try {
     : v.kind === 'a2a-skill' ? `A2A code skill ${v.skill}`
     : `${v.method ?? ''} ${v.path} at ${v.base}, key ${v.key}${v.also ? `; also ${v.also}` : ''}`
   const links = (ext.consumes ?? []).map((c) => `${c.from} — ${c.protocol ?? 'protocol not recorded'} — ${via(c.via)} — ${c.why}`)
+  // 548-9 (owner 2026-10-19: the element first understands «какие у него есть способы взаимодействия с внешним миром»): the
+  // protocols this element may use, from its type and passport flags; the details — skill use-protocols.
+  const native = p.elementType === 'native'
+  const m = p.messengers ?? {}
+  const protocols = [
+    m.h2a !== false && 'H2A — your person and you (Telegram, this terminal)',
+    'i2i — the elements of this node and the core: an API agreed once, then no model',
+    !native && m.a2a && 'a2a — jobs for agents of other nodes through Lagrix (working process)',
+    !native && 'f2f — whole elements from other Fractera projects through Lagrix: npm run f2f -- find <words>',
+    !native && m.h2h && 'H2H — people through their agents',
+  ].filter(Boolean)
+  // One sentence of a neighbour: its role from the core, else the first sentence of its description — never cut mid-word.
+  const first = (t, n = 170) => {
+    const s = String(t ?? '').replace(/\s+/g, ' ').trim()
+    const cut = s.match(/^.{20,}?[.!?](?=\s|$)/)?.[0] ?? s
+    return cut.length > n ? `${cut.slice(0, Math.max(cut.lastIndexOf(' ', n - 1), 40))}…` : cut
+  }
+  const lang = env.NEXT_PUBLIC_LANG || 'en'
   const out = mode === 'me'
     ? {
-        links, elementType: p.elementType, messengers: p.messengers,
+        links, protocols, elementType: p.elementType, messengers: p.messengers,
         id: p.id, name: p.name, shortDescription: p.shortDescription, accepts: p.accepts, returns: p.returns, designSkill: p.designSkill, isFracteraArchitecture: p.isFracteraArchitecture, framework: p.framework, skills: p.skills, tools: p.tools,
         visibility: p.visibility,
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
@@ -47,7 +65,10 @@ try {
     : mode === 'project'
       ? {
           domain: p.project?.domain, core: p.project?.core, cooperation: p.project?.cooperation, a2aRegistry: p.project?.a2aRegistry,
-          elements: (p.project?.elements ?? []).map((e) => `${e.id} · ${e.name} · ${e.kind} · ${e.status} — ${String(e.description ?? '').slice(0, 110)}`),
+          elements: [
+            `core · ${p.project?.core} — the node's centre: the registry of elements, waking agents, birth of new elements; its main agent routes a need to an element and creates new ones (terminal ${p.project?.core}/${lang}/architect/build/terminal)`,
+            ...(p.project?.elements ?? []).map((e) => `${e.id} · ${e.name} · ${e.kind} · ${e.status} — ${e.role || first(e.description) || 'no role yet'}${e.id === p.id ? ' — this is you' : ''}`),
+          ],
         }
       : p
   console.log(JSON.stringify(out, null, 2))

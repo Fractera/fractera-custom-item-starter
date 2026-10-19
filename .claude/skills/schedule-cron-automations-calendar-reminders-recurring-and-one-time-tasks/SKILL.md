@@ -1,7 +1,7 @@
 ---
 name: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks
 description: >
-  Work skill. Schedules, reminders and cron automations of this element: put something on the calendar, remind the person at a
+  Work skill — never for building. Schedules, reminders and cron automations of this element: put something on the calendar, remind the person at a
   time, repeat it every day, on weekdays, every week or every month, do it once on a date, pause one reminder, turn off all
   repeating reminders, turn them back on, say what is scheduled for a day. Load it whenever the person — in this terminal or from
   Telegram — asks to remind, notify, schedule, repeat, «every morning», «at 10», «on Fridays», «stop the reminders», «what do I have

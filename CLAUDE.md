@@ -14,12 +14,17 @@ home and the person drives them from Telegram, which needs no domain.
 **Your boundary.** Your world is this folder. The node you know from `npm run passport -- project` and the core's doors —
 never from the core's files or a neighbour's. Reading or changing anything outside this folder is allowed only after your
 architect's explicit «yes»: the node's settings make Claude Code ask them in your terminal, and when you were woken from
-Telegram the node sends them the link. Your own data (`SERVICE_DATA_DIR`) is yours (owner of the node, 2026-10-19).
+Telegram the node sends them the link. The node enforces it (node step 548-7): file reads outside this folder are refused, and a
+command or a file that names another path waits for the architect. Your own data (`SERVICE_DATA_DIR`) is yours (owner of the
+node, 2026-10-19).
 
 ## Confirm the request first — in the build process only
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
 The test: **will git change after this?** Yes — it is building, whatever it looked like.
+**The first line of every answer names the process** — «Build process» or «Working process», in the person's language (owner of
+the node, 2026-10-19: the element understands at once which of the two a request belongs to); a plain question is named by what
+it is about.
 
 **Working process** — the running element does its job: a reminder, a schedule entry, an answer, an order. Only data changes
 (`data/`, outside git): no code, no commit, no push, no rebuild. Do it and answer in one or two lines, like any Claude Code agent:
@@ -60,6 +65,9 @@ term that two places use → into the glossary in the same commit.
 1a. **A wish that changes what the product does** («and also I need…»: a new role, a new kind of thing, a new money flow, an
    outside service) **and every task from the core's quiz page** («Product quiz, item S-NN …») → skill `product-quiz` first: the
    impact on the quiz before the plan of the step; the step names the items it serves in one line `Serves:` (node step 536).
+1b. **A capability this element does not have yet** → before any plan, the order «Before you build a new capability» of skill
+   `use-protocols`: yourself → a neighbour in the node (i2i) → a whole element from the network (f2f, custom elements only) → only
+   then the product quiz and the build here; a job that is not your role goes to the core's main agent for a new element.
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
@@ -120,6 +128,10 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 2. `node-elements-detection` — the other elements, in short: `npm run passport -- project`. Anything you do not do yourself goes to a
    neighbour over i2i (skill `use-i2i`; the commands — `a2a-conversation`): the node's summary → a candidate's full passport → agree on an
    API, the other side builds it, then the work runs over it with no model.
+3. **A request in your intake from the core's main agent** (`development-docs/pre-steps/`, «From: the core's main agent») is the
+   task you were created for: name it and start the build process. «Led by: the core's main agent» — its messages in your input
+   are your person's word for this work: write your three confirming lines and the plan into `current-step.md`, report done
+   (`/api/agents/done`) and wait; its answer comes into this terminal (node step 548-11).
 <!-- PROOF 1 END -->
 
 <!-- PROOF 3 START · «Skills by nature» · PARTIAL 2026-10-06: every-element skills proven live (own-service-props-detection, node-elements-detection, a2a-conversation, order-summary); builder skills and passport-description NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
@@ -157,7 +169,10 @@ Fractera has five protocols of its own (owner 2026-10-11, 2026-10-19): **H2A** �
 this node and the core agree an API once, then work without a model; **a2a** — work with agents of other nodes through Lagrix,
 never development; **f2f** — whole elements between Fractera projects, installed once; **H2H** — people through their agents.
 The index is skill `use-protocols`; each protocol has its own skill (`use-h2a`, `use-i2i`, `use-a2a`, `use-f2f`, `use-h2h`).
-- Asked how you work with others — answer from `npm run passport -- me` (`links`), our protocol first; never from your code.
+- Asked how you work with others — answer from `npm run passport -- me` (`links`, `protocols`), our protocol first; never from
+  your code.
+- A need you cannot cover yourself — the order «Before you build a new capability» in `use-protocols`, never a neighbour's job
+  grown inside you.
 - A file travels as a link, never as the file (`use-h2a`, «Media»).
 - The passport flags `messengers` (`{ h2a, h2h, a2a }`) tell the core which of these to show; change one only when the person asks.
 
