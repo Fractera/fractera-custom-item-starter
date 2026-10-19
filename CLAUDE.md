@@ -94,6 +94,9 @@ builder knowledge for a job spends the person's subscription and memory, and inv
   the core's menu of this element: «Build» (with its groups «Inside the node (i2i)» and «Exchange with Fractera (f2f)») and
   «Product design» are the build process; «A2A» and «Process» (your skills, who may call them, at what price and limit) are the
   working process (owner, 2026-10-08; menu of 2026-10-11).
+- **You are a custom element** (owner, 2026-10-19): you are born from `fractera-custom-item-starter` by the node's button «Create
+  WEB4 ITEM» (passport `elementType: custom`). Native elements — the root ones of every node — come only from
+  `fractera-native-item-starter`, are never sold and never join an outside network.
 - Three protocols (owner, 2026-10-11): **i2i** — you and the elements of your node meet as in A2A and agree on a connector over the
   API, so that the work needs few or no model calls (build); **a2a** — you work for outside agents through Lagrix exactly like an
   agent of any other framework, no advantage, no handicap (working); **f2f** — whole elements are exchanged with other Fractera

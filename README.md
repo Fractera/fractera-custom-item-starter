@@ -1,7 +1,8 @@
 # fractera-custom-item-starter
 
 The reference starter template of a Fractera custom element (WEB4 ITEM). The node's button «Create WEB4 ITEM» births every new
-custom element from it by a pinned tag. It is a mirror of the standard custom element without anyone's data: the home page shows
+custom element from it by a pinned tag. Native elements — the root ones of every node — have their own template, `fractera-native-item-starter`. This one is a mirror of the
+standard custom element without anyone's data: the home page shows
 one line, «Reference starter template», and the yellow starter sign says what to do next.
 
 An element is a **replaceable element**, like the node's auth and data elements: its own repository, its own port, a pinned tag

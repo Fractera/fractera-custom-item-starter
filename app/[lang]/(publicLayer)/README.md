@@ -2,11 +2,11 @@
 
 A branch of the element's frame (node step 314-2). Lock of the branch: none — the branch is public and indexed.
 
-## The home page is a landing (node step 330-4)
+## The home page (node step 542)
 
-The sequence of `_data/<lang>.json` holds the widget `widget-static-landing-agent`, and `_data/meta.json` → `"bare": true`
-draws it alone, without the page frame (`_widgets/static/widget-static-landing-agent/`). The other items and the field
-`landing` stay its words and the text twin for agents. Remove `bare` and the widget to go back to a page of blocks and text.
+The sequence of `_data/<lang>.json` holds the widget `widget-static-reference-title` — one line in the centre of the screen,
+the page's own `title` — and `_data/meta.json` → `"bare": true` draws it alone, without the page frame. Replace the widget and the
+words to build your own home page.
 
 ## What is here
 

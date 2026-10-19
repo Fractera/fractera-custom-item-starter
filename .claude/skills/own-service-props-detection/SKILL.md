@@ -33,6 +33,7 @@ it with `head`. `npm run passport` without a mode is the whole passport (every p
 | who you are | `id` (never changes), `name` (may change), `version`, `commit`, `created`, `updated`, `github` |
 | where you live | `addresses` (internet, own domain, project, your public routes), `host` (home or server, how the node is reached, tunnel, isolation), `machine` (port, local address, folder, status) |
 | what you are for | `shortDescription`, `longDescription`, `accepts`, `returns`, `skills` |
+| which kind of element you are | `elementType` — `custom` — born by the node's button «Create WEB4 ITEM» from `fractera-custom-item-starter` |
 | what you sell and to whom | `marketplace`, `visibility` (`network` — seen outside the node; `node` — hidden from the internet) |
 | your ties | `calls` (who you cooperate with), `calledBy` (who has called you) |
 

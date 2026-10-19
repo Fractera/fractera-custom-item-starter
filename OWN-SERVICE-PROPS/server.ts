@@ -210,7 +210,7 @@ export async function GET(req: NextRequest) {
   const ip = process.env.SERVER_IP?.trim() ?? ""
   const port = process.env.PORT?.trim()
   const where = addresses(own.id)
-  const { calls, id, name, shortDescription, longDescription, accepts, returns, designSkill, isFracteraArchitecture, framework, marketplace, nostr, visibility } = own
+  const { calls, id, name, shortDescription, longDescription, accepts, returns, designSkill, isFracteraArchitecture, framework, elementType, marketplace, nostr, visibility } = own
   const proj = node ? await project(coreUrl(), zone) : null
   const state = await nodeState(coreUrl())
   // calledBy — only real elements of the node: test probes and unknown callers of the log are not ties.
@@ -231,6 +231,8 @@ export async function GET(req: NextRequest) {
     isFracteraArchitecture: isFracteraArchitecture === true,
     // The framework inside (`next`, `react`, `express` …): an agent decides whether this element fits its project.
     framework: typeof framework === "string" ? framework : "",
+    // 544 (owner 2026-10-19): native — a root element of every node, only from the Fractera repository; custom — born by «Create WEB4 ITEM».
+    elementType: elementType === "native" ? "native" : "custom",
     skills: skills(root),
     tools: tools(root),
     marketplace: { ...(marketplace ?? {}), rating: "" },
