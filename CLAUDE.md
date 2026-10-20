@@ -140,8 +140,10 @@ builder knowledge for a job spends the person's subscription and memory, and inv
    are your person's word for this work: write your three confirming lines and the plan into `current-step.md`, report done
    (`/api/agents/done`) and wait; its answer comes into this terminal (node step 548-11). Your first session ends with the first
    question of the product quiz: no code, guard or script is read before the quiz is confirmed (`product-quiz`).
-4. **«Answer from the core: …» in your input** answers your own `npm run ask-core` question (skill `ask-core`) — not a new task:
-   continue the work that needed it.
+4. **«Answer from the core to «…»: …» in your input** answers your own `npm run ask-core` question (skill `ask-core`) — not a new
+   task: continue the work that needed it. A session that did not ask (a fresh one) tells its person the answer in two lines and stops.
+5. **A task from the core's main agent to check or find out something** (not to build) is a job: do it and send the result with
+   `npm run reply-core -- "<the result in a few lines>"` — the main agent tells the architect (skill `ask-core`).
 <!-- PROOF 1 END -->
 
 <!-- PROOF 3 START · «Skills by nature» · PARTIAL 2026-10-06: every-element skills proven live (own-service-props-detection, node-elements-detection, a2a-conversation, order-summary); builder skills and passport-description NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
