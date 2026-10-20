@@ -72,6 +72,9 @@ try {
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
         host: p.host, machine: p.machine, version: p.version, commit: { hash: p.commit?.hash, count: p.commit?.count },
         github: p.github, calls: p.calls, calledBy: p.calledBy,
+        // Node step 552-6 (owner 2026-10-20: «remember about saving info to own service props»): the element's Telegram bots — h2a, h2h,
+        // orders, work — handle and name only, written by the core when the architect connects one; no token ever.
+        telegramBots: own.telegramBots ?? {},
         node,
       }
     : mode === 'project'
