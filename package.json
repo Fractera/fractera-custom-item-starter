@@ -7,6 +7,7 @@
     "pages:refresh": "node scripts/refresh-pages.mjs",
     "describe:publish": "node scripts/describe-publish.mjs",
     "door:add": "node scripts/door-add.mjs",
+    "ask-core": "node scripts/ask-core.mjs",
     "blocks:ids": "node scripts/check-block-ids.mjs --fix",
     "dev": "next dev",
     "build": "next build",

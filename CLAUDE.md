@@ -140,6 +140,8 @@ builder knowledge for a job spends the person's subscription and memory, and inv
    are your person's word for this work: write your three confirming lines and the plan into `current-step.md`, report done
    (`/api/agents/done`) and wait; its answer comes into this terminal (node step 548-11). Your first session ends with the first
    question of the product quiz: no code, guard or script is read before the quiz is confirmed (`product-quiz`).
+4. **«Answer from the core: …» in your input** answers your own `npm run ask-core` question (skill `ask-core`) — not a new task:
+   continue the work that needed it.
 <!-- PROOF 1 END -->
 
 <!-- PROOF 3 START · «Skills by nature» · PARTIAL 2026-10-06: every-element skills proven live (own-service-props-detection, node-elements-detection, a2a-conversation, order-summary); builder skills and passport-description NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
@@ -147,7 +149,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 
 | Nature | Skills |
 |---|---|
-| both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: published texts only, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `ask-core` (the core answers how the node works — the last resort), `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: published texts only, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | builder | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | worker | `use-a2a`, `use-h2h`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
