@@ -13,6 +13,7 @@
 // `**Process: working**` · `**Process: both**`, и они согласны. Имя навыка без группы одно на весь элемент: Claude Code находит
 // навык по окончанию имени, и два одинаковых окончания заставят агента писать полное имя.
 // Правило для агента — `CLAUDE.md`, раздел «Skills by group». Нарушение роняет сборку (код 1).
+import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -72,6 +73,21 @@ for (const name of dirs(DIR)) {
     continue
   }
   problems.push(`${name}: свой навык в корне .claude/skills — его место в группе своего режима (${GROUPS.join(', ')})`)
+}
+
+// Путь к навыку в тексте или программе ведёт к существующей папке (552-2): после переезда навыков в группы старый путь
+// `.claude/skills/<навык>` молча ведёт в никуда, и агент, идущий по нему, ничего не находит. Пути со вставками (`<группа>`)
+// обрываются на `<` и проверяются до него; путь домашней папки человека (`~/.claude/skills`) — не наш.
+const tracked = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' }).split('\n')
+  .filter((f) => /\.(md|mjs|cjs|js|ts|tsx|json)$/.test(f) && !f.endsWith('tree-manifest.json'))
+for (const f of tracked) {
+  let text = ''
+  try { text = readFileSync(join(ROOT, f), 'utf8') } catch { continue }
+  for (const m of text.matchAll(/(~\/|[\w.-]\/)?\.claude\/skills\/[A-Za-z0-9._/-]*/g)) {
+    if (m[1]) continue
+    const path = m[0].replace(/[./-]+$/, '')
+    if (!existsSync(join(ROOT, path))) problems.push(`${f}: путь «${path}» ведёт в никуда — навыки своих групп лежат в .claude/skills/<группа>/skills/`)
+  }
 }
 
 if (problems.length) {

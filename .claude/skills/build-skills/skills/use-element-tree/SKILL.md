@@ -134,7 +134,7 @@ Every route folder and every `_pages/` has a `README.md` with a full example of 
 - `scripts/check-protected.mjs` — under `_widgets/` only `static/`, `dynamic/` and `index.tsx`.
 - A new branch, a new top-level folder or a moved one — ask the person first (CLAUDE.md, «Page»: a route owns its own).
 - `scripts/check-tree.mjs` (node step 462) — compares this element with the starting tree of its template
-  (`.claude/skills/use-element-tree/tree-manifest.json`) at every build and prints every missing path. It never fails the build:
+  (`.claude/skills/build-skills/skills/use-element-tree/tree-manifest.json`) at every build and prints every missing path. It never fails the build:
   removing a page by the person's word is legal, removing it silently is visible. Verdicts: present · **exception** (the path is in
   `development-docs/tree-exceptions.json` with the person's words why it is gone) · **debt** (missing, no reason — printed until it
   is restored or explained).
