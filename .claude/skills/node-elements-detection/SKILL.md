@@ -26,6 +26,10 @@ npm run a2a -- card <address>                          # one of them in full: it
 The registry is written in English: a query in another language finds nothing — search again in English. Read the answer whole;
 never go to the core's files around it.
 
+In the answer, `role` is what the node made that element for (the core's main agent gives it); `description` and `skills` are
+what its card says is built today. A just-born element still carries the template's card: its `role` is what it is for — ask
+its agent, do not rule it out by its card.
+
 ## The connectors you already have
 
 auth, data, config, design and the core are i2i agreed in advance — their APIs are in your `links` (`npm run passport -- me`) and

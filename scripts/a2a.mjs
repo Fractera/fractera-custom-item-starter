@@ -97,7 +97,10 @@ try {
     // the full card of the one you pick — npm run a2a -- card <address>.
     const b = await registry(`q=${encodeURIComponent(words)}&limit=5`)
     const entries = (b.entries ?? []).slice(0, 5)
-    if (entries.length) show(entries.map((e) => ({ address: e.address, name: e.name, description: firstSentence(e.description), skills: e.skills?.map((s) => s.id), state: e.state })))
+    // role — what the node made the element for (the core's main agent gives it); description and skills — what its card says is
+    // built today. A just-born element still carries the template's card, so its role is the only word about its job (548-14:
+    // measured live, the role was not printed and a neighbour made for slugs was read as «no slug skill»).
+    if (entries.length) show(entries.map((e) => ({ address: e.address, role: e.role || undefined, description: firstSentence(e.description), skills: e.skills?.map((s) => s.id), state: e.state })))
     else console.log(/[a-z]/i.test(words)
       ? `Nobody in this node does «${words}» — go on with the order «Before you build a new capability» (skill use-protocols).`
       : `Nothing found for «${words}»: the node's registry is written in English — search again with English words.`)
