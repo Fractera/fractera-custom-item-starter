@@ -26,7 +26,10 @@ record is refreshed with `npm run describe:publish`. The standard is `lib/a2a/ST
 
 ## 2. Write the card
 
-- `card.description` and `name` — what the element does and for whom, one or two plain sentences.
+- The card's `name` and `description` are NOT written in `A2A-CARD.json`: the served card takes them from the passport — `name`
+  and `shortDescription` of `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`. Write the passport texts — `name`, `shortDescription`,
+  `longDescription`, `accepts`, `returns` — by skill `passport-description`: only what the code does today. A job the element is
+  meant to do and does not do yet is said as planned, in one sentence of `longDescription`, never as a fact.
 - **A skill** per capability: `id` (kebab-case), `name`, `description`, `tags`, `examples` (how people ask in words),
   `inputModes` / `outputModes` (media types: «I accept / I return»).
 - The extension `https://fractera.ai/a2a/ext/node/v1` → `params`: `visibility` (`network` — a public site; `node` — a service
@@ -34,8 +37,8 @@ record is refreshed with `npm run describe:publish`. The standard is `lib/a2a/ST
   `callers`), `consumes` (`skill`, `from`, `why`), `process`, `catalog` (`null` if none), `private` (doors not offered to
   neighbours), `a2aEndpoint`, `a2aSkills`.
 - Do **not** write `supportedInterfaces` into the passport — the card adds it when served.
-- The passport's top-level `summary` and `provides` = `card.description` and the list of skill `id`s (`describe:publish`
-  carries them away).
+- 🪦 The passport has no `summary` and no `provides` (they belonged to the old single-file layout): `describe:publish` hands the core
+  the passport's `shortDescription` and the card's skill `id`s. Never add those two fields; remove them if you find them (node step 551).
 - A sample answer is taken from a real answer of the door, never made up.
 - **A skill that is not served over A2A** (an HTTP door: `/api/me`, the help desk, a settings signal) stays in `skills` — the
   node's neighbour search (`find`) and the core's `provides` read this list, and a removed skill makes the element invisible by
@@ -57,7 +60,9 @@ the bot folder `SERVICE_DATA_DIR/channel/telegram`: a token and at least one all
 
 ## 3. Check and publish
 
-`npm run check:passport` → fix everything red → commit the passport together with the code change → `npm run describe:publish`.
+The passport texts are published: run them through `humanizer` → `npm run check:passport` → fix everything red → show the person the
+texts and wait for their «yes» → commit the passport (and the card) → `npm run describe:publish`. It must print `DESCRIBE_OK`;
+`DESCRIBE_FAILED` names what the core refused (for example a born or template description) — fix that and run it again.
 
 ## Do not
 
