@@ -41,7 +41,7 @@ Rules of the form:
 
 - **Product words, not code words.** «The visitor sees the driver on the map», not «a websocket writes to `trips`». Pages, tables
   and doors belong in the step plans that serve the item, never in the quiz.
-- **One language — the element's default** (`languages.default` of APP-CONFIG). The owner, 2026-10-18: «only default lang». No
+- **One language — the element's default** (`npm run passport -- me` → `languages.default`). The owner, 2026-10-18: «only default lang». No
   translations in the quiz; the person's own words stay verbatim in `said`.
 - **Every text goes through `humanizer`** (`CLAUDE.md`, «Texts»): write, run the skill, then `copy-editing`. No fact, number or
   promise appears while rewriting.

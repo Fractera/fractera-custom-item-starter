@@ -58,6 +58,10 @@ try {
   const out = mode === 'me'
     ? {
         links, protocols, elementType: p.elementType ?? own.elementType, messengers: m,
+        // 548-6 (repeat QA, 2026-10-20): the role in the node and the languages come with the first answer. Measured: without them
+        // the agent spent three model requests looking for its default language and learned its role only from `project`.
+        role: (p.project?.elements ?? []).find((e) => e.id === p.id)?.role || null,
+        languages: { default: env.NEXT_PUBLIC_DEFAULT_LOCALE?.trim().toLowerCase() || 'en', supported: (env.NEXT_PUBLIC_SUPPORTED_LANGUAGES || 'en').split(',').map((l) => l.trim()).filter(Boolean) },
         id: p.id, name: p.name, shortDescription: p.shortDescription, accepts: p.accepts, returns: p.returns, designSkill: p.designSkill, isFracteraArchitecture: p.isFracteraArchitecture, framework: p.framework, skills: p.skills, tools: p.tools,
         visibility: p.visibility,
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
