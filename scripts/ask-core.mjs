@@ -83,7 +83,8 @@ if (!core) fail('the address of the core is unknown here (NODE_DOMAIN_FILE → l
 if (!key) fail('no node key here (SETTINGS_SECRET in .env.local)')
 
 // The answer carries its question (548-20): it may come into a fresh session that never asked.
-const text = `Element ${id} asks about the node's architecture: «${words}». Answer from the core's instruction (skill answer-element) in at most 10 lines with: npm run task -- ${id} "Answer from the core to «${words}»: …". Do not build anything; if the core's instruction does not say, answer that the core does not know it and that the architect decides.`
+// 552-4: the request opens with its process (the core's bridge routes by the first word); asking the core is building work.
+const text = `Build process: Element ${id} asks about the node's architecture: «${words}». Answer from the core's instruction (skill answer-element) in at most 10 lines with: npm run task -- ${id} "Answer from the core to «${words}»: …". Do not build anything; if the core's instruction does not say, answer that the core does not know it and that the architect decides.`
 try {
   const r = await fetch(`${core}/api/agents/wake`, {
     method: 'POST',

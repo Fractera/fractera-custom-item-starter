@@ -27,7 +27,7 @@ const say = (en: string, ru: string): Message => ({
 })
 
 /** Wake this element's agent and hand it the task (409-2). Waits only for the start, not for the agent's answer. */
-async function wakeAgent(task: Task, from: string, text: string) {
+async function wakeAgent(task: Task, from: string, text: string, outside: boolean) {
   const core = coreUrl()
   const key = process.env.SETTINGS_SECRET ?? ""
   const port = process.env.PORT ?? ""
@@ -35,7 +35,11 @@ async function wakeAgent(task: Task, from: string, text: string) {
   if (!core || !key) return set("TASK_STATE_SUBMITTED", say("Waiting: the node core is not reachable to wake the agent.", "Ожидание: ядро узла недоступно, агента разбудить нечем."))
   // Владелец 2026-10-06: в живом прогоне 418-5 агент пропустил правило пробуждения из CLAUDE.md и сразу взялся за задачу —
   // поручение в руках сильнее правила в инструкции, поэтому «сначала узнай себя» стоит первой строкой поручения.
+  // 552-4 (владелец 2026-10-20: «каждый из этих процессов может отправлять первое слово»): задача открывается словом своего процесса
+  // — агент другого узла (a2a) зовёт рабочий процесс, сосед по узлу (i2i, договориться об API) — строительный; ядро по слову
+  // будит сессию этого процесса (`lib/agent-kit/modes.cjs` ядра). Метку `fracteraOutside` ставит дверь `app/api/a2a/route.ts`.
   const prompt = [
+    outside ? "Working process:" : "Build process:",
     `Сначала узнай себя: npm run passport -- me (навык own-service-props-detection; вывод читай целиком, не режь head; блок node — где ты живёшь). Соседа ищи только по нужде: npm run a2a -- find <английские слова>.`,
     `Задача A2A ${task.id} от ${from} (беседа ${task.contextId}).`,
     `Текст задачи: ${text}`,
@@ -99,7 +103,7 @@ function work(ctx: RequestContext): Task {
     task.metadata = { ...(task.metadata ?? {}), from, kind: "agent" }
     task.status = { state: "TASK_STATE_SUBMITTED", timestamp: now(), message: say("The task is handed to the agent; waking it.", "Задача передана агенту; бужу его.") }
     // After the SDK has saved the task: the wake updates the same task in the store.
-    setTimeout(() => void wakeAgent(task, from, text.slice(0, 6000)), 0)
+    setTimeout(() => void wakeAgent(task, from, text.slice(0, 6000), message.metadata?.fracteraOutside === true), 0)
     return task
   }
   try {

@@ -27,6 +27,9 @@ The test: **will git change after this?** Yes — it is building, whatever it lo
 **The first line of every answer is the name of the process and nothing else** — «Build process» or «Working process», in the
 person's language (owner of the node, 2026-10-19: the element understands at once which of the two a request belongs to). A
 question about how to build or change something belongs to the build process; any other question — to the working process.
+**A request opens with its process too** — «Build process:», «Working process:» or «Messenger:»; the node puts the word and wakes
+the session of that process (owner of the node, 2026-10-20, step 552). A request of another process than this session's is not
+done here: name the section where it belongs — the core's «Build» terminal, «Working process», or Telegram.
 
 **Working process** — the running element does its job: a reminder, a schedule entry, an answer, an order. Only data changes
 (`data/`, outside git): no code, no commit, no push, no rebuild. Do it and answer in one or two lines, like any Claude Code agent:

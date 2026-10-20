@@ -3,7 +3,7 @@ import { timingSafeEqual } from "node:crypto"
 import { NextRequest, NextResponse } from "next/server"
 import { rpcError } from "@/lib/a2a/endpoint"
 import { handleA2A } from "@/lib/a2a/sdk-server"
-import { hiddenFrom } from "@/lib/a2a/boundary"
+import { fromOutside, hiddenFrom } from "@/lib/a2a/boundary"
 import { describeCall, logCall } from "@/lib/a2a/log"
 
 // КОНЕЧНАЯ ТОЧКА A2A (привязка JSON-RPC, A2A v1.0) — объявлена в визитке `supportedInterfaces` (`/.well-known/agent-card.json`).
@@ -51,6 +51,11 @@ export async function POST(req: NextRequest) {
   if (!/^1\.\d+$/.test(version)) {
     return reply(rpcError(id, -32009, `A2A version «${version || "0.3 (no header)"}» is not supported; use A2A-Version: 1.0`, "VERSION_NOT_SUPPORTED"), { headers: JSON_HEADERS })
   }
+  // 552-4: откуда пришло сообщение — соседом по петле (i2i, строительный процесс) или извне узла (a2a, рабочий процесс). Метку
+  // ставит эта дверь и ТОЛЬКО она: присланное вызывающим значение перезаписывается. Исполнитель по ней открывает задачу первым
+  // словом процесса (`lib/a2a/executor.ts`), и ядро ведёт её в сессию этого процесса.
+  const message = (body as { params?: { message?: { metadata?: Record<string, unknown> } } })?.params?.message
+  if (message && typeof message === "object") message.metadata = { ...(message.metadata ?? {}), fracteraOutside: fromOutside(req.headers) }
   // 418-1: протокол — официальный SDK A2A (lib/a2a/sdk-server.ts); ворота узла выше остаются нашими.
   return reply(await handleA2A(body, version), { headers: JSON_HEADERS })
 }
