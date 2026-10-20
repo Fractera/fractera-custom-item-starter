@@ -74,8 +74,8 @@ term that two places use → into the glossary in the same commit.
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
 2a. **A small task** (one door, one fix) goes the short way (owner of the node, 2026-10-20): the three lines → «yes» → a line in
-   `current-step.md` → build (a door: `add-door`) → `steps-done/<N>.md` and `current-step.md` in one commit. No `steps-new`, no quiz
-   modules; `use-development-docs`, `anti-patterns.md`, `backlog.md` — only when something breaks or is left undone.
+   `current-step.md` → build (a door: `add-door`) → `steps-done/<N>.md` and `current-step.md` → `npm run check:dev-docs` (the build
+   refuses Russian outside «quotes», a guard's Russian output too) → one commit. No `steps-new`, no quiz modules; `use-development-docs`, `anti-patterns.md`, `backlog.md` — only when something breaks or is left undone.
 3. **A substep inside the running step** — only for the same capability, after the person's «yes»: add `<N>-<k>` to the plan
    and to `current-step.md`; it closes with a commit whose hash goes into `current-step.md` at once.
 4. **Anything else arriving mid-step** — the person's other wish, a building request from another agent or the core's task
