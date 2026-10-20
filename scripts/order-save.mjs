@@ -5,7 +5,7 @@
 // данный достаточные для каталогизации и рубрикаторов» (the person, 2026-10-06) — a summary with no personal data, only what
 // cataloguing needs. The raw conversation stays in the node's log under the order number.
 //
-// The agent writes a JSON file (form in `.claude/skills/order-summary/SKILL.md`); this script checks it and writes Markdown to
+// The agent writes a JSON file (form in `.claude/skills/workspace-skills/skills/order-summary/SKILL.md`); this script checks it and writes Markdown to
 // `SERVICE_DATA_DIR/orders/<order>.md`. A refused summary writes nothing and says why.
 // What it refuses: missing or malformed fields · any Cyrillic (summaries are English) · an e-mail · a phone or card number
 // (9+ digits in one run; ISO dates are not numbers of people).

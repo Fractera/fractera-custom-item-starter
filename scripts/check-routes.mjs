@@ -3,7 +3,7 @@
 // ✗ Измерено на узле (шаг 298): 300 страниц отдельными `page.tsx` собирались 1252 с, те же 300 страниц одним шаблоном —
 // 98 с. Каждый файл маршрута Next компилирует отдельно, и сборка растёт от ЧИСЛА ФАЙЛОВ, а не страниц. Поэтому у ветки в
 // коде только корень (`layout.tsx`, `page.tsx`) и один ребёнок `[slug]/page.tsx`; новая страница — это ПАПКА ДАННЫХ
-// `<ветка>/_pages/<slug>/` (`meta.json` + `<язык>.json`), а не новый файл маршрута (навык `.claude/skills/use-page-tree`).
+// `<ветка>/_pages/<slug>/` (`meta.json` + `<язык>.json`), а не новый файл маршрута (навык `.claude/skills/build-skills/skills/use-page-tree`).
 //
 // Файл вне списка — отказ сборки. Новая ВЕТКА (новый корень) — решение человека: строка сюда вместе с причиной.
 // 🛑 Папка `pages/` в корне — Pages Router Next: любая папка там стала бы маршрутом. Запрещена.
@@ -111,7 +111,7 @@ if (extra.length || pagesRouter) {
   for (const f of extra) console.error(`  ${f}`)
   if (pagesRouter) console.error('  pages/ — это Pages Router Next, папка запрещена')
   console.error('Новая страница = папка <ветка>/_pages/<slug>/ (meta.json + <язык>.json), а не page.tsx.')
-  console.error('Навык: .claude/skills/use-page-tree. Новая ветка — решение человека: строка в ALLOWED этого файла, с причиной.')
+  console.error('Навык: .claude/skills/build-skills/skills/use-page-tree. Новая ветка — решение человека: строка в ALLOWED этого файла, с причиной.')
   process.exit(1)
 }
 // ОБЯЗАТЕЛЬНЫЕ ПАПКИ ВЕТКИ (владелец 2026-10-07: «мы их совершенно забыли указать … проверь чтобы они существовали в проекте для

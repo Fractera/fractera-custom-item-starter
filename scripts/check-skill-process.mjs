@@ -1,13 +1,18 @@
-// СТОРОЖ ПРОЦЕССА НАВЫКОВ (шаг узла 465-4). У каждого навыка в `.claude/skills/` назван процесс — строительный или рабочий.
+// СТОРОЖ ПРОЦЕССА И ГРУПП НАВЫКОВ (шаги узла 465-4, 552-2). У каждого навыка назван процесс, и каждый свой навык лежит в
+// одной группе своего режима.
 //
 // Владелец 2026-10-12: «перепроверить все созданные навыки и вписать к какому типу процесса они относятся принудительно чтобы
 // подобных пропусков не было»; «если агент создает навык он обязан определить относится этот навык к рабочему процессу или к
 // строительным процессу». ✗ Оплачено: напоминание (рабочий процесс, данные) было построено как код — коммит, push, пересборка.
+// Владелец 2026-10-20 (552): навыки — по группам `build-skills · workspace-skills · messenger-skills · own-service-props-skills`.
 //
+// Группа — плагин Claude Code: `.claude/skills/<группа>/.claude-plugin/plugin.json` и навыки в `<группа>/skills/<навык>/`.
+// Навык прямо в корне группы Claude Code не загружает (проба 552-1), свой навык в корне `.claude/skills/` — вне режимов.
+// Чужой навык (рядом `SOURCE.md`) остаётся в корне и свой текст не меняет: его процесс — строка `Process: build|working|both`.
 // Свой навык: `description` начинается с `Builder skill` · `Work skill` · `Both natures`, а в теле — строка `**Process: build**` ·
-// `**Process: working**` · `**Process: both**`, и они согласны. Чужой навык (рядом `SOURCE.md`) свой текст не меняет: его процесс —
-// строка `Process: build|working|both` в `SOURCE.md`. Правило для агента — `CLAUDE.md`, раздел «Skills by nature».
-// Нарушение роняет сборку (код 1): пропуск здесь всплывает потом поведением, а не ошибкой.
+// `**Process: working**` · `**Process: both**`, и они согласны. Имя навыка без группы одно на весь элемент: Claude Code находит
+// навык по окончанию имени, и два одинаковых окончания заставят агента писать полное имя.
+// Правило для агента — `CLAUDE.md`, раздел «Skills by group». Нарушение роняет сборку (код 1).
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -15,27 +20,25 @@ import { fileURLToPath } from 'node:url'
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIR = join(ROOT, '.claude', 'skills')
 const KIND = { 'Builder skill': 'build', 'Work skill': 'working', 'Both natures': 'both' }
+const GROUPS = ['build-skills', 'workspace-skills', 'messenger-skills', 'own-service-props-skills']
 
 const problems = []
+const seen = new Map()
 let count = 0
-// Таблица «Skills by nature» в CLAUDE.md — второй половине знания нужен сторож: навык без строки в таблице агент не найдёт по природе.
+// Таблица «Skills by group» в CLAUDE.md — вторая половина знания: навык без строки в таблице агент не найдёт по режиму.
 const claude = existsSync(join(ROOT, 'CLAUDE.md')) ? readFileSync(join(ROOT, 'CLAUDE.md'), 'utf8').replace(/\r\n/g, '\n') : ''
-const tableAt = claude.indexOf('| Nature | Skills |')
+const tableAt = claude.indexOf('| Group | Mode | Skills |')
 const table = tableAt < 0 ? '' : claude.slice(tableAt, claude.indexOf('\n\n', tableAt))
-const ROW = { build: /^\| builder/, working: /^\| worker/, both: /^\| both/ }
-const rowOf = (name) => table.split('\n').find((l) => l.includes('`' + name + '`')) ?? null
-for (const name of existsSync(DIR) ? readdirSync(DIR) : []) {
-  const dir = join(DIR, name)
-  if (!statSync(dir).isDirectory()) continue
+const rowOf = (group) => table.split('\n').find((l) => l.startsWith(`| ${group} `)) ?? ''
+const inRow = (group, name) => rowOf(group).includes('`' + name + '`')
+const dirs = (p) => (existsSync(p) ? readdirSync(p).filter((n) => statSync(join(p, n)).isDirectory()) : [])
+const note = (name, where) => { if (seen.has(name)) problems.push(`${name}: то же имя уже в ${seen.get(name)}`); seen.set(name, where) }
+
+function own(dir, name, group) {
   count++
-  const source = join(dir, 'SOURCE.md')
-  if (existsSync(source)) {
-    if (!/^Process: (build|working|both)\b/m.test(readFileSync(source, 'utf8'))) problems.push(`${name}: чужой навык без строки «Process: build|working|both» в SOURCE.md`)
-    if (!rowOf(name)) problems.push(`${name}: нет в таблице «Skills by nature» CLAUDE.md`)
-    continue
-  }
+  note(name, group)
   const file = join(dir, 'SKILL.md')
-  if (!existsSync(file)) { problems.push(`${name}: нет SKILL.md`); continue }
+  if (!existsSync(file)) { problems.push(`${group}/${name}: нет SKILL.md`); return }
   const text = readFileSync(file, 'utf8').replace(/\r\n/g, '\n')
   const desc = text.match(/^description:\s*>?-?\s*\n?\s*(.*)$/m)?.[1] ?? ''
   const lead = Object.keys(KIND).find((k) => desc.startsWith(k))
@@ -43,14 +46,37 @@ for (const name of existsSync(DIR) ? readdirSync(DIR) : []) {
   if (!lead) problems.push(`${name}: description не начинается с «Builder skill» / «Work skill» / «Both natures»`)
   if (!body) problems.push(`${name}: в теле нет строки «**Process: build|working|both**»`)
   if (lead && body && KIND[lead] !== body) problems.push(`${name}: description говорит «${lead}», а тело — «Process: ${body}»`)
-  const row = rowOf(name)
-  if (!row) problems.push(`${name}: нет в таблице «Skills by nature» CLAUDE.md`)
-  else if (body && !ROW[body].test(row)) problems.push(`${name}: в таблице «Skills by nature» стоит не в строке своего процесса (${body})`)
+  if (!inRow(group, name)) problems.push(`${name}: нет в строке «${group}» таблицы «Skills by group» CLAUDE.md`)
+}
+
+for (const name of dirs(DIR)) {
+  const dir = join(DIR, name)
+  const manifest = join(dir, '.claude-plugin', 'plugin.json')
+  if (existsSync(manifest)) {
+    if (!GROUPS.includes(name)) { problems.push(`${name}: группа не из списка (${GROUPS.join(', ')})`); continue }
+    let m = {}
+    try { m = JSON.parse(readFileSync(manifest, 'utf8')) } catch { problems.push(`${name}: plugin.json не читается`) }
+    if (m.name !== name) problems.push(`${name}: в plugin.json name «${m.name}» — Claude Code назовёт навыки по нему, а не по папке`)
+    if (typeof m.defaultEnabled !== 'boolean') problems.push(`${name}: в plugin.json нет defaultEnabled`)
+    for (const stray of dirs(dir).filter((n) => n !== 'skills' && n !== '.claude-plugin')) {
+      problems.push(`${name}/${stray}: навык в корне группы Claude Code не загрузит — место ему в ${name}/skills/`)
+    }
+    for (const skill of dirs(join(dir, 'skills'))) own(join(dir, 'skills', skill), skill, name)
+    continue
+  }
+  if (existsSync(join(dir, 'SOURCE.md'))) {
+    count++
+    note(name, 'корне')
+    if (!/^Process: (build|working|both)\b/m.test(readFileSync(join(dir, 'SOURCE.md'), 'utf8'))) problems.push(`${name}: чужой навык без строки «Process: build|working|both» в SOURCE.md`)
+    if (!inRow('vendored', name)) problems.push(`${name}: нет в строке «vendored» таблицы «Skills by group» CLAUDE.md`)
+    continue
+  }
+  problems.push(`${name}: свой навык в корне .claude/skills — его место в группе своего режима (${GROUPS.join(', ')})`)
 }
 
 if (problems.length) {
-  console.error(`===SKILL_PROCESS_FAIL=== у навыка не назван процесс (CLAUDE.md, «Skills by nature»):`)
+  console.error(`===SKILL_PROCESS_FAIL=== навык без процесса или вне своей группы (CLAUDE.md, «Skills by group»):`)
   for (const p of problems) console.error(`  ${p}`)
   process.exit(1)
 }
-console.log(`===SKILL_PROCESS_OK=== процесс назван у всех навыков: ${count}`)
+console.log(`===SKILL_PROCESS_OK=== процесс и группа названы у всех навыков: ${count}`)

@@ -1,5 +1,5 @@
 // СТОРОЖ СТАРТОВОГО ДЕРЕВА (шаг узла 462). Сверяет элемент со снимком стартового дерева шаблона
-// (`.claude/skills/use-element-tree/tree-manifest.json`) и при каждой сборке печатает, чего не хватает.
+// (`.claude/skills/build-skills/skills/use-element-tree/tree-manifest.json`) и при каждой сборке печатает, чего не хватает.
 //
 // Владелец 2026-10-12: «да, делай раздел восстановления и сторожа». Сторож НЕ запрещает удалять — он делает удаление видимым.
 // Три вердикта (закон сторожа в живом проекте): есть · ИСКЛЮЧЕНИЕ — путь записан в `development-docs/tree-exceptions.json` со словами
@@ -12,8 +12,8 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const read = (p) => { try { return JSON.parse(readFileSync(join(ROOT, p), 'utf8')) } catch { return null } }
-const m = read('.claude/skills/use-element-tree/tree-manifest.json')
-if (!m) { console.log('===TREE_NO_MANIFEST=== .claude/skills/use-element-tree/tree-manifest.json is missing — nothing to compare with'); process.exit(0) }
+const m = read('.claude/skills/build-skills/skills/use-element-tree/tree-manifest.json')
+if (!m) { console.log('===TREE_NO_MANIFEST=== .claude/skills/build-skills/skills/use-element-tree/tree-manifest.json is missing — nothing to compare with'); process.exit(0) }
 const exceptions = read('development-docs/tree-exceptions.json')?.paths ?? {}
 const all = [...m.rootFiles, ...m.dirs, ...m.files]
 const covered = (p) => Object.keys(exceptions).find((e) => p === e || p.startsWith(e + '/'))

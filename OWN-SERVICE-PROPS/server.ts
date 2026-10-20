@@ -63,21 +63,26 @@ function addresses(id: string) {
  * «Work skill».
  */
 function skills(root: string): string[] {
-  const dir = join(root, ".claude", "skills")
-  try {
-    return readdirSync(dir)
-      .filter((n) => {
-        try {
-          const text = readFileSync(join(dir, n, "SKILL.md"), "utf8")
-          return /^description:\s*(>\s*\n\s*)?"?Work skill/m.test(text)
-        } catch {
-          return false
-        }
-      })
-      .sort()
-  } catch {
-    return []
+  // Свои навыки лежат в группах `.claude/skills/<группа>/skills/<навык>` (шаг узла 552-2); навык в корне считается тоже.
+  const base = join(root, ".claude", "skills")
+  const list = (dir: string) => {
+    try {
+      return readdirSync(dir).map((n) => join(dir, n))
+    } catch {
+      return []
+    }
   }
+  return list(base)
+    .flatMap((d) => [d, ...list(join(d, "skills"))])
+    .filter((d) => {
+      try {
+        return /^description:\s*(>\s*\n\s*)?"?Work skill/m.test(readFileSync(join(d, "SKILL.md"), "utf8"))
+      } catch {
+        return false
+      }
+    })
+    .map((d) => d.split(/[\\/]/).pop() as string)
+    .sort()
 }
 
 /**

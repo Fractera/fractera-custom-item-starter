@@ -149,21 +149,28 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 <!-- PROOF 1 END -->
 
 <!-- PROOF 3 START · «Skills by nature» · PARTIAL 2026-10-06: every-element skills proven live (own-service-props-detection, node-elements-detection, a2a-conversation, order-summary); builder skills and passport-description NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
-## Skills by nature
+## Skills by group
 
-| Nature | Skills |
-|---|---|
-| both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `ask-core` (the core answers how the node works — the last resort), `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: published texts only, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
-| builder | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
-| worker | `use-a2a`, `use-h2h`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
-| builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
+Skills live in four groups, one per mode (owner of the node, 2026-10-20, step 552): a session sees the groups of its mode and
+the discovery group; vendored skills stay at the root. Call a skill by its name alone — Claude Code finds `use-page-tree` as
+`build-skills:use-page-tree`.
 
-**A skill starts with its process** (owner of the node, 2026-10-12: an agent that creates a skill must first decide whether
-it belongs to the working or to the build process). Creating or rewriting a skill in `.claude/skills/`: first decide
-its process; the `description` starts with `Builder skill.`, `Work skill.` or `Both natures.`; the body says what follows
-(build: code, commit, rebuild, the three confirming lines; work: data only, no commit, no rebuild, a short answer); the skill goes
-into this table. A vendor skill (a `SOURCE.md` beside it) keeps its own text — its process is the line `Process: …` in its
-`SOURCE.md`. `npm run prebuild` fails on a skill without a process (`scripts/check-skill-process.mjs`).
+| Group | Mode | Skills |
+|---|---|---|
+| build-skills | build | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| workspace-skills | working | `use-a2a`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
+| messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort), `computer-off`, `local-node`, `use-protocols` (the index of the five protocols), `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| vendored | build, name only (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `humanizer` (published texts only, section «Texts»), `impeccable`, `shadcn` |
+
+**A skill starts with its process and its group** (owner of the node, 2026-10-12 and 2026-10-20: an agent that creates a skill
+must first decide whether it belongs to the working or to the build process). Creating or rewriting a skill: first decide its
+process; the `description` starts with `Builder skill.`, `Work skill.` or `Both natures.`; the body says what follows (build:
+code, commit, rebuild, the three confirming lines; work: data only, no commit, no rebuild, a short answer). The skill folder goes
+into the group of its mode — `.claude/skills/<group>/skills/<name>/SKILL.md` — and into that group's row of this table: a skill
+at the root of a group is not loaded at all, an own skill at the root of `.claude/skills/` would be loaded in every mode. A vendor
+skill (a `SOURCE.md` beside it) stays at the root and keeps its own text — its process is the line `Process: …` in its
+`SOURCE.md`. `npm run prebuild` fails on a skill without a process or outside its group (`scripts/check-skill-process.mjs`).
 <!-- PROOF 3 END -->
 
 <!-- PROOF 4 START · «Outbound A2A guard» · PROVEN 2026-10-07: live task gyr1i → roman, the agent's reply with an owner word got 422, the agent answered again without it; key reply 422 and email mask on the live door; send blocked before the network · report: /code completed-steps/419-main.md -->
