@@ -55,6 +55,8 @@ No private data: the file is public. A key is never here, not even its variable 
 | `visibility` | person | `network` — seen outside the node; `node` — through the tunnel it answers as absent |
 | `calls` | template, then agent | elements this element cooperates with — node-private, returned only with the node key (see «Where `calls` comes from») |
 | `messengers` | template, then person | which ways of talking the element has, true or false: `h2a` (the person and this agent), `h2h` (people through their agents), `a2a` (agents); the core shows the H2A / H2H sections and the new A2A pages by these flags and takes them into its registry (owner 2026-10-13, step 472) |
+| `messengerSettings` | person (the core's «Messenger → Settings») | the first contact price and the rules for the agent that holds a conversation (step 528-2); never served by the public door |
+| `automation` | template, then person (the core's switch «Use automation») or the agent on the person's word | `cron`: `true` — the server runs the schedule `data/cron.json` at its times; `false` — nothing runs, the entries are kept; read every minute, no rebuild (owner of the node 2026-10-20, step 551-3); never served by the public door |
 | `marketplace` | person | `listed`, `price`, `currency` — empty strings while not for sale |
 | `nostr` | agent | `tags` for search; `description` empty = the short description (one text, not two copies) |
 

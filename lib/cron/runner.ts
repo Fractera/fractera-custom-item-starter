@@ -29,6 +29,20 @@ const CATCH_UP = 5 // минут: столько таймер может «пр�
 
 const logFile = () => join(elementDir(), "data", "cron-runs.jsonl")
 
+// 551-3 (владелец узла 2026-10-20: «switch переключатель использовать автоматизацию или не использовать … В own-service-props должно
+// существовать запись»): поле паспорта `automation.cron`. `false` — ни одна запись расписания не выполняется (записи сохранены);
+// поля нет или паспорт не читается — включено, как до 551. Читается на каждой минуте (файл маленький): переключатель ядра и слово
+// человека агенту действуют без сборки и перезапуска.
+function automationOn(): boolean {
+  try {
+    const p = JSON.parse(readFileSync(join(elementDir(), "OWN-SERVICE-PROPS", "OWN-SERVICE-PROPS.json"), "utf8")) as { automation?: { cron?: unknown } }
+    return p.automation?.cron !== false
+  } catch {
+    return true
+  }
+}
+let lastOn: boolean | null = null
+
 function ranSlots(): Set<string> {
   try {
     return new Set(readFileSync(logFile(), "utf8").split(/\r?\n/).slice(-500).flatMap((l) => {
@@ -49,6 +63,12 @@ function log(rec: Record<string, unknown>) {
 }
 
 async function checkMinute(minute: Date) {
+  const on = automationOn()
+  if (on !== lastOn) {
+    if (lastOn !== null || !on) console.log(`[cron] автоматизация ${on ? "включена" : "выключена"} (паспорт, automation.cron)`)
+    lastOn = on
+  }
+  if (!on) return
   const plan = readPlan()
   if (!plan) return
   const ran = ranSlots()

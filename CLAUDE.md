@@ -22,7 +22,8 @@ files, and a command or a file that names a path outside this folder, wait for t
 ## Confirm the request first — in the build process only
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
-The test: **will git change after this?** Yes — it is building, whatever it looked like.
+The test: **will git change after this?** Yes — it is building, whatever it looked like. One named exception: the passport switch
+`automation.cron` is the working process (section «Cron automations»).
 **The first line of every answer is the name of the process and nothing else** — «Build process» or «Working process», in the
 person's language (owner of the node, 2026-10-19: the element understands at once which of the two a request belongs to). A
 question about how to build or change something belongs to the build process; any other question — to the working process.
@@ -154,7 +155,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 |---|---|
 | both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `ask-core` (the core answers how the node works — the last resort), `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: published texts only, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | builder | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
-| worker | `use-a2a`, `use-h2h`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
+| worker | `use-a2a`, `use-h2h`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
 
 **A skill starts with its process** (owner of the node, 2026-10-12: an agent that creates a skill must first decide whether
@@ -166,6 +167,18 @@ into this table. A vendor skill (a `SOURCE.md` beside it) keeps its own text —
 <!-- PROOF 3 END -->
 
 <!-- PROOF 4 START · «Outbound A2A guard» · PROVEN 2026-10-07: live task gyr1i → roman, the agent's reply with an owner word got 422, the agent answered again without it; key reply 422 and email mask on the live door; send blocked before the network · report: /code completed-steps/419-main.md -->
+## Cron automations — the switch, the entries, the language
+
+Skill `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` — in this terminal and from Telegram (owner of the node, 2026-10-20).
+- **The switch** is the passport field `automation.cron` (`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`): `true` or no field — your server
+  runs the schedule at its times; `false` — nothing runs, the entries are kept. The person turns it on and off with «Use automation» on
+  the core's «Working process → Process → Cron automations», or asks you. Changing this one field is the working process: no commit, no
+  rebuild, it works within a minute; the core shows the file uncommitted until your next build commit.
+- **The entries** — what runs and when — live in `data/cron.json` (outside git): you add, change, pause and cancel them on the person's
+  word. Changing an entry changes only that file; turning automation on or off changes only the passport field.
+- Write every entry's `name` and `message` in the element's default language (`npm run passport -- me` → `languages.default`).
+- A new kind of event (new code) is building — the skill says how.
+
 ## Outbound A2A guard
 
 Everything you send to another agent — `npm run a2a -- reply`, `send`, the artifacts of the code skills — passes

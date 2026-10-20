@@ -21,6 +21,9 @@
     "h2h": true,
     "a2a": true
   },
+  "automation": {
+    "cron": true
+  },
   "marketplace": {
     "listed": false,
     "price": "",
