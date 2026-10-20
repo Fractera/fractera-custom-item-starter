@@ -1,54 +1,50 @@
 ---
 name: node-elements-detection
-description: Both natures (every element). Learn the architecture of the node you live in — every other element (the native ones like sign-in, data, project settings, design, the root site, blocks, and the custom ones), what each does, its address and whether it runs — and that you work with them over i2i (skill use-i2i), never by reading their code. Use this at the start of every session after own-service-props-detection, and whenever a task touches something outside this element — users and sign-in, storing data or files, settings, design, or any ability another element might already have — even if the person does not name the other element.
+description: Both natures (every element). How to find another element of this node when a task needs something you do not do — sign-in, storing data or files, settings, design, or any ability a neighbour may already have — by searching the node's registry, never by listing the node. Use it whenever a task touches something outside this element, even if the person does not name the other element, and before you think of building another element's job into yourself.
 ---
 
-<!-- PROOF · PROVEN 2026-10-06: npm run passport -- project run first on wake; no core files · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
+<!-- PROOF · CHANGED 2026-10-20 (node step 548-14): a neighbour by search, no list of the node — not proven again yet -->
 
-# The node around me — from my passport
+# A neighbour — by need, never by a list
 
 **Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 
-## Why ask, and not assume
+## Why search, and not a list
 
-The node is a living set of elements: one is added, another is renamed or stopped, a custom one is born next week. A list of
-neighbours written into your instruction would describe the node on the day it was written. The passport's `project` part is the
-node as its core sees it now.
+A node holds ten elements today and a thousand tomorrow. A list of all of them on every wake would grow with each new element,
+and every agent of the node would pay for it on every wake — the owner of the node, 2026-10-20: the cost of an agent must not grow
+with the node. So you hold only where you live (`npm run passport -- me`, block `node`: the core, the main agent's terminal, how
+many elements) and look a neighbour up when a task needs one:
 
 ```
-npm run passport -- project
+npm run a2a -- find <plain English words of the job>   # at most five, one sentence each
+npm run a2a -- card <address>                          # one of them in full: its skills with examples
 ```
 
-One line per element: `id · address · native|custom · status — what it does`. Read it whole; never cut it with `head`, and do
-not go to the core's files around it. Native elements (auth, data, config, design, root, blocks) belong to the node; custom ones
-were born by the person. You do not need a neighbour's port: `npm run a2a` finds its address by itself.
+The registry is written in English: a query in another language finds nothing — search again in English. Read the answer whole;
+never go to the core's files around it.
 
-| Field of `project` | What it tells you |
-|---|---|
-| `domain`, `core` | the node's domain and its core on this machine |
-| `elements` | every element: `id`, `name`, `kind` (native / custom), `description`, `url`, `status` |
-| `cooperation` | how elements work together — i2i (skill `use-i2i`) |
-| `a2aRegistry` | where to look up who can do a job |
+## The connectors you already have
 
-## How you work with another element
+auth, data, config, design and the core are i2i agreed in advance — their APIs are in your `links` (`npm run passport -- me`) and
+in skill `use-i2i`. Use them in code; never search for them and never ask their agents.
 
-By the protocols (`CLAUDE.md`, «Protocols»): with neighbours — **i2i**. The connectors with the core, auth, data, config and design
-are already built — use them in code. For anything else, never read or write a neighbour's files: each element owns its
-code, and that code changes. If you read the data element's files and wrote to its database yourself, the next change on its side
-would silently break you, and it would never know you depended on it. Instead:
+## How you work with a neighbour
 
-1. Pick candidates from `elements` (short descriptions), then read a candidate's full passport to decide — the two looks are in `a2a-conversation`.
-2. Ask its agent what it already offers. If it fits, use it.
-3. If nothing fits, agree on the API you need; the other side builds it, then you use it.
-4. Once an API is agreed, record the link in your card `consumes` with its protocol and API, and the partner's id in `calls`
-   (skill `use-i2i`).
+By the protocols (`CLAUDE.md`, «Protocols»): with neighbours — **i2i**. Never read or write a neighbour's files: each element owns
+its code, and that code changes. If you read the data element's files and wrote to its database yourself, the next change on its
+side would silently break you, and it would never know you depended on it. Instead:
 
-An element that is in `elements` but not in the registry has no A2A card yet: it cannot be talked to today. Tell the person
-instead of going around it.
+1. Find candidates (`find`), read the one that fits (`card`) — the two looks are in `a2a-conversation`.
+2. It has a door for this — call it (a plain call, no model).
+3. No door — wake its agent once to agree an API; the other side builds it, then you use it (`use-i2i`).
+4. Record the link in your card `consumes` with its protocol and API, and the partner's id in `calls` (`use-i2i`).
+
+An element that is not in the registry has no A2A card yet: it cannot be talked to today. Tell the person instead of going
+around it.
 
 ## When the core does not answer
 
-`project.elements` empty while `project.core` is set usually means the core is restarting — ask again in a minute. Do not conclude
-the node is empty.
+`find` fails while the core is restarting — ask again in a minute. Do not conclude the node is empty.

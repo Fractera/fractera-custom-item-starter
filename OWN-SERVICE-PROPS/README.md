@@ -109,7 +109,7 @@ The node key is the header `X-Node-Key` (`SETTINGS_SECRET` of the node). The cor
 ## How the element's own agent reads it
 
 `npm run passport` — asks the running door on this machine with the node key from `.env.local` and prints the whole passport.
-The agent learns itself from it (skill `own-service-props-detection`) and the node around it (skill `node-elements-detection`):
+The agent learns itself from it (skill `own-service-props-detection`; the block `node` says where it lives) and finds a neighbour by need (skill `node-elements-detection`):
 how to work with another element is agreed over i2i (skill `use-i2i`) and the agreed API is written in the card `consumes`.
 
 ## How the texts are written

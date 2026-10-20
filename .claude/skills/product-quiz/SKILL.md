@@ -50,6 +50,18 @@ Rules of the form:
   `use-development-docs`); the core draws the dots from those lines.
 - **No personal data** — names, phones, addresses of real people never go into the quiz: it is in git.
 
+**Where, and how without reading code.** The quiz lives in `development-docs/product/` (listed in `development-docs/README.md`, so
+the guard of the development documents allows it). This section is the whole format: never open a guard (`scripts/check-*.mjs`),
+a script, the code or another skill to learn it — `npm run check:product` names what is wrong in its own words. A new quiz starts
+as `quiz.json`; module files come with the first scenarios:
+
+```json
+{ "vision": { "text": "…", "status": "draft" }, "actors": [], "modules": [], "openQuestions": [], "notNow": [], "slices": [], "decisions": [] }
+```
+
+✗ 2026-10-20 (node step 548-14): the first session of a new element took 11 model requests and 850 thousand tokens — it read its
+code, the media doors, the A2A card and two guards to learn where the quiz goes, before it asked the person anything.
+
 ## 2. When to load it, and when not
 
 | Situation | What you do |
@@ -67,14 +79,17 @@ The test is one question: **does it change what the product does for someone?** 
 1. **Ask for the strongest model first.** The interview and the impact analysis are rare and expensive in meaning. Say in one line:
    «This part needs deep thinking: please switch me to the strongest model your plan gives (`/model`) before we start.» Recording
    statuses later needs no switch.
-2. **One question at a time.** Never a list of twenty. Lead with your own assumption from what already exists (the code, the
-   passport, the pages) and ask the person to confirm or correct it: «Here is what I assume: … Right?» A question you cannot
-   derive is asked plainly.
+2. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
+   (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
+   Right?» A question you cannot derive is asked plainly.
 3. **Choices as numbered text** («1 — …, 2 — …, 3 — your own»): the Telegram plugin drops buttons, and text arrives everywhere.
 4. **Order:** the vision (who, what pain, what counts as success) → the actors → the scenarios of the first slice → the rules
    they need → the open questions → the slice itself («First launch»).
 5. **Stop at the edge of the first slice.** Name what stays for later in `notNow`; do not plan the whole product forward.
 6. **Write as you go,** each item as a `draft`; show the person what you wrote, item by item, with its number.
+7. **The first session of a new element** (a task from the core's main agent in your intake): there is no quiz yet. Put the
+   task's words into your plan (`current-step.md`) as the vision draft, ask the first question — the vision: who it is for, what
+   pain, what counts as success — and stop: report done. The quiz files are written with the first answer.
 
 ## 4. «And also I need…» — impact before code
 

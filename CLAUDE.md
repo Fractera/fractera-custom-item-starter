@@ -11,7 +11,7 @@ Cloudflare tunnel: a temporary address after the first start, the person's own d
 copy of the public pages answers from Cloudflare. With no public address at all the node is still whole: the agents work at
 home and the person drives them from Telegram, which needs no domain.
 
-**Your boundary.** Your world is this folder. The node you know from `npm run passport -- project` and the core's doors —
+**Your boundary.** Your world is this folder. The node you know from `npm run passport -- me` (block `node`), `npm run a2a -- find` and the core's doors —
 never from the core's files or a neighbour's. Reading or changing anything outside this folder is allowed only after your
 architect's explicit «yes»: the node's settings make Claude Code ask them in your terminal, and when you were woken from
 Telegram the node sends them the link. The node enforces it (node step 548-7): reading or changing the core's or a neighbour's
@@ -120,18 +120,21 @@ builder knowledge for a job spends the person's subscription and memory, and inv
   you cannot do, offer it to your person as a builder task, and switch only on their word.
 <!-- PROOF 2 END -->
 
-<!-- PROOF 1 START · «On wake» · PROVEN 2026-10-06: passport -- me and -- project run first, read whole, used instead of the core's files · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
-## On wake — know yourself and the node
+<!-- PROOF 1 START · «On wake» · PARTIAL 2026-10-20: changed by node step 548-14 (only passport -- me on wake, a neighbour by search) — not proven again yet; proven 2026-10-06: passport -- me read whole and used instead of the core's files · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->
+## On wake — know yourself; find a neighbour only when a task needs one
 
-1. `own-service-props-detection` — who you are: `npm run passport -- me`. The passport is your main door; it describes only your
-   working nature, because building is innate to every element born from the starter.
-2. `node-elements-detection` — the other elements, in short: `npm run passport -- project`. Anything you do not do yourself goes to a
-   neighbour over i2i (skill `use-i2i`; the commands — `a2a-conversation`): the node's summary → a candidate's full passport → agree on an
-   API, the other side builds it, then the work runs over it with no model.
+1. `own-service-props-detection` — who you are and where you live: `npm run passport -- me`, read whole — the only command on
+   wake. The passport is your main door; it describes only your working nature, because building is innate to every element
+   born from the starter. Its block `node` is the node in a few lines: the core, the main agent's terminal, how many elements.
+2. `node-elements-detection` — never list the node: the list grows with every element, and every wake of every agent would pay
+   for it (owner of the node, 2026-10-20: the cost must not grow with the node). A task needs something you do not do →
+   `npm run a2a -- find <English words>` (at most five) → `npm run a2a -- card <address>` → i2i (skill `use-i2i`): agree an API
+   once, the other side builds it, then the work runs over it with no model.
 3. **A request in your intake from the core's main agent** (`development-docs/pre-steps/`, «From: the core's main agent») is the
    task you were created for: name it and start the build process. «Led by: the core's main agent» — its messages in your input
    are your person's word for this work: write your three confirming lines and the plan into `current-step.md`, report done
-   (`/api/agents/done`) and wait; its answer comes into this terminal (node step 548-11).
+   (`/api/agents/done`) and wait; its answer comes into this terminal (node step 548-11). Your first session ends with the first
+   question of the product quiz: no code, guard or script is read before the quiz is confirmed (`product-quiz`).
 <!-- PROOF 1 END -->
 
 <!-- PROOF 3 START · «Skills by nature» · PARTIAL 2026-10-06: every-element skills proven live (own-service-props-detection, node-elements-detection, a2a-conversation, order-summary); builder skills and passport-description NOT proven · report: development-docs/proofs/2026-10-06-wake-and-a2a-skills.md -->

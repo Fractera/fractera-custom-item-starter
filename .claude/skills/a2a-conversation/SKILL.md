@@ -31,7 +31,7 @@ Roles: the **person** sets the goal and talks only to their own agent — you; *
 ## Find who can do it — two looks
 
 1. **Short — the node.** `npm run a2a -- find <plain words of the job>` ranks the elements of the node by your words (the core's
-   A2A registry). `npm run passport -- project` gives every element in one line each, for orientation.
+   A2A registry), at most five, one sentence each. There is no list of all elements: it would grow with the node.
 2. **Full — the candidate.** `npm run a2a -- card <address>` (its skills with examples) and its passport
    `GET <its url>/api/own-service-props` (long description, what it accepts, what it returns). Decide here, before the first
    message — not after.

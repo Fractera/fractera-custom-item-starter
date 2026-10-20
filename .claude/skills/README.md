@@ -20,7 +20,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-a2a` | ours | a2a: work with agents of other nodes through Lagrix, never development | ⬜ |
 | `use-f2f` | ours | f2f: whole elements between Fractera projects, installed once, no API | ⬜ |
 | `use-h2h` | ours | H2H: people through their agents, first contact, text with links | ⬜ |
-| `node-elements-detection` | ours | the node around it — every element, what it does, where; working with them over i2i, never through their code | ✅ 2026-10-06 |
+| `node-elements-detection` | ours | a neighbour by need — `npm run a2a -- find`, never a list of the node; working with it over i2i, never through its code | ⬜ changed 2026-10-20 |
 | `telegram-channel` | ours | the person writes from Telegram into this terminal: how a message looks, answer with `reply`, text only, language, no secrets | ✅ 2026-10-07 |
 | `a2a-conversation` | ours | the commands of the A2A wire (`npm run a2a`): find, call, continue in one `contextId`, carry the human's comment — i2i with neighbours, a2a with other nodes | ✅ 2026-10-06 |
 | `custom-design` | ours | the gatekeeper: when the person wants an own design instead of the Blocks — ask taste or impeccable, then which rules win | ✅ 2026-10-07 |

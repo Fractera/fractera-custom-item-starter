@@ -1,7 +1,7 @@
 // npm run passport — this element's passport as its own node sees it (OWN-SERVICE-PROPS/README.md).
 //   npm run passport            — the whole passport
-//   npm run passport -- me      — only who I am: identity, job, addresses, where it runs, this machine, ties (short)
-//   npm run passport -- project — only the node around: every element in one line, the core, how to cooperate (short)
+//   npm run passport -- me      — only who I am: identity, job, addresses, where it runs, this machine, ties, and the block `node`
+//   npm run passport -- project — only the block `node`: the core, the main agent, how many elements, how to find one (fixed size)
 // The short modes exist because the whole answer is long (routes, descriptions): an agent cutting it with head missed the
 // node's elements and went around the passport to the core's files (live run 2026-10-06).
 // Asks the running element's door on this machine with the node key from .env.local, so the answer carries the node-only parts:
@@ -48,13 +48,18 @@ try {
     !native && 'f2f — whole elements from other Fractera projects through Lagrix: npm run f2f -- find <words>',
     !native && m.h2h && 'H2H — people through their agents',
   ].filter(Boolean)
-  // One sentence of a neighbour: its role from the core, else the first sentence of its description — never cut mid-word.
-  const first = (t, n = 170) => {
-    const s = String(t ?? '').replace(/\s+/g, ' ').trim()
-    const cut = s.match(/^.{20,}?[.!?](?=\s|$)/)?.[0] ?? s
-    return cut.length > n ? `${cut.slice(0, Math.max(cut.lastIndexOf(' ', n - 1), 40))}…` : cut
-  }
   const lang = env.NEXT_PUBLIC_LANG || 'en'
+  // 548-14 (owner 2026-10-20: the cost of an agent must not grow with the node): where this element lives, in a block of fixed
+  // size — never the list of elements. Measured: the list was ~230 bytes per element (1000 elements → ~250 KB on every wake).
+  // A neighbour is found by need: npm run a2a -- find <English words> (at most five).
+  const core = p.project?.core
+  const node = {
+    domain: p.project?.domain, core,
+    mainAgent: `the core's main agent routes a need to an element and creates new elements — its terminal ${core}/${lang}/architect/build/terminal`,
+    elements: (p.project?.elements ?? []).length,
+    find: 'npm run a2a -- find <plain English words of the job> — who in the node does it, at most five; npm run a2a -- card <address> — one of them in full',
+    cooperation: p.project?.cooperation,
+  }
   const out = mode === 'me'
     ? {
         links, protocols, elementType: p.elementType ?? own.elementType, messengers: m,
@@ -67,15 +72,10 @@ try {
         addresses: { ...p.addresses, routes: `${p.addresses?.routes?.length ?? 0} public pages — npm run passport for the list` },
         host: p.host, machine: p.machine, version: p.version, commit: { hash: p.commit?.hash, count: p.commit?.count },
         github: p.github, calls: p.calls, calledBy: p.calledBy,
+        node,
       }
     : mode === 'project'
-      ? {
-          domain: p.project?.domain, core: p.project?.core, cooperation: p.project?.cooperation, a2aRegistry: p.project?.a2aRegistry,
-          elements: [
-            `core · ${p.project?.core} — the node's centre: the registry of elements, waking agents, birth of new elements; its main agent routes a need to an element and creates new ones (terminal ${p.project?.core}/${lang}/architect/build/terminal)`,
-            ...(p.project?.elements ?? []).map((e) => `${e.id} · ${e.name} · ${e.kind} · ${e.status} — ${e.role || first(e.description) || 'no role yet'}${e.id === p.id ? ' — this is you' : ''}`),
-          ],
-        }
+      ? node
       : p
   console.log(JSON.stringify(out, null, 2))
 } catch (e) {

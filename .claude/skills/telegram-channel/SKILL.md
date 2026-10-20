@@ -35,7 +35,7 @@ Where are you running?
 If you were off, the node wakes you with that message as your first task — who wrote it, its `chat_id` and the text — the same
 person, the same `chat_id`.
 
-1. **Know yourself first** if this is the first message of the session: `npm run passport -- me` and `-- project`, read whole
+1. **Know yourself first** if this is the first message of the session: `npm run passport -- me`, read whole
    (CLAUDE.md, «On wake»). Never the core's files instead.
 2. **Decide your nature** (CLAUDE.md, «Two natures»): the person asks to change this element — builder; asks for one of your
    jobs — worker; unsure — ask in one sentence.

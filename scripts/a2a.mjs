@@ -74,6 +74,12 @@ const VALUE_FLAGS = new Set(['--skill', '--input', '--context', '--title', '--ta
 const args = process.argv.slice(2)
 const [cmd, ...rest] = args.filter((a, i) => !a.startsWith('--') && !VALUE_FLAGS.has(args[i - 1]))
 const show = (x) => console.log(JSON.stringify(x, null, 2))
+/** One sentence of a neighbour's description — never cut mid-word. */
+const firstSentence = (t, n = 200) => {
+  const s = String(t ?? '').replace(/\s+/g, ' ').trim()
+  const cut = s.match(/^.{20,}?[.!?](?=\s|$)/)?.[0] ?? s
+  return cut.length > n ? `${cut.slice(0, Math.max(cut.lastIndexOf(' ', n - 1), 40))}…` : cut
+}
 
 /** A task in words: state, the neighbour's sentence, its data. */
 function summary(task) {
@@ -87,8 +93,14 @@ try {
   if (cmd === 'find') {
     const words = rest.join(' ').trim()
     if (!words) fail('find <words> — what you need, in plain words')
-    const b = await registry(`q=${encodeURIComponent(words)}`)
-    show((b.entries ?? []).map((e) => ({ address: e.address, name: e.name, description: e.description, skills: e.skills?.map((s) => s.id), state: e.state })))
+    // 548-14 (owner 2026-10-20: the cost of an agent must not grow with the node): at most five candidates, one sentence each;
+    // the full card of the one you pick — npm run a2a -- card <address>.
+    const b = await registry(`q=${encodeURIComponent(words)}&limit=5`)
+    const entries = (b.entries ?? []).slice(0, 5)
+    if (entries.length) show(entries.map((e) => ({ address: e.address, name: e.name, description: firstSentence(e.description), skills: e.skills?.map((s) => s.id), state: e.state })))
+    else console.log(/[a-z]/i.test(words)
+      ? `Nobody in this node does «${words}» — go on with the order «Before you build a new capability» (skill use-protocols).`
+      : `Nothing found for «${words}»: the node's registry is written in English — search again with English words.`)
   } else if (cmd === 'card') {
     if (!rest[0]) fail('card <address>')
     const client = await clientFor(rest[0])

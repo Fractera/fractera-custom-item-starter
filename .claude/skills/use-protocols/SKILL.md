@@ -30,7 +30,7 @@ Two rules hold for all five:
 The owner's (2026-10-19). Each step is cheaper than the next; stop at the first that answers.
 
 1. **Yourself.** `npm run passport -- me` — maybe you already do it.
-2. **A neighbour in the node (i2i).** `npm run a2a -- find <plain words>` and the roles in `npm run passport -- project`. A
+2. **A neighbour in the node (i2i).** `npm run a2a -- find <English words>` — it reads every element's role and card and prints at most five. A
    neighbour whose role covers it — call its door if it has one (a plain call, no model). No door — wake its agent once to agree
    an API (`use-i2i`): the only reason to wake a neighbour, never for daily work.
 3. **A whole element from the network (f2f).** `npm run f2f -- find <plain words>` (`use-f2f`). Today the search is simulated and
@@ -38,4 +38,4 @@ The owner's (2026-10-19). Each step is cheaper than the next; stop at the first 
 4. **Build it.** The need is part of your role → skill `product-quiz` (the product in product words, then the steps); to copy how
    an existing site works — reverse engineering, under development in the core («Product design → Reverse engineering»): say so
    and use the quiz. Then the step and the build after your person's «yes». The need is another job → do not grow sideways: tell
-   your person to ask the core's main agent for a new element (its terminal — the `core` line of `npm run passport -- project`).
+   your person to ask the core's main agent for a new element (its terminal — `node.mainAgent` of `npm run passport -- me`).
