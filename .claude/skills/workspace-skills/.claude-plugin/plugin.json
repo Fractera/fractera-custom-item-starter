@@ -1,0 +1,9 @@
+{
+  "name": "workspace-skills",
+  "version": "1.0.0",
+  "description": "Working process skills of this element: orders, schedules, jobs for other agents. On in working-mode sessions (node step 552).",
+  "author": {
+    "name": "Fractera"
+  },
+  "defaultEnabled": true
+}
