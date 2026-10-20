@@ -10,7 +10,7 @@
 //   app/api/<name>/<name>.test.mjs   — samples of `handle` (`npm run test:<name>`)
 //   scripts/check-routes.mjs         — the door in the closed list of routes
 //   package.json                     — the script `test:<name>`
-//   OWN-SERVICE-PROPS/A2A-CARD.json  — the door in the card (`doors`, key X-Node-Key) and its skill «Not over A2A: an HTTP door»
+//   OWN-SERVICE-PROPS/A2A-CARD.json  — the door in the card (`doors`, key `node-key` — the header X-Node-Key) and its skill «Not over A2A: an HTTP door»
 // 🔒 A name that is taken (folder, route list, card) is refused before anything is written. Each edited file keeps its line ends.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -113,7 +113,9 @@ pkgJson.scripts[`test:${name}`] = `node app/api/${name}/${name}.test.mjs`
 writeFileSync(pkgFile, JSON.stringify(pkgJson, null, 2).replace(/\n/g, pkg.eol) + pkg.eol, 'utf8')
 
 ext.doors.push({
-  skill: name, protocol: 'http', method, path: `/api/${name}`, key: 'X-Node-Key',
+  // 551-2: the key is a word of the core's closed list (lib/a2a/passport.mjs: none · session · X-Data-Secret · X-Settings-Key · node-key);
+  // ✗ «X-Node-Key» here broke the card of every element that built a door with this recipe (548-19 → found 2026-10-20).
+  skill: name, protocol: 'http', method, path: `/api/${name}`, key: 'node-key',
   input: {}, output: {}, errors: { 401: 'bad_key', ...(method === 'POST' ? { 400: 'bad_request' } : {}) }, callers: [],
 })
 cardJson.skills = Array.isArray(cardJson.skills) ? cardJson.skills : []
