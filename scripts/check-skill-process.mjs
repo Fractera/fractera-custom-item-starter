@@ -1,5 +1,5 @@
-// СТОРОЖ ПРОЦЕССА И ГРУПП НАВЫКОВ (шаги узла 465-4, 552-2). У каждого навыка назван процесс, и каждый свой навык лежит в
-// одной группе своего режима.
+// СТОРОЖ ПРОЦЕССА И ГРУПП НАВЫКОВ (шаги узла 465-4, 552-2, 552-3). У каждого навыка назван процесс, каждый свой навык лежит в
+// одной группе своего режима, и каждый навык, названный в тексте, существует.
 //
 // Владелец 2026-10-12: «перепроверить все созданные навыки и вписать к какому типу процесса они относятся принудительно чтобы
 // подобных пропусков не было»; «если агент создает навык он обязан определить относится этот навык к рабочему процессу или к
@@ -90,9 +90,33 @@ for (const f of tracked) {
   }
 }
 
+// Навык, названный в тексте, существует (552-3): снятый навык живёт в чужих строках — «of skill `<имя>`», «(skill <имя>)», строка
+// таблицы, — и агент, идущий по ним, получает «Unknown skill». Ловятся: имя с дефисом рядом со словом skill (без дефиса это поле
+// или слово: «skill `id`», «skill groups»), первая колонка таблицы `.claude/skills/README.md`, имена в таблице «Skills by group»
+// и команды `/<группа>:<навык>` (навык обязан лежать в этой группе). Голое имя в штрихах без слова skill не проверяется: его не
+// отличить от слова кода. Смотрятся тексты, которые читает агент: CLAUDE.md, .claude/, scripts/, development-docs/README.md.
+// Навыки главного агента ядра (`lib/main-agent/skills/` ядра) — чужие, но настоящие: текст, адресованный ядру, их называет.
+const CORE_SKILLS = ['answer-element', 'ask-element', 'create-element', 'route-to-element', 'supervise-element']
+const reads = (f) => f === 'CLAUDE.md' || f.startsWith('.claude/') || f.startsWith('scripts/') || f === 'development-docs/README.md'
+const named = (f, name, how) => { if (!seen.has(name) && !CORE_SKILLS.includes(name)) problems.push(`${f}: ${how} называет навык «${name}», которого нет`) }
+const KEBAB = '([a-z0-9]+(?:-[a-z0-9]+)+)'
+for (const f of tracked.filter(reads)) {
+  let text = ''
+  try { text = readFileSync(join(ROOT, f), 'utf8') } catch { continue }
+  for (const m of text.matchAll(new RegExp(String.raw`\b[Ss]kills?\s+` + '`?' + KEBAB + String.raw`\b`, 'g'))) named(f, m[1], 'текст')
+  for (const m of text.matchAll(new RegExp('`' + KEBAB + '`' + String.raw`\s+skill\b`, 'g'))) named(f, m[1], 'текст')
+  for (const m of text.matchAll(/\/(build-skills|workspace-skills|messenger-skills|own-service-props-skills):([a-z0-9-]+)/g)) {
+    if (seen.get(m[2]) !== m[1]) problems.push(`${f}: команда «/${m[1]}:${m[2]}» ведёт в никуда — в группе ${m[1]} такого навыка нет`)
+  }
+  if (f === '.claude/skills/README.md') for (const m of text.matchAll(/^\| `([^`]+)` \|/gm)) named(f, m[1], 'строка таблицы')
+}
+for (const row of table.split('\n').filter((l) => l.startsWith('| '))) {
+  for (const m of row.matchAll(/`([a-z0-9][a-z0-9-]*)`/g)) named('CLAUDE.md', m[1], 'таблица «Skills by group»')
+}
+
 if (problems.length) {
   console.error(`===SKILL_PROCESS_FAIL=== навык без процесса или вне своей группы (CLAUDE.md, «Skills by group»):`)
   for (const p of problems) console.error(`  ${p}`)
   process.exit(1)
 }
-console.log(`===SKILL_PROCESS_OK=== процесс и группа названы у всех навыков: ${count}`)
+console.log(`===SKILL_PROCESS_OK=== процесс и группа названы у всех навыков: ${count}; названные в текстах навыки существуют`)

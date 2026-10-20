@@ -1,6 +1,6 @@
 ---
 name: use-f2f
-description: Builder skill. f2f — whole elements move between Fractera projects through Lagrix, so a builder takes a ready element instead of building it again; it is installed once and needs no API. Load it when the person wants a ready element from another Fractera project, wants to offer this element to others, asks how an element is exchanged, sold or installed from outside, when nobody in the node covers a new capability (the order in use-protocols), and when the core sends you here before creating a new element.
+description: Builder skill. f2f — whole elements move between Fractera projects through Lagrix, so a builder takes a ready element instead of building it again; it is installed once and needs no API. Load it when the person wants a ready element from another Fractera project, wants to offer this element to others, asks how an element is exchanged, sold or installed from outside, when nobody in the node covers a new capability (the order «Before you build» in CLAUDE.md), and when the core sends you here before creating a new element.
 ---
 
 # f2f — whole elements between Fractera projects

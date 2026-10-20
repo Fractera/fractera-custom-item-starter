@@ -1,4 +1,4 @@
-✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-07 (report 2026-10-07-node-skills.md) |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-12 |✅ 2026-10-07 |🟨 2026-10-07: law kept, skill not loaded |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |✅ 2026-10-07 |# Skills of this element's agent
+# Skills of this element's agent
 
 Claude Code reads the skills of the agent that works in this folder from here. Own skills live in four groups, one per mode
 (node step 552): `build-skills/`, `workspace-skills/`, `messenger-skills/` and `own-service-props-skills/` (discovery, every mode).
@@ -17,7 +17,6 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `describe-element` | ours, `build-skills` | the A2A card of this element: research, write, check, publish | ✅ 2026-10-07 |
 | `passport-description` | ours, `build-skills` | the passport texts in OWN-SERVICE-PROPS/ — name, descriptions, accepts, returns, Nostr tags — written for search by meaning | ✅ 2026-10-07 |
 | `own-service-props-detection` | ours, `own-service-props-skills` | who this element is in the node — from its passport (npm run passport): id, addresses, port, role, partners | ✅ 2026-10-06 |
-| `use-protocols` | ours, `own-service-props-skills` | the index of the protocols — a few lines each and the skill that holds the details | ⬜ |
 | `use-i2i` | ours, `build-skills` | i2i: the elements of the node and the core agree an API once, then work with no model; recording a link | ⬜ |
 | `use-h2a` | ours, `messenger-skills` | H2A: the person and their agent; the media rule — save, then pass the link | ⬜ |
 | `use-a2a` | ours, `workspace-skills` | a2a: work with agents of other nodes through Lagrix, never development | ⬜ |

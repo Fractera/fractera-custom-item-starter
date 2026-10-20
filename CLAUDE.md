@@ -67,10 +67,16 @@ term that two places use → into the glossary in the same commit.
 1a. **A wish that changes what the product does** («and also I need…»: a new role, a new kind of thing, a new money flow, an
    outside service) **and every task from the core's quiz page** («Product quiz, item S-NN …») → skill `product-quiz` first: the
    impact on the quiz before the plan of the step; the step names the items it serves in one line `Serves:` (node step 536).
-1b. **A capability this element does not have yet** → before any plan, the order «Before you build a new capability» of skill
-   `use-protocols`: yourself → a neighbour in the node (i2i) → a whole element from the network (f2f, custom elements only) → only
-   then the product quiz and the build here; a job that is not your role goes to the core's main agent for a new element.
-   **A clear request** (input and output named, from a neighbour or your person) is built at once, without the quiz (2026-10-20).
+1b. **A capability this element does not have yet** → before any plan, the order «Before you build a new capability» (owner of
+   the node, 2026-10-19); each step is cheaper than the next, stop at the first that answers: yourself (`npm run passport -- me`)
+   → a neighbour in the node, i2i (`npm run a2a -- find <English words>`, at most five; its door if it has one — a plain call, no
+   model; no door — wake its agent once to agree an API, `use-i2i`) → a whole element from the network, f2f, custom elements only
+   (`npm run f2f -- find <plain words>`; the search is simulated today — say
+   «в сети Lagrix подходящих элементов не найдено (поиск в сети пока имитируется)») → build it here when the need is your role:
+   **a clear request** (input and output named, from a neighbour or your person) at once, the short way (2a), without the quiz
+   (2026-10-20); a new product or «and also I need…» —
+   `product-quiz`; copying how an existing site works — reverse engineering is under development in the core: say so and use the
+   quiz. Not your role → the core's main agent makes a new element (its terminal — `node.mainAgent` of the passport).
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
@@ -160,7 +166,7 @@ the discovery group; vendored skills stay at the root. Call a skill by its name 
 | build-skills | build | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | workspace-skills | working | `use-a2a`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
-| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort), `computer-off`, `local-node`, `use-protocols` (the index of the five protocols), `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | vendored | build, name only (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `humanizer` (published texts only, section «Texts»), `impeccable`, `shadcn` |
 
 **A skill starts with its process and its group** (owner of the node, 2026-10-12 and 2026-10-20: an agent that creates a skill
@@ -198,14 +204,16 @@ Samples: `npm run test:a2a-guard`.
 
 ## Protocols — how you talk and to whom
 
-Fractera has five protocols of its own (owner 2026-10-11, 2026-10-19): **H2A** — your person and you; **i2i** — the elements of
-this node and the core agree an API once, then work without a model; **a2a** — work with agents of other nodes through Lagrix,
-never development; **f2f** — whole elements between Fractera projects, installed once; **H2H** — people through their agents.
-The index is skill `use-protocols`; each protocol has its own skill (`use-h2a`, `use-i2i`, `use-a2a`, `use-f2f`, `use-h2h`).
+Fractera has five protocols of its own (owner 2026-10-11, 2026-10-19), each with its own skill: **H2A** — your person and you
+(both processes, `use-h2a`); **i2i** — the elements of this node and the core agree an API once, then work without a model
+(building, then working; `use-i2i`); **a2a** — work with agents of other nodes through Lagrix, never development (working,
+`use-a2a`); **f2f** — whole elements between Fractera projects, installed once (building, `use-f2f`); **H2H** — people through
+their agents (working, `use-h2h`). One question tells them apart: a neighbour in this node — i2i; work for or from another node
+— a2a; a whole element moving between projects — f2f.
 - Asked how you work with others — answer from `npm run passport -- me` (`links`, `protocols`), our protocol first; never from
   your code.
-- A need you cannot cover yourself — the order «Before you build a new capability» in `use-protocols`, never a neighbour's job
-  grown inside you.
+- A need you cannot cover yourself — the order «Before you build a new capability» («Steps», 1b), never a neighbour's job grown
+  inside you.
 - A file travels as a link, never as the file (`use-h2a`, «Media»).
 - The passport flags `messengers` (`{ h2a, h2h, a2a }`) tell the core which of these to show; change one only when the person asks.
 

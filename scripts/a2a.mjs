@@ -102,7 +102,7 @@ try {
     // measured live, the role was not printed and a neighbour made for slugs was read as «no slug skill»).
     if (entries.length) show(entries.map((e) => ({ address: e.address, role: e.role || undefined, description: firstSentence(e.description), skills: e.skills?.map((s) => s.id), state: e.state })))
     else console.log(/[a-z]/i.test(words)
-      ? `Nobody in this node does «${words}» — go on with the order «Before you build a new capability» (skill use-protocols).`
+      ? `Nobody in this node does «${words}» — go on with the order «Before you build a new capability» (CLAUDE.md, «Steps», 1b).`
       : `Nothing found for «${words}»: the node's registry is written in English — search again with English words.`)
   } else if (cmd === 'card') {
     if (!rest[0]) fail('card <address>')
