@@ -55,8 +55,10 @@ reads the file first. Do not rely on automatic compaction: what it drops, nobody
 Every building task is a step, even a five-line fix. The number is the next one after the highest in `steps-new/` and
 `steps-done/` and never reused.
 
-- **Small** (one result, one place): the plan is the three lines of «Confirm the request first» in `CLAUDE.md`; after the
-  person's «yes» write the step into `current-step.md`, build, close with a short `steps-done/<N>.md`.
+- **Small** (one result, one place — one door, one fix): the plan is the three lines of «Confirm the request first» in
+  `CLAUDE.md`; after the person's «yes» write the step into `current-step.md`, build, close with a short `steps-done/<N>.md` and
+  `current-step.md` in one commit. No `steps-new`, no quiz modules, and the notes of «Closing» below are opened only when
+  something broke or is left undone (owner of the node, 2026-10-20: building must cost less).
 - **Larger** (more than one result or place): a plan `steps-new/<N>-<six to eight words>.md` — what is asked, in the person's
   words; what already exists and is reused; the limits it must not break; the observable results; substeps 2–10, **one
   observable result each, never by layers** («all doors, then all UI»); the checks of each, named before the work (skill

@@ -11,7 +11,8 @@ Cloudflare tunnel: a temporary address after the first start, the person's own d
 copy of the public pages answers from Cloudflare. With no public address at all the node is still whole: the agents work at
 home and the person drives them from Telegram, which needs no domain.
 
-**Your boundary.** Your world is this folder. The node you know from `npm run passport -- me` (block `node`), `npm run a2a -- find` and the core's doors —
+**Your boundary.** Your world is this folder — every file in it, `package.json` (`npm run` lists your commands) and `proxy.ts`
+too, you read without asking. The node you know from `npm run passport -- me` (block `node`), `npm run a2a -- find` and the core's doors —
 never from the core's files or a neighbour's. Reading or changing anything outside this folder is allowed only after your
 architect's explicit «yes»: the node's settings make Claude Code ask them in your terminal, and when you were woken from
 Telegram the node sends them the link. The node enforces it (node step 548-7): reading or changing the core's or a neighbour's
@@ -68,9 +69,13 @@ term that two places use → into the glossary in the same commit.
 1b. **A capability this element does not have yet** → before any plan, the order «Before you build a new capability» of skill
    `use-protocols`: yourself → a neighbour in the node (i2i) → a whole element from the network (f2f, custom elements only) → only
    then the product quiz and the build here; a job that is not your role goes to the core's main agent for a new element.
+   **A clear request** (input and output named, from a neighbour or your person) is built at once, without the quiz (2026-10-20).
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
+2a. **A small task** (one door, one fix) goes the short way (owner of the node, 2026-10-20): the three lines → «yes» → a line in
+   `current-step.md` → build (a door: `add-door`) → `steps-done/<N>.md` and `current-step.md` in one commit. No `steps-new`, no quiz
+   modules; `use-development-docs`, `anti-patterns.md`, `backlog.md` — only when something breaks or is left undone.
 3. **A substep inside the running step** — only for the same capability, after the person's «yes»: add `<N>-<k>` to the plan
    and to `current-step.md`; it closes with a commit whose hash goes into `current-step.md` at once.
 4. **Anything else arriving mid-step** — the person's other wish, a building request from another agent or the core's task
@@ -142,7 +147,7 @@ builder knowledge for a job spends the person's subscription and memory, and inv
 
 | Nature | Skills |
 |---|---|
-| both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: every text a person reads, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| both — building or a job | `use-protocols` (the index of the five protocols), `use-i2i`, `use-h2a` (with the media rule), `a2a-conversation`, `humanizer` (vendored, `SOURCE.md`: published texts only, section «Texts»), `computer-off`, `local-node`, `node-elements-detection`, `own-service-props-detection`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
 | builder | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | worker | `use-a2a`, `use-h2h`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
 | builder, vendored (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `impeccable`, `shadcn` |
@@ -222,9 +227,10 @@ from reading code alone and a guard named wrong — both were in the skill that 
 
 ## Texts
 
-🔒 **Every text a person or a visitor reads goes through `humanizer`** (node step 536; the person, verbatim:
+🔒 **Every published text goes through `humanizer`** (node step 536; the person, verbatim:
 «если речь заходит о описании контента, текстов используют навык humalize, это также в равной степени будет использоваться для квиза»):
-page copy, review pages, the passport and the A2A card, messages, and the product quiz (`development-docs/product/`). The order: write
+page copy, review pages, the passport and the A2A card, and the product quiz (`development-docs/product/`). Working messages to
+your person, the architect or a neighbour go without it (owner of the node, 2026-10-20: «humanizer — только для публикуемого»). The order: write
 (`copywriting`, or your own draft) → `humanizer` (removes the signs of AI writing, keeps the meaning) → `copy-editing`. Our laws
 are stronger than the skill: a public page never states what does not exist without the person's «yes»; no new fact or number
 appears while rewriting; in Russian the dash in «X — это Y» stays (the skill's «no dashes» is about English).
