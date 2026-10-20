@@ -1,6 +1,6 @@
 ---
 name: passport-description
-description: Builder skill. Write this element's passport texts — name, short description, long description, what it accepts, what it returns, Nostr tags — in OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json, so that the element is found by semantic search. Use when the person presses «Generate description» on the passport page of the node core, or asks to describe the element, rewrite its description, or prepare it for search or a marketplace.
+description: Builder skill. Write this element's passport texts — name, short description, long description, what it accepts, what it returns, Nostr tags — in OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json, so that the element is found by semantic search. Use when the person presses «Generate description» on the passport page of the node core, or asks to describe the element, rewrite its description, or prepare it for search or a marketplace — and when a task comes from «Describe with AI» on a capability card (the field payments.web3.a2a-card.<name>.description).
 ---
 
 <!-- PROOF · NOT PROVEN yet: written, never checked by a live run (rules: development-docs/README.md, «Proof marks») -->
@@ -47,6 +47,18 @@ two copies). Never touch `id`, `visibility`, `calls`, `marketplace` — those ar
 Name the problem in the words of the one who has it, then the solution. Use the plain words a searcher types and their common
 synonyms; avoid our internal terms (WEB4 ITEM, node, element) unless the reader needs them. Concrete nouns and verbs, no slogans.
 No personal data — the file is public.
+
+## Capability card description (node step 551-4)
+
+The core's «Working process → A2A: your work → Capability cards» keeps cards of what this element does for other agents — today one
+sample, `sample`. Its button «Describe with AI» puts a task into your terminal. The description is one string in the passport:
+`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`, field `payments.web3["a2a-card"].sample.description`. Write only that string: the prices next to
+it (`consultation`, `usage`, `commission`) are the person's and are set on the core's page.
+
+- 1–3 sentences, ≤ 500 characters: what another agent gets from this card — what it sends, what it receives — in the plain words of
+  search by meaning, like `shortDescription`.
+- Only what the element does today (its doors in `app/api/`, its work skills). It is a published text: write, then `humanizer`.
+- Show it first, save after «yes», keep valid JSON and every other field, commit with a message naming the capability card.
 
 ## Before writing
 
