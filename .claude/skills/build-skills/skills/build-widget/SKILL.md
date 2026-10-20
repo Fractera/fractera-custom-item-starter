@@ -16,7 +16,7 @@ description: >
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 ## Static or dynamic — decided by what it must do without a reload
 
@@ -26,7 +26,7 @@ description: >
 | for | content that is known when the page is drawn | what changes without a reload: data, filters, input |
 | folder | `<branch>/_widgets/static/widget-static-<name>/` | `<branch>/_widgets/dynamic/widget-dynamic-<name>/` |
 
-Prefer static. A dynamic widget is for the case where nothing static can do the job (CLAUDE.md, «Page»).
+Prefer static. A dynamic widget is for the case where nothing static can do the job (`.claude/modes/build.md`, «Page»).
 
 ## Where it lives and how a page shows it
 

@@ -5,7 +5,7 @@
 //    Folders count as one entry (`steps-new/`); dot files (`.gitkeep`) are ignored.
 // 2. English only: «категорически требовать записи всех документов только на английском языке». Search here is literal,
 //    and one Russian word has six case forms. Cyrillic is allowed only inside quotes «…», "…", “…” — the person's own words.
-//    Checked in `development-docs/**/*.md` and in `CLAUDE.md`.
+//    Checked in `development-docs/**/*.md`, in `CLAUDE.md` and in `.claude/modes/*.md` (node step 552-5).
 //
 // What it does not see: a Latin-script text in another language, and quoted Russian used instead of an English sentence.
 
@@ -46,7 +46,7 @@ for (const name of REQUIRED) {
 // Rule 2: no Cyrillic outside quotes.
 const CYRILLIC = /[Ѐ-ӿ]/;
 const QUOTED = /«[^»]*»|"[^"]*"|“[^”]*”/g;
-const files = [path.join(ROOT, "CLAUDE.md")];
+const files = [path.join(ROOT, "CLAUDE.md"), path.join(ROOT, ".claude", "modes", "build.md"), path.join(ROOT, ".claude", "modes", "work.md")];
 const walk = (dir) => {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);

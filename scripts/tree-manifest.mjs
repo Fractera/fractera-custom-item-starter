@@ -32,7 +32,8 @@ function skillDirs() {
   const groups = tracked.filter((p) => p.startsWith('.claude/skills/') && p.endsWith('/.claude-plugin/plugin.json')).map((p) => at(at(p)))
   return ['.claude/skills', ...groups, ...skills]
 }
-const rootFiles = ['CLAUDE.md', 'README.md', 'NODE-CONTRACT.json', 'package.json', 'next.config.ts', 'proxy.ts'].filter((f) => tracked.includes(f))
+// 552-5: инструкция по режимам — общая часть CLAUDE.md и файлы режимов; потерянный файл режима лишает сессию её законов.
+const rootFiles = ['CLAUDE.md', '.claude/modes/build.md', '.claude/modes/work.md', 'README.md', 'NODE-CONTRACT.json', 'package.json', 'next.config.ts', 'proxy.ts'].filter((f) => tracked.includes(f))
 // Версия — тег, В КОТОРОМ снимок поедет (передаётся аргументом: node scripts/tree-manifest.mjs v0.3.89); без аргумента — «после» последнего тега.
 const version = process.argv[2] || (() => { try { return 'after ' + execSync('git describe --tags --abbrev=0', { cwd: ROOT, encoding: 'utf8' }).trim() } catch { return 'untagged' } })()
 const out = { _: 'Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-custom-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.', template: 'fractera-custom-item-starter', after: version, files, dirs: [...new Set(dirs)], rootFiles }

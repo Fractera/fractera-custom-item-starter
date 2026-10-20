@@ -7,7 +7,7 @@ description: Builder skill. Write this element's passport texts — name, short 
 
 # Passport description
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 
@@ -62,7 +62,7 @@ it (`consultation`, `usage`, `commission`) are the person's and are set on the c
 
 ## Before writing — and the core must get it
 
-The passport texts are published (`CLAUDE.md`, section «Texts»). Write them into the passport, run them through `humanizer`, then
+The passport texts are published (`.claude/modes/build.md`, section «Texts»). Write them into the passport, run them through `humanizer`, then
 `npm run check:passport` and fix everything red. Show the person the texts in the terminal and ask «save?». After «yes»: commit with a
 message naming the passport, then `npm run describe:publish` — it must print `DESCRIBE_OK`; on `DESCRIBE_FAILED` fix what it names and
 run it again. After «no»: put the passport back (`git checkout -- OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`) or change it as they say.

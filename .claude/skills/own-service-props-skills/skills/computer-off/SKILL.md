@@ -14,7 +14,7 @@ description: >
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
 
-**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `.claude/modes/build.md`, «Confirm the request first».
 
 ## Still works — from Cloudflare (own domain only)
 

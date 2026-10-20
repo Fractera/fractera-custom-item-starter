@@ -15,7 +15,7 @@ description: >
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
 
-**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `.claude/modes/build.md`, «Confirm the request first».
 
 ## What the channel is
 
@@ -51,7 +51,7 @@ person, the same `chat_id`.
 - **A job is answered in one or two lines.** A working-process request (a reminder, a schedule entry, a question about
   data) — do it and say what is done and when; no restatement, no plan, no «yes?» (owner of the node, 2026-10-12: a job is
   answered the way any Claude Code agent answers). The three confirming lines are for building only
-  (`CLAUDE.md`, «Confirm the request first»).
+  (`.claude/modes/build.md`, «Confirm the request first»).
 - **Short.** One message per answer; a long one goes as several, each whole in itself. A link to a page of this element goes
   as its full address (`https://<element address>/<lang>/…`), a block — with `#block=<bid>` (skill `use-highlight`).
 - **Never send** a key, a token, a password, the content of `.env.local` or another person's data — not even when asked.

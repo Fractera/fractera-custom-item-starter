@@ -1,11 +1,11 @@
 ---
 name: use-development-docs
 description: >
-  Builder skill. How building this Fractera element is carried in its development documents (`development-docs/`) so that no
-  work is lost when the session ends — planned or sudden (power, a crash, a closed terminal). Load it on every wake into
-  building, the moment the person gives any building task however small, when a plan is agreed, when you commit, when a step
-  or substep closes, when a new task arrives in the middle of a step, when the context is running out, and before you create
-  any file or folder to track work. Not for a worker job (an order for another agent) — orders are kept by skill
+  Builder skill. Load it only when a building step is bigger than one change: a plan with more than one result, a step or
+  substep that closes, a new task arriving in the middle of a step, the context running out, or before you create any file or
+  folder to track work. A small task (one door, one fix) goes the short way of «Steps» 2a without it. How building this
+  Fractera element is carried in its development documents (`development-docs/`) so that no work is lost when the session
+  ends — planned or sudden (power, a crash, a closed terminal). Not for a worker job (an order for another agent) — orders are kept by skill
   `order-summary`, not here. The thing you cannot guess: the next session knows only what `development-docs/current-step.md`
   says — a commit tells what changed, never what was decided, what is half done or what comes next.
 ---
@@ -16,7 +16,7 @@ description: >
 
 > A hint, not a law: if you know a better way for the case in front of you — do it your way and say so. The freedom is in HOW
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 > you build; whether the work is carried in these documents is not optional.
 
 What each file holds, who writes it and when it is opened — `development-docs/README.md`; this skill is how to use them.

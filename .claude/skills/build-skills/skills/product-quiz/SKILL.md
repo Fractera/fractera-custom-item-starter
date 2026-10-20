@@ -18,7 +18,7 @@ description: >
 > plan; whether a wish goes through the quiz before code is not optional.
 
 **Process: build** — the quiz lives in git (`development-docs/product/`): a change is a commit, with the three confirming lines of
-`CLAUDE.md` («Confirm the request first»).
+`.claude/modes/build.md` («Confirm the request first»).
 
 The owner of the node, 2026-10-18: «я считаю что проект должен быть описан на продуктовом языке» (the project must be described in
 product language) and «по мере того как пользователь говорит: – а ещё мне нужно … это должно вызывать процедуру … чтобы понять какие
@@ -43,7 +43,7 @@ Rules of the form:
   and doors belong in the step plans that serve the item, never in the quiz.
 - **One language — the element's default** (`npm run passport -- me` → `languages.default`). The owner, 2026-10-18: «only default lang». No
   translations in the quiz; the person's own words stay verbatim in `said`.
-- **Every text goes through `humanizer`** (`CLAUDE.md`, «Texts»): write, run the skill, then `copy-editing`. No fact, number or
+- **Every text goes through `humanizer`** (`.claude/modes/build.md`, «Texts»): write, run the skill, then `copy-editing`. No fact, number or
   promise appears while rewriting.
 - **Numbers are forever.** A removed item leaves its number unused; a new item takes the next free one of its kind.
 - **The quiz keeps no list of steps.** Steps name the items they serve in one line `Serves: S-03, R-02` (skill

@@ -123,7 +123,7 @@ const noFolder = branchRoots.flatMap((b) => REQUIRED_FOLDERS.filter((d) => !exis
 if (noFolder.length) {
   console.error('===ROUTES_FAILED=== у ветки нет обязательной папки или её README.md:')
   for (const f of noFolder) console.error(`  ${f}`)
-  console.error('Каждая ветка: _components/ (свои компоненты), _libs/ (своя логика), _widgets/ (свои виджеты) — см. CLAUDE.md, «Tree».')
+  console.error('Каждая ветка: _components/ (свои компоненты), _libs/ (своя логика), _widgets/ (свои виджеты) — см. `.claude/modes/build.md`, «Tree».')
   process.exit(1)
 }
 const missing = [...ALLOWED.keys()].filter((f) => !found.includes(f))

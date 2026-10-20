@@ -18,13 +18,13 @@ description: >
 
 > Not a hint: the element's tree matches this file exactly (CLAUDE.md). Changing the tree itself is the person's decision.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 ## The tree
 
 ```
 <element>/
-├── CLAUDE.md                 ← this file
+├── CLAUDE.md                 ← what every session needs; the laws of each mode in .claude/modes/ (552-5)
 ├── OWN-SERVICE-PROPS/        ← the passport, the main door: its JSON, README, server; A2A-CARD.json (the A2A card)
 ├── NODE-CONTRACT.json        ← what the node needs to install and manage this element (never served outside)
 ├── development-docs/         ← how this element is being built (git, English only)
@@ -39,6 +39,7 @@ description: >
 │   └── translation-debt.md
 ├── _tools/                   ← the element’s tools: tool-<name>/ with tool.json; TOOLS.json generated; README (skill use-tools)
 ├── .claude/
+│   ├── modes/ (build.md · work.md)  ← the laws of the build and working-process sessions, added by the node to the session
 │   ├── skills/*
 │   └── hooks/*
 ├── lib/
@@ -132,7 +133,7 @@ Every route folder and every `_pages/` has a `README.md` with a full example of 
   branch root has `_components/`, `_libs/`, `_widgets/` with a README.
 - `scripts/check-page-sequence.mjs` — a page names only `block-*`, `text-*` and its own branch's `widget-*`.
 - `scripts/check-protected.mjs` — under `_widgets/` only `static/`, `dynamic/` and `index.tsx`.
-- A new branch, a new top-level folder or a moved one — ask the person first (CLAUDE.md, «Page»: a route owns its own).
+- A new branch, a new top-level folder or a moved one — ask the person first (`.claude/modes/build.md`, «Page»: a route owns its own).
 - `scripts/check-tree.mjs` (node step 462) — compares this element with the starting tree of its template
   (`.claude/skills/build-skills/skills/use-element-tree/tree-manifest.json`) at every build and prints every missing path. It never fails the build:
   removing a page by the person's word is legal, removing it silently is visible. Verdicts: present · **exception** (the path is in

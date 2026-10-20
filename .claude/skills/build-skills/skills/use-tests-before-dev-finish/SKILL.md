@@ -1,11 +1,12 @@
 ---
 name: use-tests-before-dev-finish
 description: >
-  Builder skill. How you prove that a change to this Fractera element works before you say «done» — the checks you plan
-  before building, the two kinds of evidence every change needs, the spoil-and-restore control, the measurements that lie on
-  this node, and what to say when a check cannot be run. Load it before every «done», «ready», «it works», «check it» about a
-  page, a widget, a tool, a door, a style or any code of this element; when a check gives an unexpected answer; and when the
-  person asks «did you test it?». Not for a worker job (an order for another agent) — that is checked by its own skill. The thing
+  Builder skill. Load it only when a building step is bigger than one change, before its «done», «ready», «it works»; when a
+  check gives an unexpected answer; and when the person asks «did you test it?». A small task (one door, one fix) proves itself
+  with the checks named in its three confirming lines («Plan the checks before the work») without this skill. How you prove
+  that a change to this Fractera element works before you say «done» — the checks you plan before building, the two kinds of
+  evidence every change needs, the spoil-and-restore control, the measurements that lie on this node, and what to say when a
+  check cannot be run. Not for a worker job (an order for another agent) — that is checked by its own skill. The thing
   you cannot guess: a green build looks the same whether the feature works or not, and on this computer the owner passes every
   lock — a page that answers 200 to you may answer 401 to a visitor.
 ---
@@ -16,11 +17,11 @@ description: >
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 ## Plan first
 
-The checks are named in your confirming message before the work (CLAUDE.md, «Plan the checks before the work») and agreed
+The checks are named in your confirming message before the work (`.claude/modes/build.md`, «Plan the checks before the work») and agreed
 with the person. After the work you run exactly those — a check picked afterwards proves what was easy.
 
 ## Two kinds of evidence, both
@@ -56,4 +57,4 @@ Never replace it with an easier check and call it done.
 
 ## Then report
 
-CLAUDE.md, «How you report»: each check, its line, what was not checked, and the links with `#block=`.
+CLAUDE.md, «How you report», and `.claude/modes/build.md`, «Report what a person can see»: each check, its line, what was not checked, and the links with `#block=`.

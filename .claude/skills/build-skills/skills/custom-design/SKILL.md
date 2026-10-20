@@ -9,7 +9,7 @@ description: Builder skill. Use when the person asks for a custom design of a pa
 
 > A skill is a hint, not a law: it says WHEN and which rules win; the chosen design skill says HOW.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 ## When
 

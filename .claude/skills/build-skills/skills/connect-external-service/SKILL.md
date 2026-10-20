@@ -17,7 +17,7 @@ description: >
 
 > A hint, not a law. If you know a better way for the case in front of you, do it and say so.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 Owner, 2026-10-12: «…мы единственное что делаем это создаем навык который обучит агента в случае если он будет использовать какой-то
 внешний ресурс в правильное место его разместить и правильным образом с программировать интерфейс и серверный функции».

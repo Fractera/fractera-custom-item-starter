@@ -7,7 +7,7 @@ description: Both natures (every element). How to find another element of this n
 
 # A neighbour — by need, never by a list
 
-**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `.claude/modes/build.md`, «Confirm the request first».
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 

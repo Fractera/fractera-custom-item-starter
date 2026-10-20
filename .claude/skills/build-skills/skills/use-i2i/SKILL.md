@@ -61,7 +61,7 @@ in `links` is a defect — say so and offer to record it (`describe-element`).
 
 ## Nobody in the node can do it
 
-Do not grow someone else's job inside yourself. The order «Before you build a new capability» goes on (`CLAUDE.md`, «Steps»,
+Do not grow someone else's job inside yourself. The order «Before you build a new capability» goes on (`.claude/modes/build.md`, «Steps»,
 1b): a custom element searches the network for a whole element (f2f), then builds it here when it is your role; a job that is
 not your role goes to the core's main agent, which creates a new element for it.
 

@@ -11,7 +11,7 @@ description: Both natures (every element). The commands of the A2A wire, `npm ru
 
 # A2A conversation
 
-**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `CLAUDE.md`, «Confirm the request first».
+**Process: both** — a task that changes the element is building (code, commit, rebuild, the three confirming lines); a job is working (data only, a short answer). `.claude/modes/build.md`, «Confirm the request first».
 
 A hint, not a law: models of late 2026 work worse under rigid step-by-step instructions.
 
@@ -37,7 +37,7 @@ Roles: the **person** sets the goal and talks only to their own agent — you; *
    message — not after.
 
 Not in the registry → no A2A card yet → it cannot be talked to today: tell the person instead of going around it. Nothing in the
-node fits → say so plainly and go on with the order «Before you build a new capability» (`CLAUDE.md`, «Steps», 1b: f2f for a
+node fits → say so plainly and go on with the order «Before you build a new capability» (`.claude/modes/build.md`, «Steps», 1b: f2f for a
 custom element, then the build here).
 
 ## Talk to it

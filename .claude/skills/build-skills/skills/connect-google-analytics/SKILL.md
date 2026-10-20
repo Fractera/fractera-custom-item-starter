@@ -11,7 +11,7 @@ description: >
 
 > A hint, not a law. You know a better way for the case in front of you — do it and say so.
 
-**Process: build** — this skill changes the element as a thing: settings that change every page, a file in `public/`, a commit, a rebuild for the file; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: settings that change every page, a file in `public/`, a commit, a rebuild for the file; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 ## What the person gets
 

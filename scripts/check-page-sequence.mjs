@@ -78,7 +78,7 @@ for (const dir of pageDirs(LANG)) {
 
 if (problems.length) {
   console.error(`===PAGE_SEQUENCE_FAILED=== нарушений: ${problems.length}\n${problems.join('\n')}`)
-  console.error('Страница — последовательность block-* · text-* · widget-*; во всех языках одна и та же. CLAUDE.md, «Page».')
+  console.error('Страница — последовательность block-* · text-* · widget-*; во всех языках одна и та же. `.claude/modes/build.md`, «Page».')
   process.exit(1)
 }
 console.log(`===PAGE_SEQUENCE_OK=== страниц: ${pages}; блоков в наборе: ${BLOCKS.size}, типографики: ${TEXTS.size}`)

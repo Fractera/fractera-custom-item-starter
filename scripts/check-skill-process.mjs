@@ -26,10 +26,17 @@ const GROUPS = ['build-skills', 'workspace-skills', 'messenger-skills', 'own-ser
 const problems = []
 const seen = new Map()
 let count = 0
-// Таблица «Skills by group» в CLAUDE.md — вторая половина знания: навык без строки в таблице агент не найдёт по режиму.
-const claude = existsSync(join(ROOT, 'CLAUDE.md')) ? readFileSync(join(ROOT, 'CLAUDE.md'), 'utf8').replace(/\r\n/g, '\n') : ''
-const tableAt = claude.indexOf('| Group | Mode | Skills |')
-const table = tableAt < 0 ? '' : claude.slice(tableAt, claude.indexOf('\n\n', tableAt))
+// Таблица групп — вторая половина знания: навык без строки в таблице агент не найдёт по режиму. С 552-5 строки живут там, где
+// их читает сессия: общие группы — в CLAUDE.md («Skills by group»), группа режима — в его файле `.claude/modes/<режим>.md`.
+const TABLE_FILES = ['CLAUDE.md', '.claude/modes/build.md', '.claude/modes/work.md']
+const tableIn = (f) => {
+  const text = existsSync(join(ROOT, f)) ? readFileSync(join(ROOT, f), 'utf8').replace(/\r\n/g, '\n') : ''
+  const at = text.indexOf('| Group | Mode | Skills |')
+  if (at < 0) return ''
+  const end = text.indexOf('\n\n', at)
+  return text.slice(at, end < 0 ? undefined : end)
+}
+const table = TABLE_FILES.map(tableIn).join('\n')
 const rowOf = (group) => table.split('\n').find((l) => l.startsWith(`| ${group} `)) ?? ''
 const inRow = (group, name) => rowOf(group).includes('`' + name + '`')
 const dirs = (p) => (existsSync(p) ? readdirSync(p).filter((n) => statSync(join(p, n)).isDirectory()) : [])
@@ -47,7 +54,7 @@ function own(dir, name, group) {
   if (!lead) problems.push(`${name}: description не начинается с «Builder skill» / «Work skill» / «Both natures»`)
   if (!body) problems.push(`${name}: в теле нет строки «**Process: build|working|both**»`)
   if (lead && body && KIND[lead] !== body) problems.push(`${name}: description говорит «${lead}», а тело — «Process: ${body}»`)
-  if (!inRow(group, name)) problems.push(`${name}: нет в строке «${group}» таблицы «Skills by group» CLAUDE.md`)
+  if (!inRow(group, name)) problems.push(`${name}: нет в строке «${group}» таблицы групп (CLAUDE.md или .claude/modes/<режим>.md)`)
 }
 
 for (const name of dirs(DIR)) {
@@ -69,7 +76,7 @@ for (const name of dirs(DIR)) {
     count++
     note(name, 'корне')
     if (!/^Process: (build|working|both)\b/m.test(readFileSync(join(dir, 'SOURCE.md'), 'utf8'))) problems.push(`${name}: чужой навык без строки «Process: build|working|both» в SOURCE.md`)
-    if (!inRow('vendored', name)) problems.push(`${name}: нет в строке «vendored» таблицы «Skills by group» CLAUDE.md`)
+    if (!inRow('vendored', name)) problems.push(`${name}: нет в строке «vendored» таблицы групп (CLAUDE.md или .claude/modes/<режим>.md)`)
     continue
   }
   problems.push(`${name}: свой навык в корне .claude/skills — его место в группе своего режима (${GROUPS.join(', ')})`)

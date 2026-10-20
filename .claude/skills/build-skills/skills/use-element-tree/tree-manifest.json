@@ -1,7 +1,7 @@
 {
  "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-custom-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
  "template": "fractera-custom-item-starter",
- "after": "v0.3.122",
+ "after": "v0.3.123",
  "files": [
   "app/.well-known/agent-card.json/route.ts",
   "app/[lang]/(guestLayer)/README.md",
@@ -437,6 +437,8 @@
  ],
  "rootFiles": [
   "CLAUDE.md",
+  ".claude/modes/build.md",
+  ".claude/modes/work.md",
   "README.md",
   "NODE-CONTRACT.json",
   "package.json",

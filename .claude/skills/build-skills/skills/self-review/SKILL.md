@@ -9,7 +9,7 @@ description: Builder skill. A review of your own work at the person's request �
 
 > A hint, not a law: if you know a better way for the case in front of you — do it your way and say so.
 
-**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `CLAUDE.md` («Confirm the request first»).
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
 Result: the person got from 0 to 3 proposals, each resting on something that happened in this session; their answer to each is
 written into `development-docs/owner-decisions-on-skill-changes.md` word for word; what was accepted is applied and committed.
@@ -33,7 +33,7 @@ No reason at all — say so: «nothing to improve». Do not invent a proposal fo
 ## How to propose
 
 - **At most three**, numbered. Each has: the reason (a line from the digest), which skill, which line changes and into what.
-- **A proposal names the process** of the skill it touches — build or working (`CLAUDE.md`, «Skills by nature»); a new skill or a
+- **A proposal names the process** of the skill it touches — build or working (`.claude/modes/build.md`, «Skills of the build session»: «A skill starts with its process and its group»); a new skill or a
   rewritten one keeps its `Builder skill` / `Work skill` / `Both natures` mark and its `**Process: …**` line (owner of the node,
   2026-10-12); `npm run check:skill-process` must stay green.
 - **Replacing a line beats adding a paragraph.** A skill is a vision, not a step-by-step plan: a long skill works worse.
