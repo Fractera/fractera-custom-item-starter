@@ -8,6 +8,15 @@ one line, «Reference starter template», and the yellow starter sign says what 
 An element is a **replaceable element**, like the node's auth and data elements: its own repository, its own port, a pinned tag
 in the node's `WEB4-ITEMS-REGISTRY/web4-items.json`.
 
+## In the Fractera project
+
+Every new custom element of a node is born from this repository. The core reads its address and tag from
+`WEB4-ITEMS-REGISTRY/item-template.json`, copies the tagged tree into a new folder and gives it its own history. An element that is
+already born keeps its copy: a newer template version changes only elements born after the core points to it.
+
+You can change the template in your own fork. To make your node use it, set `repo` and `version` in `item-template.json` of your core
+to your fork and its tag. An element born from this template starts with this README; its owner rewrites it to describe the element.
+
 ## The contract a replacement must keep
 
 - `OWN-SERVICE-PROPS/` — the passport, the element's main door (`GET /api/own-service-props`); `NODE-CONTRACT.json` — what the node needs to install it.
