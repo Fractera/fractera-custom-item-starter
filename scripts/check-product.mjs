@@ -7,7 +7,10 @@
 // 3. links: `dependsOn` and the `about` of open questions and the `items` of slices point at existing items, and dependencies do
 //    not run in a circle;
 // 4. confirmation: a `confirmed` item carries `confirmed.date` and `confirmed.said` — the person's words, never the agent's;
-// 5. steps: every `Serves:` line in `steps-new/`, `steps-done/` and `current-step.md` names existing items (or `none`).
+// 5. steps: every `Serves:` line in `steps-new/`, `steps-done/` and `current-step.md` names existing items (or `none`);
+// 6. stages (node step 563-4, owner 2026-10-22: «этапы от 0 до N», each working on its own): numbered 0, 1, 2… in order, each with a
+//    name, what works after it (`works`) and an observable sign that it is done (`ready`), its items existing; a confirmed stage carries
+//    the person's words. Older quizzes keep `slices` — checked as before.
 // No quiz yet → nothing to check, exit 0. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
 //
 // What it does not see: whether the words are product words, whether an item is true, whether the person really said «yes».
@@ -83,6 +86,19 @@ for (const q of Array.isArray(quiz?.openQuestions) ? quiz.openQuestions : [])
 for (const s of Array.isArray(quiz?.slices) ? quiz.slices : [])
   for (const a of Array.isArray(s.items) ? s.items : []) if (!ids.has(a)) problems.push(`slice ${s.id}: ${a} is not in the quiz`)
 
+const filled = (v) => typeof v === "string" && v.trim() !== ""
+const stages = Array.isArray(quiz?.stages) ? quiz.stages : []
+stages.forEach((s, i) => {
+  const where = `stage ${s?.n ?? `#${i}`}`
+  if (s?.n !== i) problems.push(`${where} — stages are numbered 0, 1, 2… in order: here ${i} is expected`)
+  if (!filled(s?.name)) problems.push(`${where} — no name`)
+  if (!filled(s?.works)) problems.push(`${where} — no «works»: what works on its own after this stage`)
+  if (!filled(s?.ready)) problems.push(`${where} — no «ready»: an observable sign that the stage is done`)
+  for (const a of Array.isArray(s?.items) ? s.items : []) if (!ids.has(a)) problems.push(`${where}: ${a} is not in the quiz`)
+  if (s?.status !== undefined && s.status !== "draft" && s.status !== "confirmed") problems.push(`${where} — status is «draft» or «confirmed», not «${s.status}»`)
+  if (s?.status === "confirmed" && !(s.confirmed?.date && s.confirmed?.said)) problems.push(`${where} — confirmed without the date and the person's words`)
+})
+
 // Steps name the items they serve in one line `Serves: …` (skill use-development-docs); the core draws the dots from it.
 const SERVES = /^[\s>*_-]*serves[*_]*\s*:[*_]*\s*(.+)$/im
 const stepFiles = [
@@ -104,4 +120,4 @@ if (problems.length) {
   for (const p of problems) console.error("  " + p)
   process.exit(1)
 }
-console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions`)
+console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages`)

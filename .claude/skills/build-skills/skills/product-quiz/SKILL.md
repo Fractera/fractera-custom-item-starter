@@ -8,6 +8,8 @@ description: >
   service); after the node (i2i) and the network (f2f) found nothing ready for a new capability; and when a larger building step closes. Not for page texts, design, a bug inside a confirmed scenario, a clear request whose input and output are named (it is built the short way), or a worker job. The
   thing you cannot guess: only the person confirms an item, in words — you never mark one confirmed yourself, and changing a
   confirmed item turns it back into a draft.
+model: opus
+effort: max
 ---
 
 <!-- PROOF · NOT PROVEN yet: written 2026-10-19 (node step 536-4); no live run by an element agent — the person starts it from the quiz page -->
@@ -30,8 +32,10 @@ feature affects).
 Two kinds of file, both JSON, so the core's page and `npm run check:product` read them the same way:
 
 - `quiz.json` — `vision` {text, status}, `actors` [{id `A-NN`, name, text}], `modules` (the order of the module files),
-  `openQuestions` [{id `Q-NN`, text, about: item ids}], `notNow` [{id `N-NN`, text}], `slices` [{id `L-NN`, name, items}],
-  `decisions` [{date, said (the person's words verbatim, in «…»), gist (English)}].
+  `openQuestions` [{id `Q-NN`, text, about: item ids}], `notNow` [{id `N-NN`, text}], `stages` [{`n` 0, 1, 2… in order, `name`,
+  `works` (what works on its own after this stage), `items` (the items it serves), `ready` (an observable sign that it is done),
+  `status`, `confirmed`}], `decisions` [{date, said (the person's words verbatim, in «…»), gist (English)}]. Older quizzes have
+  `slices` [{id `L-NN`, name, items}] — they are read as stages.
 - `modules/<slug>.json` — {slug, title, text, items}. An item: `id` (`S-NN` scenario · `R-NN` rule · `E-NN` entity), `kind`,
   `title`, `text`, `actor` (scenarios), `acceptance` (an observable fact: «the list narrows when a word is typed»), `dependsOn`
   (item ids), `status` (`draft` · `confirmed`), `confirmed` {date, said} when confirmed, `builtBefore` only for work done before
@@ -56,7 +60,7 @@ a script, the code or another skill to learn it — `npm run check:product` name
 as `quiz.json`; module files come with the first scenarios:
 
 ```json
-{ "vision": { "text": "…", "status": "draft" }, "actors": [], "modules": [], "openQuestions": [], "notNow": [], "slices": [], "decisions": [] }
+{ "vision": { "text": "…", "status": "draft" }, "actors": [], "modules": [], "openQuestions": [], "notNow": [], "stages": [], "decisions": [] }
 ```
 
 ✗ 2026-10-20 (node step 548-14): the first session of a new element took 11 model requests and 850 thousand tokens — it read its
@@ -76,18 +80,31 @@ The test is one question: **does it change what the product does for someone?** 
 
 ## 3. Deep planning — the interview
 
-1. **Ask for the strongest model first.** The interview and the impact analysis are rare and expensive in meaning. Say in one line:
-   «This part needs deep thinking: please switch me to the strongest model your plan gives (`/model`) before we start.» Recording
-   statuses later needs no switch.
-2. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
+1. **The strongest model and the deepest thinking.** The build session runs on the strongest model of the subscription (node step
+   570) and this skill asks for maximum effort in its header (owner of the node, 2026-10-22: the quiz and the reverse engineering are
+   the hardest steps). Never ask the person to switch the model.
+2. **Read the node first:** `npm run node -- elements` — every element of the node: address, native or custom, on or off and why,
+   its role, what it does. Plan nothing a neighbour already does: name it and plan the link to it (i2i) instead. A turned-off element
+   is still the node's capability (the node turns it on for a task).
+3. **Like a finished product?** When the person names one («like Product Hunt») or the vision plainly matches one, offer an analysis
+   in one question with its price: «I can ask the node to analyse <product>: it turns its reverse engineering element on for a few
+   minutes, about 1 GB of memory, and off again. Shall I?» On «yes»: `npm run ask-core -- "Reverse engineer <a URL, or package@version>
+   for my product quiz: <what to learn>"`. The core's main agent answers with a task id → `npm run reverse -- get <task>` → build the
+   actors, scenarios, entities and rules from `development-docs/product/reverse/<task>/report.json`. It tells how that product works;
+   copy none of its content (node step 538). A package or an SDK is analysed the same way.
+4. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.
-3. **Choices as numbered text** («1 — …, 2 — …, 3 — your own»): the Telegram plugin drops buttons, and text arrives everywhere.
-4. **Order:** the vision (who, what pain, what counts as success) → the actors → the scenarios of the first slice → the rules
-   they need → the open questions → the slice itself («First launch»).
-5. **Stop at the edge of the first slice.** Name what stays for later in `notNow`; do not plan the whole product forward.
-6. **Write as you go,** each item as a `draft`; show the person what you wrote, item by item, with its number.
-7. **The first session of a new element** (a task from the core's main agent in your intake): there is no quiz yet. Put the
+5. **Choices as numbered text** («1 — …, 2 — …, 3 — your own»): the Telegram plugin drops buttons, and text arrives everywhere.
+6. **Order:** the vision (who, what pain, what counts as success) → the actors → the scenarios → the rules they need → the open
+   questions → the stages.
+7. **Stages 0 … N, each working on its own** (owner of the node, 2026-10-22). Stage 0 is static pages filled with primary data loaded
+   from JSON (for example the pages of a catalogue): enough for Google to know the project exists. Each next stage adds one capability
+   and works by itself even when the main goal is not reached yet: a form to submit, sign-in, payments… Where the primary data comes
+   from is a question to the person: their own data, an open dataset, an API they may use — never another site's texts, images or
+   data (node step 538). Plan every stage, name its `ready` sign, confirm them one at a time; the steps build one stage at a time.
+8. **Write as you go,** each item as a `draft`; show the person what you wrote, item by item, with its number.
+9. **The first session of a new element** (a task from the core's main agent in your intake): there is no quiz yet. Put the
    task's words into your plan (`current-step.md`) as the vision draft, ask the first question — the vision: who it is for, what
    pain, what counts as success — and stop: report done. The quiz files are written with the first answer.
 
@@ -130,8 +147,8 @@ The page puts a ready line into the terminal: «Product quiz, item S-03 «…»�
   something that used to be here».
 - **Closing a step** that served items: ask not «does it work» but «what promised in S-NN is now true», name the item and quote its
   acceptance; the summary in `steps-done/` keeps its `Serves:` line.
-- **A slice is done** when every scenario in it is done and its acceptance is true on the person's screen — proved by listing them,
-  never by «broadly ready».
+- **A stage is done** when its `ready` sign is true on the person's screen and every scenario it serves is done — proved by listing
+  them, never by «broadly ready». Only the person confirms a stage, in words, like an item.
 
 ## 7. Offering deep planning
 
@@ -150,4 +167,4 @@ deployed. A red line is fixed before the commit.
 - Add behaviour of the system nobody asked for (timers, polling, automatic links between elements) because the quiz «implies» it —
   ask first, in the words of what the person will see.
 - Copy the list of steps into the quiz, translate the quiz, or put people's personal data in it.
-- Plan twenty steps ahead: the quiz describes the product, the steps come one slice at a time.
+- Plan steps ahead: the quiz holds the stages (what works, by which sign); the steps that build a stage come one at a time.
