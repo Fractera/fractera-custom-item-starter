@@ -103,7 +103,7 @@ This table lists the groups every session shares; the group of your session's mo
 
 | Group | Mode | Skills |
 |---|---|---|
-| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal) |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests) |
 | messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
 <!-- PROOF 3 END -->
 
