@@ -44,8 +44,10 @@ term that two places use → into the glossary in the same commit.
    «в сети Lagrix подходящих элементов не найдено (поиск в сети пока имитируется)») → build it here when the need is your role:
    **a clear request** (input and output named, from a neighbour or your person) at once, the short way (2a), without the quiz
    (2026-10-20); a new product or «and also I need…» —
-   `product-quiz`; copying how an existing site works — reverse engineering is under development in the core: say so and use the
-   quiz. Not your role → the core's main agent makes a new element (its terminal — `node.mainAgent` of the passport).
+   `product-quiz`; a product like an existing one («like X», «a clone of X») — `product-clone` first: the site's rules, then what
+   is allowed (a forbidden site — a series of screenshots from the person; similar sites whose rules allow it — the node's analysis,
+   one at a time), then the quiz. Not your role → the core's main agent makes a new element (its terminal — `node.mainAgent` of the
+   passport).
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
@@ -75,7 +77,7 @@ a commit message.
 
 | Group | Mode | Skills |
 |---|---|---|
-| build-skills | build | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| build-skills | build | `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `product-clone` (a product like an existing one: the site's rules first — screenshots for a forbidden site, the node's analysis of similar allowed ones — then references, stages and parity), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
 | vendored | build, name only (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `humanizer` (published texts only, section «Texts»), `impeccable`, `shadcn` |
 
 **A skill starts with its process and its group** (owner of the node, 2026-10-12 and 2026-10-20: an agent that creates a skill

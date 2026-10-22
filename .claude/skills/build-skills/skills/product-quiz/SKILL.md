@@ -35,7 +35,9 @@ Two kinds of file, both JSON, so the core's page and `npm run check:product` rea
   `openQuestions` [{id `Q-NN`, text, about: item ids}], `notNow` [{id `N-NN`, text}], `stages` [{`n` 0, 1, 2… in order, `name`,
   `works` (what works on its own after this stage), `items` (the items it serves), `ready` (an observable sign that it is done),
   `status`, `confirmed`}], `decisions` [{date, said (the person's words verbatim, in «…»), gist (English)}]. Older quizzes have
-  `slices` [{id `L-NN`, name, items}] — they are read as stages.
+  `slices` [{id `L-NN`, name, items}] — they are read as stages. A product like an existing one also has `references` — the
+  similar products, their areas, the scenarios they show and what cannot be seen from outside; its form and rules are in the skill
+  `product-clone`.
 - `modules/<slug>.json` — {slug, title, text, items}. An item: `id` (`S-NN` scenario · `R-NN` rule · `E-NN` entity), `kind`,
   `title`, `text`, `actor` (scenarios), `acceptance` (an observable fact: «the list narrows when a word is typed»), `dependsOn`
   (item ids), `status` (`draft` · `confirmed`), `confirmed` {date, said} when confirmed, `builtBefore` only for work done before
@@ -86,8 +88,10 @@ The test is one question: **does it change what the product does for someone?** 
 2. **Read the node first:** `npm run node -- elements` — every element of the node: address, native or custom, on or off and why,
    its role, what it does. Plan nothing a neighbour already does: name it and plan the link to it (i2i) instead. A turned-off element
    is still the node's capability (the node turns it on for a task).
-3. **Like a finished product?** When the person names one («like Product Hunt») or the vision plainly matches one, offer an analysis
-   in one question with its price: «I can ask the node to analyse <product>: it turns its reverse engineering element on for a few
+3. **Like a finished product?** When the person names one («like Product Hunt») or the vision plainly matches one, load the skill
+   `product-clone` first: it checks each site's rules — a site that forbids automated study is never analysed (a series of
+   screenshots from the person instead, or similar sites whose rules allow it) — and keeps the references. For an allowed site, offer
+   an analysis in one question with its price: «I can ask the node to analyse <product>: it turns its reverse engineering element on for a few
    minutes, about 1 GB of memory, and off again. Shall I?» On «yes»: `npm run ask-core -- "Reverse engineer <a URL, or package@version>
    for my product quiz: <what to learn>"`. The core's main agent answers with a task id → `npm run reverse -- get <task>` → build the
    actors, scenarios, entities and rules from `development-docs/product/reverse/<task>/report.json`. It tells how that product works;
