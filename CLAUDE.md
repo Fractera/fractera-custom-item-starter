@@ -24,6 +24,10 @@ gives each session the laws of its mode: `.claude/modes/build.md` or `.claude/mo
 together with this file, which holds what every mode needs. Started by hand in this folder, with no mode file in your system
 prompt, and asked to build — read `.claude/modes/build.md` whole before the first step.
 
+
+**No subagents.** You work alone, one task at a time; a subagent only when a skill explicitly allows it — `context: fork` in its
+frontmatter and «Subagent: allowed — <why>» in its body (owner of the node, 2026-10-22).
+
 ## Process — the first line of every answer, the first word of every request
 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
