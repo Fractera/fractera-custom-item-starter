@@ -135,6 +135,13 @@ if (refs) {
     if (!SOURCES.includes(p?.source)) problems.push(`${where} — source is ${SOURCES.join(" · ")}, not «${p?.source}»`)
     if (p?.source === "analysis" && p?.rules !== "allowed") problems.push(`${where} — its rules are «${p?.rules}»: a site that forbids it, or whose rules are unread, is never analysed (screenshots instead)`)
     if (p?.source === "analysis" && !filled(p?.report)) problems.push(`${where} — an analysis without its report id`)
+    // 556-8: internal pages were studied in a test account — only one the person confirmed (owner 2026-10-22: «пользователь должен
+    // подтвердить лично»), only on a site whose rules allow it, only by the node's analysis.
+    if (p?.account !== undefined) {
+      if (p.account?.kind !== "test") problems.push(`${where} — an account is only ever a test account (kind «test»)`)
+      if (!filled(p.account?.consentAt)) problems.push(`${where} — a test account without the date of the person's consent`)
+      if (p.rules !== "allowed" || p.source !== "analysis") problems.push(`${where} — internal pages are studied only by the node's analysis of a site whose rules allow it`)
+    }
   }
   for (const a of areas) if (!filled(a?.name)) problems.push(`area ${a?.id} — no name`)
   const stageNs = new Set(stages.map((s) => s?.n))

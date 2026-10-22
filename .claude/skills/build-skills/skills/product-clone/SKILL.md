@@ -42,6 +42,7 @@ it links and look for a ban on scraping, crawling, automated access, copying the
 | `DISALLOWED` or `UNKNOWN`, or the terms ban it | scenario 1 — screenshots (§3); offer scenario 2 at once |
 | `ALLOWED` and the terms do not ban it | scenario 2 — the node may analyse it (§4) |
 | no terms found | ask the person to read them and tell you; until then — scenario 1 |
+| internal pages are needed and the terms allow automating an account | scenario 3 — a test account the person confirms (§4a) |
 | a package or an open-source project | its license instead of robots.txt |
 
 Write each site into `references.products` with its `rules` (`allowed` · `forbidden` · `unknown`) at once. Never sign in anywhere, never
@@ -73,6 +74,23 @@ node checks the rules again before it turns its analysis element on.
 - An open-source project: read its license; still take only functions.
 - Terms that ban extracting a site's data, though not looking at it: scenario 1 for that site.
 
+## 4a. Scenario 3 — internal pages, in a test account the person confirms
+
+What is behind the sign-in (a dashboard, the submit flow, settings) the node's agent studies itself — the owner of the node,
+2026-10-22: «в отличие от пользователя он может хотя бы примерно знать как работает продукт … на какие кнопки надо нажать», in an
+account that «не должен быть реальным пользователем … не страшно потерять это пользователь должен подтвердить лично».
+
+- Only on a site whose rules allow it (§2) and whose terms do not forbid automating an account, several accounts or bots.
+- Ask the person to create a test account there: not their main one and not someone else's, with no personal or payment data, one
+  they are not afraid to lose. Then the core's main agent opens the login window on the node's computer (`npm run ask-core -- "Open
+  the login window for the test account of <site>"`): the person ticks three statements, types the site name and signs in himself.
+  You never ask for a password and never create an account.
+- Then ask for the analysis of the internal pages (`ask-core`), naming the areas you need. The node's analysis chooses for each area:
+  a walk of its own (reads only — a guard blocks every action), a walk the person drives while it records, or screenshots — and
+  returns a map of screens and transitions with the points of no return (what happens after «send» or «pay» is seen only when the
+  person does it himself, in his test account).
+- In `references.products` the site gets `"account": { "kind": "test", "consentAt": "<the date from npm run ask-core / the node>" }`.
+
 ## 5. The map — what the references show
 
 Into `quiz.json` → `references`:
@@ -80,7 +98,8 @@ Into `quiz.json` → `references`:
 ```json
 {
   "products": [
-    { "id": "REF-1", "name": "…", "url": "https://…", "rules": "allowed", "source": "analysis", "report": "<task id>" },
+    { "id": "REF-1", "name": "…", "url": "https://…", "rules": "allowed", "source": "analysis", "report": "<task id>",
+      "account": { "kind": "test", "consentAt": "<date>" } },
     { "id": "REF-2", "name": "…", "url": "https://…", "rules": "forbidden", "source": "screenshots" }
   ],
   "areas": [{ "id": "AR-01", "name": "Daily list" }],
