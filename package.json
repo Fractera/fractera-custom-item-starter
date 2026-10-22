@@ -6,6 +6,7 @@
     "check:routes": "node scripts/check-routes.mjs",
     "node": "node scripts/node.mjs",
     "reverse": "node scripts/reverse.mjs",
+    "site-rules": "node scripts/site-rules.mjs",
     "pages:refresh": "node scripts/refresh-pages.mjs",
     "describe:publish": "node scripts/describe-publish.mjs",
     "door:add": "node scripts/door-add.mjs",
