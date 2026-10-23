@@ -89,6 +89,7 @@ const ALLOWED = new Map([
   ['app/api/menu/[lang]/route.ts', 'меню проекта'],
   ['app/api/revalidate/route.ts', 'перерисовать страницы'],
   ['app/[lang]/(protectedLayer)/admin/api/settings/app/route.ts', 'дверь виджета widget-dynamic-site-settings: свои настройки элемента (324-8, 422 — дверь в своей ветке)'],
+  ['app/[lang]/(protectedLayer)/admin/api/settings/design/route.ts', 'дверь своей мастерской оформления: DESIGN-CONFIG элемента при выключенной связи с «Дизайном» (579-1)'],
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],
   ['app/api/shell/[lang]/route.ts', 'шапка и подвал для служб узла'],

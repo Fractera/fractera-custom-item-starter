@@ -68,10 +68,13 @@ if (existsSync(TOOLS)) for (const t of readdirSync(TOOLS)) if (t.startsWith('too
 const LIBRARY = ['ui', 'ai-elements', 'dialog'].map((d) => join(ROOT, 'components', d) + sep)
 const isLibrary = (p) => LIBRARY.some((l) => p.startsWith(l))
 const extraFiles = new Set()
+// 579-1: виджет своей мастерской оформления зовёт редакторы из `_components` своей ветки относительным импортом — и они, 85
+// контейнеров, были вне процедуры. Общая часть ветки (`app/**/_components/`), до которой дотягивается виджет, — под ней тоже.
+const isBranchShared = (p) => p.startsWith(join(ROOT, 'app') + sep) && p.split(sep).includes('_components')
 function resolveImport(from, spec) {
   let base = null
   if (spec.startsWith('@/components/')) base = join(ROOT, spec.slice(2))
-  else if (spec.startsWith('.') && from.startsWith(join(ROOT, 'components') + sep)) base = join(dirname(from), spec)
+  else if (spec.startsWith('.')) base = join(dirname(from), spec)
   if (!base) return null
   for (const c of [base + '.tsx', base + '.ts', join(base, 'index.tsx'), join(base, 'index.ts')]) if (existsSync(c) && statSync(c).isFile()) return c
   return null
@@ -81,7 +84,7 @@ function follow(file, seen = new Set()) {
   seen.add(file)
   for (const m of readFileSync(file, 'utf8').matchAll(/from\s+['"]([^'"]+)['"]/g)) {
     const r = resolveImport(file, m[1])
-    if (!r || isLibrary(r) || !r.startsWith(join(ROOT, 'components') + sep)) continue
+    if (!r || isLibrary(r) || !(r.startsWith(join(ROOT, 'components') + sep) || isBranchShared(r))) continue
     if (r.endsWith('.tsx')) extraFiles.add(r)
     follow(r, seen)
   }
