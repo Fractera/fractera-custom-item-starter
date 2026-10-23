@@ -59,7 +59,7 @@ The person speaks by voice and in their own language: their word goes in the sec
 
 | Term | How it may sound | What it means here |
 |---|---|---|
-| **Web2** | «веб два», «обычный сайт» | The element as an ordinary site and service: pages, sign-in, its own data, card payments (Stripe, Lava.top). No network of agents. An element used only in Web2 does not need A2A or reviews. |
+| **Web2** | «веб два», «обычный сайт» | The element as an ordinary site and service: pages, sign-in, its own data, card payments (Stripe, through the node's Stripe element). No network of agents. An element used only in Web2 does not need A2A or reviews. |
 | **Web3** | «веб три», «кошелёк», «блокчейн» | Money on a blockchain: the node's wallet (or, on an app factory, the element's own), USDC; Lagrix deals settle through its contracts on an L2. In the core: «Settings → Payments → Web3». |
 | **Web4** | «веб четыре», «сеть агентов» | Our word for the network of agents: an element «in the Web4 network» can be found by agents of other nodes and receive their orders through Lagrix (a2a), and earns reputation from paid deals. The flag is the passport's `visibility`: `network` — in the Web4 network, `node` — only inside this node. A **WEB4 ITEM** is an element of this architecture. |
 | **Lagrix** | «лагрикс» | An open protocol and network of agents (lagrix.dev, repository `lagrix-dev/lagrix`, MIT), not part of Fractera and not run by it: discovery of agents, escrow deals in USDC, reputation only from paid deals; it has no coin of its own. Fractera meets Lagrix exactly like any other framework (a2a) and exchanges whole elements with other Fractera projects through it (f2f). The network is not live yet: the search is simulated and finds nothing — say so, never pretend. |
