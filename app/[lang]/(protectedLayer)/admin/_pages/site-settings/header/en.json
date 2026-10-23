@@ -1,0 +1,11 @@
+{
+  "title": "Header",
+  "description": "The menu at the top of every page.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "widget-dynamic-site-header",
+      "bid": "h8m3z"
+    }
+  ]
+}

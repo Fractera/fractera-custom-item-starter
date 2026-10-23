@@ -64,7 +64,7 @@ look of its own owner, and the shared Design would carry one owner's look into a
   uses the token. Never a value in the widget.
 - **A custom design of a whole page** — skill `custom-design` (it asks taste or impeccable); its colours and fonts still map to
   these tokens.
-- **Text, not look** — skill `use-typography`; **the menu and the footer** — skill `use-site-menu`; **languages** — `use-languages`.
+- **Text, not look** — skill `use-typography`; **settings of the site** (name, menu, footer, switches, languages) — skill `use-site-settings`.
 
 ## What needs a build, and what does not
 

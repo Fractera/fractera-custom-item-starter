@@ -100,7 +100,10 @@ description: >
     │   └── admin/
     │       ├── layout.tsx · page.tsx · _data/ · [...slug]/page.tsx · README.md
     │       ├── _components/README.md · _libs/README.md · _widgets/README.md
-    │       ├── _pages/ admin/ · users/ · site-settings/ · blocks/ (14 section folders, a README each — skill use-blocks)
+    │       ├── _pages/ admin/ · users/ · site-settings/ (+ features · header · footer · cookie-banner) · design/ (+ colors · type · shape)
+    │       │          · blocks/ (14 section folders, a README each — skill use-blocks)
+    │       ├── _components/ design-editors/ · site-settings-editors/ · section-tabs.tsx  ← 579: own design and site settings (skills use-design, use-site-settings)
+    │       ├── api/settings/ app · design · platform /route.ts  ← the doors of those pages: write only while the link to Design / CONFIG is off
     │       ├── _libs/element-blocks.ts · _components/element-blocks-pages.tsx · _widgets/static/widget-static-element-blocks/
     │       └── blocks/[section]/page.tsx · blocks/[section]/[name]/page.tsx   ← 577-11: the page of a section and the Preview of one block
     │   ├── messenger-h2h/          ← 459: H2H Messenger — only the architect; UI only from ai-elements (skill use-messenger)

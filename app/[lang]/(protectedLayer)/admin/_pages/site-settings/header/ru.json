@@ -1,0 +1,11 @@
+{
+  "title": "Шапка",
+  "description": "Меню вверху каждой страницы.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "widget-dynamic-site-header",
+      "bid": "h8m3z"
+    }
+  ]
+}

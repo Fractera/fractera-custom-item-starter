@@ -8,6 +8,7 @@ import { ALL_LANGUAGE_METADATA } from "@/lib/site-settings/language-metadata"
 import { linkOn } from "@/lib/own-site"
 import { ownId } from "@/lib/own-id"
 import { SettingsToaster } from "./toast"
+import { SectionTabs } from "../../../_components/section-tabs"
 
 // СТРАНИЦА «НАСТРОЙКИ САЙТА» ЭЛЕМЕНТА (шаги 324-8, 324-9). Копия редактора CONFIG (группы basics · seo · metaMedia и
 // языки), адаптированная под один элемент: островки ходят в дверь элемента `/<lang>/admin/api/settings/app`, которая пишет его
@@ -49,6 +50,8 @@ export function SiteSettings({ lang }: { lang: string }) {
   const sw = searchLanguagesWords(lang)
   return (
     <div data-block="aeyz7" className="flex flex-col gap-8" data-site-settings={linked ? "linked" : "own"}>
+      {/* 579-2: разделы шапки, подвала, функций и баннера cookie — свои страницы рядом. */}
+      <SectionTabs lang={lang} page="site-settings" current="" />
       <p data-block="kf3nt" className={linked ? "rounded-md border border-warning/50 bg-warning/10 px-3 py-2 text-sm text-foreground" : "text-sm text-muted-foreground"}>
         {linked ? w.linked : w.own}
       </p>

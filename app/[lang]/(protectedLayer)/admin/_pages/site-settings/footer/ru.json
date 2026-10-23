@@ -1,0 +1,11 @@
+{
+  "title": "Подвал",
+  "description": "Ссылки и страницы внизу каждой страницы.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "widget-dynamic-site-footer",
+      "bid": "r2t7k"
+    }
+  ]
+}

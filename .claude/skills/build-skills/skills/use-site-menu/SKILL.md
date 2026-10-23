@@ -21,8 +21,9 @@ description: >
 
 ## Two menus, owned by the person
 
-The top bar and the footer are the person's settings, edited on this element's page «Site settings» (`admin/site-settings`:
-«Top menu», «Project footer», each with «Show this menu»). Side drawers of a branch are different — group manifests on disk,
+The top bar and the footer are the person's settings, edited on this element's pages «Site settings → Header» and «→ Footer»
+(`admin/site-settings/header`, `admin/site-settings/footer`, each with its «Show this menu» switch; the map of all settings —
+`use-site-settings`). Side drawers of a branch are different — group manifests on disk,
 filled by you. 🛑 Never write your own `<header>` or `<nav>` with links: `npm run check:menu` refuses a second navigation bar —
 the person could not manage it.
 
