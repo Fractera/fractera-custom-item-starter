@@ -197,7 +197,7 @@ export function AgentChat({ label, items, contractLabels, endCta, classes }: {
                   </Avatar>
                 )}
                 <span className={s.msgWho}>{m.who}</span>
-                <Badge variant="outline" className={s.contract} title={contractLabels[m.contract]}>{m.contract}</Badge>
+                <Badge data-block="gz8av" variant="outline" className={s.contract} title={contractLabels[m.contract]}>{m.contract}</Badge>
               </div>
               <MessageContent className={m.side === "right" ? s.msgTextRight : s.msgText}><Linked text={m.text} /></MessageContent>
               {m.attachments && m.attachments.length > 0 && (

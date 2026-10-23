@@ -54,6 +54,8 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/admin/layout.tsx', 'замок ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/page.tsx', 'КОРЕНЬ ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/[...slug]/page.tsx', 'РЕБЁНОК ветки admin: страница и страница в папке роли (402)'],
+  ['app/[lang]/(protectedLayer)/admin/blocks/[section]/page.tsx', 'раздел блоков элемента — таблица раздела (577-11)'],
+  ['app/[lang]/(protectedLayer)/admin/blocks/[section]/[name]/page.tsx', 'Preview одного блока элемента — крошки и один блок (577-11)'],
   // ветка «messenger-h2h» (шаг узла 459, владелец 2026-10-12: «H2H Messenger – H2A Messenger … только при входе архитектора»)
   ['app/[lang]/(protectedLayer)/messenger-h2h/layout.tsx', 'замок ветки messenger-h2h: только архитектор'],
   ['app/[lang]/(protectedLayer)/messenger-h2h/page.tsx', 'КОРЕНЬ ветки messenger-h2h: список бесед'],
