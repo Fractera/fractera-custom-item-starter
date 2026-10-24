@@ -137,6 +137,15 @@ Only functions cross over: never their code, texts, images, design, data, names 
 skills (`custom-design`), the texts are written anew (`humanizer`), the data is the person's own. No mass runs on small sites: a
 few representative pages each, one analysis at a time.
 
+<!-- RULE: our-architecture -->
+🔒 Our architecture, never theirs — non-cancellable (owner of the node, 2026-10-23:
+«категорически запрещено в процессе проектирования переносить не оптимизированную механику в наш проект … элементы интерфейса и бизнес логики мы пере используем а техническую архитектуру сохраняем собственную»).
+From a product studied by reverse engineering, screenshots or knowledge we take its interface
+elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
+load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
+search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
+everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+
 ## Do not
 
 - Ask the node to analyse a site before §2, or a site whose rules forbid it.

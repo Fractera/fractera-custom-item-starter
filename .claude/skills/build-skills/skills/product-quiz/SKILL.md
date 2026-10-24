@@ -68,6 +68,15 @@ as `quiz.json`; module files come with the first scenarios:
 ✗ 2026-10-20 (node step 548-14): the first session of a new element took 11 model requests and 850 thousand tokens — it read its
 code, the media doors, the A2A card and two guards to learn where the quiz goes, before it asked the person anything.
 
+<!-- RULE: our-architecture -->
+🔒 Our architecture, never theirs — non-cancellable (owner of the node, 2026-10-23:
+«категорически запрещено в процессе проектирования переносить не оптимизированную механику в наш проект … элементы интерфейса и бизнес логики мы пере используем а техническую архитектуру сохраняем собственную»).
+From a product studied by reverse engineering, screenshots or knowledge we take its interface
+elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
+load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
+search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
+everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+
 ## 2. When to load it, and when not
 
 | Situation | What you do |

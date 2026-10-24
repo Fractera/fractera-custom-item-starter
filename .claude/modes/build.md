@@ -114,6 +114,15 @@ JavaScript. Live parts are islands over the static page — no server, the islan
 and does its job as far as it can. Built for high load, with as few database queries as possible. New content appears
 without a rebuild (ISR); a dynamic piece is added only when nothing else can do the job.
 
+<!-- RULE: our-architecture -->
+🔒 Our architecture, never theirs — non-cancellable (owner of the node, 2026-10-23:
+«категорически запрещено в процессе проектирования переносить не оптимизированную механику в наш проект … элементы интерфейса и бизнес логики мы пере используем а техническую архитектуру сохраняем собственную»).
+From a product studied by reverse engineering, screenshots or knowledge we take its interface
+elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
+load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
+search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
+everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+
 **A route owns its own.** Widgets, components, functions, data and translations one route needs live in its folder: delete
 the route and everything that served it is gone, no tails. Only what two or more routes use goes up to `components/`, `lib/`,
 `_tools/`.
