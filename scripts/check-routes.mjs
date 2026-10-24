@@ -94,8 +94,7 @@ const ALLOWED = new Map([
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],
   ['app/api/shell/[lang]/route.ts', 'шапка и подвал для служб узла'],
-  ['app/api/users/[id]/route.ts', 'одна учётная запись'],
-  ['app/api/users/route.ts', 'учётные записи'],
+  ['app/api/users/[[...path]]/route.ts', 'люди этого приложения: список, истории, пакет — через службу входа /api/app-users (580)'],
 ])
 
 const found = []

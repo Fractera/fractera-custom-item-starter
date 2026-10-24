@@ -52,7 +52,7 @@ by its own owner. The node's mode and the «All projects» catalog are decisions
 
 A row of links above each page leads between the sections; it is built from the folders `admin/_pages/site-settings/<section>/`, so a
 new section folder shows there by itself. Doors: `GET/PATCH /<lang>/admin/api/settings/app` and `/<lang>/admin/api/settings/platform`
-— the architect's session; the editors are copies of CONFIG's (`admin/_components/site-settings-editors/`, the main page's in its
+— the session of the architect or of this application's administrator (step 580); the editors are copies of CONFIG's (`admin/_components/site-settings-editors/`, the main page's in its
 widget folder). In the core these pages open from «Build → Site settings» of the element, in a new tab.
 
 ## What to do with a request

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { UsersTable } from './dynamic/widget-dynamic-users-table/index.client'
 import { usersTableUi } from './dynamic/widget-dynamic-users-table/ui.i18n'
+import { appDialogUi } from '@/components/dialog/app-dialog.i18n'
 import { SiteSettings } from './dynamic/widget-dynamic-site-settings'
 import { ElementBlocks } from './static/widget-static-element-blocks'
 import { Widget as DesignOverview } from './dynamic/widget-dynamic-design-overview'
@@ -15,7 +16,8 @@ import { Widget as SiteCookieBanner } from './dynamic/widget-dynamic-site-cookie
 // ВИДЖЕТЫ ЭТОЙ ВЕТКИ (владелец 2026-10-07: «удалили маршрут — проект чистый»). Страница ветки называет виджет в `meta.json` →
 // `"widget"`; ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
 export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
-  'widget-dynamic-users-table': (lang) => <UsersTable lang={lang} ui={usersTableUi(lang)} />,
+  // 580-3: люди этого приложения — окно вкладки «Пользователи» элемента входа без организаций.
+  'widget-dynamic-users-table': (lang) => <UsersTable lang={lang} ui={usersTableUi(lang)} dialogUi={appDialogUi(lang)} />,
   // Свои настройки элемента — копия редактора CONFIG (`_pages/site-settings`).
   'widget-dynamic-site-settings': (lang) => <SiteSettings lang={lang} />,
   // 577-11 / 578: блоки этого элемента (`_pages/blocks`) — таблица и Preview.

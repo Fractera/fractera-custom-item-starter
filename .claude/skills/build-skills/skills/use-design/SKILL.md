@@ -49,7 +49,7 @@ look of its own owner, and the shared Design would carry one owner's look into a
 | the tokens | `DESIGN-CONFIG/design-config.json` — only what the person decided; the rest falls back to the defaults in `config/design-config.defaults.ts` |
 | the workshop pages | `app/[lang]/(protectedLayer)/admin/_pages/design/` — `/<lang>/admin/design` (fonts), `…/design/colors`, `…/design/type`, `…/design/shape`; one page per section, each a route |
 | the editors | `app/[lang]/(protectedLayer)/admin/_components/design-editors/` — copies of the shared Design element's editors |
-| the door | `GET/PATCH /<lang>/admin/api/settings/design` — the architect's session; JSON merge patch, `null` returns a key to its default; 409 while the link is on |
+| the door | `GET/PATCH /<lang>/admin/api/settings/design` — the session of the architect or of this application's administrator (step 580); JSON merge patch, `null` returns a key to its default; 409 while the link is on |
 | the only writer of the file | `lib/architect/design-config-writer.ts` (the core's key door `app/api/settings/design` uses it too) |
 | the core's button | «Build → Design» of this element, opens the workshop in a new tab |
 

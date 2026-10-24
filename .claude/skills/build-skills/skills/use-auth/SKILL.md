@@ -68,3 +68,20 @@ leave» (`/api/auth/guest-leave`) removes it.
 A line in `ALL_ROLES` (and its parent in `ROLE_PARENTS` if it inherits), the group it opens in `PROTECTED_GROUP_ROLES`, a role
 folder for its pages; roles are given to people on the users table (`/admin/users`), which writes through the auth element. A
 new role is the person's decision — ask first.
+
+## The architect and the administrator of this application (node step 580)
+
+Owner of the node, 2026-10-24: «архитектор это супер пользователь который имеет покрытие вообще над всем узлом в то время как
+администратор … может быть связана только с той организации через которую пользователь зарегистрировался».
+- **The architect** of the node (a `node` record) is admitted on the site of any application and sees every level.
+- **An administrator** (and any other role) acts only in the application of their own record (`users.app`): registered through two
+  applications — two records, two independent roles. On a single project every person is a `node` record — one application.
+- The auth element enforces it, not this element: the site names itself (`x-fractera-element`, from `lib/own-id.ts`) when it asks
+  `/api/session`, and a node record is recognized on a factory application's site only for the architect and the guest.
+- **The users table** (`/admin/users`, widget `widget-dynamic-users-table`) is the core tab «Users» limited to this application:
+  search, role filter, sort, pages, histories, batch actions — no organizations. Its door `app/api/users/[[...path]]` forwards the
+  visitor's cookie, the single sign-on ticket and this element's id to the auth element's `/api/app-users` (its README has the rules).
+- **«My account» drawer** (`lib/menu/account-links.ts`): Accounts, Blocks, Design, Site settings — for the roles of the admin layer
+  (`PROTECTED_GROUP_ROLES.admin`); the pages (`admin/_pages/{users,blocks,design,site-settings}`, `meta.roles: ["admin"]`) and their
+  save doors (`admin/api/settings/*`) let the architect and the administrator in. A new page for the administrator of this element —
+  the same three places: the page's `meta.roles`, its door, a line in `ADMIN_PAGES`.

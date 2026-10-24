@@ -6,6 +6,7 @@ import { isOwnerAtMachine } from "@/lib/auth/owner-at-machine"
 import { isTemporaryPublicAddress } from "@/lib/auth/temporary-address"
 import { isShowcaseRequest } from "@/lib/showcase"
 import { ALL_ROLES } from "@/lib/roles"
+import { ownId } from "@/lib/own-id"
 
 export type AppSession = {
   userId: string
@@ -119,8 +120,10 @@ export async function getSession(req?: NextRequest): Promise<AppSession | null> 
     const who = await whoByTicket(ticket)
     if (who) return { userId: who.userId, email: who.email ?? '', roles: who.roles }
   }
+  // 🔒 580: САЙТ НАЗЫВАЕТ СЕБЯ (`x-fractera-element`). На сайте приложения завода служба входа признаёт запись узла только у
+  // архитектора и гостя — администратор узла не администратор чужого приложения (закон 580, владелец 2026-10-24).
   try {
-    const res = await fetch(`${authUrl}/api/session`, { headers: { cookie } })
+    const res = await fetch(`${authUrl}/api/session`, { headers: { cookie, "x-fractera-element": ownId() ?? "" } })
     if (!res.ok) return null
     return res.json() as Promise<AppSession>
   } catch {

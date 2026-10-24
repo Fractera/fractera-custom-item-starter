@@ -6,7 +6,7 @@ const ARCHITECT_TITLE: Record<string, string> = {
   en: "The architect group of pages",
   ru: "Группа страниц архитектора",
 }
-import { ARCHITECT_LAYER_ROLES } from "@/lib/roles"
+import { ARCHITECT_LAYER_ROLES, PROTECTED_GROUP_ROLES } from "@/lib/roles"
 
 // РАБОЧИЕ РАЗДЕЛЫ, которые ящик аккаунта показывает вошедшему.
 //
@@ -35,9 +35,18 @@ import { ARCHITECT_LAYER_ROLES } from "@/lib/roles"
 // Слова каждого пункта живут при своей странице (её `_data/ui.i18n.ts`), а не в
 // словаре ящика: это строка одной страницы, и языков у неё столько же, сколько у
 // страницы, — не 82 впрок.
-function usersLink(lang: string): DrawerLink[] {
-  const page = branchChild(["(protectedLayer)", "admin"], "users")
-  return page ? [{ href: `/${lang}/admin/users`, label: wordsIn(page, lang).title }] : []
+// 580-4 (владелец 2026-10-24: «на этой вкладке кроме учётной записи нужно добавить вкладку блоки, дизайн, конфигуратор, для роли
+// администратор и для роли архитектор … именно администратору этой организации а не любому администратору»). Пункт — ребёнок ветки
+// admin, подпись — из данных страницы, роли — слоя администрирования (`PROTECTED_GROUP_ROLES.admin`). Что администратор именно ЭТОЙ
+// организации, решает служба входа: на сайт приложения чужой администратор не входит вовсе («Конфигуратор» владельца — страница
+// «Настройки сайта», `admin/_pages/site-settings`).
+const ADMIN_PAGES = ["users", "blocks", "design", "site-settings"] as const
+
+function adminLinks(lang: string): DrawerLink[] {
+  return ADMIN_PAGES.flatMap((slug) => {
+    const page = branchChild(["(protectedLayer)", "admin"], slug)
+    return page ? [{ href: `/${lang}/admin/${slug}`, label: wordsIn(page, lang).title, roles: PROTECTED_GROUP_ROLES.admin }] : []
+  })
 }
 
 // 459 (владелец 2026-10-12): «H2H Messenger – H2A Messenger … установи их выше чем кнопки группа страниц … доступны только при
@@ -59,7 +68,8 @@ export function accountLinks(lang: string): DrawerLink[] {
       label: ARCHITECT_TITLE[lang] ?? ARCHITECT_TITLE.en,
       roles: ARCHITECT_LAYER_ROLES,
     },
-    // 314-2: таблица пользователей — ребёнок ветки admin (`admin/_pages/users/`); подпись — из её данных.
-    ...usersLink(lang),
+    // 314-2: таблица пользователей — ребёнок ветки admin (`admin/_pages/users/`); подпись — из её данных. 580-4: за ней блоки,
+    // дизайн и настройки сайта этого элемента.
+    ...adminLinks(lang),
   ]
 }

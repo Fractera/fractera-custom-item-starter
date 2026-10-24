@@ -14,7 +14,8 @@ import { linkOn } from "@/lib/own-site"
 //
 // 🔒 ФОРМА ТЕЛА — КАК У CONFIG: выключатели плоско (`{ "topMenu": true }`), а файл элемента держит их в ветке `features`
 // (`config/platform-config.ts`, `asPlatformFile`). Перевод — здесь, в одном месте; ответ — тоже плоско, действующие значения.
-// 🔒 ПИШЕТ ТОЛЬКО АРХИТЕКТОР И ТОЛЬКО ПРИ ВЫКЛЮЧЕННОЙ СВЯЗИ С CONFIG (как `settings/app`, 324-8): пока связь включена, выключатели
+// 🔒 ПИШУТ АРХИТЕКТОР И АДМИНИСТРАТОР ЭТОГО ПРИЛОЖЕНИЯ (580-4, владелец 2026-10-24) И ТОЛЬКО ПРИ ВЫКЛЮЧЕННОЙ СВЯЗИ С CONFIG (как
+// `settings/app`, 324-8): пока связь включена, выключатели
 // приходят копией CONFIG — 409 `config-connected`. Незнакомый ключ — 400: закрытый список ключей — `FEATURE_DEFAULTS`.
 // Дверь уровня элемента `app/api/settings/platform` (индикатор ширины, 333-4) не тронута.
 export const dynamic = "force-dynamic"
@@ -25,7 +26,7 @@ const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object
 async function architect(req: NextRequest): Promise<200 | 401 | 403> {
   const s = await getSession(req)
   if (!s) return 401
-  return s.roles?.includes("architect") ? 200 : 403
+  return (s.roles ?? []).some((r) => r === "architect" || r === "admin") ? 200 : 403
 }
 
 const flat = () => ({ ...getPlatformConfig().features })

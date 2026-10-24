@@ -32,10 +32,12 @@ function mergePatch(target: unknown, patch: unknown): unknown {
   return out
 }
 
+// 580-4: архитектор и администратор этого приложения (владелец 2026-10-24: «расширяем право доступа для администрирования
+// администратору этой организации»); чужого администратора служба входа на сайт приложения не пускает.
 async function architect(req: NextRequest): Promise<200 | 401 | 403> {
   const s = await getSession(req)
   if (!s) return 401
-  return s.roles?.includes("architect") ? 200 : 403
+  return (s.roles ?? []).some((r) => r === "architect" || r === "admin") ? 200 : 403
 }
 
 export async function GET(req: NextRequest) {
