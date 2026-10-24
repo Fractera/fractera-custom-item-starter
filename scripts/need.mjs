@@ -43,7 +43,7 @@ try {
   if (!b.ok) fail(`the core answered ${r.status}: ${b.error ?? 'no reason'}`)
   const n = b.need
   // The process word opens the request (552-4): finding or building a capability is building work of the node.
-  const text = `Build process: Element ${id} needs a capability: «${need}»${use ? ` (what for: «${use}»)` : ''} — need ${n.id}. Handle it with skill handle-need (npm run needs -- show ${n.id}).`
+  const text = `Build process: Element ${id} needs a capability: «${need}»${use ? ` (what for: «${use}»)` : ''} — need ${n.id}. Find who does it, or ask the architect to build it (npm run needs -- show ${n.id}).`
   const w = await fetch(`${core}/api/agents/wake`, {
     method: 'POST', headers: { 'content-type': 'application/json', 'x-node-key': key },
     body: JSON.stringify({ service: 'build', from: id, about: need.slice(0, 300), reason: 'element-need', text }), signal: AbortSignal.timeout(30000),

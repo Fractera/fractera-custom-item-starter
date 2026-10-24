@@ -46,8 +46,9 @@ term that two places use → into the glossary in the same commit.
    (2026-10-20); a new product or «and also I need…» —
    `product-quiz`; a product like an existing one («like X», «a clone of X») — `product-clone` first: the site's rules, then what
    is allowed (a forbidden site — a series of screenshots from the person; similar sites whose rules allow it — the node's analysis,
-   one at a time), then the quiz. Not your role → the core's main agent makes a new element (its terminal — `node.mainAgent` of the
-   passport).
+   one at a time), then the quiz. Not your role and no neighbour does it → `npm run need -- "<what you need>"` (skill `need-capability`,
+   node step 589): the core records it and its main agent finds the owner by the cards, or asks the architect to build it in an element
+   or a new one; the answer comes into your input.
 2. **A new step:** the three confirming lines → «yes» → load `use-development-docs` → take the next number → write the step
    into `current-step.md` BEFORE the first edit. More than one result → also `steps-new/<N>-<words>.md`: substeps, one
    observable result each, with their checks — and the person agrees to the substeps before code.
