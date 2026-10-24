@@ -6,8 +6,8 @@
 //   4. у каждой связи `consumes` — протокол (`i2i` | `a2a`) и API `via` (`http` с путём, `mcp` с инструментом, `a2a-skill` с навыком)
 //      и откуда адрес (`base`): по ним агент отвечает «с кем и как я связан», не читая код (шаг 548).
 // Без этого чужой агент шлёт A2A-сообщение туда, где ждут HTTP, и наоборот. Навык — describe-element.
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { join, relative, sep } from 'node:path'
 
 const EXT = 'https://fractera.ai/a2a/ext/node/v1'
 const file = join(process.cwd(), 'OWN-SERVICE-PROPS', 'A2A-CARD.json')
@@ -47,6 +47,31 @@ for (const c of consumes) {
   if (v.kind === 'a2a-skill' && !v.skill) errors.push(`${who}: via.skill для a2a-skill`)
   if (v.kind !== 'a2a-skill' && !v.base) errors.push(`${who}: via.base — откуда адрес`)
 }
+
+// 5 (узел, шаг 589-1): КАЖДАЯ дверь элемента названа в визитке — в `doors` или под префиксом `private`. Узел узнаёт, что элемент умеет,
+// только из визитки: дверь, которой в ней нет, для соседей не существует, и на запрос возможности узел ответит «такого нет» о том, что
+// есть. Адрес папки: группы `(…)` в адрес не входят, `[x]`, `[...x]` и `:x` — один и тот же параметр; `/api/a2a` — сама конечная точка A2A.
+const norm = (p) => p.replace(/\/\([^/]+\)/g, '').replace(/\[\.\.\.[^\]]+\]|\[[^\]]+\]|:[A-Za-z0-9_]+/g, '*').replace(/\/+$/, '')
+const APP = join(process.cwd(), 'app')
+const routeFiles = []
+const walk = (dir) => {
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name)
+    if (statSync(p).isDirectory()) { if (name !== 'node_modules' && !name.startsWith('_')) walk(p) } else if (/^route\.(ts|tsx|js|mjs)$/.test(name)) routeFiles.push(p)
+  }
+}
+try { walk(APP) } catch { /* без app/ — дверей нет */ }
+const named = doors.map((d) => norm(String(d?.path ?? '')))
+const hidden = (Array.isArray(ext.private) ? ext.private : []).map((p) => norm(String(p)))
+let checked = 0
+for (const f of routeFiles) {
+  const url = norm('/' + relative(APP, f).split(sep).slice(0, -1).join('/'))
+  if (!/(^|\/)api(\/|$)/.test(url)) continue
+  checked++
+  if (url === '/api/a2a' || named.includes(url) || hidden.some((h) => url === h || url.startsWith(`${h}/`))) continue
+  errors.push(`дверь ${url} (${relative(process.cwd(), f).split(sep).join('/')}) не названа в визитке: npm run door:add — или строка в private, если она не для соседей`)
+}
+console.log(`дверей в app: ${checked}`)
 
 console.log(`связей: ${consumes.length} · навыков: ${skills.length} · по A2A: ${a2a.size} · HTTP-дверей: ${skills.length - [...ids].filter((i) => a2a.has(i)).length}`)
 for (const e of errors) console.log(`  ОШИБКА: ${e}`)

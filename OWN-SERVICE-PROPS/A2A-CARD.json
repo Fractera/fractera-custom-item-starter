@@ -269,7 +269,9 @@
             "/api/settings/platform",
             "/api/settings/design",
             "/api/a2a/tasks",
-            "/api/own-service-props"
+            "/api/own-service-props",
+            "/[lang]/admin/api/settings/design",
+            "/[lang]/admin/api/settings/platform"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [
