@@ -17,7 +17,11 @@
 //    Every scenario of the references (`O-NN`) names its area and where it was seen; once the quiz has stages, each one goes to a stage
 //    or to «not now». What cannot be seen from outside (`U-NN`) becomes an open question or a decision. The OK line prints the coverage
 //    of the areas and the parity by stage.
-// No quiz yet → nothing to check, exit 0. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
+// 8. copies of studied products (node step 590-2, owner 2026-10-23: «агент программиста залезет в Риверс инжиниринг Report и будет его
+//    использовать как реальные существующие элементы проекта»): every `product/reverse/<task>/report.json` opens with
+//    `origin.kind = "external-study"` (written by `npm run reverse -- get <task>`), so whoever opens it sees another product, never this
+//    element's code. Checked even before the quiz has its first file: a study often comes first.
+// No quiz yet → only the copies of studied products are checked. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
 //
 // What it does not see: whether the words are product words, whether an item is true, whether the person really said «yes».
 
@@ -42,8 +46,25 @@ const read = (p) => {
   }
 }
 
+// 8. Copies of studied products carry their origin mark (node step 590-2).
+const REVERSE = path.join(DIR, "reverse")
+let copies = 0
+for (const task of fs.existsSync(REVERSE) ? fs.readdirSync(REVERSE, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []) {
+  const file = path.join(REVERSE, task, "report.json")
+  if (!fs.existsSync(file)) continue
+  copies++
+  const copy = read(file)
+  if (copy && copy.origin?.kind !== "external-study")
+    problems.push(`product/reverse/${task}/report.json — no origin mark «external-study»: copy it again with npm run reverse -- get ${task}`)
+}
+
 if (!fs.existsSync(path.join(DIR, "quiz.json"))) {
-  console.log("check:product — no product quiz yet (development-docs/product/quiz.json), nothing to check")
+  if (problems.length) {
+    console.error(`===PRODUCT_QUIZ_FAIL=== ${problems.length} problem(s):`)
+    for (const p of problems) console.error("  " + p)
+    process.exit(1)
+  }
+  console.log(`check:product — no product quiz yet (development-docs/product/quiz.json); copies of studied products: ${copies}, marked`)
   process.exit(0)
 }
 
@@ -199,5 +220,5 @@ if (problems.length) {
   for (const p of problems) console.error("  " + p)
   process.exit(1)
 }
-console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages`)
+console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages, ${copies} copies of studied products (marked)`)
 if (referenceLine) console.log(referenceLine)

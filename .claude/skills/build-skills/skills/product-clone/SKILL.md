@@ -67,7 +67,9 @@ avatars, comments) never go into the quiz. When the person has confirmed the ite
 Ask the person for three to five sites or open projects that do the same job (small, experimental, open-source). Check §2 for each.
 For every allowed one: `npm run ask-core -- "Reverse engineer <address> for my product quiz: <what to learn — the scenarios, the
 entities, the rules>"`, one at a time — the next only after the report of the previous one (`npm run reverse -- get <task>`). The
-node checks the rules again before it turns its analysis element on.
+node checks the rules again before it turns its analysis element on. The copy opens with its origin mark (`external-study`); a question
+the report leaves open goes to the node's graph first (`npm run graph -- query …`, skill `product-quiz` §3) — another study costs far
+more than one query.
 
 - A file a site publishes for agents (`openapi.json`, `llms.txt`, `/.well-known/agents.json`) is a map of its entities and flows: read
   it, never use its API to sign up or post.

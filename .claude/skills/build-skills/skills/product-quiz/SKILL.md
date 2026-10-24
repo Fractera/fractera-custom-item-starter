@@ -96,6 +96,12 @@ The test is one question: **does it change what the product does for someone?** 
    for my product quiz: <what to learn>"`. The core's main agent answers with a task id → `npm run reverse -- get <task>` → build the
    actors, scenarios, entities and rules from `development-docs/product/reverse/<task>/report.json`. It tells how that product works;
    copy none of its content (node step 538). A package or an SDK is analysed the same way.
+   **The report is a summary; the graph holds more** (node step 590-2): when a question of the quiz needs a field, a state or a link the
+   report does not name, ask the node's graph — `npm run graph -- query "<question>" --ll "<entity words>"` (English words; `--hl` for
+   links, `--task <id>` for one study); it always returns the closest items, so read them before relying on one. **Everything a study
+   brings is another product's** — the copy opens with `origin: external-study`,
+   the graph marks each item the same way and prints its notice: a source to learn from, never this element's code, pages, routes or
+   data, and never an item of the quiz until the person wants it.
 4. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.
