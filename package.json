@@ -12,6 +12,7 @@
     "door:add": "node scripts/door-add.mjs",
     "ask-core": "node scripts/ask-core.mjs",
     "reply-core": "node scripts/ask-core.mjs --reply",
+    "need": "node scripts/need.mjs",
     "blocks:ids": "node scripts/check-block-ids.mjs --fix",
     "dev": "next dev",
     "build": "next build",
