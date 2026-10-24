@@ -21,4 +21,5 @@ A hint, not a law. Owner of the node, 2026-10-24: «Если нет то соо�
    `===NEED_OK=== need-…` — recorded; the main agent of the core is woken.
 3. Go on with what you can do without it. Do not build a neighbour's job here and do not guess the answer.
 4. The answer comes into your input as «Answer from the core to «<need>»: …» — found (who and which door), not built yet (the architect
-   is asked), or ready. Use it with `use-i2i`. `npm run need -- status` shows your needs and their stages at any time.
+   is asked), or ready. Found or ready — use it with `use-i2i`. Not built yet — nothing to wait for: say it in one line and finish as
+   usual; when it is built, the core wakes you with «ready». `npm run need -- status` shows your needs and their stages at any time.
