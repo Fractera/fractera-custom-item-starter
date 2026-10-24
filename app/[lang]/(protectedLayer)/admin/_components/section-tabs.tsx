@@ -27,8 +27,10 @@ export function SectionTabs({ lang, page, current }: { lang: string; page: strin
     { href: `/${lang}/admin/${page}`, title: wordsIn(parent, lang).title, on: current === '' },
     ...sectionsOf(page).map((p) => ({ href: `/${lang}/admin/${p.slug}`, title: wordsIn(p, lang).title, on: p.slug === `${page}/${current}` })),
   ]
+  // 581: сверху — линия шапки страницы, снизу — своя; кнопка отстоит от обеих одинаково (`pt-3` = `pb-3`). Владелец 2026-10-24:
+  // выделенная кнопка касалась верхнего разделителя.
   return (
-    <nav data-block="n6kce" aria-label={wordsIn(parent, lang).title} className="mb-6 flex flex-wrap gap-2 border-b border-border pb-3">
+    <nav data-block="n6kce" aria-label={wordsIn(parent, lang).title} className="mb-6 flex flex-wrap gap-2 border-b border-border pt-3 pb-3">
       {items.map((s) => (
         <Link
           key={s.href}
