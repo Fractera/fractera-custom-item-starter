@@ -17,7 +17,15 @@
 //    Every scenario of the references (`O-NN`) names its area and where it was seen; once the quiz has stages, each one goes to a stage
 //    or to «not now». What cannot be seen from outside (`U-NN`) becomes an open question or a decision. The OK line prints the coverage
 //    of the areas and the parity by stage.
-// 8. copies of studied products (node step 590-2, owner 2026-10-23: «агент программиста залезет в Риверс инжиниринг Report и будет его
+// 8. obligations (node step 594-4; owner 2026-10-25: «Оставить пункты квиза» — the quiz keeps its items, REA's ledger stands beside them
+//    as the check; about the ledger: «here is super important part»): a reference studied by this element names its study folder
+//    (`study`, a folder of `study/`); a scenario of the references may name the REA obligations it rests on (`obligations`). When this
+//    machine has the ledgers (`study/<folder>/ledger.json`, written by `npm run ledger`), the two lists are reconciled: a required
+//    obligation (not blocked, not out of scope) that no scenario names, a scenario naming an obligation no ledger has, and a stage called
+//    done while an obligation of its scenarios is not verified are refused — unless the stage says `nature: "different"` (another
+//    platform: the ledger cannot close it, the person's words close the stage, the open obligations stay a known limit). No `study/` on
+//    this machine (a fresh clone: studies are never in git) → the reconciliation is skipped with one line, never refused.
+// 8a. (until 594-4) copies of studied products (node step 590-2, owner 2026-10-23: «агент программиста залезет в Риверс инжиниринг Report и будет его
 //    использовать как реальные существующие элементы проекта»): every `product/reverse/<task>/report.json` opens with
 //    `origin.kind = "external-study"` (written by `npm run reverse -- get <task>`), so whoever opens it sees another product, never this
 //    element's code. Checked even before the quiz has its first file: a study often comes first.
@@ -25,7 +33,7 @@
 //    предыдущего этапа»): a stage called done carries the person's words (`done.date`, `done.said`); a `Stage: N` line of a step names
 //    an existing stage; a plan in `steps-new/` (or the active small step) for a stage after the current one — the first without `done` —
 //    is refused. A reopened step of an earlier stage is legal.
-// No quiz yet → only the copies of studied products are checked. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
+// No quiz yet → only the studies of this machine are counted. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
 //
 // What it does not see: whether the words are product words, whether an item is true, whether the person really said «yes».
 
@@ -50,16 +58,21 @@ const read = (p) => {
   }
 }
 
-// 8. Copies of studied products carry their origin mark (node step 590-2).
-const REVERSE = path.join(DIR, "reverse")
-let copies = 0
-for (const task of fs.existsSync(REVERSE) ? fs.readdirSync(REVERSE, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []) {
-  const file = path.join(REVERSE, task, "report.json")
+// 8. The studies of this machine and their ledgers (node step 594-4): `study/<folder>/ledger.json` is REA's own output; a folder without
+// a ledger has no obligations yet. Absent `study/` (a fresh clone) — nothing to reconcile.
+const STUDY = path.join(ROOT, "study")
+const hasStudies = fs.existsSync(STUDY)
+const studyFolders = hasStudies ? fs.readdirSync(STUDY, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []
+const obligations = new Map() // obligation_id → { status, required, folder }
+let ledgers = 0
+for (const folder of studyFolders) {
+  const file = path.join(STUDY, folder, "ledger.json")
   if (!fs.existsSync(file)) continue
-  copies++
-  const copy = read(file)
-  if (copy && copy.origin?.kind !== "external-study")
-    problems.push(`product/reverse/${task}/report.json — no origin mark «external-study»: copy it again with npm run reverse -- get ${task}`)
+  const ledger = read(file)
+  const n = ledger?.normalized_result ?? ledger
+  if (!Array.isArray(n?.obligations)) { problems.push(`study/${folder}/ledger.json — not a ledger of REA (no «obligations»): build it again with npm run ledger -- ${folder}`); continue }
+  ledgers++
+  for (const o of n.obligations) obligations.set(o.obligation_id, { status: o.status, required: o.required === true, folder })
 }
 
 if (!fs.existsSync(path.join(DIR, "quiz.json"))) {
@@ -68,7 +81,7 @@ if (!fs.existsSync(path.join(DIR, "quiz.json"))) {
     for (const p of problems) console.error("  " + p)
     process.exit(1)
   }
-  console.log(`check:product — no product quiz yet (development-docs/product/quiz.json); copies of studied products: ${copies}, marked`)
+  console.log(`check:product — no product quiz yet (development-docs/product/quiz.json); studies on this machine: ${studyFolders.length}, with a ledger: ${ledgers}`)
   process.exit(0)
 }
 
@@ -163,7 +176,9 @@ if (refs) {
     if (!RULES.includes(p?.rules)) problems.push(`${where} — rules are ${RULES.join(" · ")}, not «${p?.rules}»`)
     if (!SOURCES.includes(p?.source)) problems.push(`${where} — source is ${SOURCES.join(" · ")}, not «${p?.source}»`)
     if (p?.source === "analysis" && p?.rules !== "allowed") problems.push(`${where} — its rules are «${p?.rules}»: a site that forbids it, or whose rules are unread, is never analysed (screenshots instead)`)
-    if (p?.source === "analysis" && !filled(p?.report)) problems.push(`${where} — an analysis without its report id`)
+    if (p?.report !== undefined) problems.push(`${where} — «report» is gone with npm run reverse (node step 594): name the study folder in «study»`)
+    if (p?.source === "analysis" && !filled(p?.study)) problems.push(`${where} — an analysis without its study folder («study»: a folder of study/)`)
+    if (p?.source === "analysis" && filled(p?.study) && hasStudies && !studyFolders.includes(p.study)) problems.push(`${where} — its study folder study/${p.study} is not on this machine`)
     // 556-8: internal pages were studied in a test account — only one the person confirmed (owner 2026-10-22: «пользователь должен
     // подтвердить лично»), only on a site whose rules allow it, only by the node's analysis.
     if (p?.account !== undefined) {
@@ -192,7 +207,25 @@ if (refs) {
     if (hasLater && !notNowIds.has(o.notNow)) problems.push(`${where} — «not now» ${o.notNow} is not in the quiz`)
     if (!hasStage && !hasLater && stages.length) problems.push(`${where} — goes to no stage and not to «not now»`)
     if (hasStage) { assigned++; perStage.set(o.stage, (perStage.get(o.stage) ?? 0) + 1) }
+    if (o?.obligations !== undefined && (!Array.isArray(o.obligations) || o.obligations.some((x) => !filled(x)))) problems.push(`${where} — «obligations» is a list of obligation ids of REA's ledger`)
     if (hasLater) later++
+  }
+  // 594-4: the quiz's scenarios and REA's ledger — one knowledge in two halves, so a guard on both sides.
+  if (ledgers) {
+    const named = new Map() // obligation_id → scenario ids
+    for (const o of scenarios) for (const id of Array.isArray(o?.obligations) ? o.obligations : []) named.set(id, [...(named.get(id) ?? []), o.id])
+    for (const [id, by] of named) if (!obligations.has(id)) problems.push(`scenario of the references ${by.join(", ")} — obligation ${id} is in no ledger of study/ (npm run ledger -- <folder>)`)
+    for (const [id, o] of obligations) {
+      if (o.required && !["blocked", "out-of-scope"].includes(o.status) && !named.has(id))
+        problems.push(`obligation ${id} (study/${o.folder}) — required, and no scenario of the references names it: give it to the scenario it belongs to, or mark it out of scope in obligations.json`)
+    }
+    for (const s of stages) {
+      if (!s?.done) continue
+      const open = scenarios.filter((o) => o?.stage === s.n).flatMap((o) => (Array.isArray(o?.obligations) ? o.obligations : []))
+        .filter((id) => obligations.has(id) && obligations.get(id).status !== "verified")
+      if (open.length && s?.nature !== "different")
+        problems.push(`stage ${s.n} — called done while obligations of its scenarios are not verified: ${open.join(", ")} (npm run ledger; another platform — nature «different»)`)
+    }
   }
   const questionIds = new Set((Array.isArray(quiz?.openQuestions) ? quiz.openQuestions : []).map((q) => q?.id))
   for (const u of unknowns) {
@@ -241,5 +274,5 @@ if (problems.length) {
   for (const p of problems) console.error("  " + p)
   process.exit(1)
 }
-console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages${stages.length ? ` (current: ${current ?? "all done"})` : ""}, ${copies} copies of studied products (marked)`)
+console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages${stages.length ? ` (current: ${current ?? "all done"})` : ""}, studies ${studyFolders.length}, ledgers ${ledgers}, obligations ${obligations.size}`)
 if (referenceLine) console.log(referenceLine)

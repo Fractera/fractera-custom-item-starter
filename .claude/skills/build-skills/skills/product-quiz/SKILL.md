@@ -187,6 +187,31 @@ The page puts a ready line into the terminal: «Product quiz, item S-03 «…»�
 When the person asks for something large without a quiz, say once what it will touch and offer fifteen minutes of planning: «Without
 a plan this will need rebuilding later; shall we describe it first?» Do not repeat the offer in the same session.
 
+## 7a. Obligations — the quiz and REA's ledger side by side (node step 594)
+
+The owner of the node, 2026-10-25: «Оставить пункты квиза» — the quiz keeps its items and scenarios; REA's ledger of obligations stands
+beside them as the check (about it: «here is super important part»). One knowledge in two halves, so `npm run check:product` reconciles
+them wherever the study is on the machine.
+
+- **An obligation is one behaviour our product must show**, written in REA's own shape (`reverse-engineer-anything`, its references)
+  into `study/<folder>/obligations.json` when the person has decided to take a scenario of the references: `obligation_id` (stable,
+  English, `area.behaviour`), `obligation_version` (raise it when the requirement changes), `title`, `application_layer` (`application`
+  for what a person sees), `required_case_kinds` (`positive`, and `negative` · `malformed` · `cancellation` · `teardown` where the person
+  can meet them — wrong input, an empty list, a refused payment), `required_original_authority` (`runtime` for what the study saw in a
+  browser), `required_fixture_authority` and `required_verifier_authority` (`renderer` for our own pages), `disposition`, and
+  `review_evidence_ids` — the records of the study's `bundle.json` it rests on. Then `npm run ledger -- <folder>`.
+- **Behaviour, never mechanics.** The test: would it stay true if the original's authors rewrote it in another language and framework?
+  No — `disposition: "out-of-scope"` (REA: «records the disposition but does not silently count it as verified»).
+- **The scenario names its obligations** — `"obligations": ["…"]` on the scenario of the references (`O-NN`). A required obligation
+  no scenario names, or a scenario naming an obligation no ledger has, is a red line.
+- **A stage is done when its obligations are verified and the person says it works.** The ledger closes an obligation only with our
+  implementation bound to it and a proof as strong as the observation of the original; until then the stage stays open. **Another
+  platform** (an iOS app rebuilt as a web element, a desktop tool rebuilt as a door): REA's levels of proof cannot compare — the stage
+  says `"nature": "different"`, the person's words close it, and the open obligations stay a known limit, named to the person.
+- **The machine is too small for the product** (heavy video work on a graphics card, professional tools, machine control) and the task is
+  critical to the person's business: name what it needs and offer a consultation on moving to a stronger rented computer with Fractera
+  installed there — never «we cannot» (owner of the node, 2026-10-25).
+
 ## 8. Before you commit a quiz change
 
 `npm run check:product` — unique numbers, dependencies that exist and do not run in a circle, confirmed items with a date and words,

@@ -32,19 +32,24 @@ Yes — it is behaviour (screens, flows, states, errors, rules): take it. No —
 
 ## Study — how
 
-- **REA by its command line:** `npm run rea -- <command> …` — one copy in the node's core; REA's MCP server is not connected (owner of
-  the node, 2026-10-25: «Командная строка, MCP по замеру»). Each call is a separate process: save every result as REA writes it —
-  `--detail summary --evidence_output study/<folder>/<name>.json` where a command offers it, otherwise the complete JSON redirected into
-  that folder — and read it with REA's own views: `npm run rea -- inspect-analysis-view <request.json>` with
-  `{"source":{"kind":"evidence-file","path":"study/<folder>/<name>.json"},"view":{"kind":"summary"}}`, then a page or one item. Never
-  open a large record whole and never dig it with scripts of your own (✗ node step 556-5: about twenty such calls in one study).
+- **REA's MCP tools in this pass, its command line everywhere.** In this pass only, the node starts REA's MCP server for the session
+  (one copy in the node's core). The owner of the node, 2026-10-25: «Командная строка, MCP по замеру»; the measurement: a ledger of
+  obligations needs ONE canonical bundle of all the study's records, and only an MCP session makes it — the command line writes one
+  record per call and refuses a bundle glued by hand («Evidence bundle manifests are not canonical»). Claude Code defers MCP tools: at the
+  start only their names are in your context; a tool's description comes when you search for it. So: observe with REA's MCP tools —
+  every record stays in the session with its id — and before the session ends run `export_evidence_bundle` with the absolute path of
+  `study/<folder>/bundle.json` (a new name for each export; it never overwrites). Read saved records with REA's own views — MCP
+  `inspect_analysis_view`, or `npm run rea -- inspect-analysis-view <request.json>` with
+  `{"source":{"kind":"evidence-file","path":"study/<folder>/bundle.json","evidence_id":"ev_…"},"view":{"kind":"summary"}}` — then a page
+  or one item. Never open a large record whole and never dig it with scripts of your own (✗ node step 556-5: about twenty such calls).
 - **The browser is the node's:** `npm run study -- browser start <url>` prints its debugging address `http://127.0.0.1:<port>` (REA
   takes only the loopback, never `localhost`). The passive tools attach to it: `list-browser-targets`, `inspect-web-page`,
   `observe-web-session` (the person acts, REA records — the only evidence of which script sent a request), `analyze-web-bundle`,
   `capture-web-screenshot`. A test account: `npm run study -- browser start <url> --site <site>` — the node's guard blocks every write.
 - **A scenario on someone else's site** (`capture-browser-scenario`) runs only in `connect` mode against that browser. REA's own
   `launch` mode is for the person's own application; REA «is not a browser sandbox or network containment mechanism», and on someone
-  else's site no step writes — no `request` step that is not a read, no form that sends.
+  else's site no step writes — no `request` step that is not a read, no form that sends. A page with a service worker is refused under
+  REA's default (`target_unavailable`): for observation set `"environment": {"service_workers": "allow"}` — never with a `request` step.
 - **Take only what the question needs.** REA keeps structure, not values, by default. Script sources (`--include-script-sources`),
   accessibility text and response bodies — only for a question that needs them; never read a site's `llms.txt` or a captured script
   whole into the conversation (✗ 556-5: three reads of one `llms.txt`, about 42 KB).
@@ -60,6 +65,11 @@ A study is a folder of this element: `study/<YYYY-MM-DD>-<site>/` at the root, o
 inputs you wrote, and your investigation notes `notes.md`: each finding with the Evidence id that supports it, each open question as
 an unknown (REA's method). Someone else's code and pages live there, so a study never goes into a commit, a page, the code or the data.
 Deleting this element deletes its studies.
+
+**The ledger of obligations lives there too** (owner of the node, 2026-10-25, about REA's ledger: «here is super important part»).
+`study/<folder>/obligations.json` — the behaviour our product must show, REA's reviewed obligations as REA defines them (skill
+`product-quiz`, «Obligations»), each citing the records of `bundle.json` it rests on; `study/<folder>/manifest.json` — who in our code
+owns an obligation, once it is built. `npm run ledger -- <folder>` asks REA for the ledger and writes `study/<folder>/ledger.json`.
 
 ## Study — the way back
 
