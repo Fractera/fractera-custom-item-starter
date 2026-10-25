@@ -205,7 +205,10 @@ them wherever the study is on the machine.
 - **The scenario names its obligations** — `"obligations": ["…"]` on the scenario of the references (`O-NN`). A required obligation
   no scenario names, or a scenario naming an obligation no ledger has, is a red line.
 - **A stage is done when its obligations are verified and the person says it works.** The ledger closes an obligation only with our
-  implementation bound to it and a proof as strong as the observation of the original; until then the stage stays open. **Another
+  implementation bound to it and a proof as strong as the observation of the original. **Today a web element's obligation stays open**
+  (node step 594-5): REA reads a proof record and makes none («this operation label does not expose a proof executor»), and we never
+  forge REA's records. So when the person says the stage works, show each open obligation by its title, and only on their «yes» write
+  them into `done.openObligations` beside their words — the ledger stays honest, the stage closes. **Another
   platform** (an iOS app rebuilt as a web element, a desktop tool rebuilt as a door): REA's levels of proof cannot compare — the stage
   says `"nature": "different"`, the person's words close it, and the open obligations stay a known limit, named to the person.
 - **The machine is too small for the product** (heavy video work on a graphics card, professional tools, machine control) and the task is

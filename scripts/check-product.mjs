@@ -22,8 +22,10 @@
 //    (`study`, a folder of `study/`); a scenario of the references may name the REA obligations it rests on (`obligations`). When this
 //    machine has the ledgers (`study/<folder>/ledger.json`, written by `npm run ledger`), the two lists are reconciled: a required
 //    obligation (not blocked, not out of scope) that no scenario names, a scenario naming an obligation no ledger has, and a stage called
-//    done while an obligation of its scenarios is not verified are refused — unless the stage says `nature: "different"` (another
-//    platform: the ledger cannot close it, the person's words close the stage, the open obligations stay a known limit). No `study/` on
+//    done while an obligation of its scenarios is not verified are refused — unless the person accepted it open by name
+//    (`done.openObligations`; node step 594-5: REA reads a proof record and makes none — «this operation label does not expose a proof
+//    executor» — so for now a web element's obligation stays open, and an honest stage names it) or the stage says `nature: "different"`
+//    (another platform: the ledger cannot close it, the person's words close the stage, the open obligations stay a known limit). No `study/` on
 //    this machine (a fresh clone: studies are never in git) → the reconciliation is skipped with one line, never refused.
 // 8a. (until 594-4) copies of studied products (node step 590-2, owner 2026-10-23: «агент программиста залезет в Риверс инжиниринг Report и будет его
 //    использовать как реальные существующие элементы проекта»): every `product/reverse/<task>/report.json` opens with
@@ -221,10 +223,12 @@ if (refs) {
     }
     for (const s of stages) {
       if (!s?.done) continue
+      const accepted = Array.isArray(s.done?.openObligations) ? s.done.openObligations : []
+      for (const id of accepted) if (!obligations.has(id)) problems.push(`stage ${s.n} — done.openObligations names ${id}, which is in no ledger of study/`)
       const open = scenarios.filter((o) => o?.stage === s.n).flatMap((o) => (Array.isArray(o?.obligations) ? o.obligations : []))
-        .filter((id) => obligations.has(id) && obligations.get(id).status !== "verified")
+        .filter((id) => obligations.has(id) && obligations.get(id).status !== "verified" && !accepted.includes(id))
       if (open.length && s?.nature !== "different")
-        problems.push(`stage ${s.n} — called done while obligations of its scenarios are not verified: ${open.join(", ")} (npm run ledger; another platform — nature «different»)`)
+        problems.push(`stage ${s.n} — called done while obligations of its scenarios are not verified: ${open.join(", ")} (npm run ledger; or the person accepts them open by name in done.openObligations; another platform — nature «different»)`)
     }
   }
   const questionIds = new Set((Array.isArray(quiz?.openQuestions) ? quiz.openQuestions : []).map((q) => q?.id))
