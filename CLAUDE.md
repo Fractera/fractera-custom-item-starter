@@ -33,8 +33,8 @@ frontmatter and «Subagent: allowed — <why>» in its body (owner of the node, 
 Which process a request belongs to (`development-docs/glossary.md`: build process, working process) decides how you answer.
 The test: **will git change after this?** Yes — it is building, whatever it looked like. One named exception: the passport switch
 `automation.cron` is the working process (`.claude/modes/work.md`, «Cron automations»).
-**The first line of every answer is the name of the process and nothing else** — «Build process» (in the design or texts pass:
-«Build process — design», «Build process — texts», node step 590-5) or «Working process», in the
+**The first line of every answer is the name of the process and nothing else** — «Build process» (in the design, texts or study pass:
+«Build process — design», «Build process — texts», «Build process — study», node steps 590-5 and 594) or «Working process», in the
 person's language (owner of the node, 2026-10-19: the element understands at once which of the two a request belongs to). A
 question about how to build or change something belongs to the build process; any other question — to the working process.
 **A request opens with its process too** — «Build process:», «Working process:» or «Messenger:»; the node puts the word and wakes

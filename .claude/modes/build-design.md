@@ -24,8 +24,8 @@ The owner of the node, 2026-10-23:
 From a product studied by reverse engineering, screenshots or knowledge we take its interface
 elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
 load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
-search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
-everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+search optimization, without static pages or with heavy load, we solve our own native way. Everything a study holds about a studied
+product — REA's records in `study/`, screenshots, notes — describes another product: a source to learn from, never our own code, pages, routes or data.
 
 ## The design of a stage — before its code
 

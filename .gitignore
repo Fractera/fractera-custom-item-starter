@@ -104,3 +104,6 @@ next-env.d.ts
 
 # 315: font files copied from @fontsource packages before each build (scripts/local-fonts.mjs)
 public/fonts/
+
+# REA studies of other products — the study pass (node step 594): someone else's code and pages, never in git
+/study/

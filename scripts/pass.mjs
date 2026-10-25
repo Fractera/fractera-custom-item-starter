@@ -1,4 +1,4 @@
-// npm run pass -- <main|design|texts> "<the request>" — move the build work of this element to another pass (node step 590-5).
+// npm run pass -- <main|design|texts|study> "<the request>" — move the build work of this element to another pass (node steps 590-5, 594-3).
 //
 // The owner of the node, 2026-10-23: «работа с дизайном, и работа с текстами не должна происходить одновременно с Обще стадией
 // разработки … Если есть задача переработать тексты значит это отдельное окно где в контекст приходит только задача по обновлению
@@ -12,12 +12,12 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { coreUrl, env, ROOT } from './core-door.mjs'
 
-const WORDS = { main: 'Build process:', design: 'Build process, design:', texts: 'Build process, texts:' }
+const WORDS = { main: 'Build process:', design: 'Build process, design:', texts: 'Build process, texts:', study: 'Build process, study:' }
 const [pass, ...rest] = process.argv.slice(2)
 const request = rest.join(' ').trim()
 const fail = (why) => { console.log(`===PASS_FAILED=== ${why}`); process.exit(1) }
 
-if (!WORDS[pass]) { console.log('usage: npm run pass -- <main|design|texts> "<the request>"'); process.exit(2) }
+if (!WORDS[pass]) { console.log('usage: npm run pass -- <main|design|texts|study> "<the request>"'); process.exit(2) }
 if (process.env.FRACTERA_PASS === pass) { console.log(`===PASS_SAME=== this session already runs the ${pass} pass — do the work here`); process.exit(0) }
 
 let id = null

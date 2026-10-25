@@ -65,11 +65,10 @@ avatars, comments) never go into the quiz. When the person has confirmed the ite
 ## 4. Scenario 2 — similar sites whose rules allow it
 
 Ask the person for three to five sites or open projects that do the same job (small, experimental, open-source). Check §2 for each.
-For every allowed one: `npm run ask-core -- "Reverse engineer <address> for my product quiz: <what to learn — the scenarios, the
-entities, the rules>"`, one at a time — the next only after the report of the previous one (`npm run reverse -- get <task>`). The
-node checks the rules again before it turns its analysis element on. The copy opens with its origin mark (`external-study`); a question
-the report leaves open goes to the node's graph first (`npm run graph -- query …`, skill `product-quiz` §3) — another study costs far
-more than one query.
+For every allowed one, a study in this element's own study pass — `npm run pass -- study "Study <address> for my product quiz:
+<what to learn — the scenarios, the entities, the rules>"` — one site at a time, the next only after the previous one is written up
+(`.claude/modes/build-study.md`: the rules again, REA's records in `study/<date>-<site>/`, out of git). A question a study leaves open
+goes to its records first — REA's own views (`npm run rea -- inspect-analysis-view …`) — another study costs far more than one view.
 
 - A file a site publishes for agents (`openapi.json`, `llms.txt`, `/.well-known/agents.json`) is a map of its entities and flows: read
   it, never use its API to sign up or post.
@@ -78,20 +77,19 @@ more than one query.
 
 ## 4a. Scenario 3 — internal pages, in a test account the person confirms
 
-What is behind the sign-in (a dashboard, the submit flow, settings) the node's agent studies itself — the owner of the node,
+What is behind the sign-in (a dashboard, the submit flow, settings) the study pass studies itself — the owner of the node,
 2026-10-22: «в отличие от пользователя он может хотя бы примерно знать как работает продукт … на какие кнопки надо нажать», in an
 account that «не должен быть реальным пользователем … не страшно потерять это пользователь должен подтвердить лично».
 
 - Only on a site whose rules allow it (§2) and whose terms do not forbid automating an account, several accounts or bots.
 - Ask the person to create a test account there: not their main one and not someone else's, with no personal or payment data, one
-  they are not afraid to lose. Then the core's main agent opens the login window on the node's computer (`npm run ask-core -- "Open
-  the login window for the test account of <site>"`): the person ticks three statements, types the site name and signs in himself.
-  You never ask for a password and never create an account.
-- Then ask for the analysis of the internal pages (`ask-core`), naming the areas you need. The node's analysis chooses for each area:
-  a walk of its own (reads only — a guard blocks every action), a walk the person drives while it records, or screenshots — and
+  they are not afraid to lose. Then open the node's login window on this computer (`npm run study -- login <site>`): the person ticks
+  three statements, types the site name and signs in himself. You never ask for a password and never create an account.
+- Then study the internal pages in the study pass, naming the areas you need. For each area it chooses: a walk of its own through
+  the node's study browser (reads only — a guard blocks every write), a walk the person drives while REA records, or screenshots — and
   returns a map of screens and transitions with the points of no return (what happens after «send» or «pay» is seen only when the
   person does it himself, in his test account).
-- In `references.products` the site gets `"account": { "kind": "test", "consentAt": "<the date from npm run ask-core / the node>" }`.
+- In `references.products` the site gets `"account": { "kind": "test", "consentAt": "<the date from npm run study -- accounts>" }`.
 
 ## 5. The map — what the references show
 
@@ -100,7 +98,7 @@ Into `quiz.json` → `references`:
 ```json
 {
   "products": [
-    { "id": "REF-1", "name": "…", "url": "https://…", "rules": "allowed", "source": "analysis", "report": "<task id>",
+    { "id": "REF-1", "name": "…", "url": "https://…", "rules": "allowed", "source": "analysis", "study": "<its folder in study/>",
       "account": { "kind": "test", "consentAt": "<date>" } },
     { "id": "REF-2", "name": "…", "url": "https://…", "rules": "forbidden", "source": "screenshots" }
   ],
@@ -110,7 +108,7 @@ Into `quiz.json` → `references`:
 }
 ```
 
-`source`: `analysis` (a report of the node) · `screenshots` · `knowledge` (what you know of a famous product) · `owner` (the person
+`source`: `analysis` (a study of this element: its folder in `study/`) · `screenshots` · `knowledge` (what you know of a famous product) · `owner` (the person
 told you). Each scenario of the references names where it was seen; one seen in three of five references is almost surely needed.
 What cannot be seen from outside — the order of a list, protection from fake votes, moderation — is never guessed: an `unknowns` entry
 that becomes an open question (`Q-NN`) or the person's decision.
@@ -137,7 +135,7 @@ no unknown is left without a question or a decision, and the person confirmed th
 
 Only functions cross over: never their code, texts, images, design, data, names or logos. The look comes from the node's design
 skills (`custom-design`), the texts are written anew (`humanizer`), the data is the person's own. No mass runs on small sites: a
-few representative pages each, one analysis at a time.
+few representative pages each, one study at a time.
 
 <!-- RULE: our-architecture -->
 🔒 Our architecture, never theirs — non-cancellable (owner of the node, 2026-10-23:
@@ -145,8 +143,8 @@ few representative pages each, one analysis at a time.
 From a product studied by reverse engineering, screenshots or knowledge we take its interface
 elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
 load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
-search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
-everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+search optimization, without static pages or with heavy load, we solve our own native way. Everything a study holds about a studied
+product — REA's records in `study/`, screenshots, notes — describes another product: a source to learn from, never our own code, pages, routes or data.
 
 ## Do not
 

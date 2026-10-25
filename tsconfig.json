@@ -45,6 +45,7 @@
   ],
   "exclude": [
     "node_modules",
-    "WEB4-ITEMS"
+    "WEB4-ITEMS",
+    "study"
   ]
 }

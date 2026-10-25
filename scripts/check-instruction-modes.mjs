@@ -19,6 +19,8 @@ const PLACE = {
     'Passes', 'Page', 'Report what a person can see', 'Tree'],
   '.claude/modes/build-design.md': ['The design pass', 'Design skill'],
   '.claude/modes/build-texts.md': ['The texts pass', 'Texts'],
+  // 594-3: проход разбора — свой файл законов, привратник навыка REA.
+  '.claude/modes/build-study.md': ['Study — what this pass is for', 'Study — before you start', 'Study — how', 'Study — where it lives', 'Study — the way back'],
   '.claude/modes/work.md': ['Working process — do the job', 'Skills of the working-process session', 'Cron automations'],
 }
 const problems = []
@@ -52,4 +54,4 @@ if (problems.length) {
   process.exit(1)
 }
 const count = Object.values(PLACE).flat().length
-console.log(`===INSTRUCTION_MODES_OK=== разделов на своих местах: ${count} (CLAUDE.md ${headings['CLAUDE.md'].length}, build ${headings['.claude/modes/build.md'].length}, design ${headings['.claude/modes/build-design.md'].length}, texts ${headings['.claude/modes/build-texts.md'].length}, work ${headings['.claude/modes/work.md'].length})`)
+console.log(`===INSTRUCTION_MODES_OK=== разделов на своих местах: ${count} (CLAUDE.md ${headings['CLAUDE.md'].length}, build ${headings['.claude/modes/build.md'].length}, design ${headings['.claude/modes/build-design.md'].length}, texts ${headings['.claude/modes/build-texts.md'].length}, study ${headings['.claude/modes/build-study.md'].length}, work ${headings['.claude/modes/work.md'].length})`)

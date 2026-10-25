@@ -5,8 +5,8 @@
   "scripts": {
     "check:routes": "node scripts/check-routes.mjs",
     "node": "node scripts/node.mjs",
-    "reverse": "node scripts/reverse.mjs",
-    "graph": "node scripts/graph.mjs",
+    "rea": "node scripts/rea.mjs",
+    "study": "node scripts/study.mjs",
     "pass": "node scripts/pass.mjs",
     "design-skill": "node scripts/design-skill.mjs",
     "site-rules": "node scripts/site-rules.mjs",

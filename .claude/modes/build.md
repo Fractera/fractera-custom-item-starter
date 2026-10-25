@@ -79,8 +79,8 @@ a commit message.
 
 | Group | Mode | Skills |
 |---|---|---|
-| build-skills | build | `use-blocks` (a section of a page is a block: from the catalogue or built in this element by the node's mode, taken once with a build, then reused in page data without one), `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `use-site-settings` (name, menu, footer, cookie banner and feature switches are settings: CONFIG sets them while the link is on, this element’s /admin/site-settings/* while it is off), `use-design` (the look is tokens in DESIGN-CONFIG: the shared Design sets them while the link is on, this element’s workshop /admin/design while it is off; a saved token needs no build), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `product-clone` (a product like an existing one: the site's rules first — screenshots for a forbidden site, the node's analysis of similar allowed ones — then references, stages and parity), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
-| vendored | build — each only in its pass (the line `Pass:` of its `SOURCE.md`) | `ai-elements` (main, design), `copy-editing` (texts), `copywriting` (texts), `design-taste-frontend` (design), `humanizer` (texts; published texts only, `.claude/modes/build-texts.md`, «Texts»), `impeccable` (design), `shadcn` (main, design) |
+| build-skills | build | `use-blocks` (a section of a page is a block: from the catalogue or built in this element by the node's mode, taken once with a build, then reused in page data without one), `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `use-site-settings` (name, menu, footer, cookie banner and feature switches are settings: CONFIG sets them while the link is on, this element’s /admin/site-settings/* while it is off), `use-design` (the look is tokens in DESIGN-CONFIG: the shared Design sets them while the link is on, this element’s workshop /admin/design while it is off; a saved token needs no build), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `product-clone` (a product like an existing one: the site's rules first — screenshots for a forbidden site, a study of similar allowed ones in the study pass — then references, stages and parity), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
+| vendored | build — each only in its pass (the line `Pass:` of its `SOURCE.md`) | `ai-elements` (main, design), `copy-editing` (texts), `copywriting` (texts), `design-taste-frontend` (design), `humanizer` (texts; published texts only, `.claude/modes/build-texts.md`, «Texts»), `impeccable` (design), `reverse-engineer-anything` (study — REA's own method and records; the gate: `.claude/modes/build-study.md`), `shadcn` (main, design) |
 
 **A skill starts with its process and its group** (owner of the node, 2026-10-12 and 2026-10-20: an agent that creates a skill
 must first decide whether it belongs to the working or to the build process). Creating or rewriting a skill: first decide its
@@ -92,22 +92,23 @@ skill (a `SOURCE.md` beside it) stays at the root and keeps its own text — its
 `SOURCE.md`, its pass the line `Pass: …` (node step 590-5). `npm run prebuild` fails on a skill without a process or outside its group,
 and on a vendor skill without its pass (`scripts/check-skill-process.mjs`).
 
-## Passes — design and texts, each in a session of its own
+## Passes — design, texts and study, each in a session of its own
 
 The owner of the node, 2026-10-23:
 «работа с дизайном, и работа с текстами не должна происходить одновременно с Обще стадией разработки … Если есть задача переработать тексты значит это отдельное окно где в контекст приходит только задача по обновлению текстов»;
-2026-10-25, the switch: «Да, командой агента (Рекомендую)».
+2026-10-25, the switch: «Да, командой агента (Рекомендую)»; the study (node step 594): «разборы он должен хранить внутри каждого элемента так как если мы запускаем Claude Code Agent из соответствующей папки все работаю он идёт внутри этой папки и чувствуют себя в ней как дома».
 
 - **A build session runs one pass** (node step 590-5): **main** — code, doors, data, the product quiz, deploys; **design** — blocks,
   widgets, the look (its laws: `.claude/modes/build-design.md`); **texts** — the words people read (`.claude/modes/build-texts.md`,
-  on Sonnet). The heavy skills live only in their pass: `impeccable` and `design-taste-frontend` — design; `humanizer`, `copywriting`
-  and `copy-editing` — texts. A loaded skill stays in the session to its end, so a session that never loads them stays light.
+  on Sonnet); **study** — someone else's product studied with REA (`.claude/modes/build-study.md`, node step 594). The heavy skills live
+  only in their pass: `impeccable` and `design-taste-frontend` — design; `humanizer`, `copywriting` and `copy-editing` — texts;
+  `reverse-engineer-anything` — study. A loaded skill stays in the session to its end, so a session that never loads them stays light.
 - **The first line of every answer names the pass:** «Build process — design» («Строительный процесс — дизайн»), «Build process —
-  texts»; the main pass stays «Build process».
-- **Work of another pass is never done here.** Write `current-step.md`, then `npm run pass -- <main|design|texts> "<the request>"`:
+  texts», «Build process — study»; the main pass stays «Build process».
+- **Work of another pass is never done here.** Write `current-step.md`, then `npm run pass -- <main|design|texts|study> "<the request>"`:
   the node closes this session and starts the session of that pass with the request — a fresh context that reads `current-step.md`
   first. From Telegram the same: the bot moves to the new session.
-- **A request from the node opens with its pass:** «Build process, design:», «Build process, texts:», «Build process:» (main).
+- **A request from the node opens with its pass:** «Build process, design:», «Build process, texts:», «Build process, study:», «Build process:» (main).
 - **A step's substeps name their pass** — `Pass: design`, `Pass: main`, `Pass: texts` — in that order: blocks and page skeletons
   first, the logic next, the words last (skill `use-development-docs`).
 
@@ -133,8 +134,8 @@ without a rebuild (ISR); a dynamic piece is added only when nothing else can do 
 From a product studied by reverse engineering, screenshots or knowledge we take its interface
 elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
 load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
-search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
-everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+search optimization, without static pages or with heavy load, we solve our own native way. Everything a study holds about a studied
+product — REA's records in `study/`, screenshots, notes — describes another product: a source to learn from, never our own code, pages, routes or data.
 
 **A route owns its own.** Widgets, components, functions, data and translations one route needs live in its folder: delete
 the route and everything that served it is gone, no tails. Only what two or more routes use goes up to `components/`, `lib/`,

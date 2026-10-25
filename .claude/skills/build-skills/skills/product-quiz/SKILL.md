@@ -77,8 +77,8 @@ code, the media doors, the A2A card and two guards to learn where the quiz goes,
 From a product studied by reverse engineering, screenshots or knowledge we take its interface
 elements and its business logic — never its technical architecture. Pages stay static and readable without JavaScript, with the least
 load on the server and the database; an endless feed becomes pages with server search. Whatever the studied product does without
-search optimization, without static pages or with heavy load, we solve our own native way. A report of a studied product and
-everything the graph marks external-study describe another product: a source to learn from, never our own code, pages, routes or data.
+search optimization, without static pages or with heavy load, we solve our own native way. Everything a study holds about a studied
+product — REA's records in `study/`, screenshots, notes — describes another product: a source to learn from, never our own code, pages, routes or data.
 
 ## 2. When to load it, and when not
 
@@ -103,17 +103,14 @@ The test is one question: **does it change what the product does for someone?** 
 3. **Like a finished product?** When the person names one («like Product Hunt») or the vision plainly matches one, load the skill
    `product-clone` first: it checks each site's rules — a site that forbids automated study is never analysed (a series of
    screenshots from the person instead, or similar sites whose rules allow it) — and keeps the references. For an allowed site, offer
-   an analysis in one question with its price: «I can ask the node to analyse <product>: it turns its reverse engineering element on for a few
-   minutes, about 1 GB of memory, and off again. Shall I?» On «yes»: `npm run ask-core -- "Reverse engineer <a URL, or package@version>
-   for my product quiz: <what to learn>"`. The core's main agent answers with a task id → `npm run reverse -- get <task>` → build the
-   actors, scenarios, entities and rules from `development-docs/product/reverse/<task>/report.json`. It tells how that product works;
-   copy none of its content (node step 538). A package or an SDK is analysed the same way.
-   **The report is a summary; the graph holds more** (node step 590-2): when a question of the quiz needs a field, a state or a link the
-   report does not name, ask the node's graph — `npm run graph -- query "<question>" --ll "<entity words>"` (English words; `--hl` for
-   links, `--task <id>` for one study); it always returns the closest items, so read them before relying on one. **Everything a study
-   brings is another product's** — the copy opens with `origin: external-study`,
-   the graph marks each item the same way and prints its notice: a source to learn from, never this element's code, pages, routes or
-   data, and never an item of the quiz until the person wants it.
+   a study in one question with its price: «I can study <product> in a study session of my own: REA and the node's study browser hold
+   about 1 GB of memory while it runs, and the session spends your subscription. Shall I?» On «yes»: write `current-step.md`, then
+   `npm run pass -- study "Study <a URL, or package@version> for my product quiz: <what to learn>"`. Back in the quiz, build the
+   actors, scenarios, entities and rules from the study's folder `study/<date>-<site>/` — its notes first, then REA's records through
+   REA's own views (`npm run rea -- inspect-analysis-view …`: a summary, a page, one item), never a large file opened whole. It tells
+   how that product works; copy none of its content (node step 538). A package or an SDK is studied the same way. **Everything a study
+   brings is another product's**: a source to learn from, never this element's code, pages, routes or data, and never an item of the
+   quiz until the person wants it.
 4. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.

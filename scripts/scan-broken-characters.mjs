@@ -79,15 +79,16 @@ function safeContext(line, col) {
   return marked.trim().slice(0, 120)
 }
 
-async function* walk(dir) {
+// 594-3: `study/` at the root holds REA's records of someone else's product — machine output of a foreign site, like `.next`.
+async function* walk(dir, root = dir) {
   let entries
   try { entries = await readdir(dir, { withFileTypes: true }) } catch { return }
   for (const e of entries) {
     if (e.name.startsWith(".") && e.name !== ".env.local" && SKIP_DIR.has(e.name)) continue
     const full = join(dir, e.name)
     if (e.isDirectory()) {
-      const skipped = SKIP_DIR.has(e.name) || SKIP_PREFIX.some(p => e.name.startsWith(p))
-      if (!skipped) yield* walk(full)
+      const skipped = SKIP_DIR.has(e.name) || SKIP_PREFIX.some(p => e.name.startsWith(p)) || (dir === root && e.name === "study")
+      if (!skipped) yield* walk(full, root)
     }
     else if (SCAN_EXT.test(e.name) && !SKIP_FILE.test(e.name)) yield full
   }
