@@ -12,8 +12,8 @@ import { OUR_ARCHITECTURE, flat } from './our-architecture.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const ANCHOR = '<!-- RULE: our-architecture -->'
-// A build skill's file from its name: the list names skills an element may not have (reverse-engineer lives only in the reverse
-// element, product-clone only in custom elements), so it holds names, not paths that would point nowhere in this element.
+// A build skill's file from its name: the list names skills an element may not have (product-clone lives only in custom elements),
+// so it holds names, not paths that would point nowhere in this element.
 const buildSkill = (name) => ['.claude', 'skills', 'build-skills', 'skills', name, 'SKILL.md'].join('/')
 const DOCS = ['.claude/modes/build.md', '.claude/modes/build-design.md', '.claude/modes/build-study.md', ...['product-quiz', 'product-clone'].map(buildSkill)]
 const REQUIRED = new Set(['.claude/modes/build.md', '.claude/modes/build-study.md'])
