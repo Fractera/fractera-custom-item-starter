@@ -34,7 +34,8 @@ Two kinds of file, both JSON, so the core's page and `npm run check:product` rea
 - `quiz.json` — `vision` {text, status}, `actors` [{id `A-NN`, name, text}], `modules` (the order of the module files),
   `openQuestions` [{id `Q-NN`, text, about: item ids}], `notNow` [{id `N-NN`, text}], `stages` [{`n` 0, 1, 2… in order, `name`,
   `works` (what works on its own after this stage), `items` (the items it serves), `ready` (an observable sign that it is done),
-  `status`, `confirmed`}], `decisions` [{date, said (the person's words verbatim, in «…»), gist (English)}]. Older quizzes have
+  `status`, `confirmed`, `done` {date, said} — the person's words that the stage works, node step 590-4}], `decisions` [{date, said
+  (the person's words verbatim, in «…»), gist (English)}]. Older quizzes have
   `slices` [{id `L-NN`, name, items}] — they are read as stages. A product like an existing one also has `references` — the
   similar products, their areas, the scenarios they show and what cannot be seen from outside; its form and rules are in the skill
   `product-clone`.
@@ -117,11 +118,19 @@ The test is one question: **does it change what the product does for someone?** 
 5. **Choices as numbered text** («1 — …, 2 — …, 3 — your own»): the Telegram plugin drops buttons, and text arrives everywhere.
 6. **Order:** the vision (who, what pain, what counts as success) → the actors → the scenarios → the rules they need → the open
    questions → the stages.
-7. **Stages 0 … N, each working on its own** (owner of the node, 2026-10-22). Stage 0 is static pages filled with primary data loaded
-   from JSON (for example the pages of a catalogue): enough for Google to know the project exists. Each next stage adds one capability
-   and works by itself even when the main goal is not reached yet: a form to submit, sign-in, payments… Where the primary data comes
-   from is a question to the person: their own data, an open dataset, an API they may use — never another site's texts, images or
-   data (node step 538). Plan every stage, name its `ready` sign, confirm them one at a time; the steps build one stage at a time.
+7. **Stages 0 … N, each working on its own — planned on two levels** (owner of the node, 2026-10-22 and 2026-10-23: «планирование
+   каждого следующего этапа на предварительном уровне в общих характеристиках может быть создано сразу же … Но при этом детальное
+   проектирование каждого этапа запускается только после завершения предыдущего этапа»). **First level, at once** — right after the
+   study or the interview, every stage as a draft (`name`, `works`, `ready`, `items`), five to eight of them, confirmed one at a time.
+   The order to propose, then fit to the product: **0** — static pages filled with primary data loaded from JSON (for example the pages
+   of a catalogue): enough for search engines to know the project exists; **1** — sign-in and a protected route: the node already has
+   sign-in and the database (its elements auth and data), so this stage connects them and never builds them; **2** — a small interface
+   in which the person changes what the home page shows; then one capability per stage (a form to submit, payments…), each working by
+   itself even when the main goal is not reached yet. Where the primary data comes from is a question to the person: their own data,
+   an open dataset, an API they may use — never another site's texts, images or data (node step 538). **Second level, one stage at a
+   time** — only the current stage (the lowest `n` without `done`) is planned in detail: its steps, each one business feature of this
+   stage with the lines `Stage: N` and `Serves: …` (skill `use-development-docs`). `npm run check:product` refuses a step planned for a
+   later stage.
 8. **Write as you go,** each item as a `draft`; show the person what you wrote, item by item, with its number.
 9. **The first session of a new element** (a task from the core's main agent in your intake): there is no quiz yet. Put the
    task's words into your plan (`current-step.md`) as the vision draft, ask the first question — the vision: who it is for, what
@@ -167,7 +176,12 @@ The page puts a ready line into the terminal: «Product quiz, item S-03 «…»�
 - **Closing a step** that served items: ask not «does it work» but «what promised in S-NN is now true», name the item and quote its
   acceptance; the summary in `steps-done/` keeps its `Serves:` line.
 - **A stage is done** when its `ready` sign is true on the person's screen and every scenario it serves is done — proved by listing
-  them, never by «broadly ready». Only the person confirms a stage, in words, like an item.
+  them, never by «broadly ready». Only the person confirms a stage, in words, like an item: record `done: { date, said }` with their
+  words verbatim.
+- **Then back to the quiz before any new step** (owner of the node, 2026-10-23: «вновь вернуться в продуктовый Quiz для того чтобы
+  продолжить с планированием следующего глобального этапа»): what the finished stage taught may change the next one — show its draft
+  again, take the person's corrections, confirm it, and only then plan its steps. The core's quiz page shows which stage is current
+  and the steps of each stage.
 
 ## 7. Offering deep planning
 
@@ -186,4 +200,5 @@ deployed. A red line is fixed before the commit.
 - Add behaviour of the system nobody asked for (timers, polling, automatic links between elements) because the quiz «implies» it —
   ask first, in the words of what the person will see.
 - Copy the list of steps into the quiz, translate the quiz, or put people's personal data in it.
-- Plan steps ahead: the quiz holds the stages (what works, by which sign); the steps that build a stage come one at a time.
+- Plan steps ahead: the quiz holds every stage (what works, by which sign); only the current stage gets its steps, and the next one
+  is planned in detail after the person says the current one works.

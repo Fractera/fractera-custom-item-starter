@@ -121,8 +121,10 @@ The product's own items — `S-NN` scenarios, `R-NN` rules, `E-NN` entities in `
 ## 6. Stages 0…N — five to eight
 
 Stage 0 — static pages with the person's own primary data from JSON (enough for search engines to know the project); stage 1 —
-sign-in; each next stage adds one capability and works on its own. Every scenario of the references goes to a stage (`stage`) or to
-«not now» (`notNow`, an `N-NN` of the quiz). Confirm the stages one at a time, like items.
+sign-in, connected from the node (its auth and data elements), never built; each next stage adds one capability and works on its
+own. Every scenario of the references goes to a stage (`stage`) or to «not now» (`notNow`, an `N-NN` of the quiz). Confirm the stages
+one at a time, like items. All stages are drafted at once; only the current one is planned in detail into steps (skill `product-quiz`
+§3, node step 590-4).
 
 ## 7. Metrics — when the quiz is done
 

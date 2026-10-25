@@ -59,8 +59,9 @@ term that two places use → into the glossary in the same commit.
    and to `current-step.md`; it closes with a commit whose hash goes into `current-step.md` at once.
 4. **Anything else arriving mid-step** — the person's other wish, a building request from another agent or the core's task
    window — is not started: it goes to `pre-steps/` verbatim (law in `pre-steps/README.md`) and is named to the person.
-5. **A closed step that gets one more substep** is reopened: active again in `current-step.md`, and when done it is closed
-   again as a whole — `steps-done/<N>.md` rewritten, never an addendum file.
+5. **A closed step that gets one more substep** is reopened: its plan comes back from git into `steps-new/`, active again in
+   `current-step.md`, and when done it is closed again as a whole — `steps-done/<N>.md` rewritten, never an addendum file (skill
+   `use-development-docs`, «Reopen»). A wish that grows a feature goes into the step that built it, never into a new step.
 6. **Closing:** `steps-done/<N>.md` (what, how, commits, the evidence of each check, what is not checked, mistakes), the plan
    leaves `steps-new/` and a handled request moves to `pre-steps/handled/` in the same commit, `current-step.md` updated.
    In the same commit: left undone or promised → `backlog.md`; cancelled by the person → `cancelled.md`; a cause found the

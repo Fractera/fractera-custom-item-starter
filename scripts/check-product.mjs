@@ -21,6 +21,10 @@
 //    использовать как реальные существующие элементы проекта»): every `product/reverse/<task>/report.json` opens with
 //    `origin.kind = "external-study"` (written by `npm run reverse -- get <task>`), so whoever opens it sees another product, never this
 //    element's code. Checked even before the quiz has its first file: a study often comes first.
+// 9. the stage of a step (node step 590-4, owner 2026-10-23: «детальное проектирование каждого этапа запускается только после завершения
+//    предыдущего этапа»): a stage called done carries the person's words (`done.date`, `done.said`); a `Stage: N` line of a step names
+//    an existing stage; a plan in `steps-new/` (or the active small step) for a stage after the current one — the first without `done` —
+//    is refused. A reopened step of an earlier stage is legal.
 // No quiz yet → only the copies of studied products are checked. Not in `prebuild`: a broken quiz must not stop the site from being deployed.
 //
 // What it does not see: whether the words are product words, whether an item is true, whether the person really said «yes».
@@ -124,7 +128,11 @@ stages.forEach((s, i) => {
   for (const a of Array.isArray(s?.items) ? s.items : []) if (!ids.has(a)) problems.push(`${where}: ${a} is not in the quiz`)
   if (s?.status !== undefined && s.status !== "draft" && s.status !== "confirmed") problems.push(`${where} — status is «draft» or «confirmed», not «${s.status}»`)
   if (s?.status === "confirmed" && !(s.confirmed?.date && s.confirmed?.said)) problems.push(`${where} — confirmed without the date and the person's words`)
+  if (s?.done !== undefined && !(s.done?.date && s.done?.said)) problems.push(`${where} — done without the date and the person's words that it works`)
+  if (s?.done && s.status !== "confirmed") problems.push(`${where} — done, but the stage itself was never confirmed`)
 })
+// The current stage: the first one the person has not called done (node step 590-4). Only it gets steps.
+const current = stages.find((s) => !s?.done)?.n ?? null
 
 // References: several similar products, what each shows, which stage brings it into ours (node step 556-2).
 let referenceLine = ""
@@ -215,10 +223,23 @@ for (const f of stepFiles) {
   }
 }
 
+// 9. The stage of a step (node step 590-4): `Stage: N` names an existing stage; a plan for a stage after the current one is refused.
+const STAGE = /^[\s>*_-]*stage[*_]*\s*:[*_]*\s*(\d+)\b/im
+for (const f of stepFiles) {
+  if (!fs.existsSync(f)) continue
+  const m = STAGE.exec(fs.readFileSync(f, "utf8"))
+  if (!m) continue
+  const n = Number(m[1])
+  const rel = path.relative(ROOT, f).replaceAll("\\", "/")
+  if (!stages.some((s) => s?.n === n)) { problems.push(`${rel}: Stage ${n}, which is not in the quiz`); continue }
+  if (!rel.includes("/steps-done/") && current !== null && n > current)
+    problems.push(`${rel}: stage ${n} is planned in detail before stage ${current} is done — the current stage is built first`)
+}
+
 if (problems.length) {
   console.error(`===PRODUCT_QUIZ_FAIL=== ${problems.length} problem(s):`)
   for (const p of problems) console.error("  " + p)
   process.exit(1)
 }
-console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages, ${copies} copies of studied products (marked)`)
+console.log(`===PRODUCT_QUIZ_OK=== ${items.length} items in ${(quiz?.modules ?? []).length} modules, ${(quiz?.openQuestions ?? []).length} open questions, ${stages.length} stages${stages.length ? ` (current: ${current ?? "all done"})` : ""}, ${copies} copies of studied products (marked)`)
 if (referenceLine) console.log(referenceLine)

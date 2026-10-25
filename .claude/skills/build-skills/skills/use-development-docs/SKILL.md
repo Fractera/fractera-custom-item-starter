@@ -70,6 +70,11 @@ Every building task is a step, even a five-line fix. The number is the next one 
   step is active: the numbers of the product quiz items the step serves (`development-docs/product/`), for example
   `Serves: S-03, R-02`, or `Serves: none`. The core reads only this line to show, next to each item of the quiz, which steps work
   on it and in what state (planned · in progress · done). The quiz itself keeps no list of steps: a second list would drift.
+- **A step of a product with stages is one business feature at one stage** (node step 590-4; owner of the node, 2026-10-23:
+  «Каждый шаг разработки это по сути какая-то определённая стадия определённой бизнес фичи»): its plan and summary carry the line
+  `Stage: N` next to `Serves:`, and it is named by the feature («The launch list of the day»), never by a layer («all doors»). Only the
+  current stage — the lowest `n` without `done` in `quiz.json` — gets steps: `npm run check:product` refuses a plan of a later stage.
+  The core's quiz page lists the steps of each stage from this line.
 
 ## A task in the middle of a step
 
@@ -84,7 +89,7 @@ One exception: the person's decision that changes a rule of `CLAUDE.md` or a ski
 - `steps-done/<N>.md` (and `<N>-<k>.md` per substep of a larger step): what was done and how, the commits, the evidence of
   each planned check, what is not checked and why, the mistakes, what a skill lacked. The plan file leaves `steps-new/` in the
   same commit.
-- A closed step that gets a new substep is closed again as a whole — no «addendum» files.
+- A closed step that gets a new substep is closed again as a whole — no «addendum» files (section «Reopen» below).
 - A cause found the hard way → `anti-patterns.md`: symptom, cause, cure. A live proof of a part of `CLAUDE.md` or a skill →
   `proofs/` and its mark (README, «Proof marks»). A text left in one language → `translation-debt.md` (skill `use-languages`).
 - Left undone or promised → a line in `backlog.md`; the line leaves with the commit that closes the gap. The person cancelled
@@ -92,6 +97,20 @@ One exception: the person's decision that changes a rule of `CLAUDE.md` or a ski
   `glossary.md` in the same commit. The last step of a capability → `reports/feature-…`; an error that took real time →
   `reports/errors-…` (forms in `reports/README.md`).
 - `current-step.md`: «Active step: none» or the next one, the last commit, the next action.
+
+## Reopen — the feature grows inside its own step
+
+The owner of the node, 2026-10-23: «вернуться соответствующему шагу и добавить в него новый под шаг сделать его снова видимым в
+ленте шагов продолжить разработку постепенно закручивая фичу внутри каждого шага». A wish that grows a feature some closed step built
+(its `Serves:` names the item) goes into that step as a new substep, never into a new step for the same feature:
+
+1. Bring the plan back from git into `steps-new/`, whole: `git log --diff-filter=D --format=%H -1 -- development-docs/steps-new/<file>`
+   finds the commit that removed it, `git show <hash>^:development-docs/steps-new/<file> > development-docs/steps-new/<file>` restores
+   it. No plan in git (it was a small step) — write the plan file now from `steps-done/<N>.md`.
+2. Add the substep `<N>-<k>`: the person's words verbatim, what it builds, its checks; make the step active in `current-step.md`.
+3. After the person's «yes» to the substep, build it. The core shows the step in progress again next to its items and in its stage.
+4. Close it as a whole: `steps-done/<N>.md` rewritten as if the step always had this substep, and the plan leaves `steps-new/` in the
+   same commit.
 
 ## Notes and records — what a new element is born with
 
