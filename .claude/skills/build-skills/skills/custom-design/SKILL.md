@@ -20,7 +20,9 @@ their own look (owner's decision 2026-09-28, node step 330-5), **ask once, befor
 > pre-flight checklist) or **impeccable** (Paul Bakaus — a design direction derived from your audience's world, one committed
 > visual world, a craft floor)?»
 
-After the answer, load that skill (`design-taste-frontend` or `impeccable`) and design in its style, following it fully.
+After the answer, load that skill (`design-taste-frontend` or `impeccable`) and design in its style, following it fully. **Both
+live only in the design pass** (node step 590-5, `.claude/modes/build.md`, «Passes»): in another pass the skill is not there — write
+`current-step.md` and switch with `npm run pass -- design "<the design request>"`.
 **With impeccable, read `impeccable-on-design.md` next to this file before building:** it marries the skill to the Design
 element (roles as relations to `--primary` in OKLCH, a measured formula per world), so every preset gets its own palette.
 Then write its name into the passport `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json` → `designSkill` and run `npm run describe:publish` (node step 333-3).

@@ -60,6 +60,8 @@ the bot folder `SERVICE_DATA_DIR/channel/telegram`: a token and at least one all
 
 ## 3. Check and publish
 
+This is the work of the texts pass (node step 590-5): `humanizer` lives only there — the core's task opens with «Build process,
+texts:»; in another pass write `current-step.md` and switch with `npm run pass -- texts "<the task>"`.
 The passport texts are published: run them through `humanizer` → `npm run check:passport` → fix everything red → show the person the
 texts and wait for their «yes» → commit the passport (and the card) → `npm run describe:publish`. It must print `DESCRIBE_OK`;
 `DESCRIBE_FAILED` names what the core refused (for example a born or template description) — fix that and run it again.

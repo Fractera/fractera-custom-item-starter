@@ -50,8 +50,10 @@ Rules of the form:
   and doors belong in the step plans that serve the item, never in the quiz.
 - **One language — the element's default** (`npm run passport -- me` → `languages.default`). The owner, 2026-10-18: «only default lang». No
   translations in the quiz; the person's own words stay verbatim in `said`.
-- **Every text goes through `humanizer`** (`.claude/modes/build.md`, «Texts»): write, run the skill, then `copy-editing`. No fact, number or
-  promise appears while rewriting.
+- **The words are polished in the texts pass** (owner of the node, 2026-10-25: «Полировка в проходе текстов (Рекомендую)»): the
+  interview drafts items here in plain product words, without `humanizer` (it lives only in the texts pass, node step 590-5); before
+  the person confirms a batch of drafts, they are polished there — write `current-step.md`, then `npm run pass -- texts "polish the
+  quiz drafts S-NN…"` (`.claude/modes/build-texts.md`). No fact, number or promise appears while polishing.
 - **Numbers are forever.** A removed item leaves its number unused; a new item takes the next free one of its kind.
 - **The quiz keeps no list of steps.** Steps name the items they serve in one line `Serves: S-03, R-02` (skill
   `use-development-docs`); the core draws the dots from those lines.

@@ -62,7 +62,8 @@ it (`consultation`, `usage`, `commission`) are the person's and are set on the c
 
 ## Before writing — and the core must get it
 
-The passport texts are published (`.claude/modes/build.md`, section «Texts»). Write them into the passport, run them through `humanizer`, then
+The passport texts are published (`.claude/modes/build-texts.md`, section «Texts») — the work of the texts pass, where `humanizer` lives
+(node step 590-5; in another pass: `current-step.md`, then `npm run pass -- texts "<the request>"`). Write them into the passport, run them through `humanizer`, then
 `npm run check:passport` and fix everything red. Show the person the texts in the terminal and ask «save?». After «yes»: commit with a
 message naming the passport, then `npm run describe:publish` — it must print `DESCRIBE_OK`; on `DESCRIBE_FAILED` fix what it names and
 run it again. After «no»: put the passport back (`git checkout -- OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`) or change it as they say.

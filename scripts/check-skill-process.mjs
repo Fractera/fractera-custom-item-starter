@@ -75,7 +75,11 @@ for (const name of dirs(DIR)) {
   if (existsSync(join(dir, 'SOURCE.md'))) {
     count++
     note(name, 'корне')
-    if (!/^Process: (build|working|both)\b/m.test(readFileSync(join(dir, 'SOURCE.md'), 'utf8'))) problems.push(`${name}: чужой навык без строки «Process: build|working|both» в SOURCE.md`)
+    const source = readFileSync(join(dir, 'SOURCE.md'), 'utf8')
+    if (!/^Process: (build|working|both)\b/m.test(source)) problems.push(`${name}: чужой навык без строки «Process: build|working|both» в SOURCE.md`)
+    // 590-5: в каком проходе строительства мост включает чужой навык — строка `Pass: main|design|texts` (один или несколько, до тире).
+    const pass = /^Pass:\s*(.+)$/m.exec(source)?.[1]?.split(' — ')[0].split(/[\s,;]+/).filter(Boolean) ?? []
+    if (!pass.length || pass.some((p) => !['main', 'design', 'texts'].includes(p))) problems.push(`${name}: чужой навык без строки «Pass: main|design|texts» в SOURCE.md — узел не знает, в каком проходе его включать`)
     if (!inRow('vendored', name)) problems.push(`${name}: нет в строке «vendored» таблицы групп (CLAUDE.md или .claude/modes/<режим>.md)`)
     continue
   }

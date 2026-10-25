@@ -17,3 +17,4 @@
 - **When it is used, and what our rules override:** skill `custom-design` next to this folder.
 
 Process: build — a vendored design/text/UI skill, used only while building this element (node step 465-4).
+Pass: design — a design skill: it lives only in the design pass (node step 590-5).

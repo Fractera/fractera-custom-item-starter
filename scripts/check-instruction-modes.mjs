@@ -11,10 +11,14 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+// 590-5: проходы строительства — у прохода дизайна и прохода текстов свой файл законов (мост кладёт его после build.md); разделы
+// «Design skill» и «Texts» переехали туда, в build.md остался раздел «Passes».
 const PLACE = {
   'CLAUDE.md': ['Process —', 'Two natures', 'On wake', 'Skills by group', 'Outbound A2A guard', 'Protocols', 'How you report'],
   '.claude/modes/build.md': ['Confirm the request first', 'Plan the checks before the work', 'Steps', 'Skills of the build session',
-    'Design skill', 'Page', 'Texts', 'Report what a person can see', 'Tree'],
+    'Passes', 'Page', 'Report what a person can see', 'Tree'],
+  '.claude/modes/build-design.md': ['The design pass', 'Design skill'],
+  '.claude/modes/build-texts.md': ['The texts pass', 'Texts'],
   '.claude/modes/work.md': ['Working process — do the job', 'Skills of the working-process session', 'Cron automations'],
 }
 const problems = []
@@ -48,4 +52,4 @@ if (problems.length) {
   process.exit(1)
 }
 const count = Object.values(PLACE).flat().length
-console.log(`===INSTRUCTION_MODES_OK=== разделов на своих местах: ${count} (CLAUDE.md ${headings['CLAUDE.md'].length}, build ${headings['.claude/modes/build.md'].length}, work ${headings['.claude/modes/work.md'].length})`)
+console.log(`===INSTRUCTION_MODES_OK=== разделов на своих местах: ${count} (CLAUDE.md ${headings['CLAUDE.md'].length}, build ${headings['.claude/modes/build.md'].length}, design ${headings['.claude/modes/build-design.md'].length}, texts ${headings['.claude/modes/build-texts.md'].length}, work ${headings['.claude/modes/work.md'].length})`)

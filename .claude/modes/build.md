@@ -80,7 +80,7 @@ a commit message.
 | Group | Mode | Skills |
 |---|---|---|
 | build-skills | build | `use-blocks` (a section of a page is a block: from the catalogue or built in this element by the node's mode, taken once with a build, then reused in page data without one), `add-door` (a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work), `use-i2i`, `use-f2f`, `build-widget`, `cloudflare-connection`, `connect-external-service`, `connect-google-analytics`, `connect-own-domain`, `custom-design` (the gate to `design-taste-frontend` and `impeccable`), `use-site-settings` (name, menu, footer, cookie banner and feature switches are settings: CONFIG sets them while the link is on, this element’s /admin/site-settings/* while it is off), `use-design` (the look is tokens in DESIGN-CONFIG: the shared Design sets them while the link is on, this element’s workshop /admin/design while it is off; a saved token needs no build), `deploy-element`, `describe-element`, `github-element`, `github-repositories`, `own-domain-sign-in`, `page-snippet`, `passport-description`, `product-quiz` (the product in product words before code; every «and also I need…» goes through it), `product-clone` (a product like an existing one: the site's rules first — screenshots for a forbidden site, the node's analysis of similar allowed ones — then references, stages and parity), `project-origin`, `self-review`, `soft-navigation`, `temporary-domain`, `use-auth`, `use-development-docs`, `use-element-tree`, `use-highlight`, `use-languages`, `use-machine-copy`, `use-messenger` (the gate to `ai-elements`), `use-page-tree`, `use-shadcn` (the gate to `shadcn`), `use-site-menu`, `use-tests-before-dev-finish`, `use-tools`, `use-typography` |
-| vendored | build, name only (`SOURCE.md`) | `ai-elements`, `copy-editing`, `copywriting`, `design-taste-frontend`, `humanizer` (published texts only, section «Texts»), `impeccable`, `shadcn` |
+| vendored | build — each only in its pass (the line `Pass:` of its `SOURCE.md`) | `ai-elements` (main, design), `copy-editing` (texts), `copywriting` (texts), `design-taste-frontend` (design), `humanizer` (texts; published texts only, `.claude/modes/build-texts.md`, «Texts»), `impeccable` (design), `shadcn` (main, design) |
 
 **A skill starts with its process and its group** (owner of the node, 2026-10-12 and 2026-10-20: an agent that creates a skill
 must first decide whether it belongs to the working or to the build process). Creating or rewriting a skill: first decide its
@@ -89,15 +89,27 @@ code, commit, rebuild, the three confirming lines; work: data only, no commit, n
 into the group of its mode — `.claude/skills/<group>/skills/<name>/SKILL.md` — and into that group's row of this table: a skill
 at the root of a group is not loaded at all, an own skill at the root of `.claude/skills/` would be loaded in every mode. A vendor
 skill (a `SOURCE.md` beside it) stays at the root and keeps its own text — its process is the line `Process: …` in its
-`SOURCE.md`. `npm run prebuild` fails on a skill without a process or outside its group (`scripts/check-skill-process.mjs`).
+`SOURCE.md`, its pass the line `Pass: …` (node step 590-5). `npm run prebuild` fails on a skill without a process or outside its group,
+and on a vendor skill without its pass (`scripts/check-skill-process.mjs`).
 
-## Design skill
+## Passes — design and texts, each in a session of its own
 
-The design skill this element is built with lives in the passport `OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`, field
-`designSkill`: the skill's name (`impeccable`, `design-taste-frontend`) or `""` when none. The field is always there; it is never
-written in `NODE-CONTRACT.json` (owner 2026-10-07). Read it before any design work and work in that skill's style; when the person
-picks another skill (`custom-design` asks which), write its name there and run `npm run describe:publish` — the core takes it
-into its registry («Take into core»).
+The owner of the node, 2026-10-23:
+«работа с дизайном, и работа с текстами не должна происходить одновременно с Обще стадией разработки … Если есть задача переработать тексты значит это отдельное окно где в контекст приходит только задача по обновлению текстов»;
+2026-10-25, the switch: «Да, командой агента (Рекомендую)».
+
+- **A build session runs one pass** (node step 590-5): **main** — code, doors, data, the product quiz, deploys; **design** — blocks,
+  widgets, the look (its laws: `.claude/modes/build-design.md`); **texts** — the words people read (`.claude/modes/build-texts.md`,
+  on Sonnet). The heavy skills live only in their pass: `impeccable` and `design-taste-frontend` — design; `humanizer`, `copywriting`
+  and `copy-editing` — texts. A loaded skill stays in the session to its end, so a session that never loads them stays light.
+- **The first line of every answer names the pass:** «Build process — design» («Строительный процесс — дизайн»), «Build process —
+  texts»; the main pass stays «Build process».
+- **Work of another pass is never done here.** Write `current-step.md`, then `npm run pass -- <main|design|texts> "<the request>"`:
+  the node closes this session and starts the session of that pass with the request — a fresh context that reads `current-step.md`
+  first. From Telegram the same: the bot moves to the new session.
+- **A request from the node opens with its pass:** «Build process, design:», «Build process, texts:», «Build process:» (main).
+- **A step's substeps name their pass** — `Pass: design`, `Pass: main`, `Pass: texts` — in that order: blocks and page skeletons
+  first, the logic next, the words last (skill `use-development-docs`).
 
 ## Look and site settings are data, not code
 
@@ -148,16 +160,6 @@ names of the guards: `use-page-tree` (pages, blocks) · `use-typography` (text) 
 public page gives agents: its Markdown copy, llms.txt — a widget brings its own `markdown.ts`) · `soft-navigation` (links, header and menu — moving between pages without a reload, and how to prove it on the own domain) · `deploy-element` (how a change reaches visitors) · `github-element` (saving the work to its repository). ✗ 2026-10-07: a widget built
 from reading code alone and a guard named wrong — both were in the skill that was not opened.
 <!-- PROOF 5 END -->
-
-## Texts
-
-🔒 **Every published text goes through `humanizer`** (node step 536; the person, verbatim:
-«если речь заходит о описании контента, текстов используют навык humalize, это также в равной степени будет использоваться для квиза»):
-page copy, review pages, the passport and the A2A card, and the product quiz (`development-docs/product/`). Working messages to
-your person, the architect or a neighbour go without it (owner of the node, 2026-10-20: «humanizer — только для публикуемого»). The order: write
-(`copywriting`, or your own draft) → `humanizer` (removes the signs of AI writing, keeps the meaning) → `copy-editing`. Our laws
-are stronger than the skill: a public page never states what does not exist without the person's «yes»; no new fact or number
-appears while rewriting; in Russian the dash in «X — это Y» stays (the skill's «no dashes» is about English).
 
 ## Report what a person can see
 
