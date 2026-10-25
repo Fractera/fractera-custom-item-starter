@@ -1,7 +1,7 @@
 {
  "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-custom-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
  "template": "fractera-custom-item-starter",
- "after": "v0.3.139",
+ "after": "v0.3.143",
  "files": [
   "app/.well-known/agent-card.json/route.ts",
   "app/[lang]/(guestLayer)/README.md",
@@ -519,6 +519,7 @@
   ".claude/skills/own-service-props-skills/skills/computer-off",
   ".claude/skills/own-service-props-skills/skills/element-power",
   ".claude/skills/own-service-props-skills/skills/local-node",
+  ".claude/skills/own-service-props-skills/skills/need-capability",
   ".claude/skills/own-service-props-skills/skills/node-elements-detection",
   ".claude/skills/own-service-props-skills/skills/own-service-props-detection",
   ".claude/skills/own-service-props-skills/skills/telegram-channel",
