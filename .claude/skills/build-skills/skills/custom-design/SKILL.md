@@ -13,8 +13,10 @@ description: Builder skill. Use when the person asks for a custom design of a pa
 
 ## When
 
-The element designs itself through the Blocks and Design elements by default. When the person refuses that design and asks for
-their own look (owner's decision 2026-09-28, node step 330-5), **ask once, before any code**:
+The element designs itself through the Blocks and Design elements by default. **First `npm run design-skill`** (node step 590-6): with
+the link to «Design» on and a skill chosen for the whole project in «Design», work in that skill and do not ask. When none is chosen, or
+this element is set apart from «Design», and the person refuses the default design and asks for their own look (owner's decision
+2026-09-28, node step 330-5), **ask once, before any code**:
 
 > «Which design skill should I use? **taste** (Leon Lin — anti-generic product landing: asymmetric layouts, one accent, strict
 > pre-flight checklist) or **impeccable** (Paul Bakaus — a design direction derived from your audience's world, one committed

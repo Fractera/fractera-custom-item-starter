@@ -8,6 +8,7 @@
     "reverse": "node scripts/reverse.mjs",
     "graph": "node scripts/graph.mjs",
     "pass": "node scripts/pass.mjs",
+    "design-skill": "node scripts/design-skill.mjs",
     "site-rules": "node scripts/site-rules.mjs",
     "pages:refresh": "node scripts/refresh-pages.mjs",
     "describe:publish": "node scripts/describe-publish.mjs",

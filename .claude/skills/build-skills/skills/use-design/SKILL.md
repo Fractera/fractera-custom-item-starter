@@ -63,7 +63,8 @@ look of its own owner, and the shared Design would carry one owner's look into a
   process. Add the token to `config/design-config.schema.ts`, its default, `lib/design-css.ts`, and an editor field; then the widget
   uses the token. Never a value in the widget.
 - **A custom design of a whole page** — skill `custom-design` (it asks taste or impeccable); its colours and fonts still map to
-  these tokens.
+  these tokens. With the link on, the design skill of the whole project is chosen in «Design» too («Design skill of the project», kept
+  in `blocks.designSkill` and sent with the look) — `npm run design-skill` says which applies (node step 590-6).
 - **Text, not look** — skill `use-typography`; **settings of the site** (name, menu, footer, switches, languages) — skill `use-site-settings`.
 
 ## What needs a build, and what does not
