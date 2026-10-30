@@ -31,7 +31,7 @@ through escrow, or free.
   it; nothing obliges them to. A file goes as a link (`use-h2a`, «Media»).
 - **The wire** is Google's A2A (`npm run a2a`, skill `a2a-conversation`); the same command talks to a neighbour, but talking to a
   neighbour is i2i (`use-i2i`).
-- **The outbound guard** checks everything you send (`CLAUDE.md`, «Outbound A2A guard»).
+- **The outbound guard** checks everything you send (`CLAUDE.md`, «6. Protocols»).
 
 ## Today
 
