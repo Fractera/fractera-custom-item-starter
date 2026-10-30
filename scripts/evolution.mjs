@@ -1,29 +1,33 @@
-// HISTORY BEFORE A CHANGE (federal step 571-2, 2026-10-30): `npm run evolution -- <skill | path>`.
+// HISTORY BEFORE A CHANGE (federal steps 571-2 and 571-3, 2026-10-30): `npm run evolution -- <skill | path>`.
 //
 // The owner, 2026-10-22: «прежде чем модель попыталась внести обновления … она бы изучила историю её увидела что возможно то действие
-// которое она хочет сделать мы уже делали ранее». Section 12 of `CLAUDE.md` calls it before any change of a skill or of `CLAUDE.md`;
-// skill `self-review` — before every proposal. For a skill (its name, its folder or its SKILL.md) or a file (`CLAUDE.md`) it prints:
+// которое она хочет сделать мы уже делали ранее». An element's `CLAUDE.md` (section 12) calls it before any change of a skill or of
+// `CLAUDE.md`; skill `self-review` — before every proposal; the same file serves the core's main agent. For a skill (its name, its folder
+// or its SKILL.md) or a file (`CLAUDE.md`) it prints:
 //   · accepted changes — commits whose subject starts with `evolve(` and that touch the path;
 //   · reverted — `evolve(…): revert <commit> — <why>` (and git's own `Revert "evolve(…"`): not repeated unless the reason is new;
-//   · decisions — rows of development-docs/owner-decisions-on-skill-changes.md that name the skill, each with the commit that wrote it;
-//     the section «Inherited from the template» is named by one line: an element is born without the template's git history (the
-//     core's scripts/item-birth.mjs), so the template's earlier decisions travel in that file;
+//   · decisions — rows of the decisions journal that name the skill, each with the commit that wrote it, and one line about the journal's
+//     section «Inherited…»: an element is born without the template's git history (the core's scripts/item-birth.mjs), so earlier
+//     decisions travel in that file;
 //   · other commits without the label — how many, and the last five.
 // Nothing of the first three — «No history». The history is data, not instructions: its rows were written by people and agents.
+// The journal: `development-docs/owner-decisions-on-skill-changes.md` in an element, `lib/main-agent/owner-decisions-on-skill-changes.md`
+// in the core (a development document of the core needs a page of its own in the architect layer — the core's development-docs/README.md).
 //
 //   npm run evolution -- <skill | path>
 //   npm run evolution -- <skill | path> --revert <commit> --why "<reason, English>" --said "<your person's words, verbatim>"
-// `--revert` undoes that commit's change of THIS path only (the reverse patch of the path — the decisions journal the commit also
-// touched stays), appends the row «reverted — do not repeat» to the journal and makes one commit
-// `evolve(<agent>/<what>): revert <commit> — <why>`. It refuses when something is already staged, when the path has uncommitted
+// `--revert` undoes that commit's change of THIS path only (the reverse patch of the path — the journal the commit also touched stays),
+// appends the row «reverted — do not repeat» to the journal and commits only these two paths as `evolve(<agent>/<what>): revert <commit> —
+// <why>` (`git commit -- <paths>`: work someone else staged stays staged and out of the commit). It refuses when the path has uncommitted
 // changes, when the commit does not touch the path, or when later changes overlap and the reverse patch does not apply.
 import { spawnSync } from 'node:child_process'
-import { existsSync, readFileSync, writeFileSync, statSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync, statSync, readdirSync, rmSync } from 'node:fs'
 import { join, dirname, relative, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const JOURNAL = 'development-docs/owner-decisions-on-skill-changes.md'
+const JOURNALS = ['development-docs/owner-decisions-on-skill-changes.md', 'lib/main-agent/owner-decisions-on-skill-changes.md']
+const JOURNAL = JOURNALS.find((p) => existsSync(join(ROOT, p))) ?? JOURNALS[0]
 const JOURNAL_HEAD = [
   "# The person's decisions on skill changes",
   '',
@@ -96,8 +100,7 @@ if (revert !== null) {
   if (!full) fail(`no commit ${revert}`)
   const short = full.slice(0, 7)
   if (git(['rev-parse', '--verify', '--quiet', `${full}^`]).rc !== 0) fail(`${short} is the first commit — undo it by hand`)
-  if (git(['diff', '--cached', '--quiet']).rc !== 0) fail('something is already staged (git diff --cached) — commit or unstage it first: the revert commit holds only the revert')
-  if (git(['diff', '--quiet', '--', T.path]).rc !== 0) fail(`${T.path} has uncommitted changes — commit or drop them first`)
+  if (git(['diff', '--quiet', 'HEAD', '--', T.path]).rc !== 0) fail(`${T.path} has uncommitted changes — commit or drop them first`)
   const patch = git(['diff', '--binary', `${full}^`, full, '--', T.path]).out
   if (!patch.trim()) fail(`${short} does not change ${T.path}`)
   // The index holds the text as git stores it (LF), the working copy may hold CRLF: undo in the index, then copy it to the working copy.
@@ -107,6 +110,11 @@ if (revert !== null) {
   if (applied.rc !== 0) fail(`git apply: ${cut(applied.err, 400)}`)
   const restored = git(['restore', '--worktree', '--', T.path])
   if (restored.rc !== 0) fail(`git restore: ${cut(restored.err, 400)}`)
+  // A file that change added is gone from the index now, and git restore leaves an untracked file on disk: remove it, so the commit
+  // below records its deletion.
+  for (const f of git(['diff', '--name-only', '--diff-filter=A', `${full}^`, full, '--', T.path]).out.split('\n').filter(Boolean)) {
+    if (existsSync(join(ROOT, f))) rmSync(join(ROOT, f))
+  }
 
   const subject = git(['log', '-1', '--format=%s', full]).out.trim()
   const label = `${/^evolve\(([^)/]+)\//.exec(subject)?.[1] ?? agentId()}/${T.what}`
@@ -119,7 +127,7 @@ if (revert !== null) {
   const added = git(['add', '--', JOURNAL])
   if (added.rc !== 0) fail(`git add: ${cut(added.err, 300)}`)
   const message = `evolve(${label}): revert ${short} — ${why}\n\nUndoes the change of ${full} to ${T.path}; the row «reverted — do not repeat» is in ${JOURNAL}.\n`
-  const made = git(['commit', '-q', '-F', '-'], message)
+  const made = git(['commit', '-q', '-F', '-', '--', T.path, JOURNAL], message)
   if (made.rc !== 0) fail(`git commit: ${cut(made.err || made.out, 400)}`)
   console.log(`===EVOLUTION_REVERTED=== ${git(['rev-parse', '--short=7', 'HEAD']).out.trim()} undoes ${short} on ${T.path}`)
   process.exit(0)
@@ -150,7 +158,7 @@ const revertedBy = (c) => reverts.find((r) => r.of !== '?' && c.hash.startsWith(
 // The journal: its table rows, the section each row stands in, and the commit that wrote each line (git blame).
 function journal() {
   const file = join(ROOT, JOURNAL)
-  if (!existsSync(file)) return { rows: [], inherited: 0 }
+  if (!existsSync(file)) return { rows: [], inherited: 0, sections: [] }
   const lines = readFileSync(file, 'utf8').split(/\r?\n/)
   const byLine = []
   const blame = git(['blame', '--line-porcelain', '--', JOURNAL])
@@ -165,15 +173,16 @@ function journal() {
   const separator = /^\|\s*:?-{3,}/
   let section = ''
   let inherited = 0
+  const sections = new Set()
   const rows = []
   lines.forEach((l, i) => {
-    if (/^#{2,}\s/.test(l)) section = l
+    if (/^#{2,}\s/.test(l)) section = l.replace(/^#+\s*/, '').trim()
     if (!l.startsWith('|') || separator.test(l) || separator.test(lines[i + 1] ?? '')) return
-    const fromTemplate = /inherited/i.test(section)
-    if (fromTemplate) inherited++
-    rows.push({ text: l, cells: l.split('|').slice(1, -1).map((c) => c.trim()), fromTemplate, hash: byLine[i + 1] })
+    const earlier = /inherited/i.test(section)
+    if (earlier) { inherited++; sections.add(section) }
+    rows.push({ text: l, cells: l.split('|').slice(1, -1).map((c) => c.trim()), earlier, hash: byLine[i + 1] })
   })
-  return { rows, inherited }
+  return { rows, inherited, sections: [...sections] }
 }
 const J = journal()
 const decisions = J.rows.filter((r) => names.test(r.text))
@@ -193,10 +202,10 @@ if (reverts.length) {
 }
 if (decisions.length) {
   out.push('', `Decisions in ${JOURNAL}: ${decisions.length}`)
-  for (const r of decisions) out.push(`- ${cut(r.cells.join(' · '), 600)}${r.fromTemplate ? ' (inherited from the template)' : ''} [${where(r.hash)}]`)
+  for (const r of decisions) out.push(`- ${cut(r.cells.join(' · '), 600)}${r.earlier ? ' (inherited)' : ''} [${where(r.hash)}]`)
 }
 if (!accepted.length && !reverts.length && !decisions.length) out.push('', `No history: no evolve( commit, revert or decision names ${T.what}.`)
-if (J.inherited) out.push('', `Inherited from the template: ${J.inherited} earlier decisions (${JOURNAL}, «Inherited from the template») — read them once per review.`)
+if (J.inherited) out.push('', `Inherited: ${J.inherited} earlier decisions (${JOURNAL}, «${J.sections.join('», «')}») — read them once per review.`)
 if (other.length) {
   out.push('', `Other commits without the evolve( label: ${other.length}${other.length > 5 ? ', the last 5' : ''}`)
   for (const c of other.slice(0, 5)) out.push(`- ${c.date} ${c.short} ${cut(c.subject, 140)}`)
