@@ -88,4 +88,4 @@ fallback after the tokens. Corners: `--radius` (tiles and buttons `calc(var(--ra
   `(publicLayer)/api/help-desk/route.ts` (`gpt-6-luna`, facts only from `(publicLayer)/_libs/help-desk.ts`, 40 messages an hour per address, short
   answers). The door passes only plain text of the history (✗ useChat's OpenAI metadata made the second turn fail). Every landing
   button (red CTAs, the portal «Жми», the chat's end button) leads to `#help-desk`; the procedure ends at the fork of
-  `github.com/fractera/agi`. Words — `landing.helpDesk` of the home page data.
+  `github.com/Fractera/web4-node-starter-kit`. Words — `landing.helpDesk` of the home page data.
