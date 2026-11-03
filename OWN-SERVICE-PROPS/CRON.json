@@ -1,10 +1,15 @@
 {
-  "why": "Step 465 (owner 2026-10-12): what this element CAN run on a schedule — the catalog of events (handlers written in advance). Changed only by the build process (code + rebuild). The person's schedule is NOT here: it is data, `data/cron.json` (outside git) — the working process edits it, no code, no commit, no rebuild (465-4, owner: «автоматизация рабочего процесса не должна приводить к сборке проекта»). `seed` is the schedule a new element starts with: on its first start (no `data/cron.json` yet — the «registration») the server writes it there once; an entry with `afterHours` becomes a one-time entry at «now + N hours» (465-5, owner: one automatic task 24 hours after registration). `{address}` in a message is the element's main address. The core draws events + schedule as the calendar under «Process → Cron automations»; the element's server checks the clock once a minute (lib/cron/). Times are the local time of the computer. A missed run (computer off) is not caught up. Skill: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks. Never published in /.well-known/agent-card.json.",
+  "why": "Step 465 (owner 2026-10-12): what this element CAN run on a schedule — the catalog of events (handlers written in advance). Changed only by the build process (code + rebuild). The person's schedule is NOT here: it is data, `data/cron.json` (outside git) — the working process edits it, no code, no commit, no rebuild (465-4, owner: «автоматизация рабочего процесса не должна приводить к сборке проекта»). `seed` is the schedule a new element starts with: on its first start (no `data/cron.json` yet — the «registration») the server writes it there once; an entry with `afterHours` becomes a one-time entry at «now + N hours» (465-5, owner: one automatic task 24 hours after registration). `{address}` in a message is the element's main address. The core draws events + schedule as the calendar under «Process → Cron automations»; the element's server checks the clock once a minute (lib/cron/). Times are the local time of the computer. A missed run (computer off) is not caught up. Node step 636 (owner 2026-11-03: «Нашей архитектуре никто не может взаимодействовать с какими-либо агентами кроме самих агентов»): the built-in `agent-task` wakes only this element's own agent; words for the person go through the core's main agent. Skill: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks. Never published in /.well-known/agent-card.json.",
   "events": [
     {
       "id": "telegram-message",
       "name": "Message in Telegram",
       "description": "Sends the schedule's own text (field «message») to this element's Telegram bot. Any reminder is this event with its text — no new code."
+    },
+    {
+      "id": "agent-task",
+      "name": "Wake this element's agent",
+      "description": "Wakes this element's own agent with the schedule's own text (field «message»): work for it at that time, or words for the person — the agent passes them to the core's main agent (npm run tell-core), which tells the person. No other agent is reached (node step 636)."
     },
     {
       "id": "daily-project-reminder",

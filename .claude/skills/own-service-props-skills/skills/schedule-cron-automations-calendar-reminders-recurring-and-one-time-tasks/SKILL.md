@@ -2,19 +2,22 @@
 name: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks
 description: >
   Work skill — never for building. Schedules, reminders and cron automations of this element: put something on the calendar, remind the person at a
-  time, repeat it every day, on weekdays, every week or every month, do it once on a date, pause one reminder, turn off all
-  repeating reminders, turn them back on, turn the whole automation off or on, say what is scheduled for a day. Load it whenever the
-  person — in this terminal or from Telegram — asks to remind, notify, schedule, repeat, «every morning», «at 10», «on Fridays»,
-  «stop the reminders», «turn off the automation», «what do I have tomorrow», and whenever you touch `data/cron.json`,
+  time, repeat it every day, on weekdays, every week, every month or every year, do it once on a date, pause one reminder, turn off all
+  repeating reminders, turn them back on, turn the whole automation off or on, say what is scheduled for a day — and what to do when
+  your own clock wakes you («Your alarm fired — the calendar entry …»). Load it whenever the person — in this terminal or from
+  Telegram — asks to remind, notify, schedule, repeat, «every morning», «at 10», «on Fridays», «every year», «stop the reminders»,
+  «turn off the automation», «what do I have tomorrow», whenever your alarm wakes you, and whenever you touch `data/cron.json`,
   `OWN-SERVICE-PROPS/CRON.json`, the passport field `automation` or `lib/cron/`. The thing you cannot guess: a
   reminder is DATA — one entry in `data/cron.json` (outside git) with its own text; no code, no commit, no push, no rebuild, and a
-  one-line answer. The core draws it as the calendar under «Working process → Process → Cron automations»; the element's server reads it once a minute.
-  Russian phrasings of the person: «напомни», «напоминай каждый день», «по будням», «раз в неделю», «каждый месяц», «поставь на
-  паузу», «выключи все напоминания», «включи напоминания», «выключи автоматизацию», «включи автоматизацию», «что у меня по
-  расписанию», «крон», «расписание», «календарь».
+  one-line answer. Your clock speaks only to you: words for the person at the alarm go through the core's main agent
+  (`npm run tell-core -- --alarm`), never through another agent's bot. The core draws the entries as this element's calendar; the
+  element's server reads them once a minute.
+  Russian phrasings of the person: «напомни», «напомни мне через неделю», «напоминай каждый день», «по будням», «раз в неделю»,
+  «каждый месяц», «каждый год», «поставь на паузу», «выключи все напоминания», «включи напоминания», «выключи автоматизацию»,
+  «включи автоматизацию», «что у меня по расписанию», «крон», «расписание», «календарь».
 ---
 
-<!-- PROOF · NOT PROVEN · written 2026-10-12, rewritten in node step 465-4, the automation switch added in node step 551-3; proven only when the agent of this element has done it on the person's word -->
+<!-- PROOF · NOT PROVEN · written 2026-10-12, rewritten in node step 465-4, the automation switch added in node step 551-3, the alarm, the yearly repeat and the group of every mode in node step 636; proven only when the agent of this element has done it on the person's word -->
 
 # schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks
 
@@ -29,9 +32,12 @@ in code, committed it, asked for a rebuild, and «tested» it by sending the rea
 
 | What | Who | Where |
 |---|---|---|
-| turn the whole automation on or off | the person — the switch «Use automation» on the core's «Working process → Process → Cron automations» — or you on the person's word | the passport field `automation.cron` |
+| turn the whole automation on or off | the person — the switch «Use automation» on this element's calendar page in the core — or you on the person's word | the passport field `automation.cron` |
 | add, change, pause, cancel an entry | you, on the person's word | `data/cron.json` |
 | a new kind of event (code) | you, as building (section «When it is not a reminder») | `lib/cron/events/`, `OWN-SERVICE-PROPS/CRON.json` |
+
+The calendar page: a custom element — «Working process → Process → Cron automations»; a native element — «Cron events» (data,
+storage, vectors and graph — «Backup → Cron events»).
 
 ## Files and processes
 
@@ -51,9 +57,10 @@ While the computer is off or the element is stopped, a run is skipped and **not 
 ```json
 {
   "id": "call-mum-2026-10-13",
-  "event": "telegram-message",
+  "event": "agent-task",
   "name": "Call mum",
   "message": "Позвонить маме.",
+  "saidAt": "2026-10-12T18:40:00.000Z",
   "time": "09:00",
   "repeat": "once",
   "start": "2026-10-13",
@@ -61,13 +68,23 @@ While the computer is off or the element is stopped, a run is skipped and **not 
 }
 ```
 
-- `event: "telegram-message"` — the built-in event: sends `message` as written to this element's Telegram bot (every allowed chat).
-  Write `name` and `message` in the **element's default language** (`npm run passport -- me` → `languages.default`), as the reminder
+- Two built-in events, both a reminder with its own text and no new code:
+  - `agent-task` — at that minute your clock wakes **you** with the entry's words («Your alarm fired — …»), and you pass them to
+    the core's main agent (section «When your alarm wakes you»), which tells the person in its bot, naming you. Use it when the
+    reminder came to you from the core's main agent, when your own bot is not connected, or when the entry needs thought at that time.
+    It costs a session at that minute.
+  - `telegram-message` — your own Telegram bot sends `message` as written (every allowed chat), no model at that minute. Use it when
+    the person asked you in your own bot.
+- Write `name` and `message` in the **element's default language** (`npm run passport -- me` → `languages.default`), as the reminder
   itself («Завтра день рождения друга.» for `ru`): every entry of the calendar is in that language (owner of the node, 2026-10-20).
+- `saidAt` — when the person said it (ISO, now): the calendar shows it next to the time it is due.
 - `time` — `HH:MM`, 24 hours. `repeat` — `once` (on `start` only) · `daily` · `weekdays` (Mon–Fri) · `weekly` (the weekday of
-  `start`) · `monthly` (the day of month of `start`). `start` — `YYYY-MM-DD`; `until` — optional last day.
+  `start`) · `monthly` (the day of month of `start`) · `yearly` (the day and month of `start`). `start` — `YYYY-MM-DD`; `until` —
+  optional last day.
+- «In a week», «tomorrow», «on the 10th» — you count the date from today's date on this computer (`date`), and the answer names it in
+  words («во вторник, 10 ноября, в 9:00»): the person catches a wrong date there.
 - `enabled: false` — paused. `repeatsPaused: true` (top of the file) — **all repeating** entries off, `once` ones still run.
-- `id` — short, unique, never reused: the run log points at it. No yearly repeat yet — for «every year» put the dates you can.
+- `id` — short, unique, never reused: the run log points at it.
 
 ## What the person says → what you do → what you answer
 
@@ -76,6 +93,7 @@ While the computer is off or the element is stopped, a run is skipped and **not 
 | «remind me tomorrow at 9 to call mum» | one `once` entry | «Готово: завтра, 13 октября, в 9:00 напомню позвонить маме.» |
 | «on weekdays at 9:30 …» | `repeat: weekdays` | «Готово: по будням в 9:30 — …» |
 | «every Monday at 9:30» | `repeat: weekly`, `start` = next Monday | «Готово: по понедельникам в 9:30, начиная с 19 октября.» |
+| «every year on 10 March — mum's birthday» | `repeat: yearly`, `start` = the next 10 March | «Готово: каждый год 10 марта в 9:00 напомню о дне рождения мамы.» |
 | «pause the Monday reminder» | `enabled: false` | «Поставил на паузу.» |
 | «turn off all repeating reminders» / «back on» | `repeatsPaused: true` / `false` | «Все повторяющиеся выключены; разовые сработают.» |
 | «turn off the automation» / «turn it on» | passport `automation.cron: false` / `true` (only this field) | «Автоматизация выключена: ничего не выполняется, записи сохранены.» |
@@ -86,11 +104,22 @@ No restatement, no plan, no «yes?», no commit, no push, no rebuild, no «check
 when the request is truly ambiguous — which date («on the 10th» of which month?), which time («in the morning» → offer 9:00).
 In Telegram — plain text. Mention the computer-off risk once, only for something that must not be missed (a birthday, a payment).
 
+## When your alarm wakes you
+
+Your input opens with «Your alarm fired — the calendar entry «…»» and the entry's words (node step 636; the owner of the node:
+«напоминание которое всплывает должно создавать техническое решение при котором элемент вызывает тебя главного агента и передает тебе
+сообщение которые ты транслируешь»).
+1. Words for the person → `npm run tell-core -- --alarm "<the words, in the person's language>"`. The core's main agent tells the
+   person, naming this element. `===TELL_CORE_OK===` — done.
+2. Work for you that the entry names (a check, a copy) — do it as the entry says, and nothing more.
+3. Never another agent's bot or door, never a neighbour woken by you for it: only agents talk to agents (`CLAUDE.md`, section 7).
+4. Then finish as usual. A `once` entry stays in the calendar as done; nothing to delete.
+
 ## Checking without sending
 
 Do **not** run a handler or send a test message to «prove» a reminder: the person reads it as the real one. Check the data instead:
-the file parses, the entry has the right `start`/`time`/`repeat`. The built-in `telegram-message` is proven once for the element;
-a test send happens only when the person asks for it, and its text starts with «Проверка напоминания: …».
+the file parses, the entry has the right `start`/`time`/`repeat`. The built-in events are proven once for the element; a test send
+happens only when the person asks for it, and its text starts with «Проверка напоминания: …».
 
 ## When it is not a reminder — the build process
 
@@ -101,8 +130,9 @@ a rebuild (`deploy-element`). That is building: say so in one line and switch to
 
 ## What it cannot do
 
-Make up runs missed while the computer was off · run anything while the element's server is stopped · repeat yearly · let the
-person edit the calendar with the mouse — only through you.
+Make up runs missed while the computer was off · run anything while the element's server is stopped · wake an agent while the
+computer has too little free memory for a session (the run log says so, the calendar shows the error) · let the person edit the
+calendar with the mouse — only through you.
 
 ## Proof of a run
 

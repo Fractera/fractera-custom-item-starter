@@ -22,7 +22,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-a2a` | ours, `workspace-skills` | a2a: work with agents of other nodes through Lagrix, never development | ⬜ |
 | `use-f2f` | ours, `build-skills` | f2f: whole elements between Fractera projects, installed once, no API | ⬜ |
 | `use-h2h` | ours, `messenger-skills` | H2H: people through their agents, first contact, text with links | ⬜ |
-| `node-elements-detection` | ours, `own-service-props-skills` | a neighbour by need — `npm run a2a -- find`, never a list of the node; working with it over i2i, never through its code | ⬜ changed 2026-10-20 |
+| `node-elements-detection` | ours, `own-service-props-skills` | a neighbour by need, named by the core's main agent (`npm run need`) — never a list of the node, never one you found yourself; working with it over i2i, never through its code | ⬜ changed 2026-11-03 |
 | `telegram-channel` | ours, `own-service-props-skills` | the person writes from Telegram into this terminal: how a message looks, answer with `reply`, text only, language, no secrets | ✅ 2026-10-07 |
 | `a2a-conversation` | ours, `own-service-props-skills` | the commands of the A2A wire (`npm run a2a`): find, call, continue in one `contextId`, carry the human's comment — i2i with neighbours, a2a with other nodes | ✅ 2026-10-06 |
 | `custom-design` | ours, `build-skills` | the gatekeeper: when the person wants an own design instead of the Blocks — ask taste or impeccable, then which rules win | ✅ 2026-10-07 |
@@ -61,8 +61,8 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `order-summary` | ours, `workspace-skills` | a short summary of an order done for an agent of another node (a2a), outside git, no personal data | ✅ 2026-10-06 |
 | `self-review` | ours, `build-skills` | on the person's «review» (in their language): at most three proposals to improve the skills, nothing changed without «yes» | — not proven |
 | `add-door` | ours, `build-skills` | a door for a neighbour: `npm run door:add` writes the route, the key and the card — you write the work | the mark in its `SKILL.md` |
-| `ask-core` | ours, `own-service-props-skills` | ask the core how the node works — the last resort | the mark in its `SKILL.md` |
-| `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` | ours, `workspace-skills` | reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild | the mark in its `SKILL.md` |
+| `ask-core` | ours, `own-service-props-skills` | ask the core how the node works — the last resort; tell the architect through the core's main agent (`npm run tell-core`, your alarm first of all) | the mark in its `SKILL.md` |
+| `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` | ours, `own-service-props-skills` | reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; your alarm → `npm run tell-core` | the mark in its `SKILL.md` |
 
 Vendored skills are copies, never symbolic links, and are never edited by hand: `SOURCE.md` next to each says where it came
 from and how to update it.

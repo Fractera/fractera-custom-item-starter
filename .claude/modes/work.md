@@ -17,11 +17,11 @@ code — that part is building: say so in one line: building runs in the build s
 
 | Group | Mode | Skills |
 |---|---|---|
-| workspace-skills | working | `use-a2a`, `order-summary`, `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (reminders and schedules: data in `data/cron.json`, the switch — passport `automation.cron`; no commit, no rebuild; the core draws the calendar) — a work skill offered to other agents also goes into the passport |
+| workspace-skills | working | `use-a2a`, `order-summary` — a work skill offered to other agents also goes into the passport |
 
 ## Cron automations — the switch, the entries, the language
 
-Skill `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` — in this terminal and from Telegram (owner of the node, 2026-10-20).
+Skill `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (group `own-service-props-skills`, every session) — in this terminal and from Telegram (owner of the node, 2026-10-20); your alarm wakes this session, and words for the person go through the core's main agent (`npm run tell-core -- --alarm`).
 - **The switch** is the passport field `automation.cron` (`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`): `true` or no field — your server
   runs the schedule at its times; `false` — nothing runs, the entries are kept. The person turns it on and off with «Use automation» on
   the core's «Working process → Process → Cron automations», or asks you. Changing this one field is the working process: no commit, no

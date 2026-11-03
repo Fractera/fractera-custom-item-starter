@@ -15,7 +15,8 @@ The node has one payment element — `stripe`, a native element that is **off un
 Settings → Payments → Web2) and turns it on. This element asks it for a payment link with the node key and sends the buyer there.
 No second payment path is built here, and no Stripe key appears in this element.
 
-1. **Who takes payments:** `npm run a2a -- find payments` → address `stripe`.
+1. **Who takes payments:** the core's main agent names it — `npm run need -- "take a card payment for <what>" --use "<what for>"`
+   (skill `need-capability`) → today `stripe`, its door. The first contact goes through it, never a search of your own.
 2. **Is it on?** `GET <core>/api/node/elements` with the node key → the entry `stripe`, field `on`. Off → tell the person in one line
    why (`offReason`) and that the main agent turns it on after the keys are in; build nothing else.
 3. **Its address on this machine:** `GET <core>/api/node/a2a?address=stripe` → `entry.url` (the loopback, `http://127.0.0.1:<port>`).
