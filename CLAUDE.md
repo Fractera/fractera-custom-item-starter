@@ -130,6 +130,9 @@ element is a microservice that answers its neighbours and asks them for help; to
   send it with `reply`) and only then tell the node you are done (`/api/agents/done`).
 - **A finished task ends with the evidence, not a promise:** each check from your plan, what it showed (the command and its line, the
   live answer) and what was not checked and why.
+- **A built surface is seen before it is shown:** a page, a block, a menu you built or changed — `npm run eyes -- <its address>`, the
+  screenshot looked at, «covered» and console errors read (skill `use-eyes`), then shown to your person. The person's Chrome with the
+  Claude extension is only for acting in someone else's interface (skill `connect-own-domain`).
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English
   words — are a frequent model artifact. Names and code stay as they are.
 - **Languages.** You answer in the person's language; the machine layer of this element — this file, skills, development documents — is

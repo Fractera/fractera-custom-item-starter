@@ -73,10 +73,14 @@ card, «Update key»), `bad-account-id` / `no-account`.
 3. **The registrar.** Ask the person to sign in to their registrar and send the link of the domain's page. Tell them who the
    registrar is if `registrar` is known. Give the two names exactly, one per line.
 4. **Change the name servers.**
-   - With a browser (tools `mcp__claude-in-chrome__*` present): open the link in a new tab, find the name-server section
+   - With the person's browser (tools `mcp__claude-in-chrome__*` present): open the link in a new tab, find the name-server section
      (Nameservers / NS / DNS), switch to custom, put the two names, **stop and ask «save?»**; save after «yes».
-   - Without a browser: describe the step in plain words, or ask for a screenshot of their page and point at the field. Never
-     describe a registrar screen you have not seen.
+   - That needs **Google Chrome with the Claude extension**, signed in to the same claude.ai account: a person on Safari or another
+     browser installs Chrome next to it (https://www.google.com/chrome/, the extension — https://claude.ai/chrome) and keeps their own
+     browser for everything else. Say it once, before this step, with both links; a node on a server has no such browser at all.
+   - Without it: lead them by words — one step per message, the exact place and what to type, wait for «done» before the next; or ask
+     for a screenshot of their page and point at the field. Never describe a registrar screen you have not seen. `npm run eyes` is
+     no help here: it has no sign-in of the person (skill `use-eyes` — your own pages only).
 5. **Measure for up to ~5 minutes.** `PUT` once a minute while the person is in the conversation.
    - `nsMatch` true → say «the name servers are in place; Cloudflare is confirming» and keep measuring until `state` is `active`.
    - after ~5 minutes `registrarNs` still shows the OLD servers → this domain lived before and its old name servers are cached

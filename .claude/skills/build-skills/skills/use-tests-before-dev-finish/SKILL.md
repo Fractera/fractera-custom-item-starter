@@ -30,8 +30,10 @@ with the person. After the work you run exactly those — a check picked afterwa
 |---|---|---|
 | **the machine** | the guards and the types | `npm run prebuild` — the **whole** chain, not one guard; `npx tsc --noEmit -p .` |
 | **the behaviour** | what a visitor or the person gets | a live request with its answer; the page's HTML has the new `data-block`; a door answers the right code |
+| **the eye** | what a visitor SEES — for anything on a screen | `npm run eyes -- <page> --click … --measure …`: the screenshot looked at, «виден» / «ПЕРЕКРЫТ», no console errors (skill `use-eyes`) |
 
-A build log is never the second kind: it reads the same whether the feature works or not.
+A build log is never the second kind: it reads the same whether the feature works or not. A change a person sees needs the eye too:
+«the class is in the build» proves the code arrived, not that the page looks right.
 
 ## The control: spoil, see red, restore
 
@@ -52,7 +54,7 @@ check `git status` is clean. A guard that stays green on a spoil watches nothing
 
 ## What you cannot check
 
-A microphone, a click in the person's browser, an email that arrives — say plainly «not checked: …, check it this way: …».
+A microphone, a click in the person's own browser (their session, their extensions), an email that arrives — say plainly «not checked: …, check it this way: …».
 Never replace it with an easier check and call it done.
 
 ## Then report

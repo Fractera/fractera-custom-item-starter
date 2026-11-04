@@ -7,6 +7,7 @@
     "node": "node scripts/node.mjs",
     "rea": "node scripts/rea.mjs",
     "study": "node scripts/study.mjs",
+    "eyes": "node scripts/eyes.mjs",
     "ledger": "node scripts/ledger.mjs",
     "pass": "node scripts/pass.mjs",
     "design-skill": "node scripts/design-skill.mjs",
