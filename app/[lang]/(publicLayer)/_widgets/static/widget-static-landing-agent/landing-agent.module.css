@@ -35,7 +35,8 @@
   font-family: var(--text);
 }
 .page ::selection { background: var(--poster); color: var(--ink); }
-.wrap { width: min(72rem, 100% - 2rem); margin-inline: auto; }
+/* 649-1: лента страницы, а не число — кнопка ширины в подвале двигает и этот лендинг (было 72rem, кнопка не делала ничего). */
+.wrap { width: min(var(--app-w), 100% - 2rem); margin-inline: auto; }
 
 /* Табличка станции */
 .sign { background: var(--board); color: var(--chalk); padding: 2.2rem 0 1.9rem; border-bottom: 6px solid var(--chalk); }

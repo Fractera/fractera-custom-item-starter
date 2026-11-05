@@ -142,6 +142,66 @@ for (const dir of [path.join(ROOT, "app"), path.join(ROOT, "components")]) {
   }
 }
 
+// ── 1в. Виджет страницы без рамки сам держит ленту ──────────────────────────
+//
+// 🔒 ЧТО ЭТО ЛОВИТ (узел, шаг 649-1, 2026-11-05, нашёл владелец: «внизу в подвале есть кнопка сделать экран шире и сделать экран
+// уже она не используется а должна»). Страница с `meta.bare` рисуется одними виджетами: `<main>` открывает `lib/branch-page.tsx`,
+// а ширину пишет виджет, поэтому правило 1 такую страницу не видит. Главная root писала `max-w-[760px]`, и кнопка на ней не
+// делала ничего. Виджет, стоящий на странице без рамки, обязан нести метку ленты или читать `var(--app-w)` — в своих .tsx или .css.
+const BARE_CENTERED = new Set([
+  // Одна надпись по центру экрана: предела ширины нет вовсе, двигать нечего.
+  "widget-static-reference-title",
+])
+
+function filesIn(dir, re, out = []) {
+  if (!fs.existsSync(dir)) return out
+  for (const name of fs.readdirSync(dir)) {
+    const p = path.join(dir, name)
+    if (fs.statSync(p).isDirectory()) filesIn(p, re, out)
+    else if (re.test(name)) out.push(p)
+  }
+  return out
+}
+
+/** Папка виджета `<ветка>/_widgets/<static|dynamic>/<kind>`; не нашлась — null (имя без папки ловит check-page-composition). */
+function widgetDir(kind) {
+  const hits = []
+  const look = (dir) => {
+    for (const name of fs.readdirSync(dir)) {
+      const p = path.join(dir, name)
+      if (!fs.statSync(p).isDirectory()) continue
+      if (name === kind && path.basename(path.dirname(path.dirname(p))) === "_widgets") hits.push(p)
+      else look(p)
+    }
+  }
+  look(LANG_DIR)
+  return hits[0] ?? null
+}
+
+for (const meta of filesIn(LANG_DIR, /^meta\.json$/)) {
+  let bare = false
+  try { bare = JSON.parse(fs.readFileSync(meta, "utf8")).bare === true } catch { continue }
+  if (!bare) continue
+  const kinds = new Set()
+  for (const words of filesIn(path.dirname(meta), /^[a-z]{2}\.json$/)) {
+    if (path.dirname(words) !== path.dirname(meta)) continue
+    try {
+      for (const b of JSON.parse(fs.readFileSync(words, "utf8")).blocks ?? []) if (String(b.kind).startsWith("widget-")) kinds.add(b.kind)
+    } catch { /* слова страницы читает свой сторож */ }
+  }
+  for (const kind of kinds) {
+    if (BARE_CENTERED.has(kind)) continue
+    const dir = widgetDir(kind)
+    if (!dir) continue
+    const src = filesIn(dir, /\.(tsx|ts|css)$/).map((f) => code(fs.readFileSync(f, "utf8"))).join("\n")
+    if (src.includes(MARKER) || src.includes("var(--app-w)")) continue
+    fail(
+      "bare-widget-without-column",
+      `${rel(dir)}: виджет стоит на странице без рамки (${rel(meta)}), но ширину пишет сам — без ${MARKER} и без var(--app-w) кнопка ширины в подвале на этой странице не делает ничего`,
+    )
+  }
+}
+
 // ── 2. Предел ширины не пишется числом ──────────────────────────────────────
 const HARD_WIDTH = /\bmax-w-7xl\b/
 for (const dir of [path.join(ROOT, "app"), path.join(ROOT, "components")]) {
@@ -159,7 +219,7 @@ for (const dir of [path.join(ROOT, "app"), path.join(ROOT, "components")]) {
 }
 
 if (problems.length === 0) {
-  console.log(`===LAYOUT_OK=== лента есть у каждой страницы; предел ширины нигде не записан числом`)
+  console.log(`===LAYOUT_OK=== лента есть у каждой страницы и у каждого виджета страницы без рамки; предел ширины нигде не записан числом`)
   process.exit(0)
 }
 
