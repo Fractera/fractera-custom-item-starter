@@ -2,6 +2,7 @@ import { dataUrl as nodeDataUrl, isRemoteData } from "@/lib/microservices/urls"
 // @api proxy media files the browser cannot reach directly
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/get-session";
+import { storeHeaders } from "@/lib/fractera/data-service";
 
 // Media proxy (step 207.18d): image URLs are stored as http://localhost:3300/media/<id>/file — the
 // media service's OWN address, reachable only from the server. The browser cannot fetch it in EITHER
@@ -26,7 +27,10 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ path: strin
     return NextResponse.json({ error: "bad path" }, { status: 400 });
   }
   try {
-    const upstream = await fetch(`${DATA_URL}/media/${rel}`, { signal: AbortSignal.timeout(15000) });
+    // 654-6: this element's own key — its people see its own files, private ones too (a private file leaves the storage only when asked
+    // by name, `?private=1`), and the node's public ones; ✗ before: no key at all, every answer 502.
+    const own = /\/(file|thumb)$/.test(rel) ? "?private=1" : "";
+    const upstream = await fetch(`${DATA_URL}/media/${rel}${own}`, { headers: storeHeaders(), signal: AbortSignal.timeout(15000) });
     if (!upstream.ok || !upstream.body) {
       return NextResponse.json({ error: `media ${upstream.status}` }, { status: 502 });
     }

@@ -42,6 +42,7 @@
     "check:menu": "node scripts/check-menu.mjs",
     "images:previews": "node scripts/generate-image-previews.mjs",
     "seed:media": "node scripts/seed-media.mjs",
+    "stores": "node scripts/stores.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:links": "node scripts/check-links.mjs",
     "prestart": "node scripts/seed-media-when-ready.mjs",

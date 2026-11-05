@@ -17,6 +17,16 @@ already born keeps its copy: a newer template version changes only elements born
 You can change the template in your own fork. To make your node use it, set `repo` and `version` in `item-template.json` of your core
 to your fork and its tag. An element born from this template starts with this README; its owner rewrites it to describe the element.
 
+## Your stores (node step 654-6)
+
+The node installer writes this element's own key `ELEMENT_KEY` into `.env.local`; the template's helpers send it (header
+`X-Element-Key`, one resolver — `lib/fractera/store-key.mjs`), and every store of the node answers with this element's space only:
+its own database file (data), its own files and the node's public ones (storage; a private file never leaves through a page), its own
+vector collections by its own names (vectors), its own graph spaces `el-<id>` and `el-<id>.<name>` (graph, `GRAPH_URL`), its own space
+of the deep memory. A neighbour's data is never reached; the node's main agent sees everything. A custom element no longer receives the
+node's data key `DATA_SECRET`. `npm run stores` names what the key opens in each store and how much of its own lies there (`--probe`
+writes a marker into each and removes it). The agent's skill — `use-own-stores`.
+
 ## The contract a replacement must keep
 
 - `OWN-SERVICE-PROPS/` — the passport, the element's main door (`GET /api/own-service-props`); `NODE-CONTRACT.json` — what the node needs to install it.

@@ -113,7 +113,7 @@ pkgJson.scripts[`test:${name}`] = `node app/api/${name}/${name}.test.mjs`
 writeFileSync(pkgFile, JSON.stringify(pkgJson, null, 2).replace(/\n/g, pkg.eol) + pkg.eol, 'utf8')
 
 ext.doors.push({
-  // 551-2: the key is a word of the core's closed list (lib/a2a/passport.mjs: none · session · X-Data-Secret · X-Settings-Key · node-key);
+  // 551-2: the key is a word of the core's closed list (lib/a2a/passport.mjs: none · session · X-Data-Secret · X-Settings-Key · node-key · X-Element-Key — the last for the stores of the node, 654);
   // ✗ «X-Node-Key» here broke the card of every element that built a door with this recipe (548-19 → found 2026-10-20).
   skill: name, protocol: 'http', method, path: `/api/${name}`, key: 'node-key',
   input: {}, output: {}, errors: { 401: 'bad_key', ...(method === 'POST' ? { 400: 'bad_request' } : {}) }, callers: [],

@@ -7,8 +7,9 @@ import { dataJson } from "./data-service";
 // written answer. If you need an answer composed across many documents, that is
 // the knowledge graph — see ./knowledge.
 //
-// Storage lives in the data service, in the same SQLite file as your rows, so a
-// vector can point back at the row it describes through refTable/refId.
+// The node's vector element keeps them; a vector can point back at the row it describes through
+// refTable/refId. 654-6: with this element's own key every collection and record is your own — the
+// store keeps your `faq` apart from every other element's `faq`, and answers by your own names.
 
 export type VectorRecord = {
   id: string;
@@ -48,8 +49,8 @@ export async function remember(input: {
 /**
  * Find the passages closest in meaning to `query`.
  *
- * Omitting `collection` searches everything, which is rarely what you want in a
- * project that stores more than one kind of text.
+ * Omitting `collection` searches every collection of your own (never a neighbour's),
+ * which is rarely what you want when you store more than one kind of text.
  */
 export async function recall(input: {
   query: string;

@@ -1,103 +1,74 @@
-import { dataJson } from "./data-service";
+import { storeHeaders } from "./data-service";
 
-// The knowledge graph — agentic RAG, reached through the data service.
+// Knowledge graph — entities and the links between them, found again by your own keywords (node step 654-6).
 //
-// Everything here goes to /service/rag, which the data service forwards to the
-// graph engine on the server's loopback. That indirection is deliberate: the
-// engine is not published to the internet, and routing through the one door
-// that already checks a secret means a project cloned onto a laptop can use the
-// knowledge base without a second address, a second key, or a second open port.
-//
-// How this differs from vector memory (./vectors): the graph is asked a question
-// and RETURNS AN ANSWER, composed from entities and relations it extracted when
-// the documents were loaded. Vector memory returns passages and leaves the
-// writing to you. The graph is the right tool when the answer is spread across
-// several documents; vector memory is right when it sits in one paragraph and
-// speed matters.
-//
-// Cost, stated plainly because it is easy to trip over: LOADING is expensive —
-// the model reads every chunk to extract entities and relations, once per
-// document. ASKING is much cheaper. Load what will actually be asked about.
+// The node's graph element (LightRAG, one operation per call) never calls a language model: you bring a READY graph — chunks of text,
+// the entities they name and the links between them — and you find it again with your own keywords. With this element's own key every
+// call works in your own space: `el-<your id>` without `space`, `el-<your id>.<name>` with one. The shared graph and your neighbours'
+// spaces are never reached; the node's main agent sees all. One passage found by meaning is simpler in the vector store — see ./vectors.
+// ✗ Until 654-6 this file asked a LightRAG server through the data element (`/service/rag/*`) that no node runs: every call 503.
 
-export type KnowledgeAnswer = {
-  available: boolean;
-  answer: string | null;
-  /** The engine's own reference block, when it returned one. */
-  raw?: unknown;
+const GRAPH_URL = (process.env.GRAPH_URL ?? "").trim().replace(/\/+$/, "");
+
+export type GraphChunk = { content: string; source_id: string; file_path?: string };
+export type GraphEntity = { entity_name: string; entity_type: string; description: string; source_id: string; file_path?: string };
+export type GraphRelationship = {
+  src_id: string;
+  tgt_id: string;
+  description: string;
+  keywords: string;
+  source_id: string;
+  weight?: number;
+  file_path?: string;
 };
 
-/**
- * Ask the knowledge base a question and get a written answer.
- *
- * `mode` selects how the graph is searched: "hybrid" (default) mixes specific
- * entities with broader themes and is the right choice unless you know better;
- * "local" leans on named things, "global" on themes across the whole corpus.
- */
-export async function ask(
-  question: string,
-  mode: "hybrid" | "local" | "global" | "naive" = "hybrid",
-): Promise<KnowledgeAnswer> {
-  try {
-    const data = await dataJson<{ response?: string; result?: string }>("/service/rag/query", {
-      method: "POST",
-      body: JSON.stringify({ query: question, mode }),
-    });
-    const answer = data.response ?? data.result ?? null;
-    return { available: true, answer, raw: data };
-  } catch {
-    // A graph that is switched off is a normal state for a project that does not
-    // use it — the caller decides whether that is a problem.
-    return { available: false, answer: null };
-  }
+async function graphDoor<T>(door: string, body?: unknown): Promise<T> {
+  if (!GRAPH_URL) throw new Error("GRAPH_URL is empty — the node installer writes the graph element's address here");
+  const res = await fetch(`${GRAPH_URL}/api/${door}`, {
+    method: body === undefined ? "GET" : "POST",
+    headers: { "Content-Type": "application/json", ...storeHeaders() },
+    body: body === undefined ? undefined : JSON.stringify(body),
+    cache: "no-store",
+  });
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Graph ${res.status} on ${door}: ${text.slice(0, 300)}`);
+  return JSON.parse(text) as T;
 }
 
 /**
- * Add a document. Returns as soon as it is accepted: the graph is built in the
- * background, so a question asked immediately may not see it yet.
- *
- * `source` is the name the document is remembered by — pass a filename or a
- * stable identifier, or every document becomes "unknown_source".
+ * Store a ready graph. Every entity and link names, by `source_id`, a chunk of the same call; `space` — a space of your own
+ * (lower-case latin, digits and dashes, up to 32 characters), none — your home space.
  */
-export async function learn(text: string, source: string): Promise<{ accepted: boolean }> {
-  try {
-    await dataJson("/service/rag/documents/text", {
-      method: "POST",
-      body: JSON.stringify({ text, file_source: source }),
-    });
-    return { accepted: true };
-  } catch {
-    return { accepted: false };
-  }
+export async function learn(input: {
+  space?: string;
+  chunks: GraphChunk[];
+  entities: GraphEntity[];
+  relationships: GraphRelationship[];
+}): Promise<{ ok: boolean; chunks: number; entities: number; relationships: number }> {
+  return graphDoor("graph-insert", input);
 }
 
-/** What the knowledge base currently holds, and whether each item finished building. */
-export async function knowledgeDocuments(): Promise<
-  { id: string; status: string; source: string | null; chunks: number }[]
-> {
-  try {
-    const data = await dataJson<{ statuses?: Record<string, Record<string, unknown>[]> }>(
-      "/service/rag/documents",
-    );
-    const buckets = data.statuses ?? {};
-    return Object.entries(buckets).flatMap(([status, rows]) =>
-      (rows ?? []).map((d) => ({
-        id: String(d.id ?? ""),
-        status: String(d.status ?? status),
-        source: d.file_path && d.file_path !== "unknown_source" ? String(d.file_path) : null,
-        chunks: Number(d.chunks_count ?? 0),
-      })),
-    );
-  } catch {
-    return [];
-  }
+/** Find by your own keywords: `ll_keywords` look for entities, `hl_keywords` for links. Nothing close enough → `found: false`. */
+export async function ask(input: {
+  query: string;
+  space?: string;
+  mode?: "local" | "global" | "hybrid" | "mix" | "naive";
+  ll_keywords?: string[];
+  hl_keywords?: string[];
+  top_k?: number;
+  threshold?: number;
+}): Promise<{ ok: boolean; found: boolean; entities: unknown[]; relationships: unknown[]; chunks: unknown[] }> {
+  return graphDoor("graph-query", { mode: "mix", ...input });
 }
 
-/** Is the graph engine running and reachable from here. */
-export async function knowledgeReady(): Promise<boolean> {
-  try {
-    await dataJson("/service/rag/health");
-    return true;
-  } catch {
-    return false;
-  }
+/** Your own spaces and how much each holds (`space: null` — the home space). */
+export async function knowledgeStatus(): Promise<{
+  ok: boolean;
+  installed?: boolean;
+  entities: number;
+  relationships: number;
+  chunks: number;
+  spaces?: { space: string | null; entities: number; relationships: number; chunks: number }[];
+}> {
+  return graphDoor("graph-status");
 }
