@@ -190,14 +190,14 @@
             {
               "skill": "stored-data",
               "from": "data",
-              "why": "media files and table rows; never a database file of its own",
+              "why": "its own tables (its own database file in the data element), its own files and vector collections, never a neighbour's (node step 654; npm run stores)",
               "protocol": "i2i",
               "via": {
                 "kind": "http",
-                "method": "GET, POST",
-                "path": "/api/*",
+                "method": "GET, POST, DELETE",
+                "path": "/db/*, /media/*, /vectors/*",
                 "base": "REMOTE_DATA_URL",
-                "key": "X-Data-Secret (DATA_SECRET)"
+                "key": "X-Element-Key (ELEMENT_KEY)"
               }
             },
             {

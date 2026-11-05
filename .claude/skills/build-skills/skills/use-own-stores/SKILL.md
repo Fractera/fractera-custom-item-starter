@@ -39,6 +39,14 @@ types.
 The node's main agent and the core hold the node's key and see everything, each finding named by its element — say so to your person
 when they ask who can see their data.
 
+## Your passport says it too
+
+`npm run passport -- me` — the first command of every wake — reads your links from `OWN-SERVICE-PROPS/A2A-CARD.json` (`consumes`): the
+template's link to the data element names `X-Element-Key (ELEMENT_KEY)` and your own tables, files and vectors. When your code starts to
+use another store directly — the graph (`lib/fractera/knowledge.ts`) or the deep memory — add its id to `calls` in
+`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json` and one `consumes` entry with its doors, its base (`GRAPH_URL`, …) and the key `X-Element-Key
+(ELEMENT_KEY)`; then `npm run describe:publish` tells the core. A link your passport does not name is a link nobody else knows of.
+
 ## Before you speak about it
 
 `npm run stores` — one line per store: whose space the key opens (`element <id>`) and how much of yours lies there. `npm run stores --
