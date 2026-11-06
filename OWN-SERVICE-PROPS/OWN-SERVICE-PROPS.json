@@ -32,5 +32,10 @@
   "nostr": {
     "tags": [],
     "description": ""
+  },
+  "power": {
+    "default": "on",
+    "switch": "auto",
+    "wakeOnCall": true
   }
 }
