@@ -56,10 +56,26 @@ const MESSENGERS = [
   { href: "/messenger-h2a", label: "H2A Messenger" },
 ]
 
+// 645-3 (владелец 2026-11-04, после первой установки глазами нового человека): «в нём сейчас огромное количество мусора который мы
+// ещё не используем: нужно скрыть все вкладки, а вместо них создать: – как это работает – подписка Cloud Code – терминал – активация
+// Telegram»; «Группа страниц архитектора» — пятой («Оставить пятым»). Четыре страницы живут в ядре: `/<lang>/architect/...` этого
+// сайта уводит туда (280). Тот же набор — в ящике ядра (`lib/menu/account-links.ts` ядра, 645-2).
+// Подписи — слова владельца; страница ядра «Telegram-бот» в ящике зовётся «Активация Telegram».
+const OWNER_PAGES: { path: string; label: Record<string, string> }[] = [
+  { path: "passport/how-it-works", label: { en: "How it works", ru: "Как это работает" } },
+  { path: "build/subscription", label: { en: "Claude Code subscription", ru: "Подписка Claude Code" } },
+  { path: "build/terminal", label: { en: "Terminal", ru: "Терминал" } },
+  { path: "build/telegram", label: { en: "Telegram activation", ru: "Активация Telegram" } },
+]
+
 export function accountLinks(lang: string): DrawerLink[] {
   return [
-    ...MESSENGERS.map((m) => ({ href: `/${lang}${m.href}`, label: m.label, roles: ARCHITECT_LAYER_ROLES })),
-    // 🔒 СЛОЙ АРХИТЕКТОРА — ПЕРВЫМ И ТОЛЬКО ЕГО РОЛЯМ (268, слово владельца 2026-09-22: «в правом
+    ...OWNER_PAGES.map((p) => ({
+      href: `/${lang}${ARCHITECT_HOME}/${p.path}`,
+      label: p.label[lang] ?? p.label.en,
+      roles: ARCHITECT_LAYER_ROLES,
+    })),
+    // 🔒 СЛОЙ АРХИТЕКТОРА — ТОЛЬКО ЕГО РОЛЯМ (268, слово владельца 2026-09-22: «в правом
     // выпадающем ящике Account сделать кнопку страницы архитектора чтобы я мог быстро на неё переходить»).
     // Адрес, роли и подпись взяты у самого слоя — `ARCHITECT_HOME`, `ARCHITECT_LAYER_ROLES` и его словарь, —
     // а не переписаны сюда: копия разошлась бы с дверью, которую открывает пункт.
@@ -68,8 +84,15 @@ export function accountLinks(lang: string): DrawerLink[] {
       label: ARCHITECT_TITLE[lang] ?? ARCHITECT_TITLE.en,
       roles: ARCHITECT_LAYER_ROLES,
     },
-    // 314-2: таблица пользователей — ребёнок ветки admin (`admin/_pages/users/`); подпись — из её данных. 580-4: за ней блоки,
-    // дизайн и настройки сайта этого элемента.
+  ]
+}
+
+// 🪦 СКРЫТО, НЕ УДАЛЕНО (645-3): мессенджеры H2H и H2A (459) и страницы администрирования — учётные записи, блоки, дизайн,
+// настройки сайта (314-2, 580-4). Страницы живы по своим адресам; вернуть в ящик — `...hiddenAccountLinks(lang)` в список выше,
+// по слову владельца.
+export function hiddenAccountLinks(lang: string): DrawerLink[] {
+  return [
+    ...MESSENGERS.map((m) => ({ href: `/${lang}${m.href}`, label: m.label, roles: ARCHITECT_LAYER_ROLES })),
     ...adminLinks(lang),
   ]
 }

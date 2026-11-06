@@ -1,11 +1,181 @@
 {
-  "title": "Reference starter template",
-  "description": "The reference starter template of a Fractera element.",
+  "title": "A new element of your node",
+  "description": "The first page of every custom element of a Fractera node. Tell its agent what the element should become, and it builds it from your words: pages, data, look and its own bot.",
   "keywords": "",
   "blocks": [
     {
-      "kind": "widget-static-reference-title",
-      "bid": "rf001"
+      "kind": "block-hero-centered",
+      "pill": "OpenSource Web4 agent & app starter kit",
+      "title": "A new element of your node",
+      "description": "Every custom element starts on this page. Tell its agent what the element should become, and it builds it from your words: pages, data, look and its own bot.",
+      "cta": {
+        "label": "How to start",
+        "href": "#turn-on"
+      },
+      "secondary": {
+        "label": "What it has",
+        "href": "#hood"
+      },
+      "bid": "uh001"
+    },
+    {
+      "kind": "widget-static-custom-landing",
+      "bid": "uw001"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "route",
+      "title": "How an element is born",
+      "bid": "ua000"
+    },
+    {
+      "kind": "text-h4",
+      "text": "The node births it",
+      "bid": "ua001"
+    },
+    {
+      "kind": "text-p",
+      "text": "The button «Create WEB4 ITEM» clones this template by a pinned tag and gives it a port, an address and a record in the registry.",
+      "bid": "ua002"
+    },
+    {
+      "kind": "text-h4",
+      "text": "It gets its own key",
+      "bid": "ua003"
+    },
+    {
+      "kind": "text-p",
+      "text": "The installer writes the element’s own key, so it opens only its own space in every store.",
+      "bid": "ua004"
+    },
+    {
+      "kind": "text-h4",
+      "text": "Its agent builds it",
+      "bid": "ua005"
+    },
+    {
+      "kind": "text-p",
+      "text": "You tell the element’s agent what you need, in the core’s Build or in Telegram, and it returns a commit.",
+      "bid": "ua006"
+    },
+    {
+      "kind": "text-h4",
+      "text": "You accept the change",
+      "bid": "ua007"
+    },
+    {
+      "kind": "text-p",
+      "text": "The change goes live with Deploy, after you look at it in Preview.",
+      "bid": "ua008"
+    },
+    {
+      "kind": "text-small",
+      "text": "Until the element has its own page, the yellow sign at the top says what to do next.",
+      "bid": "ua009"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "solves",
+      "title": "What changes for you",
+      "bid": "ub000"
+    },
+    {
+      "kind": "text-table",
+      "head": [
+        "Without it",
+        "With a custom element"
+      ],
+      "rows": [
+        [
+          "A new project starts from an empty folder",
+          "It starts with sign-in, data, files and design already connected"
+        ],
+        [
+          "A product is built at the keyboard",
+          "Its agent builds it from your words, and you can talk to it from Telegram"
+        ],
+        [
+          "Projects share one database by accident",
+          "It opens only its own tables, files, vectors and graph with its own key"
+        ],
+        [
+          "A product lives alone",
+          "It can work for agents of other nodes through Lagrix and be exchanged whole between Fractera projects"
+        ]
+      ],
+      "bid": "ub001"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "turn-on",
+      "title": "How to start",
+      "bid": "uc000"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "Open the element in the core’s left menu and go to Build.",
+        "Tell its agent what the element should do, in plain words.",
+        "Look at the result in Preview, then accept it or reject it.",
+        "Connect its Telegram bot to talk to the agent from your phone."
+      ],
+      "bid": "uc001"
+    },
+    {
+      "kind": "text-small",
+      "text": "For a new product the agent starts with a short product quiz: it asks before it builds.",
+      "bid": "uc002"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "hood",
+      "title": "What it has",
+      "bid": "ud000"
+    },
+    {
+      "kind": "text-table",
+      "head": [
+        "Part",
+        "What it is"
+      ],
+      "rows": [
+        [
+          "Passport",
+          "OWN-SERVICE-PROPS: what the element does, its doors and its links, read by the node and by other agents"
+        ],
+        [
+          "Sign-in",
+          "Through the node’s sign-in element: fourteen roles and the guest, set for every route"
+        ],
+        [
+          "Stores",
+          "Its own key ELEMENT_KEY: its own tables, files, vectors and graph spaces"
+        ],
+        [
+          "Pages",
+          "Public pages stay static; a page is a folder of data with its words in every language"
+        ],
+        [
+          "Agent",
+          "Its own Claude Code agent with its instruction, skills and development documents"
+        ],
+        [
+          "Telegram",
+          "Its own bot: you talk to the agent from your phone"
+        ]
+      ],
+      "bid": "ud001"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "credits",
+      "title": "Open source",
+      "bid": "ue000"
+    },
+    {
+      "kind": "text-p",
+      "text": "Built by Fractera for the [Lagrix](https://lagrix.dev) protocol and for any web2 product. MIT license, the template is at [github.com/Fractera/fractera-custom-item-starter](https://github.com/Fractera/fractera-custom-item-starter); the element born from it is yours.",
+      "bid": "ue001"
     }
   ]
 }
