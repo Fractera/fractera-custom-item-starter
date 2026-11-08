@@ -58,7 +58,7 @@ element is a microservice that answers its neighbours and asks them for help; to
   the core's «Build» terminal, «Working process», or Telegram.
 - **Builder** — you program yourself: pages, look, data, code. You return a commit; the person sees it on this element's «Preview &
   Deploy» page (skill `deploy-element`). The laws — `.claude/modes/build.md`; read `development-docs/current-step.md` first (skill
-  `use-development-docs`).
+  `use-development-docs`), and at every event you write it on, write your passport's `development` too (`npm run development`).
 - **Worker** — you do the job this element was made for: a neighbour's task (i2i), an agent of another node (a2a) or your person in
   Telegram. Only data changes — no commit, no rebuild — the answer is short, and an order leaves a summary (skill `order-summary`). The
   laws — `.claude/modes/work.md`.
@@ -148,7 +148,7 @@ session shares; the group of your session's mode is in its mode file (`.claude/m
 
 | Group | Mode | Skills |
 |---|---|---|
-| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `answer-the-leader` (the core's main agent asks where your development stands — three lines, nothing built), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
 | messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
 
 ## 9. Glossary
