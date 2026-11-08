@@ -42,7 +42,8 @@ term that two places use → into the glossary in the same commit.
    "<what for>"`, skill `need-capability`; its door if it has one — a plain call, no model; no door — agree an API with its agent
    once, `use-i2i`) → a whole element from the network, f2f, custom elements only
    (`npm run f2f -- find <plain words>`; the search is simulated today — say
-   «в сети Lagrix подходящих элементов не найдено (поиск в сети пока имитируется)») → build it here when the need is your role:
+   «в сети Lagrix подходящих элементов не найдено (поиск в сети пока имитируется)») → who already solved it — `skills_find` (each skill named with its stars and installs; its idea is taken, its
+   text only with its source) and your person's own idea or an analog they know (core step 671) → build it here when the need is your role:
    **a clear request** (input and output named, from a neighbour or your person) at once, the short way (2a), without the quiz
    (2026-10-20); a new product or «and also I need…» —
    `product-quiz`; a product like an existing one («like X», «a clone of X») — `product-clone` first: the site's rules, then what
