@@ -89,7 +89,9 @@ export function ConfigEditor({
       if (!perLangTranslation) return patchAtPath(path, field ? typedValue(field, value) : value)
       // Перевод всегда строка: языковыми бывают только текстовые поля.
       // Пустой перевод стирается: `null` в заплате удаляет ключ.
-      return patchAtPath(`i18n.${path}.${editLang}`, value.trim() === "" ? null : value)
+      // 712-4 ✗ found: `patchAtPath` split a dotted path (`seo.titleTemplate`) into nested branches, while every reader takes the
+      // translation by the flat key (`i18n["seo.titleTemplate"].ru`, `configValueForLang`) — such translations were lost silently.
+      return { i18n: { [path]: { [editLang]: value.trim() === "" ? null : value } } }
     })
 
     try {
