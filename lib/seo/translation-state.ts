@@ -29,6 +29,8 @@ import { DEFAULT_LANGUAGE, INDEXED_LANGUAGES, SUPPORTED_LANGUAGES } from '@/conf
  */
 export type TranslatedPage = {
   overrides?: Record<string, unknown>
+  /** 706-5: страница, ждущая дизайна, не индексируется ни на одном языке (метатег, hreflang и карта — из одного источника). */
+  meta?: { awaitingDesign?: boolean }
 }
 
 /**
@@ -69,7 +71,7 @@ export function translatedLanguages(page: TranslatedPage): string[] {
 
 /** Открыт ли язык поисковику и есть ли у страницы свой текст на нём. */
 export function isIndexable(lang: string, page: TranslatedPage): boolean {
-  return INDEXED_LANGUAGES.includes(lang) && isTranslated(lang, page)
+  return page.meta?.awaitingDesign !== true && INDEXED_LANGUAGES.includes(lang) && isTranslated(lang, page)
 }
 
 /** Языки, которые страница предлагает поисковику: взаимный набор hreflang и строки карты. */

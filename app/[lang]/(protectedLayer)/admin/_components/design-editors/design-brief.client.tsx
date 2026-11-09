@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
@@ -74,10 +75,10 @@ export function DesignBrief({ lang, words }: { lang: string; words: BriefWords }
             <Input aria-label={words.note} placeholder={words.note} value={r.note ?? ''} onChange={(e) => setRef(i, { note: e.target.value })} />
             <div data-block="q3iaj" className="flex flex-wrap items-center gap-3">
               {r.media ? <img src={`/api/media/${r.media}/file`} alt={r.note ?? ''} className="h-16 w-auto rounded border border-border" /> : null}
-              <label className="cursor-pointer text-sm font-medium text-primary underline underline-offset-4">
+              <Label className="cursor-pointer text-sm font-medium text-primary underline underline-offset-4">
                 {uploading === i ? words.uploading : words.upload}
-                <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(i, f) }} />
-              </label>
+                <Input type="file" accept="image/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(i, f) }} />
+              </Label>
               <Button type="button" variant="ghost" size="sm" onClick={() => set({ references: refs.filter((_, k) => k !== i) })}>{words.remove}</Button>
             </div>
           </div>

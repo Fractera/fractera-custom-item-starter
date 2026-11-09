@@ -1,13 +1,10 @@
-// ВИДЫ БЛОКОВ, КОТОРЫЕ СТОЯТ В ЭТОМ ЭЛЕМЕНТЕ (шаг 314-2).
+// ВИДЫ СЕКЦИЙ ЭТОГО ЭЛЕМЕНТА (шаг 314-2; 706-5).
 //
-// 🪦 КАТАЛОГ НА 60+ ВИДОВ И ПАПКА `sections/` УДАЛЕНЫ ИЗ ШАБЛОНА по слову владельца 2026-09-26: «Мы же сделали для этого
-// специально отдельный микро service который управляет блоками … мы должны передать навык которые позволит ему самому
-// определять стоит он забирать хочет или нет через MCP блоки». Блоки живут в элементе «Блоки»; элемент берёт себе только
-// нужные командой `npx shadcn add @fractera/<имя>` (адрес реестра — `BLOCKS_REGISTRY_URL`) и владеет копией.
+// 🪦 Секции приходили из общего каталога элемента «Блоки» (`npx shadcn add @fractera/<имя>`); 706-5 снял каталог (владелец 2026-11-09:
+// «отказаться от элементов дизайн и от элементов Blok»): секции — собственные компоненты элемента, их пишет дизайн-проход по брифу.
 //
-// 🔒 ОДИН ВИД ЗДЕСЬ — ОДИН ПОСТАВЛЕННЫЙ БЛОК В `components/blocks/` И ОДНА СТРОКА В `lib/content/blocks/registry.tsx`.
-// Имя вида — имя блока в реестре «Блоков» (`hero-centered`): фабрика `page-body` на неизвестный вид падает с командой
-// установки именно этого имени.
+// 🔒 ОДИН ВИД ЗДЕСЬ — ОДИН КОМПОНЕНТ В `components/blocks/`, ОДНА СТРОКА В `lib/content/blocks/registry.tsx` И ОДНА СТРОКА МАШИННОЙ
+// КОПИИ В `lib/aio/blocks-to-markdown.ts` (проверка там исчерпывающая — без неё не соберётся).
 
 export type Link = { label: string; href: string }
 
@@ -19,7 +16,6 @@ type Addressed = { bid?: string }
 
 export type Block = Addressed & (
   | { kind: 'block-section-head'; id: string; title: string; badge?: string }
-  | { kind: 'block-hero-centered'; pill?: string; title: string; description: string; cta?: Link; secondary?: Link }
   | { kind: 'block-warning-card'; title: string; text: string }
   | { kind: 'block-faq'; title: string; items: { q: string; a: string }[] }
   // 423: типографика элемента (`lib/content/text-set.tsx`) — третий вид рядом с блоками и виджетами.

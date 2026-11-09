@@ -51,11 +51,6 @@ const ALLOWED_RAW_HEADINGS = new Set([
   // Заменяет корневой макет целиком: глобальный CSS там не гарантирован, вся
   // разметка на инлайн-стилях. Классы примитива в этом файле просто не сработают.
   path.join("app", "global-error.tsx"),
-  // design-agent: тот же лендинг в собственном оформлении агента по навыку impeccable — владелец попросил свой дизайн для
-  // сравнения с главной. Размеры — в `landing-agent.module.css`, цвета, шрифты и углы — токены «Дизайна».
-  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "index.tsx"),
-  // Справочное бюро того же лендинга (узел, шаг 348): табличка киоска — заголовок секции в оформлении страницы.
-  path.join("app", "[lang]", "(publicLayer)", "_widgets", "static", "widget-static-landing-agent", "help-desk.client.tsx"),
 ])
 
 // 🔒 ПОЛЯ ВВОДА УМЕНЬШАЮТ ТЕКСТ НАМЕРЕННО — И ЭТО НЕ ТА ОШИБКА, ЧТО ИЩЕТ СТОРОЖ.

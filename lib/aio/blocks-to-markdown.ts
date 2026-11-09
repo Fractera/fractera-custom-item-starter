@@ -30,56 +30,50 @@ import { resolveMarkdownLinks } from '@/lib/content/blocks/links'
 export type WidgetText = (kind: string) => string
 
 function lines(block: Block, widget?: WidgetText): string[] {
-  // 314-2: виды набора элемента (`lib/content/blocks/registry.tsx`). Новый вид в наборе — строка здесь той же правкой,
-  // иначе машинная версия страницы молча теряет его текст.
-  switch (block.kind) {
+  // 428: виджет ветки несёт свой текст (лендинг — поле `landing` данных, форма — свои строки), и в копию он приходит через
+  // `markdown(lang)` в папке виджета. 🪦 Здесь стояло «его слова уже в машинной версии» — неверно: главная отдавала 159 байт.
+  if (block.kind.startsWith('widget-')) {
+    const text = widget ? widget(block.kind).trim() : ''
+    return text ? [text] : []
+  }
+  const section = block as Exclude<Block, { kind: `widget-${string}` }>
+  // 314-2, 706-5: виды набора элемента (`lib/content/blocks/registry.tsx`). Проверка ИСЧЕРПЫВАЮЩАЯ: новый вид в `types.ts` без своей
+  // строки здесь не соберётся (`never` ниже) — машинная копия страницы не может молча потерять текст секции, которую агент написал сам.
+  switch (section.kind) {
     case 'block-section-head':
-      return [`## ${block.title}`]
-    case 'block-hero-centered':
-      return [
-        ...(block.pill ? [`_${block.pill}_`, ''] : []),
-        `# ${block.title}`,
-        '',
-        block.description,
-        ...(block.cta ? ['', `[${block.cta.label}](${block.cta.href})`] : []),
-        ...(block.secondary ? [`[${block.secondary.label}](${block.secondary.href})`] : []),
-      ]
+      return [`## ${section.title}`]
     case 'block-warning-card':
-      return [`> **${block.title}** ${block.text}`]
+      return [`> **${section.title}** ${section.text}`]
     // 423: типографика элемента — сама почти Markdown.
     case 'block-faq':
-      return [`## ${block.title}`, ...block.items.flatMap((f) => ['', `**${f.q}**`, f.a])]
+      return [`## ${section.title}`, ...section.items.flatMap((f) => ['', `**${f.q}**`, f.a])]
     case 'text-h2':
-      return [`## ${block.text}`]
+      return [`## ${section.text}`]
     case 'text-h3':
-      return [`### ${block.text}`]
+      return [`### ${section.text}`]
     case 'text-h4':
-      return [`#### ${block.text}`]
+      return [`#### ${section.text}`]
     case 'text-p':
     case 'text-lead':
     case 'text-small':
-      return [block.text]
+      return [section.text]
     case 'text-list':
-      return block.items.map((t, i) => (block.ordered ? `${i + 1}. ${t}` : `- ${t}`))
+      return section.items.map((t, i) => (section.ordered ? `${i + 1}. ${t}` : `- ${t}`))
     case 'text-quote':
-      return [`> ${block.text}`, ...(block.cite ? [`> — ${block.cite}`] : [])]
+      return [`> ${section.text}`, ...(section.cite ? [`> — ${section.cite}`] : [])]
     case 'text-code':
-      return ['```', block.text, '```']
+      return ['```', section.text, '```']
     case 'text-table': {
       const row = (cells: string[]) => `| ${cells.map((c) => c.replace(/\|/g, '\\|')).join(' | ')} |`
       const RULE: Record<string, string> = { left: ':---', center: ':---:', right: '---:' }
-      const rule = block.head.map((_, i) => RULE[block.align?.[i] ?? ''] ?? '---')
-      return [row(block.head), `| ${rule.join(' | ')} |`, ...block.rows.map(row)]
+      const rule = section.head.map((_, i) => RULE[section.align?.[i] ?? ''] ?? '---')
+      return [row(section.head), `| ${rule.join(' | ')} |`, ...section.rows.map(row)]
+    }
+    default: {
+      const unhandled: never = section
+      return unhandled
     }
   }
-  // 428: виджет ветки несёт свой текст (лендинг — поле `landing` данных, форма — свои строки), и в копию он приходит через
-  // `markdown(lang)` в папке виджета. 🪦 Здесь стояло «его слова уже в машинной версии» — неверно: главная отдавала 159 байт.
-  const kind = (block as { kind: string }).kind
-  if (widget && kind.startsWith('widget-')) {
-    const text = widget(kind).trim()
-    return text ? [text] : []
-  }
-  return []
 }
 
 /**

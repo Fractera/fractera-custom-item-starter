@@ -87,8 +87,8 @@ A production build is always the whole app; the only lever is how many route fil
 - **A section** the set does not have — the design pass builds it here, as this element's own section (step 706: the shared Blocks
   catalogue is retired); it is registered in
   `lib/content/blocks/registry.tsx`, `lib/content/blocks/types.ts` and `lib/aio/blocks-to-markdown.ts`. Never put a section on a page outside the set.
-  The blocks of this element, by section, with a Preview of each: `/<lang>/admin/blocks` (the architect opens it from the core,
-  «Build → Blocks»).
+  After writing page data run `npm run check:page-sequence`: the live site renders data newer than its build and would drop an
+  unknown section silently (✗ 2026-11-09, lqvop).
 - A public page has a Markdown copy for agents (`<page>/index.md`, `llms-full.txt`) built from this sequence; a `widget-*`
   in it brings its own text through `markdown.ts` (skill `use-machine-copy`).
 

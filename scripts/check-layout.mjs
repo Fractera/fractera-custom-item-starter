@@ -163,7 +163,7 @@ function filesIn(dir, re, out = []) {
   return out
 }
 
-/** Папка виджета `<ветка>/_widgets/<static|dynamic>/<kind>`; не нашлась — null (имя без папки ловит check-page-composition). */
+/** Папка виджета `<ветка>/_widgets/<static|dynamic>/<kind>`; не нашлась — null (имя без папки ловит check-page-sequence). */
 function widgetDir(kind) {
   const hits = []
   const look = (dir) => {

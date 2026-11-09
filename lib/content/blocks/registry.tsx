@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import { PageBody, type BlockSet } from '@/components/blocks/page-body'
 import { SectionHead } from '@/components/blocks/block-section-head'
-import { HeroCentered } from '@/components/blocks/block-hero-centered'
 import { WarningCard } from '@/components/blocks/block-warning-card'
 import { Faq } from '@/components/blocks/block-faq'
 import type { Block } from './types'
@@ -9,14 +8,13 @@ import { TEXT_SET } from '@/lib/content/text-set'
 
 // НАБОР БЛОКОВ ЭТОГО ЭЛЕМЕНТА И ОТРИСОВКА СТРАНИЦЫ (шаг 314-2).
 //
-// 🔒 РИСУЕТ ФАБРИКА `page-body` ИЗ «БЛОКОВ», А НЕ СВОЙ КАТАЛОГ. Здесь только набор — какие блоки стоят в проекте. Новый
-// блок: `npx shadcn add @fractera/<имя>` → строка в наборе → вид в `types.ts`. Вид без строки — ошибка сборки
-// с командой установки, а не пустое место на странице.
+// 🔒 НАБОР — СЕКЦИИ ЭТОГО ЭЛЕМЕНТА (706-5: общий каталог «Блоков» снят, владелец 2026-11-09). Новая секция — свой компонент в
+// `components/blocks/`, строка в наборе, вид в `types.ts` и строка машинной копии в `lib/aio/blocks-to-markdown.ts` (без неё не
+// соберётся: проверка там исчерпывающая). Четыре документные секции шаблона — заголовок, FAQ, оглавление, предупреждение.
 // 🪦 Прежняя отрисовка через `sections/` (62 вида) удалена вместе с каталогом.
 
 export const BLOCK_SET: BlockSet = {
   'block-section-head': SectionHead,
-  'block-hero-centered': HeroCentered,
   'block-warning-card': WarningCard,
   'block-faq': Faq,
 }

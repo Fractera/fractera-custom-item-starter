@@ -3,7 +3,6 @@ import { UsersTable } from './dynamic/widget-dynamic-users-table/index.client'
 import { usersTableUi } from './dynamic/widget-dynamic-users-table/ui.i18n'
 import { appDialogUi } from '@/components/dialog/app-dialog.i18n'
 import { SiteSettings } from './dynamic/widget-dynamic-site-settings'
-import { ElementBlocks } from './static/widget-static-element-blocks'
 import { Widget as DesignBrief } from './dynamic/widget-dynamic-design-brief'
 import { Widget as DesignOverview } from './dynamic/widget-dynamic-design-overview'
 import { Widget as DesignColors } from './dynamic/widget-dynamic-design-colors'
@@ -22,7 +21,6 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   // Свои настройки элемента — копия редактора CONFIG (`_pages/site-settings`).
   'widget-dynamic-site-settings': (lang) => <SiteSettings lang={lang} />,
   // 577-11 / 578: блоки этого элемента (`_pages/blocks`) — таблица и Preview.
-  'widget-static-element-blocks': (lang) => <ElementBlocks lang={lang} />,
   // 579-1: своя мастерская оформления (`_pages/design`) — редакторы «Дизайна» над DESIGN-CONFIG этого элемента.
   // 706-4: бриф дизайна — первым на странице «Дизайн».
   'widget-dynamic-design-brief': (lang) => <DesignBrief lang={lang} />,

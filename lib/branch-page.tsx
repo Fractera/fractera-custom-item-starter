@@ -37,27 +37,6 @@ function bareWidgets(page: TreePage, lang: string, set: WidgetSet | undefined) {
     .map((b, i) => <Fragment key={`${b.kind}-${i}`}>{set?.[b.kind]?.(lang) ?? null}</Fragment>)
 }
 
-const ARCHITECT_PAGE = /^\/([a-z]{2})\/architect\/(build\/[a-z-]+)$/
-
-/** Ссылки на страницы ЭТОГО элемента в слое архитектора: в данных без имени, имя — из паспорта при отрисовке. */
-function fillElementLinks(blocks: Block[]): Block[] {
-  const at = (href: string) => {
-    const m = href.match(ARCHITECT_PAGE)
-    if (!m) return href
-    const id = ownId()
-    return id ? `/${m[1]}/architect/${id}/${m[2]}` : '#'
-  }
-  return blocks.map((b) =>
-    b.kind === 'block-hero-centered'
-      ? {
-          ...b,
-          ...(b.cta ? { cta: { ...b.cta, href: at(b.cta.href) } } : {}),
-          ...(b.secondary ? { secondary: { ...b.secondary, href: at(b.secondary.href) } } : {}),
-        }
-      : b,
-  )
-}
-
 /** Публичная ли ветка: индексируется только `(publicLayer)`; остальные закрыты своим layout. */
 const isPublic = (segments: string[]) => segments[0] === '(publicLayer)'
 
@@ -93,7 +72,7 @@ function contentOf(page: TreePage, lang: string, segments: string[]) {
     if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x)])) as T
     return v
   }
-  const blocks = fill(fillElementLinks(w.blocks)).map((b) => {
+  const blocks = fill(w.blocks).map((b) => {
     if (b.kind !== 'text-p' || !roles) return b
     const text = b.text.replace('{roles}', roles)
     return text === b.text ? b : { ...b, text }
@@ -126,7 +105,9 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
     const page = branchRoot(...opts.segments)
     if (!page) throw new Error(`branch root without _data/en.json: ${opts.segments.join('/')}`)
     return createContentPage({
-      data: { overrides: page.overrides },
+      data: { overrides: page.overrides, meta: page.meta },
+      // 706-5: ждущая дизайна страница закрыта от поиска.
+      noindex: page.meta.awaitingDesign === true,
       // 340-2: закрытые ветки (кабинеты, гость) закрыты от поиска своим layout; страница обязана это знать, иначе печатает
       // набор hreflang, который поисковик не учтёт (сторож: noindex-with-hreflang).
       closedBranch: !isPublic(opts.segments),
@@ -175,7 +156,8 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
     const parentSlug = slug.includes('/') ? slug.split('/')[0] : null
     const parent = parentSlug ? branchChild(opts.segments, parentSlug) : null
     const factory = createContentPage({
-      data: { overrides: page.overrides },
+      data: { overrides: page.overrides, meta: page.meta },
+      noindex: page.meta.awaitingDesign === true,
       closedBranch: !isPublic(opts.segments),
       meta: { subPath: `${opts.subPath}/${slug}`, ogImage: ogImageOf(page.meta.ogImage, opts.segments, `${opts.subPath}/${slug}`), service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),

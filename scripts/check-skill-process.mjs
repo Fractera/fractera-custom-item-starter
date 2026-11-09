@@ -109,9 +109,12 @@ for (const f of tracked) {
 // Навыки главного агента ядра (`lib/main-agent/skills/` ядра) — чужие, но настоящие: текст, адресованный ядру, их называет.
 const CORE_SKILLS = ['answer-element', 'ask-element', 'create-element', 'route-to-element', 'supervise-element']
 const reads = (f) => f === 'CLAUDE.md' || f.startsWith('.claude/') || f.startsWith('scripts/') || f === 'development-docs/README.md'
+// 706-4: текст ПРИВЕЗЁННОГО навыка (папка с `SOURCE.md` в корне `.claude/skills/`) не правится руками и называет навыки своего мира
+// (у deslop — поле `allowed-tools`); он не проверяется на имена этого элемента.
+const vendoredText = (f) => { const p = f.split('/'); return p[0] === '.claude' && p[1] === 'skills' && p.length > 3 && existsSync(join(ROOT, '.claude', 'skills', p[2], 'SOURCE.md')) }
 const named = (f, name, how) => { if (!seen.has(name) && !CORE_SKILLS.includes(name)) problems.push(`${f}: ${how} называет навык «${name}», которого нет`) }
 const KEBAB = '([a-z0-9]+(?:-[a-z0-9]+)+)'
-for (const f of tracked.filter(reads)) {
+for (const f of tracked.filter((x) => reads(x) && !vendoredText(x))) {
   let text = ''
   try { text = readFileSync(join(ROOT, f), 'utf8') } catch { continue }
   for (const m of text.matchAll(new RegExp(String.raw`\b[Ss]kills?\s+` + '`?' + KEBAB + String.raw`\b`, 'g'))) named(f, m[1], 'текст')

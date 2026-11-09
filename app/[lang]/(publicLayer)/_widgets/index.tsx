@@ -1,18 +1,13 @@
 import type { ReactNode } from 'react'
-import { LandingAgent } from './static/widget-static-landing-agent'
 import { PolicyAnalytics } from './static/widget-static-policy-analytics'
 import { ReferenceTitle } from './static/widget-static-reference-title'
-import { CustomLanding } from './static/widget-static-custom-landing'
 
 // ВИДЖЕТЫ ЭТОЙ ВЕТКИ (владелец 2026-10-07: «удалили маршрут — проект чистый»). Страница ветки называет виджет в `meta.json` →
 // `"widget"`; ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
+// 706-5: обе прежние главные (лендинг агента и лендинг «по образцу Stripe») сняты — главная нового элемента рождается пустой и
+// рисуется по брифу (владелец 2026-11-09).
 export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
-  // Главная — лендинг агента элемента на весь экран (`meta.widgetOnly`).
-  'widget-static-landing-agent': (lang) => <LandingAgent lang={lang} />,
   // Policy pages — the Google Analytics section, only while it is on (node step 449-2).
   'widget-static-policy-analytics': (lang) => <PolicyAnalytics lang={lang} />,
-  // Главная эталонного стартового шаблона — одна надпись по центру (узел, шаг 542).
-  // Главная элемента — лендинг по образцу Stripe (узел, шаг 660).
-  'widget-static-custom-landing': (lang) => <CustomLanding lang={lang} />,
   'widget-static-reference-title': (lang) => <ReferenceTitle lang={lang} />,
 }
