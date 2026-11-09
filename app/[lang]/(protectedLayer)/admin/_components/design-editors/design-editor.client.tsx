@@ -19,8 +19,9 @@ export type DesignSection = 'colors' | 'fonts' | 'type' | 'shape'
 type Raw = {
   colors?: { light?: Record<string, string>; dark?: Record<string, string> }
   fonts?: Record<string, { family: string; import?: string }>
-  type?: { scale?: number; leading?: number }
-  shape?: { radius?: string; borderWidth?: string; spaceScale?: number; appWidth?: string }
+  type?: { scale?: number; leading?: number; headingWeight?: number }
+  shape?: { radius?: string; borderWidth?: string; spaceScale?: number; appWidth?: string; shadow?: "none" | "soft" | "medium" | "strong" }
+  motion?: { speed?: "none" | "fast" | "normal" | "slow" }
 }
 
 export type DesignEditorProps = {
@@ -56,6 +57,6 @@ export function DesignEditorIsland({ section, ui, words, loginHref, designHref, 
   ) : section === 'type' ? (
     <DesignType initial={c.type ?? {}} ui={ui.type} />
   ) : (
-    <DesignShape initial={c.shape ?? {}} ui={ui.shape} />
+    <DesignShape initial={{ ...(c.shape ?? {}), ...(c.motion?.speed ? { speed: c.motion.speed } : {}) }} ui={ui.shape} />
   )
 }

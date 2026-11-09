@@ -60,7 +60,9 @@ type Variant = "content" | "ui"
 // содержимого, а заголовок — это опознавательный знак сайта, и он обязан быть
 // один. Проверяется это глазами человека, открывшего две страницы подряд, а не
 // рассуждением о плотности.
-const H1_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] font-bold leading-tight tracking-tight md:text-[length:var(--fs-h1-md)] lg:text-[length:var(--fs-h1-lg)]`
+// 711-7: H1, the hero, the metric and the content H2 take their weight from `--heading-weight` (DESIGN-CONFIG `type.headingWeight`);
+// the theme's 700 stays when the token is not set.
+const H1_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] [font-weight:var(--heading-weight,700)] leading-tight tracking-tight md:text-[length:var(--fs-h1-md)] lg:text-[length:var(--fs-h1-lg)]`
 
 // Заголовок ПЕРВОГО ЭКРАНА главной — те же 30/36/48, увеличенные на 30%
 // (заказ владельца 2026-08-15): 39 / 47 / 62 пикселя.
@@ -70,7 +72,7 @@ const H1_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] font-bold leading
 // такое исключение записывается классами на месте, рядом появляется второе, и
 // шкала перестаёт существовать. Стоит оно у шкалы, посчитано от неё, и видно
 // всякому, кто сюда заглянет.
-const H1_HERO_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-hero)] font-bold leading-[1.1] tracking-tight md:text-[length:var(--fs-hero-md)] lg:text-[length:var(--fs-hero-lg)]`
+const H1_HERO_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-hero)] [font-weight:var(--heading-weight,700)] leading-[1.1] tracking-tight md:text-[length:var(--fs-hero-md)] lg:text-[length:var(--fs-hero-lg)]`
 
 // ЧИСЛО-УТВЕРЖДЕНИЕ: множитель в ряду мер, зачёркнутое имя в ряду «счетов, которых
 // нет». Не заголовок — оно ничего не озаглавливает, — но и не текст: это крупный
@@ -84,10 +86,10 @@ const H1_HERO_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-hero)] font-bold 
 //
 // Ступень взята существующая (`--fs-h1`), новой не заведено: каждая новая
 // ступень — ещё один способ развалить пропорции.
-const METRIC_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] font-bold leading-none tracking-tight md:text-[length:var(--fs-h1-md)]`
+const METRIC_STYLE = `${CONTENT_FAMILY} text-[length:var(--fs-h1)] [font-weight:var(--heading-weight,700)] leading-none tracking-tight md:text-[length:var(--fs-h1-md)]`
 
 const H2_STYLES: Record<Variant, string> = {
-  content: `${CONTENT_FAMILY} text-[length:var(--fs-h2)] font-bold leading-snug tracking-tight md:text-[length:var(--fs-h2-md)]`,
+  content: `${CONTENT_FAMILY} text-[length:var(--fs-h2)] [font-weight:var(--heading-weight,700)] leading-snug tracking-tight md:text-[length:var(--fs-h2-md)]`,
   ui: `${UI_FAMILY} text-[length:var(--fs-h3)] font-semibold tracking-tight md:text-[length:var(--fs-h3-md)]`,
 }
 

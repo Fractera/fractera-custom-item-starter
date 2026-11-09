@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { PresetField } from "./preset-field.client"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { DesignWorkbench, DesignPreview } from "./design-workbench"
@@ -25,7 +26,12 @@ import { saveDesign } from "./design-save"
 const RADIUS: Record<string, string> = { square: "0rem", soft: "0.375rem", round: "0.625rem", pill: "1.25rem" }
 const SPACE: Record<string, number> = { dense: 0.85, normal: 1, airy: 1.2 }
 
-type State = { radius?: string; borderWidth?: string; spaceScale?: number; appWidth?: string }
+// 711-7: тень карточек и скорость интерфейса — ступенями, как скругление; скорость живёт в своей ветке `motion`.
+type Shadow = "none" | "soft" | "medium" | "strong"
+type Speed = "none" | "fast" | "normal" | "slow"
+type State = { radius?: string; borderWidth?: string; spaceScale?: number; appWidth?: string; shadow?: Shadow; speed?: Speed }
+const SHADOWS: Shadow[] = ["none", "soft", "medium", "strong"]
+const SPEEDS: Speed[] = ["none", "fast", "normal", "slow"]
 
 export function DesignShape({ initial, ui }: { initial: State; ui: DesignUi["shape"] }) {
   const [state, setState] = useState<State>(initial)
@@ -52,7 +58,9 @@ export function DesignShape({ initial, ui }: { initial: State; ui: DesignUi["sha
           borderWidth: state.borderWidth ?? null,
           spaceScale: state.spaceScale ?? null,
           appWidth: state.appWidth ?? null,
+          shadow: state.shadow ?? null,
         },
+        motion: { speed: state.speed ?? null },
       }
       const res = await saveDesign({ patch })
       setStatus(res.ok ? "saved" : "failed")
@@ -131,6 +139,12 @@ export function DesignShape({ initial, ui }: { initial: State; ui: DesignUi["sha
           ))}
         </div>
       </section>
+
+      <PresetField field="shadow" bids={{ section: "sh7q1", label: "sh7q2", hint: "sh7q3", list: "sh7q4" }} label={ui.shadowLabel} hint={ui.shadowHint}
+        options={SHADOWS.map((v) => ({ value: v, label: ui.shadowPresets[v] }))} value={state.shadow ?? "none"} onChange={(v) => set("shadow", v)} />
+
+      <PresetField field="speed" bids={{ section: "mo4k1", label: "mo4k2", hint: "mo4k3", list: "mo4k4" }} label={ui.speedLabel} hint={ui.speedHint}
+        options={SPEEDS.map((v) => ({ value: v, label: ui.speedPresets[v] }))} value={state.speed ?? "normal"} onChange={(v) => set("speed", v)} />
 
       <section data-block="ocxhm" data-design-field="appWidth" className="rounded-lg border border-border p-4">
         <p data-block="t2zed" className="text-[length:var(--fs-body)] font-medium text-foreground">{ui.widthLabel}</p>

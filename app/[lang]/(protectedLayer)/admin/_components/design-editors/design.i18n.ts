@@ -77,6 +77,9 @@ const EN = {
     "scaleHint": "A multiplier over the project scale. 1.0 is the size the project ships with.",
     "leadingLabel": "Line height",
     "leadingHint": "The space between lines of body text. Lower is denser, higher is airier.",
+    "weightLabel": "Heading weight",
+    "weightHint": "How heavy the page headings are — the title, the first screen and the section headings. Thin headings read as quiet and editorial, heavy ones as loud.",
+    "weightPresets": { "400": "Regular", "500": "Medium", "600": "Semibold", "700": "Bold (project)", "800": "Extra bold" },
     "presets": {
       "compact": "Compact",
       "normal": "Default",
@@ -120,6 +123,12 @@ const EN = {
     },
     "widthLabel": "Content width",
     "widthHint": "How wide the middle column of a page may grow. The header, the first screen and the footer are always full width.",
+    "shadowLabel": "Card shadow",
+    "shadowHint": "How far cards lift off the page. No shadow keeps the interface flat; a strong one makes every card a layer.",
+    "shadowPresets": { "none": "None (project)", "soft": "Soft", "medium": "Medium", "strong": "Strong" },
+    "speedLabel": "Interface speed",
+    "speedHint": "How fast buttons, menus and panels change state. «Off» also helps people who get dizzy from motion.",
+    "speedPresets": { "none": "Off", "fast": "Fast", "normal": "Default", "slow": "Slow" },
     "preview": "Preview",
     "previewCard": "A card on the page",
     "previewBody": "Its text sits inside the border, at the distance the density sets.",
@@ -189,6 +198,22 @@ const EN = {
       "chart-5": {
         "label": "Chart series 5",
         "description": "The fifth and last: more than five colours nobody tells apart anyway."      },
+      "card": {
+        "label": "Cards",
+        "description": "The surface of cards and panels that sit on the page."
+      },
+      "popover": {
+        "label": "Pop-ups",
+        "description": "Menus, hints and dialogs that open over the page."
+      },
+      "input": {
+        "label": "Input borders",
+        "description": "The frame of text fields and selects."
+      },
+      "ring": {
+        "label": "Focus ring",
+        "description": "The outline that shows where the keyboard is — keep it visible."
+      },
       "warning": {
         "label": "Warning",
         "description": "«It did not work out» — a notice, not a failure. Deliberately not the colour of deletion: it says try again, not something broke."
@@ -292,6 +317,9 @@ const RU: typeof EN = {
     "scaleHint": "Множитель к шкале проекта. 1,0 — тот размер, с которым проект приехал.",
     "leadingLabel": "Межстрочный интервал",
     "leadingHint": "Расстояние между строками основного текста. Меньше — плотнее, больше — свободнее.",
+    "weightLabel": "Толщина заголовков",
+    "weightHint": "Насколько тяжёлые заголовки страниц — название, первый экран и заголовки разделов. Тонкие звучат тихо и по-журнальному, тяжёлые — громко.",
+    "weightPresets": { "400": "Обычная", "500": "Средняя", "600": "Полужирная", "700": "Жирная (как в проекте)", "800": "Очень жирная" },
     "presets": {
       "compact": "Плотно",
       "normal": "Как в проекте",
@@ -335,6 +363,12 @@ const RU: typeof EN = {
     },
     "widthLabel": "Ширина содержимого",
     "widthHint": "Насколько широкой может стать средняя колонка страницы. Шапка, первый экран и подвал всегда во всю ширину.",
+    "shadowLabel": "Тень карточек",
+    "shadowHint": "Насколько карточки приподняты над страницей. Без тени интерфейс плоский; сильная тень делает каждую карточку отдельным слоем.",
+    "shadowPresets": { "none": "Без тени (как в проекте)", "soft": "Мягкая", "medium": "Средняя", "strong": "Сильная" },
+    "speedLabel": "Скорость интерфейса",
+    "speedHint": "Как быстро кнопки, меню и панели меняют состояние. «Без движения» помогает и тем, кого укачивает от анимации.",
+    "speedPresets": { "none": "Без движения", "fast": "Быстро", "normal": "Как в проекте", "slow": "Плавно" },
     "preview": "Как выглядит",
     "previewCard": "Карточка на странице",
     "previewBody": "Её текст стоит внутри рамки, на том расстоянии, которое задаёт плотность.",
@@ -404,6 +438,22 @@ const RU: typeof EN = {
       "chart-5": {
         "label": "Диаграмма, ряд 5",
         "description": "Пятый и последний: больше пяти цветов человек всё равно не различает."      },
+      "card": {
+        "label": "Карточки",
+        "description": "Поверхность карточек и панелей, лежащих на странице."
+      },
+      "popover": {
+        "label": "Всплывающие окна",
+        "description": "Меню, подсказки и диалоги, открывающиеся поверх страницы."
+      },
+      "input": {
+        "label": "Рамки полей",
+        "description": "Рамка текстовых полей и списков выбора."
+      },
+      "ring": {
+        "label": "Кольцо фокуса",
+        "description": "Обводка, которая показывает, где сейчас клавиатура, — она должна быть видна."
+      },
       "warning": {
         "label": "Предупреждение",
         "description": "«Не получилось» — сообщение, а не отказ. Намеренно не цвет удаления: оно говорит «попробуйте снова», а не «сломалось»."

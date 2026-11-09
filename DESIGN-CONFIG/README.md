@@ -54,3 +54,14 @@ already provides. The detail lives there, not here.
 
 `../APP-CONFIG/` — identity and menu · `../PLATFORM-CONFIG/` — feature switches. Same contract,
 different subject.
+
+## Step 711-7 — the schema widened, the blocks branch gone
+
+- Colours: `card`, `popover`, `input`, `ring` (surfaces and the focus ring) beside the earlier roles; `card` and `popover` get their
+  text colour computed like the others.
+- `type.headingWeight` (300…900 in hundreds) → `--heading-weight`, read by H1, the hero, the metric and the content H2.
+- `shape.shadow` (`none` · `soft` · `medium` · `strong`) → `--card-shadow`, read by the card.
+- `motion.speed` (`none` · `fast` · `normal` · `slow`) → Tailwind's `--default-transition-duration`.
+- The `blocks` branch (308-1, the centred first screen) went with the catalogue.
+- `lib/design-css.ts` builds the same CSS for another scope: a design prototype's own token copy applies only on its page
+  (`:root:has([data-prototype="<id>"])`) — step 711-4.

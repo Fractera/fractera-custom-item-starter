@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { PresetField } from "./preset-field.client"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { DesignWorkbench, DesignPreview } from "./design-workbench"
@@ -25,7 +26,9 @@ import { saveDesign } from "./design-save"
 const SCALE_PRESETS: Record<string, number> = { compact: 0.9, normal: 1, relaxed: 1.15 }
 const LEADING_PRESETS: Record<string, number> = { compact: 1.4, normal: 1.6, relaxed: 1.8 }
 
-type State = { scale?: number; leading?: number }
+// 711-7: толщина заголовков страниц — ступенями по сотне; тема держит 700.
+type State = { scale?: number; leading?: number; headingWeight?: number }
+const WEIGHTS = [400, 500, 600, 700, 800] as const
 
 export function DesignType({ initial, ui }: { initial: State; ui: DesignUi["type"] }) {
   const [state, setState] = useState<State>(initial)
@@ -51,6 +54,7 @@ export function DesignType({ initial, ui }: { initial: State; ui: DesignUi["type
         type: {
           scale: state.scale ?? null,
           leading: state.leading ?? null,
+          headingWeight: state.headingWeight ?? null,
         },
       }
       const res = await saveDesign({ patch })
@@ -126,6 +130,9 @@ export function DesignType({ initial, ui }: { initial: State; ui: DesignUi["type
         </div>
       </section>
 
+
+      <PresetField field="headingWeight" bids={{ section: "hw3p1", label: "hw3p2", hint: "hw3p3", list: "hw3p4" }} label={ui.weightLabel} hint={ui.weightHint}
+        options={WEIGHTS.map((v) => ({ value: v, label: ui.weightPresets[String(v) as keyof typeof ui.weightPresets] }))} value={state.headingWeight ?? 700} onChange={(v) => set("headingWeight", v)} />
 
       <div data-block="w6bb4" className="flex items-center gap-3">
         <Button variant="default"

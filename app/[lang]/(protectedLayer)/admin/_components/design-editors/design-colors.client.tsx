@@ -30,7 +30,7 @@ import { saveDesign } from "./design-save"
 // промахнулись, а по жёлтому треугольнику — нет.
 
 type Role =
-  | "primary" | "accent" | "background" | "foreground" | "muted" | "border" | "destructive"
+  | "primary" | "accent" | "background" | "foreground" | "muted" | "border" | "destructive" | "card" | "popover" | "input" | "ring"
   // Пять рядов диаграммы (шаг 58). Имена с дефисом — они же имена токенов темы.
   | "chart-1" | "chart-2" | "chart-3" | "chart-4" | "chart-5"
   // Два состояния (шаг 64): «не получилось» и «идёт запись».
@@ -40,6 +40,8 @@ type State = Record<Theme, Partial<Record<Role, string>>>
 
 const ROLES: Role[] = [
   "primary", "accent", "background", "foreground", "muted", "border", "destructive",
+  // 711-7: surfaces and the focus ring
+  "card", "popover", "input", "ring",
   // 🔒 ДИАГРАММЫ ИДУТ ПОСЛЕДНИМИ И ПОДРЯД. Порядок списка — порядок полей на
   // экране, а ряды диаграммы читаются как одна шкала: разорви их ролями темы,
   // и человек перестанет видеть, что правит именно шкалу.
@@ -60,6 +62,8 @@ const FALLBACK: Record<Theme, Record<Role, string>> = {
     "chart-1": "#262626", "chart-2": "#404040", "chart-3": "#525252",
     "chart-4": "#737373", "chart-5": "#d4d4d4",
     warning: "#bb4d00", recording: "#c70036",
+    // 711-7: the theme's oklch(1 0 0), oklch(0.922 0 0), oklch(0.708 0 0) as #hex
+    card: "#ffffff", popover: "#ffffff", input: "#ebebeb", ring: "#a1a1a1",
   },
   dark: {
     primary: "#ebebeb", accent: "#444444", background: "#252525", foreground: "#fbfbfb",
@@ -67,6 +71,8 @@ const FALLBACK: Record<Theme, Record<Role, string>> = {
     "chart-1": "#d4d4d4", "chart-2": "#b4b4b4", "chart-3": "#949494",
     "chart-4": "#737373", "chart-5": "#525252",
     warning: "#ffb900", recording: "#ff637e",
+    // 711-7: the theme's oklch(0.205 0 0), white at 15 % over the dark background, oklch(0.556 0 0) as #hex
+    card: "#343434", popover: "#343434", input: "#3a3a3a", ring: "#737373",
   },
 }
 
