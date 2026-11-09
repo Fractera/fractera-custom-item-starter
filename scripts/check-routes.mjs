@@ -94,6 +94,11 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/admin/api/settings/brief/route.ts', 'бриф дизайна элемента — блок design паспорта (узел, шаг 706-4)'],
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],
+  // 712-1 (владелец 2026-11-09: «ядро всего лишь навсего представляет доступ к … настройкам которые сейчас существуют в элементе. То есть
+  // это удалённый пульт управления»; план 712 утверждён: «go to code non stop to finish») — двери пульта ядра по ключу узла.
+  ['app/api/settings/app/route.ts', 'пульт ядра: свои настройки сайта элемента (APP-CONFIG) и их объявление (712-1)'],
+  ['app/api/settings/features/route.ts', 'пульт ядра: выключатели сайта элемента и их объявление (712-1)'],
+  ['app/api/settings/brief/route.ts', 'пульт ядра: бриф дизайна элемента и его объявление (712-1)'],
   ['app/api/shell/[lang]/route.ts', 'шапка и подвал для служб узла'],
   ['app/api/users/[[...path]]/route.ts', 'люди этого приложения: список, истории, пакет — через службу входа /api/app-users (580)'],
 ])
