@@ -12,7 +12,7 @@ import { elementRoot } from "@/lib/page-tree"
 // его вместе с описанием («Забрать в ядро») — так сосед рождается «как этот элемент» (`create --look-like`).
 // Форма — `lib/design-brief-shape.ts` (те же правила, что у ядра).
 import { normalizeBrief, type DesignBrief } from "@/lib/design-brief-shape"
-export { DESIGN_SKILLS, normalizeBrief, type DesignBrief, type BriefReference } from "@/lib/design-brief-shape"
+export { normalizeBrief, type DesignBrief, type BriefReference, type BriefPinned } from "@/lib/design-brief-shape"
 
 const passportPath = () => join(elementRoot(), "OWN-SERVICE-PROPS", "OWN-SERVICE-PROPS.json")
 

@@ -15,9 +15,12 @@ sections.
   `npm run eyes` before anyone else sees it.
 - **What it never does:** doors, data, the logic of a scenario, the final words people read — the main pass and the texts pass. A request
   for them: write `current-step.md`, then `npm run pass -- main "<the request>"` (or `texts`).
-- **The skills of this pass:** the one named by the brief (`frontend-design` by default, `impeccable`, `design-taste-frontend`), the
-  slop checklist of `frontend-design-deslop` (`references/slop-checklist.md`) before «done», `shadcn` (through `use-shadcn`),
-  `ai-elements` (through `use-messenger`) — the line `Pass:` of each one's `SOURCE.md` says where it lives.
+- **The skills of this pass:** the design skill the core handed to this element for this prototype (in `.claude/skills/`, its
+  `SOURCE.md` names where it came from — your own collection, the node's base or the checked catalog), the pinned skill
+  (`design.pinned.skill` of the passport) for every page after the pin, the slop checklist of `frontend-design-deslop`
+  (`references/slop-checklist.md`) before «done», `shadcn` (through `use-shadcn`), `ai-elements` (through `use-messenger`) — the line
+  `Pass:` of each one's `SOURCE.md` says where it lives. There is no list of design skills in this template: the person finds and picks
+  them in the core's «Build → Design» tab.
 - **End of the pass:** commit, write `current-step.md` (what is done, «next: the main pass»), tell the person in one line with the
   screenshot; switch with `npm run pass -- main "<the next substep>"` when the step goes on, or stop when the person wants to look first.
 
@@ -30,11 +33,40 @@ load on the server and the database; an endless feed becomes pages with server s
 search optimization, without static pages or with heavy load, we solve our own native way. Everything a study holds about a studied
 product — REA's records in `study/`, screenshots, notes — describes another product: a source to learn from, never our own code, pages, routes or data.
 
+## A design prototype — the order (node step 711)
+
+The owner of the node, 2026-11-09, verbatim: «для каждого кандидата с референс сделать кнопку сгенерировать тестовую страницу … тестовой
+страницы сохраняются в проекте с ссылкой … в защищенном пространстве … выбрать текущий навык который будет использоваться в архитектуре
+записать его в own-service-props.json». The task «Build process, design: generate the prototype <id> …» comes from the core's Design tab;
+it names the skill, the source page and the references. **Tokens first, the page second** — what the prototype shows is exactly what a
+pin carries into the whole element:
+
+1. `npm run prototype -- new <id> --skill <mark> --from <home|slug> [--ref <url> --ref-caption "<words>"]…` (the task gives the line).
+2. Read the handed skill and the references (images: `/api/media/<id>/file`), and the brief (who it is for, character, what to avoid).
+3. **`tokens.json` first** — the whole look in the shape of `DESIGN-CONFIG`: colours of both themes (surfaces `card`, `popover`,
+   `input`, `ring` too), fonts from `lib/design/local-fonts.json` only, `type` (scale, leading, `headingWeight`), `shape` (radius,
+   borderWidth, spaceScale, appWidth, `shadow`), `motion.speed`. The prototype's page shows these and nothing else.
+4. **`DESIGN.md`** in the prototype's folder — the rules tokens cannot hold (composition, rhythm, imagery, «do» and «don't»).
+5. **The page** — its words and sections in the prototype's `en.json` / `ru.json` (the same format as any page; empty home → write the
+   page from the brief and the product's description). No colour in the words: `npm run prototype -- done` and `check:prototypes` refuse
+   it. A new section is your own component, static, words from data, `data-block` on every container, colours only through tokens.
+6. `npm run prototype -- done <id>`, then the screenshots into its `shots/`: `npm run eyes -- <this element's address>/<lang>/prototypes/<id>
+   --out "app/[lang]/(protectedLayer)/prototypes/_pages/<id>/shots/desktop.png"` and the same with `--width 390` → `mobile.png`.
+7. Commit; answer the core with the prototype's address (`npm run reply-core` when the task asks for it). Nothing goes to the public
+   page until the pin.
+
+**The pin** — the task «Build process, design: pin the prototype <id>»: `npm run design:pin -- <id>` (its tokens become
+`DESIGN-CONFIG/design-config.json`, its `DESIGN.md` the element's, its words the source page, the passport records `designSkill` and
+`design.pinned`; every prototype goes to `_archive/`), remove any section code written only for a prototype that lost,
+`npm run describe:publish`, commit, «Preview & Deploy». From then on every page of this element follows the pinned look: read
+`design.pinned` and `DESIGN.md` before any design work.
+
 ## The design of a page — the order
 
 1. **The brief** — the passport's `design` block (`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`), written by the person on this element's
    «Design» page (`/<lang>/admin/design`, the first section): who the site is for, its character in up to five words, references (a link
-   and/or an uploaded screenshot — `media`, shown at `/api/media/<id>/file`), what to avoid, the design skill. `inheritedFrom` — the look
+   and/or an uploaded screenshot — `media`, shown at `/api/media/<id>/file`), what to avoid; the skill is pinned from the core's Design
+   tab (`design.pinned`), never chosen here. `inheritedFrom` — the look
    came from a sibling element at birth: keep it unless the person changes it. **Empty or thin — ask the person once**, by the questions
    of the brief, and write the answers there through the same page or door (`/<lang>/admin/api/settings/brief`); never invent the audience.
 2. **`DESIGN.md`** at the element's root, in the open DESIGN.md format (machine-readable tokens in the YAML header, prose after): the
@@ -50,7 +82,8 @@ product — REA's records in `study/`, screenshots, notes — describes another 
 
 ## Design skill
 
-The design skill lives in the passport twice and in step: `design.skill` of the brief and `designSkill` (the indicator and
-`npm run design-skill` read the latter); the brief's door keeps them equal. Default `frontend-design`. Read the skill before any design
-work and work in its method; the person changes it on the «Design» page. `npm run describe:publish` carries the brief to the core
-(«Take into core») — so a sibling element can be born with this look (`create --look-like <this id>`).
+The design skill lives in the passport twice and in step: `design.skill` and `designSkill` (the indicator and `npm run design-skill` read
+the latter). It is set by the pin (`npm run design:pin`) from the core's «Build → Design» tab — the person finds design skills there
+(their own collection first, the node's base, the checked catalog), tests them as prototypes and pins the winner. Read the pinned skill
+and `DESIGN.md` before any design work and work in its method. `npm run describe:publish` carries the passport to the core — so a sibling
+element can be born with this look (`create --look-like <this id>`).

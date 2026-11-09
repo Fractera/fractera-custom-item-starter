@@ -54,6 +54,10 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/admin/layout.tsx', 'замок ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/page.tsx', 'КОРЕНЬ ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/[...slug]/page.tsx', 'РЕБЁНОК ветки admin: страница и страница в папке роли (402)'],
+  // 711-4 (владелец 2026-11-09: «прямо в шаблоне изначально раздел прототипы дизайна»): ветка прототипов дизайна, только архитектор.
+  ['app/[lang]/(protectedLayer)/prototypes/layout.tsx', 'замок ветки prototypes: только архитектор (711-4)'],
+  ['app/[lang]/(protectedLayer)/prototypes/page.tsx', 'КОРЕНЬ ветки prototypes: список прототипов дизайна (711-4)'],
+  ['app/[lang]/(protectedLayer)/prototypes/[slug]/page.tsx', 'РЕБЁНОК ветки prototypes: прототип со своей копией токенов (711-4)'],
   // ветка «messenger-h2h» (шаг узла 459, владелец 2026-10-12: «H2H Messenger – H2A Messenger … только при входе архитектора»)
   ['app/[lang]/(protectedLayer)/messenger-h2h/layout.tsx', 'замок ветки messenger-h2h: только архитектор'],
   ['app/[lang]/(protectedLayer)/messenger-h2h/page.tsx', 'КОРЕНЬ ветки messenger-h2h: список бесед'],

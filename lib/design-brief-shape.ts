@@ -1,10 +1,12 @@
 // ФОРМА БРИФА ДИЗАЙНА (шаг 706-4) — чистая функция без импортов: её зовёт запись паспорта (`lib/design-brief.ts`) и проверяет
 // `npm run test:design-brief`. Правила те же, что у ядра (`lib/web4-items/element-look.cjs` ядра): элемент живёт и без ядра.
 export type BriefReference = { url?: string; media?: string; note?: string }
-export type DesignBrief = { skill?: string; audience?: string; character?: string[]; avoid?: string; references?: BriefReference[]; inheritedFrom?: string }
+/** 711-6: the pinned prototype — written by `npm run design:pin`, kept by every later brief save. */
+export type BriefPinned = { prototype: string; skill: string; at: string; references?: { url: string; caption?: string }[] }
+export type DesignBrief = { skill?: string; audience?: string; character?: string[]; avoid?: string; references?: BriefReference[]; inheritedFrom?: string; pinned?: BriefPinned }
 
-export const DESIGN_SKILLS = ["frontend-design", "impeccable", "design-taste-frontend"] as const
-const SKILL = /^[a-z0-9][a-z0-9-]{0,39}$/
+/** 711: a skill found by the core's search is named by its mark — a bare name, `owner/repo@skill` or `own:…` / `skill:src:name`. */
+const SKILL_MARK = /^[a-zA-Z0-9][a-zA-Z0-9._:/@-]{0,119}$/
 const ID = /^[a-z][a-z0-9]{3,23}$/
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v)
 const text = (v: unknown, max: number) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, max) : "")
@@ -14,7 +16,7 @@ export function normalizeBrief(raw: unknown): { ok: true; brief: DesignBrief | n
   if (!isObj(raw)) return { ok: false, reason: "bad-shape" }
   const b: DesignBrief = {}
   if (raw.skill !== undefined && raw.skill !== "") {
-    if (typeof raw.skill !== "string" || !SKILL.test(raw.skill.trim())) return { ok: false, reason: "bad-skill" }
+    if (typeof raw.skill !== "string" || !SKILL_MARK.test(raw.skill.trim())) return { ok: false, reason: "bad-skill" }
     b.skill = raw.skill.trim()
   }
   const audience = text(raw.audience, 600)
@@ -46,6 +48,11 @@ export function normalizeBrief(raw: unknown): { ok: true; brief: DesignBrief | n
     if (refs.length) b.references = refs
   }
   if (typeof raw.inheritedFrom === "string" && ID.test(raw.inheritedFrom)) b.inheritedFrom = raw.inheritedFrom
+  // 711-6: the pin record is the element's own fact (written by `npm run design:pin`); a brief save keeps it as it is.
+  if (isObj(raw.pinned) && typeof raw.pinned.prototype === "string" && /^[a-z0-9][a-z0-9-]{0,47}$/.test(raw.pinned.prototype) && typeof raw.pinned.skill === "string" && SKILL_MARK.test(raw.pinned.skill) && typeof raw.pinned.at === "string") {
+    const refs = Array.isArray(raw.pinned.references) ? raw.pinned.references.filter(isObj).map((r) => ({ url: text(r.url, 500), ...(text(r.caption, 300) ? { caption: text(r.caption, 300) } : {}) })).filter((r) => /^(https?:\/\/|\/)/.test(r.url)).slice(0, 12) : []
+    b.pinned = { prototype: raw.pinned.prototype, skill: raw.pinned.skill, at: text(raw.pinned.at, 40), ...(refs.length ? { references: refs } : {}) }
+  }
   return { ok: true, brief: Object.keys(b).length ? b : null }
 }
 

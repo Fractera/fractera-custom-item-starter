@@ -5,15 +5,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
-import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { H2, P, Small } from '@/components/ui/typography'
 import type { BriefWords } from './design-brief.i18n'
 
 // БРИФ ДИЗАЙНА (шаг 706-4): форма над блоком `design` паспорта через дверь `/<язык>/admin/api/settings/brief`. Скриншот референса
 // уходит в своё хранилище элемента (`/api/media/upload`, поле `file`); в брифе остаётся его `media`.
 type Ref = { url?: string; media?: string; note?: string }
-type Brief = { skill?: string; audience?: string; character?: string[]; avoid?: string; references?: Ref[]; inheritedFrom?: string }
-const SKILLS = ['frontend-design', 'impeccable', 'design-taste-frontend']
+type Pinned = { prototype: string; skill: string; at: string }
+type Brief = { skill?: string; audience?: string; character?: string[]; avoid?: string; references?: Ref[]; inheritedFrom?: string; pinned?: Pinned }
+// 711 (владелец 2026-11-09: «а не те которые ты щас хард кодом вытащишь»): списка навыков в коде нет — навык выбирают из живого поиска и
+// закрепляют во вкладке ядра «Строительство → Дизайн»; здесь он только показан.
 
 export function DesignBrief({ lang, words }: { lang: string; words: BriefWords }) {
   const door = `/${lang}/admin/api/settings/brief`
@@ -43,7 +44,7 @@ export function DesignBrief({ lang, words }: { lang: string; words: BriefWords }
   async function save() {
     setState('saving')
     if (!brief) return
-    const body = { ...brief, character: character.split(',').map((w) => w.trim()).filter(Boolean).slice(0, 5), skill: brief.skill || SKILLS[0] }
+    const body = { ...brief, character: character.split(',').map((w) => w.trim()).filter(Boolean).slice(0, 5), }
     const r = await fetch(door, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null)
     const j = r ? await r.json().catch(() => null) as { ok?: boolean; reason?: string; brief?: Brief } | null : null
     if (j?.ok && j.brief) { setBrief(j.brief); setCharacter((j.brief.character ?? []).join(', ')); setState('saved') }
@@ -91,10 +92,8 @@ export function DesignBrief({ lang, words }: { lang: string; words: BriefWords }
         <FieldDescription>{words.avoidHint}</FieldDescription>
       </Field>
       <Field data-block="gebpf">
-        <FieldLabel htmlFor="brief-skill">{words.skill}</FieldLabel>
-        <NativeSelect id="brief-skill" value={brief.skill || SKILLS[0]} onChange={(e) => set({ skill: e.target.value })}>
-          {SKILLS.map((s) => <NativeSelectOption key={s} value={s}>{words.skills[s] ?? s}</NativeSelectOption>)}
-        </NativeSelect>
+        <FieldLabel>{words.skill}</FieldLabel>
+        <P data-block="bsk7p" data-brief-skill={brief.skill ?? ''}>{brief.skill ? (brief.pinned ? `${brief.skill} · ${words.pinnedFrom} ${brief.pinned.prototype}` : brief.skill) : words.noSkill}</P>
         <FieldDescription>{words.skillHint}</FieldDescription>
       </Field>
       <div data-block="hznzt" className="flex items-center gap-3">
