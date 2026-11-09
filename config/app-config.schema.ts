@@ -141,6 +141,15 @@ export const appConfigSchema = z.looseObject({
   /** Валюта витрины, ISO-4217. Непригодный код лечится в `normalize()` читателя. */
   commerce: z.looseObject({ currency: z.string() }),
   timezone: z.string(),
+  /**
+   * 712-1: меню своего редактора элемента (шапка, подвал) — объявлено, чтобы пульт ядра знал, что элемент его держит. Пункты
+   * свободной формы: их форма — дело редактора меню (`lib/menu/nav-config.ts` читает `nav.<место>` массивом).
+   */
+  nav: z.looseObject({ top: z.array(z.unknown()).optional(), footer: z.array(z.unknown()).optional() }).optional(),
+  /** 712-1: языки, выбранные владельцем этого элемента (их пишет редактор языков; применяет развёртывание). */
+  languages: z
+    .looseObject({ supported: z.array(z.string()).optional(), default: z.string().optional(), indexed: z.array(z.string()).optional() })
+    .optional(),
 });
 
 export const __appConfigSchemaMatchesType: z.infer<typeof appConfigSchema> extends AppConfig

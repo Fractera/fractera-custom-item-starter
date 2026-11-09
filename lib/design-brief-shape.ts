@@ -56,3 +56,31 @@ export function normalizeBrief(raw: unknown): { ok: true; brief: DesignBrief | n
   return { ok: true, brief: Object.keys(b).length ? b : null }
 }
 
+
+/**
+ * 712-1: the brief's declaration for the core's remote control — the fields a brief holds, as JSON Schema (the shape `normalizeBrief`
+ * keeps). The core shows only the fields it knows AND this declaration names; a field removed here disappears from the core's tab.
+ */
+export const BRIEF_SCHEMA = {
+  type: "object",
+  properties: {
+    skill: { type: "string" },
+    audience: { type: "string" },
+    character: { type: "array", items: { type: "string" } },
+    avoid: { type: "string" },
+    references: { type: "array", items: { type: "object", properties: { url: { type: "string" }, media: { type: "string" }, note: { type: "string" } } } },
+    inheritedFrom: { type: "string" },
+    pinned: { type: "object" },
+  },
+} as const
+
+/** 712-1: a merge patch over the current brief — `null` removes a field; a field not sent stays as it is (the pin record first of all). */
+export function mergeBrief(current: DesignBrief, patch: unknown): unknown {
+  if (!isObj(patch)) return patch
+  const out: Record<string, unknown> = { ...current }
+  for (const [k, v] of Object.entries(patch)) {
+    if (v === null) delete out[k]
+    else out[k] = v
+  }
+  return out
+}

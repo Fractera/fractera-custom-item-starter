@@ -519,6 +519,41 @@
     },
     "timezone": {
       "type": "string"
+    },
+    "nav": {
+      "type": "object",
+      "properties": {
+        "top": {
+          "type": "array",
+          "items": {}
+        },
+        "footer": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "additionalProperties": {}
+    },
+    "languages": {
+      "type": "object",
+      "properties": {
+        "supported": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": {
+          "type": "string"
+        },
+        "indexed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": {}
     }
   },
   "required": [
