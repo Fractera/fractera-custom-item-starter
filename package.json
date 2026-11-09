@@ -84,7 +84,8 @@
     "check:a2a-card": "node scripts/check-a2a-card.mjs",
     "check:tree": "node scripts/check-tree.mjs",
     "check:instruction": "node scripts/check-instruction-modes.mjs",
-    "f2f": "node scripts/f2f.mjs"
+    "f2f": "node scripts/f2f.mjs",
+    "test:quick-nav": "node --no-warnings components/shell/quick-nav-visibility.test.mjs"
   },
   "dependencies": {
     "@a2a-js/sdk": "1.3.0",

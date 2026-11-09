@@ -9,12 +9,10 @@ import { buildDesignCss } from "@/lib/design-css";
 import { DrawerProvider } from "@/providers/drawer-provider.client";
 import { TopMenu } from "@/components/menu/top/top-menu.server";
 import { FooterMenu } from "@/components/menu/footer/footer-menu.server";
-import { StarterBanner } from "@/components/shell/starter-banner.client";
-import { starterBannerStrings } from "@/components/shell/starter-banner.i18n";
+import { QuickNav } from "@/components/shell/quick-nav.client";
+import { quickNavWords } from "@/components/shell/quick-nav.i18n";
 import { ownId } from "@/lib/own-id";
 import { DrawerMenu } from "@/components/menu/drawer/drawer-menu.server";
-import { ViewportBadge } from "@/components/dev/viewport-badge.client";
-import { viewportBadgeWords } from "@/components/dev/viewport-badge.i18n";
 import { designSkill } from "@/lib/design-skill";
 import { bodyFontClass } from "@/lib/fonts";
 import { getAppConfig } from "@/config/app-config";
@@ -168,22 +166,17 @@ export default async function LangLayout({
               Footer is always present (site furniture + theme/language). */}
           <DrawerProvider>
             <TopMenu lang={lang} />
-            {/* 🔒 ПОЛОСА-ПОДСКАЗКА НА ВСЕХ СТРАНИЦАХ — решение владельца
-                2026-09-20: «этот нотификейшн должен быть на всех страницах».
-                Прежде она жила только на главной, то есть человек, пришедший по
-                ссылке на любую другую страницу, не узнавал, что смотрит чужой
-                шаблон.
-
-                🔒 МЕСТО ВЫБРАНО НЕ СЛУЧАЙНО: сразу под шапкой, потому что полоса
-                позиционируется от её нижней границы (`top-14`). Соседство в
-                разметке повторяет соседство на экране — иначе связь двух чисел
-                видна только тому, кто читал оба файла.
-
-                🔒 СТАТИКУ НЕ ЛОМАЕТ: это островок, слушатель прокрутки живёт
-                внутри него, а макет остаётся серверным и ничего не спрашивает. */}
-            {/* 542 (владелец 2026-10-19): жёлтая вывеска стартера — та же, что у root («единственное что мы оставляем это выпадающее
-                жёлтая вывеска»); выезжает сразу, ссылка ведёт на «Подписку Claude Code» этого элемента в ядре. 🪦 314-2 её снимал. */}
-            <StarterBanner strings={starterBannerStrings(lang)} lang={lang} dropOnLoad href={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/subscription` : undefined} />
+            {/* 706-3 (владелец 2026-11-09): полоса быстрой навигации вместо жёлтой вывески стартера — видна только владельцу (эта машина или
+                вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке. */}
+            <QuickNav
+              lang={lang}
+              words={quickNavWords(lang)}
+              designHref={`/${lang}/admin/design`}
+              settingsHref={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/site-settings` : null}
+              subscriptionHref={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/subscription` : null}
+              showWidth={featureOn("viewportBadge")}
+              skill={designSkill()}
+            />
             {children}
             <FooterMenu lang={lang} />
             {/* Left & right slide-in drawers (shadcn Sheet), controlled by the same
@@ -191,18 +184,7 @@ export default async function LangLayout({
                 until a group enables its side's slot. */}
             <DrawerMenu side="left" lang={lang} />
             <DrawerMenu side="right" lang={lang} />
-            {/* Индикатор ширины экрана — только в разработке; в боевой сборке
-                компонент вырезается целиком (см. его файл), а не прячется. */}
-            {/* 🔒 ИНДИКАТОР ШИРИНЫ ПОДЧИНЁН ВЫКЛЮЧАТЕЛЮ (шаг 41, 2026-08-29).
-                Прежде он рисовался всегда, и выключить его можно было только
-                правкой кода — то есть никак, если проект уже у клиента. Теперь
-                это возможность проекта, включённая по умолчанию, и её положение
-                человек меняет на `/{lang}/architect/design?section=tools`.
-
-                🔒 ПРОВЕРКА ЗДЕСЬ, А НЕ ВНУТРИ ЗНАЧКА: `featureOn` читает конфиг
-                на сервере, а значок — островок. Спроси он сам — конфиг уехал бы
-                в браузер вместе с ним. */}
-            {featureOn("viewportBadge") && <ViewportBadge skill={designSkill()} closeLabel={viewportBadgeWords(lang).close} />}
+            {/* 706-3: индикатор ширины и навыка дизайна — внутри полосы быстрой навигации (выключатель тот же, `viewportBadge`). */}
             {/* Cookie-consent banner (step 305) — on every public page via this layout. Strings are
                 server-provided per language (readBannerConfig, ISR) so anonymous visitors get a fully
                 localized banner without hitting the gated /api. */}
