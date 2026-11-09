@@ -134,7 +134,7 @@ no unknown is left without a question or a decision, and the person confirmed th
 ## 8. The line you do not cross (node step 538)
 
 Only functions cross over: never their code, texts, images, design, data, names or logos. The look comes from the node's design
-skills (`custom-design`), the texts are written anew (`humanizer`), the data is the person's own. No mass runs on small sites: a
+skills (the design pass, `.claude/modes/build-design.md`), the texts are written anew (`humanizer`), the data is the person's own. No mass runs on small sites: a
 few representative pages each, one study at a time.
 
 <!-- RULE: our-architecture -->
