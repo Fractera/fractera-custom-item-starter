@@ -1,7 +1,7 @@
 ---
 name: node-elements-detection
 description: >
-  Both natures (every element). Reaching another element of this node — sign-in, data or files, settings, design or any ability a
+  Both natures (every element). Reaching another element of this node — sign-in, data or files, settings or any ability a
   neighbour may have — only through the core's main agent, which names the neighbour; never by listing the node or picking one
   yourself. Use it whenever a task touches something outside this element, and before building another element's job into
   yourself.
@@ -36,7 +36,7 @@ its agent, do not rule it out by its card.
 
 ## The connectors you already have
 
-auth, data, config, design and the core are i2i agreed in advance — their APIs are in your `links` (`npm run passport -- me`) and
+auth, data, config and the core are i2i agreed in advance (the look is your own — `DESIGN-CONFIG/`) — their APIs are in your `links` (`npm run passport -- me`) and
 in skill `use-i2i`. Use them in code; never search for them and never ask their agents.
 
 ## How you work with a neighbour

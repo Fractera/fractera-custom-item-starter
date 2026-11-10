@@ -78,7 +78,7 @@ page uses any more — delete the ones nothing needs. Then `npm run describe:pub
 3. **The sections** — your own components in this element, as the product needs them; there is no catalogue to search. The section
    contract stays: words come from the language cells of page data (never hard-coded in JSX), every container carries `data-block`
    (`npm run widgets:ids`), the section is static, colours are tokens, and the machine copy of the page (`/<lang>/index.md`) carries its
-   text. Pages of documents keep the four document sections (section-head, faq, toc, warning-card).
+   text. Pages of documents keep the three document sections (section-head, section-faq, section-warning-card); the table of contents is drawn by the page template.
 4. **Seen before shown** — `npm run eyes` on the page at 1440 and 500 px; read it against the slop checklist and the brief's «avoid»;
    what reads as a template default is redone before the person sees it.
 5. **Then stop:** commit, `current-step.md`, the screenshot to the person; their grade is the proof, not your opinion.

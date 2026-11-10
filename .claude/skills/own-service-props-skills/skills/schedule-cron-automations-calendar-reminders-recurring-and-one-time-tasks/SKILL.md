@@ -1,10 +1,10 @@
 ---
 name: schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks
 description: >
-  Work skill — never for building. Reminders, schedules and cron automations — once or repeating, paused, off and on — and what to
-  do when your alarm wakes you. Load it when the person asks to remind, schedule, repeat or stop reminders («напомни», «каждое
-  утро», «по будням», «выключи напоминания», «что у меня завтра»), when your alarm fires, and when you touch `data/cron.json`,
-  `CRON.json` or `lib/cron/`.
+  Work skill — an entry is data, never code. Reminders, schedules and cron automations — once or repeating, paused, off, on —
+  and what to do when your alarm wakes you. Load it when the person asks to remind, schedule, repeat or stop reminders («напомни»,
+  «каждое утро», «по будням», «выключи напоминания», «что у меня завтра»), when your alarm fires, when a build needs a clock, and when
+  you touch `data/cron.json` or `lib/cron/`.
 ---
 
 <!-- PROOF · NOT PROVEN · written 2026-10-12, rewritten in node step 465-4, the automation switch added in node step 551-3, the alarm, the yearly repeat and the group of every mode in node step 636, `node-notice` in 636-8; proven only when the agent of this element has done it on the person's word -->

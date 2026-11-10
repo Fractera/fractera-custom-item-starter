@@ -28,9 +28,10 @@ element is a microservice that answers its neighbours and asks them for help; to
   factory mode an element has its own people and settings; in a single project everything follows the core's CONFIG
   (`development-docs/glossary.md`).
 - **The map of this folder** — where each thing lives; a folder where work happens carries a short `CLAUDE.md` with its own rules,
-  read when you work there. Pages — data folders `<branch>/_pages/<slug>/` (the public branch
-  `app/[lang]/(publicLayer)/`, inner branches under `app/[lang]/(protectedLayer)/`), one route template reads them (skill `use-page-tree`); sections — one folder each,
-  `components/sections/<kind>/`, the set `components/sections/index.ts`; widgets — `<branch>/_widgets/` (skill
+  read when you work there. Pages — data folders `<branch>/_pages/<slug>/`, a branch's own page in its
+  `_data/` (the home page: `app/[lang]/(publicLayer)/_data/`; inner branches under `app/[lang]/(protectedLayer)/`), one route template
+  reads them (skill `use-page-tree`); sections — one folder named by its kind,
+  `components/sections/section-<name>/`, the set `components/sections/index.ts`; widgets — `<branch>/_widgets/` (skill
   `build-widget`); tools — `_tools/`; doors for neighbours — `app/api/<name>/` (`npm run door:add`); your data — the node's stores with
   your `ELEMENT_KEY` (skill `use-own-stores`); the look — `DESIGN-CONFIG/`; the site settings — `APP-CONFIG/`, `PLATFORM-CONFIG/`; the
   passport and the A2A card — `OWN-SERVICE-PROPS/`; the work records — `development-docs/`; the node around you — `.claude/node-knowledge/`.

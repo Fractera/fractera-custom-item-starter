@@ -29,7 +29,7 @@ A tool knows no page and no domain; it does not know where its result goes — t
 
 - **Only from inside a widget** — directly, or through another tool or a shared component (`components/form/voice-control`
   is built on `tool-voice-input`). A page never names `tool-*` in its sequence (`check:page-sequence` refuses it), and sections
-  never use tools: they must work in any element.
+  never use tools: a section is static and drawn with no client code, a tool is client code.
 - **Words come from the server.** A tool takes its strings as a prop (`strings`), chosen by the server for the page's
   language; it never imports a dictionary into the browser.
 - **Its door** is at element level, because every route may use it: `app/api/tools/tool-<name>/route.ts` — checks the

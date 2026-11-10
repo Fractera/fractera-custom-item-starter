@@ -3,7 +3,7 @@ name: use-i2i
 description: >
   Both natures. i2i — the elements of one node and its core work together: the agents meet once over the A2A wire to agree an API,
   then the work runs over it with no model. Load it when a job needs something you cannot do, a neighbour asks you for something,
-  a new element appears, you record a link with auth, data, config, design or the core, and before building another element's job
+  a new element appears, you record a link with auth, data, config or the core, and before building another element's job
   into yourself.
 ---
 
@@ -47,15 +47,15 @@ A big result (a track, a picture, a video) is returned as a link to storage, nev
 
 ## The links you already have
 
-The starter came with the connectors to **the core, auth, data, config and design** already agreed — they are i2i done in
-advance. Use them in code, never through those agents:
+The starter came with the connectors to **the core, auth, data and config** already agreed — they are i2i done in
+advance. The look is not a neighbour: your design tokens are your own (`DESIGN-CONFIG/`, skill `use-design`). Use them in code, never through those agents:
 
 | Partner | What | API |
 |---|---|---|
 | auth | who the visitor is, sign-in | `GET {AUTH_SERVICE_URL}/api/session`; on its own domain `GET /api/auth/ticket` |
-| data | rows, files, vectors | its doors at `REMOTE_DATA_URL` with the header `X-Data-Secret` |
+| data | rows, files, vectors | its doors at `REMOTE_DATA_URL` with your `X-Element-Key`, sent by the helpers (skill `use-own-stores`) |
 | config | name, texts, languages of the project | MCP tools `settings_version`, `get_project_settings` at `CONFIG_SERVICE_URL` |
-| the core | who can do a job; waking agents | `GET /api/node/a2a?q=` with the node key; `POST /api/agents/wake`, `POST /api/agents/done` |
+| the core | who can do a job — never searched by you: `npm run need`, the core's main agent names the neighbour (skill `need-capability`); a KNOWN neighbour's address | `GET /api/node/a2a?address=<id>` with the node key; `POST /api/agents/wake`, `POST /api/agents/done` |
 
 ## Answering about your links
 
@@ -72,7 +72,7 @@ not your role goes to the core's main agent, which creates a new element for it.
 ## Never
 
 - read or write a neighbour's files or database — its code changes and you would break silently;
-- ask the auth, data, config or design agents for what their API already gives;
+- ask the auth, data or config agents for what their API already gives;
 - spend a model on a job an agreed API covers;
 - wake a neighbour's agent for anything but agreeing an API: a door that exists is called, not asked about;
 - build into yourself a capability a neighbour already has.

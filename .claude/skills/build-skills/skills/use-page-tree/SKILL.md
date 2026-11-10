@@ -11,9 +11,9 @@ description: >
 # use-page-tree
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. The one thing
+> that is not optional: a new page never arrives as a new route file.
 
 **Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
-> that is not optional: a new page never arrives as a new route file.
 
 > The whole file tree of the element, the starting tree it must keep and how to restore a deleted page or branch live in the
 > skill `use-element-tree` (sections «Tree» and «Restore the starting architecture»; guard `npm run check:tree`, node step 462).
@@ -70,7 +70,7 @@ A production build is always the whole app; the only lever is how many route fil
 
 | Kind | Example | How |
 |---|---|---|
-| `section-<name>` — a designed section | `{ "kind": "section-hero-centered", "title": "…", "description": "…" }` | below |
+| `section-<name>` — a designed section | `{ "kind": "section-faq", "title": "…", "items": [ … ] }` (the kinds this element has today: `section-head`, `section-faq`, `section-warning-card`) | below |
 | `text-<name>` — plain text | `{ "kind": "text-p", "text": "…" }` | skill `use-typography` |
 | `widget-static-<name>` / `widget-dynamic-<name>` — this branch's own work | `{ "kind": "widget-dynamic-users-table" }` | skill `build-widget` |
 
@@ -78,8 +78,8 @@ A production build is always the whole app; the only lever is how many route fil
   refuses anything else, an unknown kind and any `tool-*` — tools live only inside widgets (skill `use-tools`).
 - A page of one widget: the sequence holds only it; `meta.json` → `"bare": true` drops the page frame.
 - **Which `section-*` a page may name** = the keys of `SECTIONS` in `components/sections/index.ts` — read them before you
-  propose a section. A component in `components/sections/` is not enough (✗ node step 464: an agent offered `section-cta-button`, which
-  lives only inside the hero and is not in the set — the guard would refuse the page).
+  propose a section. A component in `components/sections/` is not enough (✗ node step 464: an agent offered a section that lived only inside
+  another one and was not in the set — the guard would refuse the page).
 - **A section** the set does not have — the design pass builds it here, as this element's own section; it is one folder
   `components/sections/<kind>/` (the component and its `Shape` in `index.tsx`, its words in `markdown.ts`, its README) and one line in
   `components/sections/index.ts`. Never put a section on a page outside the set. A design prototype's section stays in the
