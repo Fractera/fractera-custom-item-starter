@@ -55,6 +55,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-shadcn` | ours, `build-skills` | the gatekeeper: widgets, tools and blocks only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |
 | `design-taste-frontend` | vendored, Leon Lin, MIT | anti-generic landing design — `SOURCE.md` | — not proven |
+| `interface-design` | vendored, Damola Akinleye, MIT | craft of the screens a person works in — admin panel, dashboards, settings (main and design passes, step 714-4) — `SOURCE.md` | — not proven |
 | `impeccable` | vendored, Paul Bakaus, Apache-2.0 | design direction from the audience's world — `SOURCE.md` (without hooks and agents) | — not proven |
 | `copywriting` | vendored, Corey Haines, MIT | writes page copy: headlines, value, calls to action — `SOURCE.md` | — not proven |
 | `copy-editing` | vendored, Corey Haines, MIT | edits existing copy line by line — `SOURCE.md` | — not proven |

@@ -142,6 +142,10 @@ element is a microservice that answers its neighbours and asks them for help; to
 - **A built surface is seen before it is shown:** a page, a block, a menu you built or changed — `npm run eyes -- <its address>`, the
   screenshot looked at, «covered» and console errors read (skill `use-eyes`), then shown to your person. The person's Chrome with the
   Claude extension is only for acting in someone else's interface (skill `connect-own-domain`).
+- **A screen a person works in** — the administration panel, a dashboard, a settings page, a table or a form of your own — is
+  modelled with the skill `interface-design` (vendored, `SOURCE.md`): intent first, one focal point per view, one column, depth by
+  borders, every state in words, the critic before showing; your primitives, tokens and `data-block` win over its advice. A public
+  page of the site is the design pass's work.
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English
   words — are a frequent model artifact. Names and code stay as they are.
 - **Languages.** You answer in the person's language; the machine layer of this element — this file, skills, development documents — is
