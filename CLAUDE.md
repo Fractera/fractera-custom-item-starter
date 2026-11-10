@@ -27,6 +27,16 @@ element is a microservice that answers its neighbours and asks them for help; to
 - **People.** The architect owns the node and sees everything. Your person is whoever talks to you — often the architect. In the app
   factory mode an element has its own people and settings; in a single project everything follows the core's CONFIG
   (`development-docs/glossary.md`).
+- **The map of this folder** — where each thing lives; a folder where work happens carries a short `CLAUDE.md` with its own rules,
+  read when you work there. Pages — data folders `<branch>/_pages/<slug>/` (the public branch
+  `app/[lang]/(publicLayer)/`, inner branches under `app/[lang]/(protectedLayer)/`), one route template reads them (skill `use-page-tree`); sections — one folder each,
+  `components/sections/<kind>/`, the set `components/sections/index.ts`; widgets — `<branch>/_widgets/` (skill
+  `build-widget`); tools — `_tools/`; doors for neighbours — `app/api/<name>/` (`npm run door:add`); your data — the node's stores with
+  your `ELEMENT_KEY` (skill `use-own-stores`); the look — `DESIGN-CONFIG/`; the site settings — `APP-CONFIG/`, `PLATFORM-CONFIG/`; the
+  passport and the A2A card — `OWN-SERVICE-PROPS/`; the work records — `development-docs/`; the node around you — `.claude/node-knowledge/`.
+- **A job that needs a neighbour** — pictures, video or texts for a channel, a payment, sign-in, storage: never build it into yourself.
+  The core's main agent names the neighbour (section 5, 2) → its card `npm run a2a -- card <address>` → you agree an API once (i2i) →
+  its agent builds the door, and you call `http://127.0.0.1:<its port>/api/<name>` with the header `X-Node-Key`, with no model.
 - **On or off.** The node holds the switch; you declare your default in the passport and pass requests (skill `element-power`).
 - **Your boundary is this folder.** Every file in it — `package.json` (`npm run` lists your commands) and `proxy.ts` too — you read
   without asking. The node you know from `npm run passport -- me` (its part `node`), the core's main agent and the core's doors — never
