@@ -118,7 +118,7 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
       widgets: opts.widgets,
       titleInBody: opts.titleInBody,
       // 714-3: страница ждёт дизайна и своего заголовка не печатает — на её месте крупно стоит имя проекта.
-      afterHeader: opts.titleInBody && page.meta.awaitingDesign === true ? () => <AwaitingTitle name={ownName() ?? brand().name} /> : undefined,
+      afterHeader: opts.titleInBody && page.meta.awaitingDesign === true ? (lang) => <AwaitingTitle name={ownName() ?? brand().name} lang={lang} /> : undefined,
       chrome: opts.crumbs === false ? undefined : (_lang, c) => ({ breadcrumbs: [{ label: c.title }] }),
     })
   }

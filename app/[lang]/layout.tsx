@@ -11,7 +11,6 @@ import { TopMenu } from "@/components/menu/top/top-menu.server";
 import { FooterMenu } from "@/components/menu/footer/footer-menu.server";
 import { QuickNav } from "@/components/shell/quick-nav.client";
 import { quickNavWords } from "@/components/shell/quick-nav.i18n";
-import { ownId } from "@/lib/own-id";
 import { DrawerMenu } from "@/components/menu/drawer/drawer-menu.server";
 import { designSkill } from "@/lib/design-skill";
 import { bodyFontClass } from "@/lib/fonts";
@@ -35,6 +34,7 @@ import { TaskReport } from "@/components/task-report/task-report.client";
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n";
 import { taskReportWords } from "@/components/task-report/task-report.i18n";
 import { needsCookieBanner } from "@/lib/policy-tools";
+import { coreTab } from "@/lib/core-tab"; // 714-2, 715: the element's Build tabs in the core
 
 // Root layout for the localized public surface (step 131). This zone OWNS <html>/
 // <body> — the language comes from the [lang] route param (known at build), NOT from
@@ -77,12 +77,6 @@ export function generateViewport(): Viewport {
   };
 }
 
-/** 714-2: вкладка «Строительства» этого элемента в ядре узла (`<ядро>/<язык>/<id>/build/<вкладка>`), или null — узла нет. */
-function coreTab(lang: string, tab: "design" | "site-settings" | "subscription"): string | null {
-  const core = process.env.ARCHITECT_URL?.trim().replace(/\/+$/, "");
-  const id = ownId();
-  return core && id ? `${core}/${lang}/${id}/build/${tab}` : null;
-}
 
 export default async function LangLayout({
   children,
