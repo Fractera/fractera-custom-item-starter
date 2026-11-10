@@ -13,11 +13,14 @@ import { quickNavVisible } from './quick-nav-visibility'
 // 🔒 КОМУ: тем же правилом, что полоса (`quickNavVisible`) — эта машина всегда, свой домен только вошедшему архитектору, временный адрес и
 // витрина никогда. Посетитель и поисковик круга не получают: до проверки здесь ничего не рисуется, страница остаётся статичной.
 // 🔒 КАКОЙ НАВЫК: на странице прототипа — навык этого прототипа (`data-prototype-skill` на его обёртке), иначе — навык паспорта.
-// 🔒 ИМЯ НЕ ЛОМАЕТ КРУГ: строка обрезается CSS-многоточием (`truncate`) с отступами по бокам; полное имя — в подсказке при наведении.
+// 🔒 ИМЯ НЕ ЛОМАЕТ КРУГ: в круге — короткое имя навыка (без владельца и репозитория), строка обрезается CSS-многоточием (`truncate`)
+// с отступами по бокам; полное имя с источником — в подсказке при наведении.
 // 🔒 КЛИКИ СКВОЗЬ КРУГ: `pointer-events-none` на круге, `auto` только на имени навыка — ради подсказки. Угол левый: справа живут кнопки.
 // Выключатель прежний — `viewportBadge` в PLATFORM-CONFIG.
 const STEPS: [number, string][] = [[1536, '2xl'], [1280, 'xl'], [1024, 'lg'], [768, 'md'], [640, 'sm']]
 const stepName = (w: number) => STEPS.find(([min]) => w >= min)?.[1] ?? 'xs'
+// Короткое имя: «wshobson/agents@visual-design-foundations», «skill:pbakaus:impeccable» → часть после последнего «@», «:» или «/».
+const shortSkill = (name: string) => name.split(/[@:/]/).filter(Boolean).pop() ?? name
 
 export function ViewportBadge({ skill, skillLabel }: { skill: string | null; skillLabel: string }) {
   const pathname = usePathname()
@@ -67,7 +70,7 @@ export function ViewportBadge({ skill, skillLabel }: { skill: string | null; ski
           {name ? (
             <span title={name} data-viewport-badge-skill
               className="pointer-events-auto block w-full truncate px-3 text-center font-mono text-[10px] font-bold leading-none">
-              {name}
+              {shortSkill(name)}
             </span>
           ) : null}
           <span className="mt-0.5 max-w-full truncate px-3 font-mono text-[7px] uppercase leading-none tracking-wider opacity-60">{skillLabel}</span>

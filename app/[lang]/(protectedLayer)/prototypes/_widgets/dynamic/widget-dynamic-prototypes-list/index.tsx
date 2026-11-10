@@ -27,7 +27,7 @@ export function Widget({ lang }: { lang: string }) {
             <p data-block="pl4a6" className="mt-1 text-[length:var(--fs-small)] text-muted-foreground">{w.references}: {p.references.length}</p>
           )}
           {p.status !== "archived" && (
-            <Link data-block="pl4a7" href={`/${lang}/prototypes/${p.id}`} className={buttonVariants({ variant: "outline", size: "sm", className: "mt-3" })}>{w.open}</Link>
+            <Link data-block="pl4a7" href={`/${lang}/prototypes/${p.id}`} className={buttonVariants({ size: "sm", className: "mt-3" })}>{w.open}</Link>
           )}
           </div>
           {hasShot(p.id) && (
