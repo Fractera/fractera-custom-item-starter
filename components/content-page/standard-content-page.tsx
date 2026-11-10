@@ -21,7 +21,7 @@ import { getPageUi } from '@/lib/content/page-ui'
 // worth reusing.
 
 // ─────────────────────────────────────────────────────────────────────────────
-// StandardContentPage — the ONE reusable template for every Block 3 content page.
+// StandardContentPage — the ONE reusable template for every content page.
 // It renders the full Fractera page standard, mirroring the News article layout,
 // so future pages only supply data and reuse this chrome:
 //
@@ -48,7 +48,7 @@ export type StandardContentPageProps = {
   /**
    * Крошки. НЕОБЯЗАТЕЛЬНЫ (шаг 508): у корня сайта нет уровня выше, крошка
    * «Главная → Главная» была бы ложью. Но из этого следует «крошек нет», а не
-   * «нужен второй шаблон страницы»: из пятнадцати свойств этого блока
+   * «нужен второй шаблон страницы»: из пятнадцати свойств этого шаблона
    * четырнадцать уже исчезали сами, когда их не дают, и обязательность
    * оставшихся была свойством кода, а не устройства страницы.
    */
@@ -124,7 +124,7 @@ export type StandardContentPageProps = {
   /**
    * Open slot for architect-discretion sections (e.g. the sponsorship section),
    * injected by the route entry and rendered directly ABOVE the FAQ. May be one
-   * section, several, or none — the block bakes in nothing here. The FAQ stays
+   * section, several, or none — the template bakes in nothing here. The FAQ stays
    * the last section regardless (only the global footer is below it).
    */
   sections?: ReactNode
@@ -160,7 +160,7 @@ export function StandardContentPage({
 
 
   // 🪦 ОГЛАВЛЕНИЕ УБРАНО ИЗ ШАБЛОНА (314-2) — и ВОЗВРАЩЕНО шагом 458-8 по слову владельца: «каждой странице должна содержать
-  // элементы TOC». Вид — `toc` каталога секций «Блоков» (там он есть, но в реестр установки не выложен), файлом
+  // элементы TOC». Рисунок — вид `toc` прежнего общего каталога секций, файлом
   // `components/content-page/toc.tsx`; список считает шаблон из заголовков ленты.
 
   // ── ТРИ ЗОНЫ ШИРИНЫ, И ГРАНИЦА МЕЖДУ НИМИ — ЗАКОН СТРАНИЦЫ (2026-08-15) ────
@@ -185,7 +185,7 @@ export function StandardContentPage({
   // Первым экраном считается первая секция, чьё имя начинается с `section-hero` (304-1; 706-5: герой каталога снят — свой первый экран
   // агент элемента называет `section-hero-<имя>`, и он встаёт во всю ширину, вне колонки текста).
   const heroItem = body.find(b => b.kind.startsWith('section-hero'))
-  // 458-8: у заголовков ленты — адреса, по ним строится оглавление (вид toc из «Блоков», список считает шаблон, а не автор).
+  // 458-8: у заголовков ленты — адреса, по ним строится оглавление (оглавление `toc.tsx`, список считает шаблон, а не автор).
   const bodyItems = withHeadingIds(body.filter(b => b !== heroItem))
   const toc = tocOf(bodyItems)
 

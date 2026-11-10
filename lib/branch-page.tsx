@@ -63,7 +63,7 @@ function allowedRoles(page: TreePage, segments: string[]): string[] | null {
 function contentOf(page: TreePage, lang: string, segments: string[]) {
   const w = wordsIn(page, lang)
   const roles = allowedRoles(page, segments)?.join(', ')
-  // `%SITE%` в тексте — имя сайта (соглашение данных; прежний каталог подставлял его сам, блок `p` из «Блоков» — нет).
+  // `%SITE%` в тексте — имя сайта (соглашение данных; прежний каталог подставлял его сам, вид `p` прежнего каталога — нет).
   // Узел, шаг 450-1: подставляется в КАЖДУЮ строку страницы — заголовок, описание, заголовки секций, lead, h2, пункты списков, FAQ.
   // ✗ До этого — только в `text-p`, и на странице «Cookie» в заголовке так и стояло «%SITE%».
   const site = brand().name
@@ -86,7 +86,7 @@ type Crumb = { label: string; href?: string }
 /**
  * АДРЕС СТРАНИЦЫ ДЛЯ ПОДСВЕТКИ (317-2): обёртка `display: contents` (на вёрстку не влияет) с `data-page` — адрес страницы —
  * и `data-file` — файл данных, из которого нарисован этот язык. Рамка подсветки берёт отсюда «страница · файл», а из
- * блока — его `bid`; этого достаточно, чтобы агент открыл ровно тот абзац.
+ * части — её `bid`; этого достаточно, чтобы агент открыл ровно тот абзац.
  */
 function PageAddress({ page, file, children }: { page: string; file: string; children: React.ReactNode }) {
   return <div data-page={page} data-file={file} style={{ display: 'contents' }}>{children}</div>

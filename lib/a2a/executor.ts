@@ -40,7 +40,7 @@ async function wakeAgent(task: Task, from: string, text: string, outside: boolea
   // будит сессию этого процесса (`lib/agent-kit/modes.cjs` ядра). Метку `fracteraOutside` ставит дверь `app/api/a2a/route.ts`.
   const prompt = [
     outside ? "Working process:" : "Build process:",
-    `Сначала узнай себя: npm run passport -- me (навык own-service-props-detection; вывод читай целиком, не режь head; блок node — где ты живёшь). Соседа ищи только по нужде: npm run a2a -- find <английские слова>.`,
+    `Сначала узнай себя: npm run passport -- me (навык own-service-props-detection; вывод читай целиком, не режь head; часть node — где ты живёшь). Соседа ищи только по нужде: npm run a2a -- find <английские слова>.`,
     `Задача A2A ${task.id} от ${from} (беседа ${task.contextId}).`,
     `Текст задачи: ${text}`,
     `Выполни по навыку a2a-conversation и ответь командой: npm run a2a -- reply ${task.id} "<ответ человеческим языком>"`,

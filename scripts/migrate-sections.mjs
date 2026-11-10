@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const args = process.argv.slice(2)
 const APPLY = args.includes('--apply')
+const CHECK = args.includes('--check') // the guard `check:words`: the same scan, no second list
 const at = args.indexOf('--dir')
 const ROOT = resolve(at >= 0 ? args[at + 1] : process.cwd())
 const MAP = JSON.parse(readFileSync(join(HERE, 'migrate-sections.map.json'), 'utf8'))
@@ -49,7 +50,7 @@ const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const old = get(MAP.registry)
 if (old === null) {
   const fresh = get('components/sections/index.ts') !== null
-  console.log(fresh ? 'Already migrated: components/sections/index.ts holds the set. Leftover words, if any, are listed below.' : 'No lib/content/blocks/registry.tsx and no components/sections/index.ts: an unknown layout — nothing is moved.')
+  if (!CHECK) console.log(fresh ? 'Already migrated: components/sections/index.ts holds the set. Leftover words, if any, are listed below.' : 'No lib/content/blocks/registry.tsx and no components/sections/index.ts: an unknown layout — nothing is moved.')
 }
 
 // ── 1. The sections of the old set: kind, component, file ──────────────────────────────────────────────────────────────
@@ -293,7 +294,8 @@ for (const f of listed()) {
       else t = t.replace(re, b)
     }
     let n = 0
-    if (!keep.has(f)) t = t.replace(bodyRe, () => (n++, MAP.pageKey.to))
+    // the guard's own name of the old key (`const OLD_KEY = 'blocks'`) stays: it is how the guard recognises a page not migrated
+    if (!keep.has(f)) t = t.split('\n').map((l) => (/OLD_KEY\s*=/.test(l) ? l : l.replace(bodyRe, () => (n++, MAP.pageKey.to)))).join('\n')
     if (n) note(`\`${f}\`: «${MAP.pageKey.from}» → «${MAP.pageKey.to}» ${n}× — the page's list; read the file if one of them meant something else`)
     if (f === 'scripts/check-content.mjs') t = t.replace(/"registry"(, "resolve")/, '"page-body"$1')
   }
@@ -307,20 +309,46 @@ const allowed = new RegExp(MAP.allowed.patterns.join('|'), 'gi')
 const word = /\bblocks?\b|\bBlocks?\b|\bBLOCKS?\b|(?<![А-Яа-яЁё])[Бб]лок/
 const quoted = /«[^»]*»/g // the owner's words stay verbatim
 const utility = /(?<=["'`\s:])block(?=[\s"'`])/g // Tailwind's `block` in a className
+// a string of Tailwind classes (`"pointer-events-none block size-4 …"`): its `block` is a CSS display, not a section
+const classes = /(["'`])(?=[^"'`]*\b[a-z]+-[a-z0-9[\]().:/-]+)[^"'`]*\1/g
 const leftover = (l) => {
   let s = l.replace(quoted, '').replace(allowed, '')
-  if (/className|class=|\bcn\(/.test(s)) s = s.replace(utility, '')
+  if (/classname|class=|\bcn\(/i.test(s)) s = s.replace(utility, '')
+  s = s.replace(classes, (str) => str.replace(/\bblock\b/g, ''))
   return word.test(s)
 }
 for (const f of listed()) {
   if (vendored(f) || !/\.(ts|tsx|mjs|cjs|js|md|json|txt)$/.test(f)) continue
+  if ((MAP.allowed.files ?? []).some((p) => f.startsWith(p))) continue
   const t = get(f)
   t.split('\n').forEach((l, i) => {
     if (leftover(l)) look(f, i + 1, l, '«block» left — the sense «section» becomes «section»; the address (`data-block`) stays')
   })
 }
 
-// ── 12. Do it, or show it ──────────────────────────────────────────────────────────────────────────────────────────────
+// ── 12. The guard (`npm run check:words`, part of prebuild) ───────────────────────────────────────────────────────────────
+if (CHECK) {
+  if (old !== null) {
+    console.error('===WORDS_FAILED=== this element still has the old layout (lib/content/blocks/registry.tsx): npm run migrate:sections -- --apply')
+    process.exit(1)
+  }
+  // the scan above reads the files as the migration would leave them: anything it would still change is the old layout on disk
+  if (done.length) {
+    console.error(`===WORDS_FAILED=== the old words still stand — ${done.length} change(s) to make (npm run migrate:sections shows them, -- --apply makes them):`)
+    for (const d of done.slice(0, 20)) console.error(`  ${d}`)
+    process.exit(1)
+  }
+  if (eye.length) {
+    console.error(`===WORDS_FAILED=== «block» in the sense of a section: ${eye.length} line(s)`)
+    for (const e of eye.slice(0, 40)) console.error(`  ${e.file}${e.line ? `:${e.line}` : ''}: ${e.text}`)
+    console.error('Write «section» («секция»); the address of a container keeps `data-block`. What may stay and why — scripts/migrate-sections.map.json, «allowed».')
+    process.exit(1)
+  }
+  console.log('===WORDS_OK=== «block» stands only for the address of a container or a word of another trade')
+  process.exit(0)
+}
+
+// ── 13. Do it, or show it ──────────────────────────────────────────────────────────────────────────────────────────────
 const date = new Date().toISOString().slice(0, 10)
 const report = [
   `# Migration «block → section» — ${date}`,

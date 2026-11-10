@@ -62,7 +62,7 @@ pin carries into the whole element:
 
 ## The design of a page — the order
 
-1. **The brief** — the passport's `design` block (`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`), written by the person on this element's
+1. **The brief** — the passport's `design` part (`OWN-SERVICE-PROPS/OWN-SERVICE-PROPS.json`), written by the person on this element's
    «Design» page (`/<lang>/admin/design`, the first section): who the site is for, its character in up to five words, references (a link
    and/or an uploaded screenshot — `media`, shown at `/api/media/<id>/file`), what to avoid; the skill is pinned from the core's Design
    tab (`design.pinned`), never chosen here. `inheritedFrom` — the look

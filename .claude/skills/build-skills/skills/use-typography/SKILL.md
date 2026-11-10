@@ -2,9 +2,9 @@
 name: use-typography
 description: >
   Builder skill. How plain text is written on a page of this Fractera element — as `text-*` items of the page's sequence,
-  drawn by the element's own typography, not as blocks and not as hand-styled markup. Load it whenever you write or change
+  drawn by the element's own typography, not as sections and not as hand-styled markup. Load it whenever you write or change
   words on a page: a paragraph, a heading, a list, a quote, a code sample, a table, an article, documentation, a legal page, "add a
-  section of text", "make this a list", "the heading is too small" — and before reaching for a block or a class to style text.
+  section of text", "make this a list", "the heading is too small" — and before reaching for a section or a class to style text.
   The thing you cannot guess: a text item has no look of its own; size, colour and font come from the node's design tokens
   through `components/ui/typography`, so the same page re-skins itself when the design changes and stays readable with no
   JavaScript. A hand-styled `<h2 className=…>` breaks both and the typography guard refuses the build.
@@ -19,15 +19,15 @@ description: >
 
 **Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
-## When text is `text-*` and when it is a block
+## When text is `text-*` and when it is a section
 
 | You need | Write |
 |---|---|
 | words to read: a heading, a paragraph, a list, a quote, a code sample | `text-*` |
-| a designed section: a first screen, cards, an FAQ, a warning card | a block (`section-*`, skill `use-page-tree`) |
+| a designed section: a first screen, cards, an FAQ, a warning card | a section (`section-*`, skill `use-page-tree`) |
 | a heading of a section with an anchor and a badge | `section-head` |
 
-Plain text is not a block on purpose: a block is a section with its own spacing and width; text is the content between them.
+Plain text is not a section on purpose: a section has its own spacing and width; text is the content between them.
 
 ## The kinds — `lib/content/text-set.tsx`
 

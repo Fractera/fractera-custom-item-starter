@@ -33,7 +33,7 @@ conversation (`contextId`); several tasks of one conversation go into the same s
   "terms": "<what was agreed: when, where (city and district at most), how much>",
   "iterations": 3,
   "rejected": [{ "what": "first draft with a dark background", "why": "the customer's brand is light" }],
-  "result": "<what was delivered and where it lives now, e.g. block hero-v2 in the catalog>",
+  "result": "<what was delivered and where it lives now, e.g. section hero-v2 in the catalog>",
   "status": "done",
   "learned": "<what this order taught the element, or empty>"
 }

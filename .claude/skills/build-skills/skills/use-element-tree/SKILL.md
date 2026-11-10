@@ -103,8 +103,6 @@ description: >
     │       ├── _pages/ admin/ · users/ · site-settings/ (+ features · header · footer · cookie-banner) · design/ (+ colors · type · shape)
     │       ├── _components/ design-editors/ · site-settings-editors/ · section-tabs.tsx  ← 579: own design and site settings (skills use-design, use-site-settings)
     │       ├── api/settings/ app · design · platform /route.ts  ← the doors of those pages: write only while the link to Design / CONFIG is off
-    │       ├── _libs/element-blocks.ts · _components/element-blocks-pages.tsx · _widgets/static/widget-static-element-blocks/
-    │       └── blocks/[section]/page.tsx · blocks/[section]/[name]/page.tsx   ← 577-11: the page of a section and the Preview of one block
     │   ├── messenger-h2h/          ← 459: H2H Messenger — only the architect; UI only from ai-elements (skill use-messenger)
     │   │   ├── layout.tsx · page.tsx (list of conversations) · _data/ {meta,en,ru}.json · README.md
     │   │   ├── _components/README.md · _libs/README.md · _widgets/README.md
@@ -127,7 +125,7 @@ A branch = `layout.tsx` + `page.tsx` + one child route. Everything below the bra
 🔒 Every branch root has three required folders, each with a README that says what goes in it (owner 2026-10-07):
 `_components/` — the branch's own components (server by default, islands `*.client.tsx`; shared ones go to `components/`);
 `_libs/` — the branch's own logic without markup (shared logic goes to `lib/`); `_widgets/` — the branch's widgets,
-`static/widget-static-<name>` or `dynamic/widget-dynamic-<name>`, listed in the branch's `_widgets/index.tsx` (the only own blocks a page may show — `scripts/check-page-composition.mjs`). Code of a
+`static/widget-static-<name>` or `dynamic/widget-dynamic-<name>`, listed in the branch's `_widgets/index.tsx` (the only own pieces of a branch a page may show — `check:page-sequence`). Code of a
 branch lives only there. `scripts/check-routes.mjs` refuses the build when a branch lacks one of them or its README.
 Every route folder and every `_pages/` has a `README.md` with a full example of a page folder — enough to add a page.
 

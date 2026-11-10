@@ -1,7 +1,7 @@
 import { H2 } from '@/components/ui/typography'
 import { inline } from '@/lib/content/inline'
 
-// ВОПРОСЫ И ОТВЕТЫ + разметка FAQPage — один источник для видимого блока и для машины: закрыть одно, оставив другое,
+// ВОПРОСЫ И ОТВЕТЫ + разметка FAQPage — один источник для видимой секции и для машины: закрыть одно, оставив другое,
 // значит пообещать поисковику то, чего на странице нет. Ответ проходит через `inline` (ссылка внутри фразы), вопрос — нет.
 export type FaqProps = { itemKey?: string; title: string; items: { q: string; a: string }[] }
 

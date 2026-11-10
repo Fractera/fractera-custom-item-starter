@@ -1,10 +1,10 @@
-// СТОРОЖ АДРЕСОВ БЛОКОВ (node step 317-1). У каждого блока страницы — постоянный адрес `bid` (block id): по нему подсветка в Preview
-// называет блок («страница · файл · блок k3f9a»), и агент открывает ровно этот блок. Порядковый номер для этого не годится:
-// вставили блок сверху — все адреса сдвинулись, и скопированный адрес указывает на чужой абзац.
+// СТОРОЖ АДРЕСОВ ЧАСТЕЙ СТРАНИЦЫ (node step 317-1). У каждой части тела страницы — постоянный адрес `bid` (block id, адрес): по нему
+// подсветка в Preview называет её («страница · файл · Block k3f9a»), и агент открывает ровно её. Порядковый номер для этого не годится:
+// вставили часть сверху — все адреса сдвинулись, и скопированный адрес указывает на чужой абзац.
 //
 // 🔒 ПОЛЕ `bid`, А НЕ `id`: у `section-head` поле `id` уже занято якорем заголовка (`privacy-h1`).
-// Правила: `bid` — буква + 4 знака base36; внутри одного файла не повторяется; у одного блока на разных языках один `bid`
-// (адрес — блоку, а не языку). `npm run blocks:ids` (`--fix`) дописывает недостающие: блок `<язык>.json` на той же позиции
+// Правила: `bid` — буква + 4 знака base36; внутри одного файла не повторяется; у одной части на разных языках один `bid`
+// (адрес — части, а не языку). `npm run blocks:ids` (`--fix`) дописывает недостающие: часть `<язык>.json` на той же позиции
 // и того же вида, что в `en.json`, получает его `bid`; остальные — новый.
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
@@ -59,7 +59,7 @@ for (const dir of pageDirs(join(ROOT, 'app'))) {
         changed = true
         fixed++
       }
-      if (!b.bid) errors.push(`${rel(join(dir, f))}: блок ${i} (${b.kind}) без bid`)
+      if (!b.bid) errors.push(`${rel(join(dir, f))}: часть ${i} (${b.kind}) без bid`)
       else if (!ID.test(b.bid)) errors.push(`${rel(join(dir, f))}: bid «${b.bid}» — нужна буква и 4 знака base36`)
       else if (seen.has(b.bid)) errors.push(`${rel(join(dir, f))}: bid «${b.bid}» повторяется`)
       seen.add(b.bid)
@@ -73,4 +73,4 @@ if (errors.length) {
   console.error(`===BLOCK_IDS_FAILED=== ошибок: ${errors.length}. Дописать недостающие: npm run blocks:ids`)
   process.exit(1)
 }
-console.log(`===BLOCK_IDS_OK===${fixed ? ` дописано bid: ${fixed}` : ''} у всех блоков есть постоянный адрес`)
+console.log(`===BLOCK_IDS_OK===${fixed ? ` дописано bid: ${fixed}` : ''} у всех частей есть постоянный адрес`)

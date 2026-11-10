@@ -8,7 +8,7 @@ import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
 import { H2, P, Small } from '@/components/ui/typography'
 import type { BriefWords } from './design-brief.i18n'
 
-// БРИФ ДИЗАЙНА (шаг 706-4): форма над блоком `design` паспорта через дверь `/<язык>/admin/api/settings/brief`. Скриншот референса
+// БРИФ ДИЗАЙНА (шаг 706-4): форма над частью `design` паспорта через дверь `/<язык>/admin/api/settings/brief`. Скриншот референса
 // уходит в своё хранилище элемента (`/api/media/upload`, поле `file`); в брифе остаётся его `media`.
 type Ref = { url?: string; media?: string; note?: string }
 type Pinned = { prototype: string; skill: string; at: string }

@@ -40,7 +40,7 @@ The person speaks by voice and in their own language: their word goes in the sec
 | **skill (of the card)** | «навык», «способность» | One thing the element can do for others, a row of the card's `skills`. Not the same as an agent skill in `.claude/skills/`. |
 | **HTTP door** | «дверь», «http-door» | A route other elements call over plain HTTP, not over A2A; in the card such a skill carries the tag `http-door`. |
 | **capability card** | «карточка возможностей», «образец», formerly «витрина» | What the element does for other agents and on what terms — a description, the consultation price, the usage price, the developer share — in the passport field `payments.web3["a2a-card"].<name>` (node step 551-4), set on the core's «Working process → A2A: your work → Capability cards». Today one sample, `sample`; the network does not apply it yet. The former showcase file is gone. |
-| **catalog** | «каталог» | What an element can give away — blocks, sections — through find · get · contribute. On the core's page «Catalog» also lists the node's elements. |
+| **catalog** | «каталог» | What an element can give away — sections — through find · get · contribute. On the core's page «Catalog» also lists the node's elements. |
 | **node key** | «ключ узла» | The key elements of one node use to call each other; an outside agent does not have it. |
 | **order** | «заказ» | A job the element did for an agent of another node (a2a) — working process, kept by skill `order-summary`, never in `development-docs/`. |
 

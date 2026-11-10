@@ -1,4 +1,4 @@
-import { SiteMenuEditor } from "../../../_components/site-settings-editors/blocks"
+import { SiteMenuEditor } from "../../../_components/site-settings-editors/panels"
 import { SectionTabs } from "../../../_components/section-tabs"
 import { SettingsToaster } from "../../../_components/site-settings-editors/toast"
 

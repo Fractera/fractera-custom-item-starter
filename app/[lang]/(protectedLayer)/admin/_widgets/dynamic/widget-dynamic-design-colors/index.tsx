@@ -1,4 +1,4 @@
-import { DesignEditorBlock } from "../../../_components/design-editors/blocks"
+import { DesignEditorPanel } from "../../../_components/design-editors/panels"
 import { SectionTabs } from "../../../_components/section-tabs"
 import { designAccessWords } from "../../../_components/design-editors/access-words.i18n"
 
@@ -7,7 +7,7 @@ export function Widget({ lang }: { lang: string }) {
   return (
     <>
       <SectionTabs lang={lang} page="design" current="colors" />
-      <DesignEditorBlock lang={lang} section="colors" words={designAccessWords(lang)} />
+      <DesignEditorPanel lang={lang} section="colors" words={designAccessWords(lang)} />
     </>
   )
 }

@@ -2,7 +2,7 @@ import { SECTIONS, isSection, type SectionItem } from '@/components/sections'
 import type { PageItem, FaqPair } from '@/lib/content/page-items'
 import { resolveMarkdownLinks } from '@/lib/content/links'
 
-// Блоки страницы → markdown (шаг 505, AIO).
+// Тело страницы → markdown (шаг 505, AIO; 717-2: секция приносит свои слова из своей папки).
 //
 // ЗАЧЕМ. Публичная страница существует в двух видах: HTML для человека и markdown
 // для машины. Второй нужен затем, что модель, пришедшая за содержимым сайта,
@@ -10,12 +10,12 @@ import { resolveMarkdownLinks } from '@/lib/content/links'
 // скриптами — и половину контекста тратит на то, что к содержимому отношения не
 // имеет. Markdown отдаёт ровно текст.
 //
-// 🔒 ИСТОЧНИК ОДИН. Обе формы собираются из ОДНИХ И ТЕХ ЖЕ блоков, поэтому
+// 🔒 ИСТОЧНИК ОДИН. Обе формы собираются из ОДНИХ И ТЕХ ЖЕ частей тела, поэтому
 // разойтись не могут: отредактировал текст — изменились обе. Отдельный файл с
 // «версией для ИИ» разошёлся бы с сайтом на первой же правке, и никто бы этого
 // не заметил, потому что в браузере его никто не открывает.
 //
-// Инлайновая разметка (`**жирный**`, `[метка](адрес)`) в наших блоках УЖЕ
+// Инлайновая разметка (`**жирный**`, `[метка](адрес)`) в наших частях страницы УЖЕ
 // markdown — переносится как есть.
 //
 // 🔒 КРОМЕ ОДНОЙ ФОРМЫ, И ИМЕННО НА НЕЙ ЭТО ОБЕЩАНИЕ ЛОМАЛОСЬ (2026-08-17).
@@ -30,44 +30,44 @@ import { resolveMarkdownLinks } from '@/lib/content/links'
 /** Текст виджета по его имени (`_widgets/markdown.ts` ветки); виджет без текста — пустая строка. */
 export type WidgetText = (kind: string) => string
 
-function lines(block: PageItem, widget?: WidgetText): string[] {
+function lines(item: PageItem, widget?: WidgetText): string[] {
   // 717-2: a section brings its own words (`components/sections/<kind>/markdown.ts`).
-  if (isSection(block.kind)) return (SECTIONS[block.kind].markdown as (s: unknown) => string[])(block)
+  if (isSection(item.kind)) return (SECTIONS[item.kind].markdown as (s: unknown) => string[])(item)
   // 428: виджет ветки несёт свой текст (лендинг — поле `landing` данных, форма — свои строки), и в копию он приходит через
   // `markdown(lang)` в папке виджета. 🪦 Здесь стояло «его слова уже в машинной версии» — неверно: главная отдавала 159 байт.
-  if (block.kind.startsWith('widget-')) {
-    const text = widget ? widget(block.kind).trim() : ''
+  if (item.kind.startsWith('widget-')) {
+    const text = widget ? widget(item.kind).trim() : ''
     return text ? [text] : []
   }
-  const section = block as Exclude<PageItem, { kind: `widget-${string}` } | SectionItem>
-  // 314-2, 706-5: виды набора элемента (`components/sections/index.ts`). Проверка ИСЧЕРПЫВАЮЩАЯ: новый вид в `types.ts` без своей
-  // строки здесь не соберётся (`never` ниже) — машинная копия страницы не может молча потерять текст секции, которую агент написал сам.
-  switch (section.kind) {
+  const text = item as Exclude<PageItem, { kind: `widget-${string}` } | SectionItem>
+  // 717-2: здесь остаётся только текст — секция приносит свои слова сама (`markdown.ts` своей папки, без него набор не соберётся).
+  // Проверка ИСЧЕРПЫВАЮЩАЯ: новый `text-*` в `lib/content/page-items.ts` без своей строки здесь не соберётся (`never` ниже).
+  switch (text.kind) {
     // 423: типографика элемента — сама почти Markdown.
     case 'text-h2':
-      return [`## ${section.text}`]
+      return [`## ${text.text}`]
     case 'text-h3':
-      return [`### ${section.text}`]
+      return [`### ${text.text}`]
     case 'text-h4':
-      return [`#### ${section.text}`]
+      return [`#### ${text.text}`]
     case 'text-p':
     case 'text-lead':
     case 'text-small':
-      return [section.text]
+      return [text.text]
     case 'text-list':
-      return section.items.map((t, i) => (section.ordered ? `${i + 1}. ${t}` : `- ${t}`))
+      return text.items.map((t, i) => (text.ordered ? `${i + 1}. ${t}` : `- ${t}`))
     case 'text-quote':
-      return [`> ${section.text}`, ...(section.cite ? [`> — ${section.cite}`] : [])]
+      return [`> ${text.text}`, ...(text.cite ? [`> — ${text.cite}`] : [])]
     case 'text-code':
-      return ['```', section.text, '```']
+      return ['```', text.text, '```']
     case 'text-table': {
       const row = (cells: string[]) => `| ${cells.map((c) => c.replace(/\|/g, '\\|')).join(' | ')} |`
       const RULE: Record<string, string> = { left: ':---', center: ':---:', right: '---:' }
-      const rule = section.head.map((_, i) => RULE[section.align?.[i] ?? ''] ?? '---')
-      return [row(section.head), `| ${rule.join(' | ')} |`, ...section.rows.map(row)]
+      const rule = text.head.map((_, i) => RULE[text.align?.[i] ?? ''] ?? '---')
+      return [row(text.head), `| ${rule.join(' | ')} |`, ...text.rows.map(row)]
     }
     default: {
-      const unhandled: never = section
+      const unhandled: never = text
       return unhandled
     }
   }

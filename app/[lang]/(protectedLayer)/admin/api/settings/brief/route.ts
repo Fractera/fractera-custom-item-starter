@@ -1,9 +1,9 @@
-// @api read and change this element's design brief (the passport's design block)
+// @api read and change this element's design brief (the passport's design part)
 import { NextRequest, NextResponse } from "next/server"
 import { getSession } from "@/lib/auth/get-session"
 import { readBrief, writeBrief } from "@/lib/design-brief"
 
-// БРИФ ДИЗАЙНА ЭЛЕМЕНТА (шаг 706-4): `GET/PUT /<lang>/admin/api/settings/brief` — блок `design` паспорта. Пишут архитектор и администратор
+// БРИФ ДИЗАЙНА ЭЛЕМЕНТА (шаг 706-4): `GET/PUT /<lang>/admin/api/settings/brief` — часть `design` паспорта. Пишут архитектор и администратор
 // этого приложения (закон двери оформления рядом, 580-4). Бриф — не оформление: связь с общим «Дизайном» его не запирает.
 // Страницы не перерисовываются: бриф читает агент элемента и ядро, а не посетитель.
 export const dynamic = "force-dynamic"

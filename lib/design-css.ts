@@ -125,14 +125,14 @@ export function buildDesignCss(cfg: DesignConfig = getDesignConfig(), scope: Des
 } {
   if (isDesignConfigEmpty(cfg)) return { css: "", fontLinks: [] }
 
-  const blocks: string[] = []
+  const rules: string[] = []
   const fontLinks: string[] = []
 
   // ── Цвета ──────────────────────────────────────────────────────────────────
   const light = colorVars(cfg.colors?.light ?? {})
   const dark = colorVars(cfg.colors?.dark ?? {})
 
-  // ── Шрифты, шкала, формы — всё это от темы не зависит и живёт в светлом блоке
+  // ── Шрифты, шкала, формы — всё это от темы не зависит и живёт в светлом правиле
   const root: string[] = [...light]
 
   // 🔒 ИМЕНА ПЕРЕМЕННЫХ ЗАДАНЫ ТАБЛИЦЕЙ, А НЕ СКЛЕЙКОЙ ИЗ РОЛИ. Шаблон
@@ -196,12 +196,12 @@ export function buildDesignCss(cfg: DesignConfig = getDesignConfig(), scope: Des
   const weight = cfg.type?.headingWeight
   if (typeof weight === "number" && weight >= 300 && weight <= 900 && weight % 100 === 0) root.push(`  --heading-weight: ${weight};`)
 
-  if (root.length) blocks.push(`${scope.root} {\n${root.join("\n")}\n}`)
+  if (root.length) rules.push(`${scope.root} {\n${root.join("\n")}\n}`)
 
   // 🔒 ТЁМНАЯ ТЕМА — ОТДЕЛЬНЫМ БЛОКОМ И ТОЛЬКО ЦВЕТА. Класс `.dark` ставит
   // инлайн-скрипт; всё, что от темы не зависит (шрифт, скругление, ширина),
   // повторять здесь не нужно — оно уже стоит в `:root` и наследуется.
-  if (dark.length) blocks.push(`${scope.dark} {\n${dark.join("\n")}\n}`)
+  if (dark.length) rules.push(`${scope.dark} {\n${dark.join("\n")}\n}`)
 
-  return { css: blocks.join("\n\n"), fontLinks: [...new Set(fontLinks)] }
+  return { css: rules.join("\n\n"), fontLinks: [...new Set(fontLinks)] }
 }

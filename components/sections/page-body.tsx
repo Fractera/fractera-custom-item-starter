@@ -3,8 +3,8 @@ import { SECTIONS } from './index'
 import { TEXT_SET } from '@/lib/content/text-set'
 
 // ФАБРИКА СТРАНИЦЫ ИЗ СЕКЦИЙ (шаг 297; секции — собственный код элемента). Страница — список `{ kind, ...поля }`; набор (`set`) называет
-// ТОЛЬКО те блоки, что стоят в этом проекте. Контейнеры (`cards`, `card`) получают вложенные блоки в `children`.
-// Блок, которого в наборе нет, — громкая ошибка: пустое место на странице хуже громкого отказа.
+// ТОЛЬКО те виды, что стоят в этом проекте. Контейнеры (`cards`, `card`) получают вложенные части в `children`.
+// Вид, которого в наборе нет, — громкая ошибка: пустое место на странице хуже громкого отказа.
 export type ItemData = { kind: string; bid?: string; children?: ItemData[] | ReactNode; [field: string]: unknown }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type KindSet = Record<string, (props: any) => ReactNode>
@@ -24,8 +24,8 @@ function render(b: ItemData, set: KindSet, key: string): ReactNode {
   }
   const { kind, children, bid, ...props } = b
   const kids = Array.isArray(children) ? (children as ItemData[]).map((c, i) => render(c, set, `${key}-${i}`)) : children
-  // 317-2: АДРЕС БЛОКА — обёртка `display: contents` (на вёрстку не влияет) с `data-block` (постоянный `bid` из данных) и
-  // `data-kind`. По ним подсветка в режиме архитектора называет блок, а самому блоку ничего знать не нужно. `bid` в блок не
+  // 317-2: АДРЕС ЧАСТИ СТРАНИЦЫ — обёртка `display: contents` (на вёрстку не влияет) с `data-block` (постоянный `bid` из данных) и
+  // `data-kind`. По ним подсветка в режиме архитектора называет её, а самой секции ничего знать не нужно. `bid` в компонент не
   // передаётся: это адрес, а не свойство вида.
   return (
     <div key={key} data-block={typeof bid === 'string' ? bid : undefined} data-kind={kind} style={{ display: 'contents' }}>

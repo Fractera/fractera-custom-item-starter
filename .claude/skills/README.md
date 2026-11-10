@@ -10,7 +10,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 
 | Skill | Whose | What | Proof |
 |---|---|---|---|
-| `use-page-tree` | ours, `build-skills` | pages as data folders; a page is one sequence of section-* · text-* · widget-*; blocks from the registry | ✅ 2026-10-07 |
+| `use-page-tree` | ours, `build-skills` | pages as data folders; a page is one sequence of section-* · text-* · widget-*; sections from their folders `components/sections/<kind>/` | ✅ 2026-10-07 |
 | `use-typography` | ours, `build-skills` | plain text on a page as `text-*`, drawn by the element typography | ✅ 2026-10-07 |
 | `build-widget` | ours, `build-skills` | a widget inside its route: static or dynamic, the branch list, its door in the branch, its skeleton | ✅ 2026-10-07 |
 | `use-tools` | ours, `build-skills` | tools: find, use only inside widgets, add with a card; the generated list | ✅ 2026-10-07 |
@@ -52,7 +52,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `use-messenger` | ours, `build-skills` | the gatekeeper of ai-elements: messenger branches messenger-h2h / messenger-h2a and the drawer buttons; 🔒 messenger UI only from ai-elements; what is not built | ✅ 2026-10-12 |
 | `ai-elements` | vendored (Vercel) | how to install and use ai-elements components; `SOURCE.md` — origin and update | — vendored |
 | `page-snippet` | ours, `build-skills` | every public page has its own 1200×630 snippet at `<page>/snippet.png`, drawn on the first request (no rebuild) from title, description and the project background, tinted with the design primary; the background script asks the customer, names the price, or makes a free pattern | ✅ 2026-10-12 (after a fix) |
-| `use-shadcn` | ours, `build-skills` | the gatekeeper: widgets, tools and blocks only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
+| `use-shadcn` | ours, `build-skills` | the gatekeeper: widgets, tools and sections only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |
 | `design-taste-frontend` | vendored, Leon Lin, MIT | anti-generic landing design — `SOURCE.md` | — not proven |
 | `interface-design` | vendored, Damola Akinleye, MIT | craft of the screens a person works in — admin panel, dashboards, settings (main and design passes, step 714-4) — `SOURCE.md` | — not proven |

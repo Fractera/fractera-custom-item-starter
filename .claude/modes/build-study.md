@@ -13,7 +13,7 @@ stages, its parity with the products it resembles. The method and the records ar
 and follow it. This file is the gate around it: when to study, what you may take, where it lives, how it returns to the quiz.
 
 **The line between REA and us.** REA says what is true about the original and whether it is true about ours — its records, unknowns,
-application graph and obligations. Fractera decides how and where ours is built — static pages, the node's doors, blocks, our own
+application graph and obligations. Fractera decides how and where ours is built — static pages, the node's doors, sections, our own
 texts and look. The test for every finding: would it stay true if the original's authors rewrote it in another language and framework?
 Yes — it is behaviour (screens, flows, states, errors, rules): take it. No — it is mechanics: out of scope.
 
@@ -45,7 +45,7 @@ Yes — it is behaviour (screens, flows, states, errors, rules): take it. No —
 - **The browser is the node's:** `npm run study -- browser start <url>` prints its debugging address `http://127.0.0.1:<port>` (REA
   takes only the loopback, never `localhost`). The passive tools attach to it: `list-browser-targets`, `inspect-web-page`,
   `observe-web-session` (the person acts, REA records — the only evidence of which script sent a request), `analyze-web-bundle`,
-  `capture-web-screenshot`. A test account: `npm run study -- browser start <url> --site <site>` — the node's guard blocks every write.
+  `capture-web-screenshot`. A test account: `npm run study -- browser start <url> --site <site>` — the node's guard refuses every write.
 - **A scenario on someone else's site** (`capture-browser-scenario`) runs only in `connect` mode against that browser. REA's own
   `launch` mode is for the person's own application; REA «is not a browser sandbox or network containment mechanism», and on someone
   else's site no step writes — no `request` step that is not a read, no form that sends. A page with a service worker is refused under

@@ -4,8 +4,8 @@ description: >
   Builder skill. How everything this Fractera element draws stays findable by the highlight of the tab «Live site» of this element in the core — in both
   directions: the person points at any container and gets its address to give you a precise task, and you finish a change by
   returning the link `#block=<bid>` that scrolls the tab «Live site» to the place and frames it. Load it whenever you create or change
-  a block, a text item, a widget, a tool or any component a widget uses; whenever the person pastes an address
-  (`Page: … File: … Block: …`) or asks "where is this", "change this block", "show me what you changed"; and before you end an
+  a section, a text item, a widget, a tool or any component a widget uses; whenever the person pastes an address
+  (`Page: … File: … Block: …`) or asks "where is this", "change this section", "show me what you changed"; and before you end an
   answer about a page. The thing you cannot guess: the highlight sees only `[data-block]`; a container without it is invisible
   to the person, so their task arrives vague and your answer cannot point anywhere — and nothing breaks visibly.
 ---

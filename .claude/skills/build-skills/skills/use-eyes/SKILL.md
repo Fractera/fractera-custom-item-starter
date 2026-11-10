@@ -2,7 +2,7 @@
 name: use-eyes
 description: >
   Builder skill. Your EYES — `npm run eyes -- <address>`: a browser with no window opens a page of this element, clicks, takes a
-  screenshot into `logs/eyes/` and tells what lies on top of what. Load it before you show any page, block, menu, drawer or banner you
+  screenshot into `logs/eyes/` and tells what lies on top of what. Load it before you show any page, section, menu, drawer or banner you
   built or changed to your person, before «done» on anything a visitor sees, and when a layout is formally right and may look wrong. No
   extension and no account of the person needed. Acting in SOMEONE ELSE's interface (a registrar, Google) is not this — see
   `connect-own-domain`.

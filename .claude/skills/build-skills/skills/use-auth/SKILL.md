@@ -81,7 +81,7 @@ Owner of the node, 2026-10-24: «архитектор это супер поль
 - **The users table** (`/admin/users`, widget `widget-dynamic-users-table`) is the core tab «Users» limited to this application:
   search, role filter, sort, pages, histories, batch actions — no organizations. Its door `app/api/users/[[...path]]` forwards the
   visitor's cookie, the single sign-on ticket and this element's id to the auth element's `/api/app-users` (its README has the rules).
-- **«My account» drawer** (`lib/menu/account-links.ts`): Accounts, Blocks, Design, Site settings — for the roles of the admin layer
-  (`PROTECTED_GROUP_ROLES.admin`); the pages (`admin/_pages/{users,blocks,design,site-settings}`, `meta.roles: ["admin"]`) and their
+- **«My account» drawer** (`lib/menu/account-links.ts`): Accounts, Design, Site settings — for the roles of the admin layer
+  (`PROTECTED_GROUP_ROLES.admin`); the pages (`admin/_pages/{users,design,site-settings}`, `meta.roles: ["admin"]`) and their
   save doors (`admin/api/settings/*`) let the architect and the administrator in. A new page for the administrator of this element —
   the same three places: the page's `meta.roles`, its door, a line in `ADMIN_PAGES`.

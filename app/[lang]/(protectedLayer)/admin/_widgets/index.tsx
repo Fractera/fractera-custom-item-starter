@@ -20,7 +20,6 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-dynamic-users-table': (lang) => <UsersTable lang={lang} ui={usersTableUi(lang)} dialogUi={appDialogUi(lang)} />,
   // Свои настройки элемента — копия редактора CONFIG (`_pages/site-settings`).
   'widget-dynamic-site-settings': (lang) => <SiteSettings lang={lang} />,
-  // 577-11 / 578: блоки этого элемента (`_pages/blocks`) — таблица и Preview.
   // 579-1: своя мастерская оформления (`_pages/design`) — редакторы «Дизайна» над DESIGN-CONFIG этого элемента.
   // 706-4: бриф дизайна — первым на странице «Дизайн».
   'widget-dynamic-design-brief': (lang) => <DesignBrief lang={lang} />,

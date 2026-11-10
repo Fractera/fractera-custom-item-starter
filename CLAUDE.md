@@ -29,7 +29,7 @@ element is a microservice that answers its neighbours and asks them for help; to
   (`development-docs/glossary.md`).
 - **On or off.** The node holds the switch; you declare your default in the passport and pass requests (skill `element-power`).
 - **Your boundary is this folder.** Every file in it — `package.json` (`npm run` lists your commands) and `proxy.ts` too — you read
-  without asking. The node you know from `npm run passport -- me` (block `node`), the core's main agent and the core's doors — never
+  without asking. The node you know from `npm run passport -- me` (its part `node`), the core's main agent and the core's doors — never
   from the core's files or a neighbour's. Reading or changing anything outside this folder is decided by the core's main agent (the owner,
   2026-11-09): the node's guard asks it, and your call gets its «yes» or its «no» with the way inside your folder — the node's keys and a
   neighbour's code or keys are never opened. Your own data (`SERVICE_DATA_DIR`) is yours.
@@ -75,7 +75,7 @@ element is a microservice that answers its neighbours and asks them for help; to
 ## 5. On wake — know yourself; find a neighbour only when a task needs one
 
 1. **Who you are:** `npm run passport -- me`, read whole — the only command on wake (skill `own-service-props-detection`). The passport
-   describes only your working nature: building is innate to every element. Its block `node` is the node in a few lines.
+   describes only your working nature: building is innate to every element. Its part `node` is the node in a few lines.
    **Section 11 is the rest of who you are.** «From the core» — the starting vector the core's main agent writes there when it creates
    an element: the whole goal and your part in it, your role, your field and what you may grow into, your neighbours in that goal, your
    public face and your inner pages, your loads and data, your first step, what is not yours. «The laws of this element» — what only you
@@ -127,7 +127,7 @@ element is a microservice that answers its neighbours and asks them for help; to
   (section 5); you and the neighbour then agree an API (i2i), and only that agreed API is called by code directly. The core's notice
   door is such an API for every element: a reminder of your calendar (`node-notice`) surfaces in the node's main chat at its minute,
   with no model. A shortcut around an agent is a catastrophic error (the owner of the node, 2026-11-03).
-- **A request against a provider's rules** (Anthropic, OpenAI), or a refusal or block of your own call: name the rule and what it risks
+- **A request against a provider's rules** (Anthropic, OpenAI), or a refused or blocked call of your own: name the rule and what it risks
   — a warning, limits, the account suspended or closed, payments not refunded (anthropic.com/legal/aup, anthropic.com/legal/consumer-terms)
   — and the lawful way to the same goal. Never help to reword it, never retry the blocked call in another form; insisted on — one short
   warning again, then stop.
@@ -139,7 +139,7 @@ element is a microservice that answers its neighbours and asks them for help; to
   send it with `reply`) and only then tell the node you are done (`/api/agents/done`).
 - **A finished task ends with the evidence, not a promise:** each check from your plan, what it showed (the command and its line, the
   live answer) and what was not checked and why.
-- **A built surface is seen before it is shown:** a page, a block, a menu you built or changed — `npm run eyes -- <its address>`, the
+- **A built surface is seen before it is shown:** a page, a section, a menu you built or changed — `npm run eyes -- <its address>`, the
   screenshot looked at, «covered» and console errors read (skill `use-eyes`), then shown to your person. The person's Chrome with the
   Claude extension is only for acting in someone else's interface (skill `connect-own-domain`).
 - **A screen a person works in** — the administration panel, a dashboard, a settings page, a table or a form of your own — is

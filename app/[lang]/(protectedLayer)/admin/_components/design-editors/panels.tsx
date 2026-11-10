@@ -1,4 +1,4 @@
-// 579-1: серверная обёртка своего редактора оформления — `DesignEditorBlock`.
+// 579-1: серверная обёртка своего редактора оформления — `DesignEditorPanel`.
 // Адреса дают отсюда, из окружения узла; слова раздела выбирает СЕРВЕР — словарь в браузер целиком не едет.
 import { DesignEditorIsland, type DesignSection } from './design-editor.client'
 import { designUi } from './design.i18n'
@@ -10,7 +10,7 @@ const CORE = (process.env.ARCHITECT_URL ?? '').trim().replace(/\/+$/, '')
 const loginHref = (lang: string) => (SITE ? `${SITE}/login?lang=${lang}` : undefined)
 // Нет адреса ядра — ссылок нет: ссылка в никуда хуже её отсутствия.
 
-export function DesignEditorBlock({ lang, section, words }: { lang: string; section: DesignSection; words: AccessWords }) {
+export function DesignEditorPanel({ lang, section, words }: { lang: string; section: DesignSection; words: AccessWords }) {
   const all = designUi(lang)
   return (
     <DesignEditorIsland

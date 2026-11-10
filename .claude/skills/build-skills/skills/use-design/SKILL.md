@@ -5,8 +5,8 @@ description: >
   scale, corners, borders, spacing and the app width are design tokens in `DESIGN-CONFIG`, not code. Load it when the person asks
   to change colours, a theme, a font, «make it darker», «rounder corners», «bigger text», «our brand colours», «where do I change
   the design», when they ask what the page /admin/design shows, and before you write any colour, font or radius into a widget or a
-  block. What you cannot guess: the page opens with the BRIEF (who the site is for, character, references, what to avoid, the
-  design skill — the passport's `design` block, step 706-4), and the tokens belong to this element alone (node steps 706 and 716); a
+  section. What you cannot guess: the page opens with the BRIEF (who the site is for, character, references, what to avoid, the
+  design skill — the passport's `design` part, step 706-4), and the tokens belong to this element alone (node steps 706 and 716); a
   saved token redraws every page at once, with no build.
 ---
 
@@ -15,7 +15,7 @@ description: >
 # use-design
 
 > Informational, not binding: know a better way for the case in front of you — do it your way and say so. Two things are not optional:
-> a colour, a font or a radius never goes into a widget or a block as a value (only as a token), and you never edit `DESIGN-CONFIG`
+> a colour, a font or a radius never goes into a widget or a section as a value (only as a token), and you never edit `DESIGN-CONFIG`
 > by hand — the person changes the look on the page, the door writes the file.
 
 **Process: build** — a new token or a new setting of the workshop is code: commit and a build of the element; confirm with the three
@@ -26,7 +26,7 @@ page and needs no build — see «What needs a build».
 
 Every page of this element is drawn on the same tokens — `--primary`, `--accent`, `--destructive`, the neutrals, `--radius`, the
 font roles and the type scale (`lib/design-css.ts` turns `DESIGN-CONFIG` into them when a page is drawn; pages stay static and are redrawn when the design changes). Change a token once and every
-page, block and widget follows; a colour written into one widget is paid again on the next one and drifts from the rest. That is
+page, section and widget follows; a colour written into one widget is paid again on the next one and drifts from the rest. That is
 why the workshop exists: the look is decided in one place, as data.
 
 ## Who owns the tokens
