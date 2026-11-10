@@ -1,6 +1,9 @@
 ---
 name: use-f2f
-description: Builder skill. f2f — whole elements move between Fractera projects through Lagrix, so a builder takes a ready element instead of building it again; it is installed once and needs no API. Load it when the person wants a ready element from another Fractera project, wants to offer this element to others, asks how an element is exchanged, sold or installed from outside, when nobody in the node covers a new capability (the order «Before you build» in CLAUDE.md), and when the core sends you here before creating a new element.
+description: >
+  Builder skill. f2f — whole elements move between Fractera projects through Lagrix, installed once, no API. Load it when the
+  person wants a ready element from another project, wants to offer this one, asks how an element is exchanged, sold or installed,
+  when nobody in the node covers a new capability, and when the core sends you here before creating an element.
 ---
 
 # f2f — whole elements between Fractera projects
@@ -35,3 +38,5 @@ list, paid by a voucher to the super-node — Lagrix document 17, §17.8; the te
 answer; every search is a line in `SERVICE_DATA_DIR/f2f/searches.jsonl`. The network is not live yet: the answer is simulated and
 always empty. Tell your person exactly that — «в сети Lagrix подходящих элементов не найдено (поиск в сети пока имитируется)» —
 never pretend an element was found, and go on: the product quiz (`product-quiz`). «Publish» is not built yet.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «Before you build».

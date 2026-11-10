@@ -2,11 +2,8 @@
 name: product-clone
 description: >
   Builder skill. The person wants a product like an existing one — «like Product Hunt», «a clone of X», «make it work as X does».
-  Load it before the product quiz plans such a product. You check each site's rules first, then learn how the product works
-  from what is allowed, map its areas and scenarios, and plan stages 0…N of the person's own product with its coverage and parity.
-  The thing you cannot guess: a site whose robots.txt or terms forbid automated study is never analysed — the person gives a series
-  of screenshots instead, or names similar sites whose rules allow it; and only functions are taken, never code, texts, images,
-  design, data or names.
+  Load it before the product quiz plans such a product: site rules first, then how it works, its areas and scenarios, stages 0…N
+  of the person's own product.
 ---
 
 <!-- PROOF · NOT PROVEN yet: written 2026-10-22 (node step 556-3); the first live run is step 556-5 -->

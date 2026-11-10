@@ -1,14 +1,9 @@
 ---
 name: page-snippet
 description: >
-  Builder skill. Every public page of this Fractera element has its own social snippet — a 1200×630 picture with the page title in
-  large letters, the description in small letters and the project background behind, tinted with the design's primary colour — at
-  `/<lang>/<page>/snippet.png`, drawn on the first request with no rebuild. Load it whenever a task adds a page, a branch, a
-  document or a post; whenever the person mentions a snippet, a preview, og:image, a social card, a cover or «how the link looks
-  in Telegram»; whenever the project has no `public/images/snippet/background.webp` and the person wants one; and before you
-  report that a new page is finished. The thing you cannot guess: the snippet is not a file you create — it is a route next to the
-  page, and a page you add without that route falls back to a picture with no words.
-  Russian phrasings of the person: «сниппет», «превью ссылки», «картинка для соцсетей», «обложка страницы», «фон для сниппета».
+  Builder skill. The social snippet of every public page — a 1200×630 picture at `/<lang>/<page>/snippet.png`, a route next to the
+  page, not a file. Load it when a task adds a page, a branch or a post, before reporting a new page finished, and when the person
+  mentions a snippet, og:image, a cover, «how the link looks in Telegram», «сниппет», «превью ссылки», «фон для сниппета».
 ---
 
 <!-- PROOF · PROVEN 2026-10-12 after a fix (the background line) · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
@@ -69,3 +64,5 @@ the skill used to say «with the next deploy», and an agent repeated it.
 - Draw the title into the background image (the background has no text; the function writes the words).
 - Put a colour into the code — colours come from `DESIGN-CONFIG`.
 - Create PNG files per page in `public/` — a page added without a rebuild would have none.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «картинка для соцсетей», «обложка страницы».

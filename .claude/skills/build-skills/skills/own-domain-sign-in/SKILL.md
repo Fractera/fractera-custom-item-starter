@@ -1,12 +1,9 @@
 ---
 name: own-domain-sign-in
 description: >
-  Builder skill. How sign-in works when THIS element lives on its own domain (for example mybrand.com), and what to tell the person. Load it
-  when the person asks «why did sign-in send me to another address?», «Google sign-in does not work on my domain», «I want sign-in
-  right on my domain», «sign-in shows an error 525 / a strange address», or after connecting an own domain (skill
-  connect-own-domain, last step). The thing you cannot guess: the jump to the node's sign-in center (auth.<node zone>) is the
-  design, not a fault — every provider (Google and others) is set up for that one address, so any new domain works at once; and a
-  sign-in that goes to auth.<own domain> or auth.<element subdomain> means this element did not read its .env.local.
+  Builder skill. Sign-in when this element lives on its own domain, and what to tell the person. Load it when they ask «why did
+  sign-in send me to another address?», «Google sign-in does not work on my domain», «I want sign-in right on my domain», see
+  error 525 or a strange address, and after `connect-own-domain`.
 ---
 
 <!-- PROOF · NOT PROVEN yet: written 2026-10-11 (step 446-4), never checked by a live run -->
@@ -54,3 +51,5 @@ curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" "https://<own domain>/l
   `npm run check:process-env`; it names the process. The cure is a clean restart, done by the person or with their «yes»:
   `pm2 delete fractera-svc-<id>`, `pm2 start ecosystem.config.cjs --only fractera-svc-<id>`, `pm2 save` from a plain terminal.
   (Measured 2026-10-11 on a sample element: born by the core's door, it kept that marker for six days.)
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «sign-in shows an error 525 / a strange address».

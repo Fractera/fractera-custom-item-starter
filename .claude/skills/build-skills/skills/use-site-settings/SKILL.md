@@ -1,15 +1,10 @@
 ---
 name: use-site-settings
 description: >
-  Builder skill. Where the settings of this element's site are decided and changed — the name, description and address, search
-  settings, images, languages, the header menu, the footer, the cookie banner and the twelve feature switches (sign-in, breadcrumbs,
-  questions, theme, width, language switch, social links, offline copy …). They are settings in `APP-CONFIG` and `PLATFORM-CONFIG`,
-  not code. Load it when the person asks to change the title or description, «hide the sign-in button», «turn off breadcrumbs»,
-  «add a link to the menu», «show the footer», «turn on the cookie banner», «where are the settings of this site», when they ask what
-  /admin/site-settings shows, and before you write any of these into code. What you cannot guess: who owns them depends on the
-  element's link to the node's CONFIG element — on, CONFIG sets them and a change here is overwritten; off (an app factory, or an
-  element set apart), this element's pages `/<lang>/admin/site-settings/*` set them, and a saved setting redraws the pages with no
-  build — except languages, which are baked into the build.
+  Builder skill. The site's settings — name, description, search, images, languages, menus, footer, cookie banner, twelve switches
+  — live in `APP-CONFIG` and `PLATFORM-CONFIG`, not code. Load it when the person asks to change the title, «hide the sign-in
+  button», «turn off breadcrumbs», «turn on the cookie banner», «where are the settings», asks about /admin/site-settings, and
+  before writing any of these into code.
 ---
 
 <!-- PROOF · NOT PROVEN yet: written, never checked by a live run (rules: development-docs/README.md, «Proof marks») -->
@@ -71,3 +66,5 @@ widget folder). In the core these pages open from «Build → Site settings» of
 - **A new setting or section** — code: commit, build beside the running version, switch.
 - With the link off, the two files are this element's own settings: commit them with your next build commit so the repository keeps
   them; with the link on they are seeds overridden by CONFIG's copy.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «add a link to the menu», «show the footer», «where are the settings of this site».

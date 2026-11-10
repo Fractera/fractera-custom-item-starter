@@ -1,11 +1,9 @@
 ---
 name: use-own-stores
 description: >
-  Builder skill. What this element's own key opens in the node's stores — its own database file, its own files (public or private),
-  its own vector collections and graph spaces, its own space of the deep memory — and what it never sees. Load it before writing code
-  that keeps tables, files, vectors or graph facts; whenever the person asks where this element's data lives, who can see it, or
-  whether another element can read it; and before you say anything about your stores. The thing you cannot guess: the key is not
-  DATA_SECRET any more — the installer writes ELEMENT_KEY, the helpers send it, and every store answers with this element's space only.
+  Builder skill. What this element's own key (ELEMENT_KEY) opens in the node's stores — its database, files, vector collections,
+  graph spaces and deep-memory space — and what it never sees. Load it before writing code that keeps tables, files, vectors or
+  graph facts, and when the person asks where this element's data lives, who can see it, or whether another element can read it.
 ---
 
 # Your own stores

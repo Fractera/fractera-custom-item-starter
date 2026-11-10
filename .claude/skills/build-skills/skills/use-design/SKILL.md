@@ -1,13 +1,10 @@
 ---
 name: use-design
 description: >
-  Builder skill. Where the look of this element is decided and changed: fonts, the colours of the light and dark theme, the type
-  scale, corners, borders, spacing and the app width are design tokens in `DESIGN-CONFIG`, not code. Load it when the person asks
-  to change colours, a theme, a font, «make it darker», «rounder corners», «bigger text», «our brand colours», «where do I change
-  the design», when they ask what the page /admin/design shows, and before you write any colour, font or radius into a widget or a
-  section. What you cannot guess: the page opens with the BRIEF (who the site is for, character, references, what to avoid, the
-  design skill — the passport's `design` part, step 706-4), and the tokens belong to this element alone (node steps 706 and 716); a
-  saved token redraws every page at once, with no build.
+  Builder skill. Where the look is decided — the brief and this element's own tokens in `DESIGN-CONFIG` (fonts, colours of both
+  themes, type scale, corners, spacing, width). Load it when the person asks to change colours, a theme, a font, «make it darker»,
+  «bigger text», «our brand colours», «where do I change the design», asks about /admin/design, and before writing any colour,
+  font or radius into code.
 ---
 
 <!-- PROOF · NOT PROVEN yet: written, never checked by a live run (rules: development-docs/README.md, «Proof marks») -->
@@ -81,3 +78,5 @@ the core.
 - Colours, fonts and radius in a section or a widget — only tokens (`bg-primary`, `text-muted-foreground`, `rounded-[var(--radius)]`).
 - The workshop edits this element only; it sends nothing to the other elements of the node.
 - Every container of the editors carries `data-block` (`npm run widgets:ids`).
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «rounder corners».

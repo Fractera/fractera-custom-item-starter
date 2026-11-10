@@ -1,14 +1,9 @@
----
-name: github-repositories
-description: >
-  Builder skill. How every element of a Fractera node keeps itself on GitHub as its own repository — created by the person's button, named
-  after the fork and the element's address, renamed together with the element, a common token or the element's own, importing
-  another repository, and how the node is restored from them. Load it whenever the person asks where an element is stored, how
-  to export an element as a separate service, «create a repository», «rename the element», «use another repository», «what
-  token», «the red GitHub bar», or how to restore the node. Sending commits is skill `github-element`; selling an element is not
-  this skill. The thing you cannot guess: repositories are created and renamed by the node with the person's token, one element
-  at a time by a button — never by you and never automatically.
----
+# GitHub repositories of the elements
+
+Node knowledge (717-4): read it when a task or the person needs it — it is not a skill and is not in your skill list, so it
+costs nothing until read. Before asking the core how the node works (`ask-core`), look into `.claude/node-knowledge/`.
+
+**When to read:** How every element of a Fractera node keeps itself on GitHub as its own repository — created by the person's button, named after the fork and the element's address, renamed together with the element, a common token or the element's own, importing another repository, and how the node is restored from them. Load it whenever the person asks where an element is stored, how to export an element as a separate service, «create a repository», «rename the element», «use another repository», «what token», «the red GitHub bar», or how to restore the node. Sending commits is skill `github-element`; selling an element is not this skill. The thing you cannot guess: repositories are created and renamed by the node with the person's token, one element at a time by a button — never by you and never automatically.
 
 <!-- PROOF · NOT PROVEN yet: written, never checked by a live run (rules: development-docs/README.md, «Proof marks») -->
 
@@ -46,7 +41,7 @@ the old history is pushed to the element's repository first). A public repositor
 ## Restoring the node
 
 The node pushes only one file to the person's fork — the snapshot `WEB4-ITEMS-REGISTRY/web4-items.node.json` (which elements,
-which repositories). On a new computer cloning the fork brings every element back from its repository (skill `project-origin`).
+which repositories). On a new computer cloning the fork brings every element back from its repository (`.claude/node-knowledge/project-origin.md`).
 
 ## What you do
 

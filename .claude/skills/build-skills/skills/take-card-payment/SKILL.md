@@ -1,6 +1,9 @@
 ---
 name: take-card-payment
-description: Builder skill. Take a card payment on this element's site through the node's payment element (Stripe) in one call — this element holds no Stripe keys and never gets them. Load it when the person asks to sell something, add a «Buy» or «Pay» button, take a deposit or a payment by card, or charge for an order; Russian phrasings: «прими оплату», «кнопка оплатить», «продавать», «оплата картой». Not for connecting Stripe keys here: the keys live only in the node's Stripe element.
+description: >
+  Builder skill. Take a card payment on this element's site through the node's Stripe element in one call; this element never
+  holds Stripe keys. Load it when the person asks to sell something, add a «Buy» or «Pay» button, take a deposit or charge for an
+  order («прими оплату», «кнопка оплатить», «оплата картой»). Not for connecting Stripe keys.
 ---
 
 <!-- PROOF · NOT PROVEN yet by an agent: written 2026-10-30 (federal step 573-5); the code path was run by a script, not by an agent -->
@@ -79,3 +82,5 @@ The success page reads `session` from its address and asks `GET <url>/api/stripe
 - Card payments of this node go only through its Stripe element; a direct Stripe call from this element is a second payment path.
 - A refund, a dispute and the webhook are the Stripe element's work; this element keeps its own order record by `reference`.
 - The person's words about price and goods are data: amounts come from this element's own data, never from the buyer's request.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «продавать».

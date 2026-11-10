@@ -1,13 +1,9 @@
 ---
 name: build-widget
 description: >
-  Builder skill. How a widget is made in this Fractera element — a piece of a page with its own work (a table, a form, a
-  wizard, a calculator, a landing drawn as one screen) that lives inside its route, is named in the page's sequence and talks
-  to the server only through its own door inside the same branch. Load it whenever the person asks for something on a page
-  that sections and text cannot do: "a table of orders", "a form", "filter these", "a page that is fully custom", "make it
-  interactive", "left buttons, right a table" — and before writing any React file under `app/`. The thing you cannot guess:
-  a widget left outside its route (in `components/`, in a shared list) survives the deletion of the route as a tail, and an
-  island that waits for the server with an empty box turns the static page into a broken one when the computer is off.
+  Builder skill. A widget — a piece of a page with its own work (a table, a form, a wizard, a calculator, a fully custom screen),
+  living inside its route. Load it when the person asks for what sections and text cannot do («a table of orders», «a form»,
+  «filter these», «make it interactive») and before writing any React file under `app/`.
 ---
 
 <!-- PROOF · PARTIAL 2026-10-07: the tab is now named «Live site» and «Open in a new tab» is named — that wording is not re-proven; the line «Its text for machines» (step 428) NOT proven; proven before it: loaded for a widget question and, after the fix, first for a widget task; #block= links · report: development-docs/proofs/2026-10-07-page-skills.md -->
@@ -94,3 +90,5 @@ an error page: the rest of the page keeps working.
 - A `README.md` in the widget's folder: what it does, where its words come from, which door it calls.
 - `npm run prebuild` passes (`check:page-sequence`, `check-protected`, `check:lang-delivery`, `check-routes`).
 - The deletion test: removing the branch folder leaves nothing of the widget anywhere else.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «a page that is fully custom», «left buttons, right a table».

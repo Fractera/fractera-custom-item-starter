@@ -1,15 +1,10 @@
 ---
 name: use-element-tree
 description: >
-  Builder skill. The exact file tree of this Fractera element — where every kind of file lives (instruction, passport, node
-  contract, development documents, skills, tools, branches with their pages, widgets, components, logic and doors) and which
-  folders every branch must have. Load it before creating, moving, renaming or deleting any file or folder of this element,
-  before adding a page, a widget, a tool, a door or a branch, and when you are not sure where something belongs. The thing you
-  cannot guess: the structure is not a habit but a contract — guards refuse the build when a branch lacks a required folder, a
-  route file appears outside the closed list, or a widget sits outside its branch, and deleting a branch must leave nothing behind.
-  Load it too whenever a page, a branch or a file of the starting tree is missing or was deleted, or `check:tree` prints `нет …` —
-  the section «Restore the starting architecture» brings the element back from its git history or its template tag.
-  Russian phrasings of the person: «дерево проекта», «куда положить файл», «удалили страницу», «верни как было», «стартовая архитектура».
+  Builder skill. The exact file tree of this element — where every kind of file lives and which folders every branch must have; a
+  contract the guards hold. Load it before creating, moving, renaming or deleting any file or folder, when unsure where something
+  belongs, when a starting page or file is missing or `check:tree` prints `нет …` («дерево проекта», «куда положить файл», «верни
+  как было»).
 ---
 
 <!-- PROOF · PROVEN 2026-10-12 (restore section; loaded, answer right) · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
@@ -168,3 +163,5 @@ the tree is the starting point, not a cage. Never «fix» a debt by adding an ex
 words or it does not exist.
 
 The snapshot is written in the template only: `node scripts/tree-manifest.mjs <tag>` right before tagging a new template version.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «удалили страницу», «стартовая архитектура».

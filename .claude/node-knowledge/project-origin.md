@@ -1,13 +1,9 @@
----
-name: project-origin
-description: >
-  Builder skill. How a Fractera project is born and stays updatable — only from the person's own fork of github.com/Fractera/web4-node-starter-kit, cloned to
-  their own computer; why any other copy is refused; how updates come («Sync fork» for the node, «Update» for an element); how
-  a node is restored on a new computer. Load it whenever the person asks how to install, start, move or copy the project, «can I
-  download it as a zip», «my friend gave me his copy», «how do I get updates», «I have a new computer», or sees
-  ===ORIGIN_OUTDATED=== or «non-original Fractera project». The thing you cannot guess: the origin is checked by the node itself —
-  a project that is not a direct fork of the original never installs, because only a fork keeps the road to updates open.
----
+# Where a project comes from and how it stays updatable
+
+Node knowledge (717-4): read it when a task or the person needs it — it is not a skill and is not in your skill list, so it
+costs nothing until read. Before asking the core how the node works (`ask-core`), look into `.claude/node-knowledge/`.
+
+**When to read:** How a Fractera project is born and stays updatable — only from the person's own fork of github.com/Fractera/web4-node-starter-kit, cloned to their own computer; why any other copy is refused; how updates come («Sync fork» for the node, «Update» for an element); how a node is restored on a new computer. Load it whenever the person asks how to install, start, move or copy the project, «can I download it as a zip», «my friend gave me his copy», «how do I get updates», «I have a new computer», or sees ===ORIGIN_OUTDATED=== or «non-original Fractera project». The thing you cannot guess: the origin is checked by the node itself — a project that is not a direct fork of the original never installs, because only a fork keeps the road to updates open.
 
 <!-- PROOF · PARTIAL 2026-10-07: loaded, answer right; the «Update» line changed after the run · report: development-docs/proofs/2026-10-07-node-skills.md -->
 
@@ -24,7 +20,7 @@ description: >
 2. An AI agent on **their own computer** (never a cloud session — install refuses there with `===CLOUD_REFUSED===`) clones that
    fork, runs `npm install`, `npm run build`, `npm run serve:start`.
 3. The first start installs the node's elements (sign-in, data, settings, design, the root site), starts the autostart and the
-   watchdog, and puts the panel on a temporary Cloudflare address (skill `temporary-domain`).
+   watchdog, and puts the panel on a temporary Cloudflare address (`.claude/node-knowledge/temporary-domain.md`).
 
 `scripts/check-origin.mjs` (first step of the build and of the start) asks GitHub whether `origin` is a direct fork of
 `Fractera/web4-node-starter-kit`; anything else stops with «You are trying to install a non-original Fractera project».
@@ -44,5 +40,5 @@ fork loses that road for good, and the person would carry every fix by hand.
 ## Moving to a new computer
 
 Clone **the person's own fork** (never a new fork): the node reads its snapshot `WEB4-ITEMS-REGISTRY/web4-items.node.json` and
-clones every element from the person's repositories (skill `github-repositories`). Not restored yet: the own domain, the tunnel
+clones every element from the person's repositories (`.claude/node-knowledge/github-repositories.md`). Not restored yet: the own domain, the tunnel
 and the data — say so.

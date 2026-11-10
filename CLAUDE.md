@@ -160,7 +160,7 @@ session shares; the group of your session's mode is in its mode file (`.claude/m
 
 | Group | Mode | Skills |
 |---|---|---|
-| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `answer-the-leader` (the core's main agent asks where your development stands — three lines, nothing built), `computer-off`, `local-node`, `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `answer-the-leader` (the core's main agent asks where your development stands — three lines, nothing built), `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
 | messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
 
 ## 9. Glossary
@@ -173,7 +173,9 @@ another element of this node · **passport** — `OWN-SERVICE-PROPS/` · **pass*
 ## 10. Where the details are
 
 The laws of a mode or a pass — `.claude/modes/`; what this element is and how to call it — `README.md`; development documents and their
-rules — `development-docs/README.md`; what was proven live and how — `development-docs/proofs/`; how the node works — skill `ask-core`.
+rules — `development-docs/README.md`; what was proven live and how — `development-docs/proofs/`; how the node around you works — the
+internet and Cloudflare, the temporary address, the fork and updates, GitHub repositories, the computer off, a private node — the texts
+of `.claude/node-knowledge/`, read on need (they are not skills and cost nothing until read); what they do not say — skill `ask-core`.
 
 ## 11. This element
 

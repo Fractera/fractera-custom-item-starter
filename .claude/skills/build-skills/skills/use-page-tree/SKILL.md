@@ -1,13 +1,9 @@
 ---
 name: use-page-tree
 description: >
-  Builder skill. How a page is added to this Fractera element — as a FOLDER OF DATA under a branch, read by the one child route of
-  that branch, never as a new `page.tsx`. Load it before creating anything under `app/`, whenever the person asks for
-  "a new page", "a section", "an article", "a page for the role X", "the same page in Russian", when a text on a page
-  must be corrected, and whenever a build is slow and you are about to look for the cause. The thing you cannot guess:
-  Next compiles every route file on its own, so a site that grows one `page.tsx` per page builds slower with every page —
-  measured on this node as 1252 s for 300 page files against 98 s for the same 300 pages through one template. The
-  build succeeds either way; nothing warns you until the person waits an hour.
+  Builder skill. A page is added as a FOLDER OF DATA under a branch, read by its one child route, never as a new `page.tsx`. Load
+  it before creating anything under `app/`, when the person asks for «a new page», «a section», «an article», «a page for the role
+  X», «the same page in Russian», when a text on a page must be corrected, and when a build is slow.
 ---
 
 <!-- PROOF · PARTIAL 2026-10-07: the tab is now named «Live site» and «Open in a new tab» is named — that wording is not re-proven; the line about the Markdown copy (step 428) NOT proven; proven before it: loaded first for a docs page; data only, same sequence and bid in en/ru, #block= links · report: development-docs/proofs/2026-10-07-page-skills.md -->
@@ -105,7 +101,7 @@ machine, key in the header, never in the address): the next visit shows the chan
 is live, reload the page" — or, if the command failed, "it will appear within five minutes".
 
 🛑 **On the own domain visitors may still see the old page.** Public pages that are in the Cloudflare copy of the site
-(skill `cloudflare-connection`) are served from that copy, made at the last «Accept»/«Deploy» or «Update copies» on the core's
+(`.claude/node-knowledge/cloudflare-connection.md`) are served from that copy, made at the last «Accept»/«Deploy» or «Update copies» on the core's
 «Domain activation»; `pages:refresh` changes this computer only. Compare `curl` of `127.0.0.1:<port>` with the public address;
 tell the person: the change is on the computer, visitors see it after «Deploy» or «Update copies». ✗ 2026-10-07: the menu
 changed at 127.0.0.1, roman.throughsongs.com kept the old one.

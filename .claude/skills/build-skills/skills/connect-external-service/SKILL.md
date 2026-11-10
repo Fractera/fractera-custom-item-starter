@@ -1,14 +1,10 @@
 ---
 name: connect-external-service
 description: >
-  Builder skill. How this Fractera element connects an OUTSIDE PAID SERVICE (a search API, a model provider, a payment, a mail or
-  an SMS service — anything with keys and a bill): where its description lives, where the keys go, where the server code and the
-  check door live, what the core draws and what the element never draws. Load it whenever a task needs a third-party API or key,
-  whenever the person names a service to «connect», «subscribe to» or «pay for», and whenever you touch
-  `OWN-SERVICE-PROPS/SUBSCRIPTIONS.json`. The thing you cannot guess: the element draws NO settings screen for the service — it
-  describes the service in one file, and the core's «Working process → Process → Subscriptions» tab draws the description, the key fields, the
-  «Check» button and the payment history from it; the element's job is the server side only.
-  Russian phrasings of the person: «подключи сервис», «API-ключ», «подписка», «оплата сервиса», «баланс», «история платежей».
+  Builder skill. Connecting an outside paid service (an API, a model provider, mail, SMS — keys and a bill): its description,
+  keys, server code and check door. Load it when a task needs a third-party API or key, the person names a service to connect or
+  pay for, asks about its balance or payment history («подключи сервис», «API-ключ», «подписка»), or you edit
+  `OWN-SERVICE-PROPS/SUBSCRIPTIONS.json`.
 ---
 
 <!-- PROOF · PROVEN 2026-10-12 · report: development-docs/proofs/2026-10-12-six-skills.md (in roman) -->
@@ -56,3 +52,5 @@ Buying a subscription, entering a key, spending money, choosing between two prov
 
 `SUBSCRIPTIONS.json` carries one EXAMPLE — «Exa», the AI search engine (`example: true`): the menu shows «Subscriptions → Exa», its page
 has the description, the key field `EXA_API_KEY` (does not save) and «Check» shows the example payments. Nothing is called. No `lib/integrations/` and no door exist yet — the first real service builds them.
+
+Requests that bring this skill — the full list, moved from its description in 717-4: «subscribe to», «оплата сервиса», «баланс», «история платежей».

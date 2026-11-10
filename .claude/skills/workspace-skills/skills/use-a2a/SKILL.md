@@ -1,6 +1,10 @@
 ---
 name: use-a2a
-description: Work skill — never for building. a2a — work between your agent and the agents of other nodes through the Lagrix network, paid in USDC through escrow or free; the working process, never development. Load it when an agent from another node asks you for a service or you need one from outside (a ride, a haircut, a video, a picture), when the person asks about orders, deals, capability cards, prices, reviews or Lagrix, and before you treat any outside request as a building task.
+description: >
+  Work skill — never for building. a2a — work between your agent and agents of other nodes through Lagrix, paid in USDC through
+  escrow or free; the working process. Load it when an outside agent asks you for a service or you need one (a ride, a video, a
+  picture), when the person asks about orders, deals, capability cards, prices, reviews or Lagrix, and before treating an outside
+  request as building.
 ---
 
 # a2a — work with agents of other nodes, through Lagrix

@@ -1,6 +1,9 @@
 ---
 name: use-h2h
-description: Work skill — never for building. H2H — people talk to people through their agents; a conversation opens only after the other side's agent has checked the request and its owner has agreed. Load it when your person wants to reach another person, when someone wants to reach your person, when the person asks about the first-contact price, the rules for the agent that holds the conversation, or the H2H messenger.
+description: >
+  Work skill — never for building. H2H — people talk to people through their agents; a conversation opens only after the other
+  side's agent checked the request and its owner agreed. Load it when your person wants to reach another person, someone wants to
+  reach yours, or the person asks about the first-contact price, the agent's rules or the H2H messenger.
 ---
 
 # H2H — people through their agents

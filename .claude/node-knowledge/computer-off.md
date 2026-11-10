@@ -1,12 +1,9 @@
----
-name: computer-off
-description: >
-  Both natures. What this Fractera element can and cannot do while the person's computer is off, asleep or has its lid closed — which pages
-  still open, what visitors see instead of the rest, what happens to sign-in, forms, the agents, Telegram and A2A — and the role
-  of the Cloudflare copy. Load it whenever the person asks «what if I close the laptop», «does the site work at night», «why
-  did the bot not answer», «visitors saw "the owner is offline"», and before you promise anything that needs the computer to be
-  on. The thing you cannot guess: the computer is the server — only the copy of public pages kept in Cloudflare outlives it.
----
+# When the computer is off
+
+Node knowledge (717-4): read it when a task or the person needs it — it is not a skill and is not in your skill list, so it
+costs nothing until read. Before asking the core how the node works (`ask-core`), look into `.claude/node-knowledge/`.
+
+**When to read:** What this Fractera element can and cannot do while the person's computer is off, asleep or has its lid closed — which pages still open, what visitors see instead of the rest, what happens to sign-in, forms, the agents, Telegram and A2A — and the role of the Cloudflare copy. Load it whenever the person asks «what if I close the laptop», «does the site work at night», «why did the bot not answer», «visitors saw "the owner is offline"», and before you promise anything that needs the computer to be on. The thing you cannot guess: the computer is the server — only the copy of public pages kept in Cloudflare outlives it.
 
 <!-- PROOF · PROVEN 2026-10-07: loaded by its description for «lid closed», answer right · report: development-docs/proofs/2026-10-07-node-skills.md -->
 
@@ -19,7 +16,7 @@ description: >
 ## Still works — from Cloudflare (own domain only)
 
 - **Public pages of every address of the node**, in every language, with their styles and pictures — served from the copy in
-  the person's Cloudflare Workers (skill `cloudflare-connection`), as of the last «Accept»/«Deploy».
+  the person's Cloudflare Workers (`.claude/node-knowledge/cloudflare-connection.md`), as of the last «Accept»/«Deploy».
 - **The A2A card** of a `network` element — read from the copy; a call to it gets an A2A protocol error, not an HTML page.
 
 ## Does not work
