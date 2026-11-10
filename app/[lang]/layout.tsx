@@ -77,6 +77,13 @@ export function generateViewport(): Viewport {
   };
 }
 
+/** 714-2: вкладка «Строительства» этого элемента в ядре узла (`<ядро>/<язык>/<id>/build/<вкладка>`), или null — узла нет. */
+function coreTab(lang: string, tab: "design" | "site-settings" | "subscription"): string | null {
+  const core = process.env.ARCHITECT_URL?.trim().replace(/\/+$/, "");
+  const id = ownId();
+  return core && id ? `${core}/${lang}/${id}/build/${tab}` : null;
+}
+
 export default async function LangLayout({
   children,
   params,
@@ -167,13 +174,15 @@ export default async function LangLayout({
           <DrawerProvider>
             <TopMenu lang={lang} />
             {/* 706-3 (владелец 2026-11-09): полоса быстрой навигации вместо жёлтой вывески стартера — видна только владельцу (эта машина или
-                вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке. */}
+                вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке.
+                714-2 (владелец 2026-11-10: «задача этих кнопок ввести в настройки на странице архитектора а не показывать собственные
+                страницы»): все три — во вкладки «Строительства» элемента в ядре; узла нет — «Дизайн» остаётся на своей странице. */}
             <QuickNav
               lang={lang}
               words={quickNavWords(lang)}
-              designHref={`/${lang}/admin/design`}
-              settingsHref={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/site-settings` : null}
-              subscriptionHref={process.env.ARCHITECT_URL && ownId() ? `${process.env.ARCHITECT_URL.replace(/\/+$/, "")}/${lang}/${ownId()}/build/subscription` : null}
+              designHref={coreTab(lang, "design") ?? `/${lang}/admin/design`}
+              settingsHref={coreTab(lang, "site-settings")}
+              subscriptionHref={coreTab(lang, "subscription")}
               showWidth={featureOn("viewportBadge")}
               skill={designSkill()}
             />

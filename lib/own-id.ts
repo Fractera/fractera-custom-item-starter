@@ -20,3 +20,14 @@ export function ownId(): string | null {
   const env = process.env.ITEM_ID?.trim()
   return (cached = env || null)
 }
+
+// ИМЯ ПРОЕКТА ДЛЯ ЛЮДЕЙ — ПОЛЕ `name` ТОГО ЖЕ ПАСПОРТА (шаг 714-3). Читается при отрисовке страницы, не при сборке шаблона: у
+// рождённого элемента своё имя («Глина и огонь»), у шаблона — своё. Нет имени — `null`, вызывающий берёт имя сайта.
+export function ownName(): string | null {
+  try {
+    const p = JSON.parse(readFileSync(join(process.cwd(), "OWN-SERVICE-PROPS", "OWN-SERVICE-PROPS.json"), "utf8")) as { name?: unknown }
+    return typeof p.name === "string" && p.name.trim() ? p.name.trim() : null
+  } catch {
+    return null
+  }
+}

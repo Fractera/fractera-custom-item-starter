@@ -8,7 +8,8 @@ import { appDialogUi } from '@/components/dialog/app-dialog.i18n'
 import { createContentPage } from '@/lib/content/create-content-page'
 import type { Block } from '@/lib/content/blocks/types'
 import { branchChild, branchRoot, wordsIn, type TreePage } from '@/lib/page-tree'
-import { ownId } from '@/lib/own-id'
+import { ownId, ownName } from '@/lib/own-id'
+import { AwaitingTitle } from '@/components/content-page/awaiting-title'
 import { brand } from '@/lib/brand'
 import { ALL_ROLES, rolesThatSee } from '@/lib/roles'
 import { snippetPath } from '@/lib/snippet/page-snippet'
@@ -116,6 +117,8 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
       // 423: виджеты ветки рисуются там, где стоят в последовательности `blocks`.
       widgets: opts.widgets,
       titleInBody: opts.titleInBody,
+      // 714-3: страница ждёт дизайна и своего заголовка не печатает — на её месте крупно стоит имя проекта.
+      afterHeader: opts.titleInBody && page.meta.awaitingDesign === true ? () => <AwaitingTitle name={ownName() ?? brand().name} /> : undefined,
       chrome: opts.crumbs === false ? undefined : (_lang, c) => ({ breadcrumbs: [{ label: c.title }] }),
     })
   }
