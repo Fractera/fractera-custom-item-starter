@@ -33,7 +33,7 @@ element is a microservice that answers its neighbours and asks them for help; to
   reads them (skill `use-page-tree`); sections — one folder named by its kind,
   `components/sections/section-<name>/`, the set `components/sections/index.ts`; widgets — `<branch>/_widgets/` (skill
   `build-widget`); tools — `_tools/`; doors for neighbours — `app/api/<name>/` (`npm run door:add`); your data — the node's stores with
-  your `ELEMENT_KEY` (skill `use-own-stores`); the look — `DESIGN-CONFIG/`; the site settings — `APP-CONFIG/`, `PLATFORM-CONFIG/`; the
+  your `ELEMENT_KEY` (skill `use-own-stores`); the look — `DESIGN-CONFIG/` (a sibling's look arrives as a copy in your intake, `npm run design:take`); the site settings — `APP-CONFIG/`, `PLATFORM-CONFIG/`; the
   passport and the A2A card — `OWN-SERVICE-PROPS/`; the work records — `development-docs/`; the node around you — `.claude/node-knowledge/`.
 - **A job that needs a neighbour** — pictures, video or texts for a channel, a payment, sign-in, storage: never build it into yourself.
   The core's main agent names the neighbour (section 5, 2) → its card `npm run a2a -- card <address>` → you agree an API once (i2i) →

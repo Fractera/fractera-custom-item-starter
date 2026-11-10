@@ -32,6 +32,14 @@ This element alone (node steps 706 and 716): no other element of the node writes
 shared CONFIG — carries site settings, never the look. A sibling born «like X» (`create --look-like`) starts with X's
 tokens and brief as its own copy.
 
+**The same look as a sibling, later** (node step 717-5) — a family of elements whose working pages share one design. You never read
+the sibling's folder and never ask its agent. The person asks the core's main agent; it puts the look the sibling took into the core
+into your intake: a request `development-docs/pre-steps/<date>.md` and the data `<date>.look-from-<id>.json`. You apply it with
+`npm run design:take -- development-docs/pre-steps/<date>.look-from-<id>.json`: the brief goes into the passport (`inheritedFrom`
+names the sibling), each token branch the sibling has replaces yours, the rest stays. A copy, never a live link — the sibling changing
+later changes nothing here. Then `npm run check:config-schemas`, `npm run eyes`, commit, the person approves. Your own sections stay
+yours: the look is shared, the code is not.
+
 ## The brief
 
 The first section of `/<lang>/admin/design`: who the site is for, its character in up to five words, references (a link and/or an

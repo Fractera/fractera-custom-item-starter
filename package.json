@@ -89,6 +89,7 @@
     "test:design-brief": "node --no-warnings lib/design-brief-shape.test.mjs",
     "prototype": "node scripts/prototype.mjs",
     "design:pin": "node scripts/prototype.mjs pin",
+    "design:take": "node scripts/design-take.mjs",
     "check:prototypes": "node scripts/check-prototypes.mjs"
   },
   "dependencies": {
