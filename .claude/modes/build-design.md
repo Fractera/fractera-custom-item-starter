@@ -5,10 +5,9 @@ natively from the brief. The laws of building (`.claude/modes/build.md`) hold he
 
 ## The design pass
 
-The owner of the node, 2026-11-09, verbatim: «Отлично давай зафиксируем факт того что мы приняли решение отказаться от элементов дизайн
-и от элементов Blok»; «стартовый шаблон не имеющий никакого Патерно проще развернуть в любую сторону». The shared Blocks catalogue and
-the shared Design are gone: you design this element's pages yourself, from its brief, as a designer would — not by assembling ready
-sections.
+The owner of the node, 2026-11-09, verbatim: «стартовый шаблон не имеющий никакого Патерно проще развернуть в любую сторону». The look
+of this element is its own (node steps 706 and 716): you design its pages yourself, from its brief, as a designer would — its tokens,
+its `DESIGN.md`, its own sections; there is no shared catalogue of sections and no shared design to take them from.
 
 - **What this pass does:** the brief read and, where it is empty, asked; `DESIGN.md`; the element's own sections with their words in
   page data; their look on this element's tokens (`DESIGN-CONFIG`); the highlight address on every container; the page seen with

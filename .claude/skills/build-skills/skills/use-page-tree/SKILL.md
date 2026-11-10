@@ -84,8 +84,7 @@ A production build is always the whole app; the only lever is how many route fil
 - **Which `block-*` a page may name** = the keys of `BLOCK_SET` in `lib/content/blocks/registry.tsx` — read them before you
   propose a block. A component in `components/blocks/` is not enough (✗ node step 464: an agent offered `block-cta-button`, which
   lives only inside the hero and is not in the set — the guard would refuse the page).
-- **A section** the set does not have — the design pass builds it here, as this element's own section (step 706: the shared Blocks
-  catalogue is retired); it is registered in
+- **A section** the set does not have — the design pass builds it here, as this element's own section; it is registered in
   `lib/content/blocks/registry.tsx`, `lib/content/blocks/types.ts` and `lib/aio/blocks-to-markdown.ts`. Never put a section on a page outside the set.
   After writing page data run `npm run check:page-sequence`: the live site renders data newer than its build and would drop an
   unknown section silently (✗ 2026-11-09, lqvop).

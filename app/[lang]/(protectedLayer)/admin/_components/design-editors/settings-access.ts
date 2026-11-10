@@ -1,14 +1,12 @@
-// СВОЁ ОФОРМЛЕНИЕ ЭЛЕМЕНТА ИЗ БРАУЗЕРА (шаг 579-1). Редакторы — копия элемента «Дизайн»; ходят они не в общий «Дизайн», а в дверь
+// СВОЁ ОФОРМЛЕНИЕ ЭЛЕМЕНТА ИЗ БРАУЗЕРА (шаг 579-1). Редакторы ходят в дверь
 // этого элемента внутри его ветки: `/<язык>/admin/api/settings/design` (закон 422 — дверь в своей ветке, язык в адресе как цена).
 // 🔒 Отказ двери — это СОСТОЯНИЕ, а не пустые настройки: «войдите», «вы не архитектор», «вход недоступен» и «ошибка»
 // различаются, и ни одно не рисуется как «ничего не настроено» (урок 2026-09-25: пустота, принятая за ответ, обесцветила ядро).
-// 🔒 `linked` — связь с общим «Дизайном» включена: оформление приходит оттуда и ляжет поверх любой правки здесь, поэтому
-// редактор не рисуется, а дверь записи отвечает 409.
-export type Access = 'loading' | 'ok' | 'linked' | 'signin' | 'forbidden' | 'unavailable' | 'error'
+export type Access = 'loading' | 'ok' | 'signin' | 'forbidden' | 'unavailable' | 'error'
 export type Loaded = { access: Access; config: Record<string, unknown> | null }
 
 const accessOf = (status: number): Access =>
-  status === 200 ? 'ok' : status === 409 ? 'linked' : status === 401 ? 'signin' : status === 403 ? 'forbidden' : status === 503 ? 'unavailable' : 'error'
+  status === 200 ? 'ok' : status === 401 ? 'signin' : status === 403 ? 'forbidden' : status === 503 ? 'unavailable' : 'error'
 
 function designDoor(): string {
   const lang = (typeof document !== 'undefined' && document.documentElement.lang) || 'en'
@@ -19,7 +17,7 @@ export async function loadDesign(): Promise<Loaded> {
   try {
     const r = await fetch(designDoor(), { cache: 'no-store' })
     const body = await r.json().catch(() => null)
-    const access = r.status === 200 && body?.linked ? 'linked' : accessOf(r.status)
+    const access = accessOf(r.status)
     return { access, config: access === 'ok' && body?.ok ? (body.config as Record<string, unknown>) : null }
   } catch {
     return { access: 'unavailable', config: null }
@@ -48,8 +46,4 @@ export type AccessWords = {
   forbidden: string
   unavailable: string
   error: string
-  /** Связь с общим «Дизайном» включена — где менять и как вести своё. */
-  linked: string
-  linkedDesign: string
-  linkedSettings: string
 }

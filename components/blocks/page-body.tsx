@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-// ФАБРИКА СТРАНИЦЫ ИЗ СЕКЦИЙ (шаг 297; 706-5 — секции свои, общий каталог «Блоков» снят). Страница — список `{ kind, ...поля }`; набор (`set`) называет
+// ФАБРИКА СТРАНИЦЫ ИЗ СЕКЦИЙ (шаг 297; секции — собственный код элемента). Страница — список `{ kind, ...поля }`; набор (`set`) называет
 // ТОЛЬКО те блоки, что стоят в этом проекте. Контейнеры (`cards`, `card`) получают вложенные блоки в `children`.
-// Блок, которого в наборе нет, — ошибка сборки с командой установки: пустое место на странице хуже громкого отказа.
+// Блок, которого в наборе нет, — громкая ошибка: пустое место на странице хуже громкого отказа.
 export type BlockData = { kind: string; bid?: string; children?: BlockData[] | ReactNode; [field: string]: unknown }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type BlockSet = Record<string, (props: any) => ReactNode>

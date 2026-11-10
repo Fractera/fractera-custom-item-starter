@@ -1,4 +1,4 @@
-// 579-1: серверная обёртка своего редактора оформления — `DesignEditorBlock` элемента «Дизайн», перенесённый в этот элемент.
+// 579-1: серверная обёртка своего редактора оформления — `DesignEditorBlock`.
 // Адреса дают отсюда, из окружения узла; слова раздела выбирает СЕРВЕР — словарь в браузер целиком не едет.
 import { DesignEditorIsland, type DesignSection } from './design-editor.client'
 import { designUi } from './design.i18n'
@@ -9,11 +9,6 @@ const SITE = (process.env.PROJECT_SITE_URL ?? '').replace(/\/+$/, '')
 const CORE = (process.env.ARCHITECT_URL ?? '').trim().replace(/\/+$/, '')
 const loginHref = (lang: string) => (SITE ? `${SITE}/login?lang=${lang}` : undefined)
 // Нет адреса ядра — ссылок нет: ссылка в никуда хуже её отсутствия.
-const designHref = (lang: string) => (CORE ? `${CORE}/${lang}/architect/design` : undefined)
-const settingsHref = (lang: string) => {
-  const id = ownId()
-  return CORE && id ? `${CORE}/${lang}/architect/${id}/settings/danger-zone` : undefined
-}
 
 export function DesignEditorBlock({ lang, section, words }: { lang: string; section: DesignSection; words: AccessWords }) {
   const all = designUi(lang)
@@ -23,8 +18,6 @@ export function DesignEditorBlock({ lang, section, words }: { lang: string; sect
       ui={{ colors: all.colors, fonts: all.fonts, type: all.type, shape: all.shape }}
       words={words}
       loginHref={loginHref(lang)}
-      designHref={designHref(lang)}
-      settingsHref={settingsHref(lang)}
     />
   )
 }

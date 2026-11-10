@@ -117,9 +117,9 @@ The owner of the node, 2026-10-23:
 ## Look and site settings are data, not code
 
 Colours, fonts, shapes, the name, the menu, the footer and the feature switches are the person's settings: `DESIGN-CONFIG`,
-`APP-CONFIG`, `PLATFORM-CONFIG`. With the link to the shared Design or CONFIG on, the person changes them there; with it off (an app
-factory, or an element set apart), on this element's own pages `/<lang>/admin/design/*` and `/<lang>/admin/site-settings/*` — saved,
-the pages redraw with no build (owner of the node, 2026-10-23, step 579). Give the person the link to the right page instead of
+`APP-CONFIG`, `PLATFORM-CONFIG`. The look is always this element's own: the person changes it in its Design tab of the core (or
+`/<lang>/admin/design/*`). The site settings follow the shared CONFIG while the link to it is on — then the person changes them there;
+with it off (an app factory, or an element set apart), on `/<lang>/admin/site-settings/*` — saved, the pages redraw with no build (owner of the node, 2026-10-23, step 579). Give the person the link to the right page instead of
 writing a value into code — skills `use-design` and `use-site-settings`.
 
 <!-- PROOF 5 START · «Page» · PARTIAL 2026-10-07: the tab is now named «Live site» (line about addresses) — not re-proven; the skill use-machine-copy added to the list (step 428) — not proven; PROVEN before it: a live agent built a page, two widgets and voice in a widget by these laws (data not route files, one sequence in en/ru, shadcn only, tools inside widgets, addresses with #block=) and refused a tool in page data and a raw button; guards spoiled → refused · report: development-docs/proofs/2026-10-07-page-skills.md -->

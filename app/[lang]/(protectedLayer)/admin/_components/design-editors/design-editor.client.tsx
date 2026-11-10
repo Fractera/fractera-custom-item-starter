@@ -1,9 +1,9 @@
 'use client'
 
-// РЕДАКТОР РАЗДЕЛА СВОЕГО ОФОРМЛЕНИЯ ЭЛЕМЕНТА (579-1) — загрузчик элемента «Дизайн», перенесённый на дверь этого элемента.
-// Четыре редактора — дословные копии «Дизайна»: та же мастерская, но решения ложатся в `DESIGN-CONFIG` одного элемента.
+// РЕДАКТОР РАЗДЕЛА СВОЕГО ОФОРМЛЕНИЯ ЭЛЕМЕНТА (579-1) — загрузчик на дверь этого элемента.
+// Четыре редактора одной мастерской: решения ложатся в `DESIGN-CONFIG` этого элемента.
 //
-// 🛑 Отказ двери — СОСТОЯНИЕ («войдите», «не архитектор», «вход недоступен», «ошибка», «ведёт общий Дизайн»), а не пустые
+// 🛑 Отказ двери — СОСТОЯНИЕ («войдите», «не архитектор», «вход недоступен», «ошибка»), а не пустые
 // настройки: пустой редактор при отказе предложил бы сохранить пустоту поверх настоящего оформления.
 import { useEffect, useState } from 'react'
 import { DesignColors } from './design-colors.client'
@@ -29,12 +29,9 @@ export type DesignEditorProps = {
   ui: Pick<DesignUi, DesignSection>
   words: AccessWords
   loginHref?: string
-  /** Связь включена: страница общего «Дизайна» в ядре и выключатель связи элемента. */
-  designHref?: string
-  settingsHref?: string
 }
 
-export function DesignEditorIsland({ section, ui, words, loginHref, designHref, settingsHref }: DesignEditorProps) {
+export function DesignEditorIsland({ section, ui, words, loginHref }: DesignEditorProps) {
   const [access, setAccess] = useState<Access>('loading')
   const [config, setConfig] = useState<Raw | null>(null)
 
@@ -46,7 +43,7 @@ export function DesignEditorIsland({ section, ui, words, loginHref, designHref, 
   }, [])
 
   if (access !== 'ok' || !config) {
-    return <AccessNotice access={access} words={words} loginHref={loginHref} designHref={designHref} settingsHref={settingsHref} />
+    return <AccessNotice access={access} words={words} loginHref={loginHref} />
   }
 
   const c = config

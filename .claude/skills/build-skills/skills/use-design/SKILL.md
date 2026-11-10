@@ -6,8 +6,8 @@ description: >
   to change colours, a theme, a font, «make it darker», «rounder corners», «bigger text», «our brand colours», «where do I change
   the design», when they ask what the page /admin/design shows, and before you write any colour, font or radius into a widget or a
   block. What you cannot guess: the page opens with the BRIEF (who the site is for, character, references, what to avoid, the
-  design skill — the passport's `design` block, step 706-4), and the tokens belong to this element alone — the node's shared Design
-  element is retired (the owner, 2026-11-09); a saved token redraws every page at once, with no build.
+  design skill — the passport's `design` block, step 706-4), and the tokens belong to this element alone (node steps 706 and 716); a
+  saved token redraws every page at once, with no build.
 ---
 
 <!-- PROOF · NOT PROVEN yet: written, never checked by a live run (rules: development-docs/README.md, «Proof marks») -->
@@ -31,10 +31,8 @@ why the workshop exists: the look is decided in one place, as data.
 
 ## Who owns the tokens
 
-This element alone. The node's shared Design element is retired (step 706, the owner 2026-11-09: «отказаться от элементов дизайн и от
-элементов Blok»); an element born before it may still have `design: true` in `SERVICE_DATA_DIR/links.json` — then
-`/<lang>/admin/design` says so, and the person turns the link off in the core («Build → Site settings» shows the CONFIG link; the
-Design link is switched with `npm run look` by the core's main agent). A sibling born «like X» (`create --look-like`) starts with X's
+This element alone (node steps 706 and 716): no other element of the node writes them, and the only link an element has — to the
+shared CONFIG — carries site settings, never the look. A sibling born «like X» (`create --look-like`) starts with X's
 tokens and brief as its own copy.
 
 ## The brief
@@ -51,8 +49,8 @@ the core.
 |---|---|
 | the tokens | `DESIGN-CONFIG/design-config.json` — only what the person decided; the rest falls back to the defaults in `config/design-config.defaults.ts` |
 | the workshop pages | `app/[lang]/(protectedLayer)/admin/_pages/design/` — `/<lang>/admin/design` (fonts), `…/design/colors`, `…/design/type`, `…/design/shape`; one page per section, each a route |
-| the editors | `app/[lang]/(protectedLayer)/admin/_components/design-editors/` — copies of the shared Design element's editors |
-| the door | `GET/PATCH /<lang>/admin/api/settings/design` — the session of the architect or of this application's administrator (step 580); JSON merge patch, `null` returns a key to its default; 409 while the link is on |
+| the editors | `app/[lang]/(protectedLayer)/admin/_components/design-editors/` — the editors of the four sections |
+| the door | `GET/PATCH /<lang>/admin/api/settings/design` — the session of the architect or of this application's administrator (step 580); JSON merge patch, `null` returns a key to its default |
 | the only writer of the file | `lib/architect/design-config-writer.ts` (the core's key door `app/api/settings/design` uses it too) |
 | the brief | `lib/design-brief.ts` (shape: `lib/design-brief-shape.ts`, `npm run test:design-brief`), widget `widget-dynamic-design-brief` |
 | the core's button | «Build → Design» of this element: a core page with the link the browser picks (this computer — the local port) |
