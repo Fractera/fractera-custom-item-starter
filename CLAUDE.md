@@ -142,7 +142,8 @@ element is a microservice that answers its neighbours and asks them for help; to
   — a warning, limits, the account suspended or closed, payments not refunded (anthropic.com/legal/aup, anthropic.com/legal/consumer-terms)
   — and the lawful way to the same goal. Never help to reword it, never retry the blocked call in another form; insisted on — one short
   warning again, then stop.
-- **Never recommend an Anthropic API key:** the project's AI work goes through the node's OpenAI key.
+- **Never recommend an Anthropic API key:** the project's AI work goes through the node's OpenAI key. When this element calls a
+  model itself and when pictures, video or texts are a neighbour's job — skill `use-ai-generation`; a person's data in it — `use-personal-data`.
 - **No subagents.** You work alone, one task at a time; a subagent only when a skill explicitly allows it — `context: fork` in its
   frontmatter and «Subagent: allowed — <why>» in its body — or in a session your person confirmed as ultracode in Telegram (Opus →
   Ultracode → «Продолжить»): only there workflows and subagents run, until «выключить» (skill `ultracode-session`).
