@@ -13,6 +13,7 @@ import { QuickNav } from "@/components/shell/quick-nav.client";
 import { quickNavWords } from "@/components/shell/quick-nav.i18n";
 import { DrawerMenu } from "@/components/menu/drawer/drawer-menu.server";
 import { designSkill } from "@/lib/design-skill";
+import { ViewportBadge } from "@/components/shell/viewport-badge.client";
 import { bodyFontClass } from "@/lib/fonts";
 import { getAppConfig } from "@/config/app-config";
 import { constructMetadata } from "@/lib/construct-metadata";
@@ -177,8 +178,6 @@ export default async function LangLayout({
               designHref={coreTab(lang, "design") ?? `/${lang}/admin/design`}
               settingsHref={coreTab(lang, "site-settings")}
               subscriptionHref={coreTab(lang, "subscription")}
-              showWidth={featureOn("viewportBadge")}
-              skill={designSkill()}
             />
             {children}
             <FooterMenu lang={lang} />
@@ -187,7 +186,9 @@ export default async function LangLayout({
                 until a group enables its side's slot. */}
             <DrawerMenu side="left" lang={lang} />
             <DrawerMenu side="right" lang={lang} />
-            {/* 706-3: индикатор ширины и навыка дизайна — внутри полосы быстрой навигации (выключатель тот же, `viewportBadge`). */}
+            {/* 715 (владелец 2026-11-10): индикатор ширины и навыка дизайна — снова круг в левом нижнем углу на каждой странице, как шапка и
+                подвал; видит только владелец (правило полосы), выключатель `viewportBadge`. */}
+            {featureOn("viewportBadge") && <ViewportBadge skill={designSkill()} skillLabel={quickNavWords(lang).skill} />}
             {/* Cookie-consent banner (step 305) — on every public page via this layout. Strings are
                 server-provided per language (readBannerConfig, ISR) so anonymous visitors get a fully
                 localized banner without hitting the gated /api. */}

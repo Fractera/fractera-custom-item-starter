@@ -7,6 +7,7 @@ const EN = {
   references: "References",
   status: { draft: "Being built", ready: "Ready", pinned: "Pinned", archived: "Archived" },
   open: "Open the prototype",
+  preview: "Preview",
 }
 const RU: typeof EN = {
   empty: "Прототипов пока нет. Их создают из ядра: вкладка элемента «Строительство → Дизайн», «Сгенерировать тестовую страницу».",
@@ -16,6 +17,7 @@ const RU: typeof EN = {
   references: "Референсы",
   status: { draft: "Строится", ready: "Готов", pinned: "Закреплён", archived: "В архиве" },
   open: "Открыть прототип",
+  preview: "Превью",
 }
 export type PrototypesListWords = typeof EN
 export const prototypesListWords = (lang: string): PrototypesListWords => (lang === "ru" ? RU : EN)

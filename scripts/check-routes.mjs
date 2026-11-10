@@ -75,6 +75,7 @@ const ALLOWED = new Map([
   ['app/api/tools/tool-voice-input/route.ts', 'дверь инструмента tool-voice-input: расшифровка речи (узел, шаг 421; владелец 2026-10-07: «get all from fractera-next-starter»)'],
   ['app/api/tools/tool-socials-ai/route.ts', 'дверь инструмента tool-socials-ai: соцсеть по описанию (узел, шаг 421)'],
   ['app/api/health/route.ts', 'жив ли элемент — для сторожа узла'],
+  ['app/api/prototypes/[id]/shot/route.ts', 'снимок прототипа дизайна для превью в списке, только архитектору (узел, шаг 715; владелец 2026-11-10: «справа как раз поставь маленькое превью»)'],
   ['app/api/task-report/route.ts', 'отчёт о задаче для окна предпросмотра (узел, шаг 356-2)'],
   ['app/api/i18n/translate/route.ts', 'перевод строк'],
   ['app/api/auth/callback/route.ts', 'возврат из центра единого входа (328-3)'],

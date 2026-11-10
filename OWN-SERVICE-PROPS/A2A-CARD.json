@@ -263,6 +263,7 @@
             "/api/media",
             "/api/i18n/translate",
             "/api/task-report",
+            "/api/prototypes",
             "/api/users",
             "/[lang]/admin/api/settings/app",
             "/api/tools",
