@@ -135,7 +135,7 @@ Every route folder and every `_pages/` has a `README.md` with a full example of 
 
 - `scripts/check-routes.mjs` — every route file is in its closed list (a new page is a data folder, never a `page.tsx`); every
   branch root has `_components/`, `_libs/`, `_widgets/` with a README.
-- `scripts/check-page-sequence.mjs` — a page names only `block-*`, `text-*` and its own branch's `widget-*`.
+- `scripts/check-page-sequence.mjs` — a page names only `section-*`, `text-*` and its own branch's `widget-*`.
 - `scripts/check-protected.mjs` — under `_widgets/` only `static/`, `dynamic/` and `index.tsx`.
 - A new branch, a new top-level folder or a moved one — ask the person first (`.claude/modes/build.md`, «Page»: a route owns its own).
 - `scripts/check-tree.mjs` (node step 462) — compares this element with the starting tree of its template

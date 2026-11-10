@@ -1,9 +1,10 @@
+import type { SectionItem } from '@/components/sections'
 // ВИДЫ СЕКЦИЙ ЭТОГО ЭЛЕМЕНТА (шаг 314-2).
 //
 // Секции — собственные компоненты элемента: их пишет дизайн-проход по брифу (`.claude/modes/build-design.md`).
 //
-// 🔒 ОДИН ВИД ЗДЕСЬ — ОДИН КОМПОНЕНТ В `components/blocks/`, ОДНА СТРОКА В `lib/content/blocks/registry.tsx` И ОДНА СТРОКА МАШИННОЙ
-// КОПИИ В `lib/aio/blocks-to-markdown.ts`. Неизвестный вид фабрика `page-body` называет громко.
+// 🔒 ОДИН ВИД ЗДЕСЬ — ОДИН КОМПОНЕНТ В `components/sections/`, ОДНА СТРОКА В `components/sections/index.ts` И ОДНА СТРОКА МАШИННОЙ
+// КОПИИ В `lib/aio/page-to-markdown.ts`. Неизвестный вид фабрика `page-body` называет громко.
 
 export type Link = { label: string; href: string }
 
@@ -13,10 +14,9 @@ export type Link = { label: string; href: string }
  */
 type Addressed = { bid?: string }
 
-export type Block = Addressed & (
-  | { kind: 'block-section-head'; id: string; title: string; badge?: string }
-  | { kind: 'block-warning-card'; title: string; text: string }
-  | { kind: 'block-faq'; title: string; items: { q: string; a: string }[] }
+export type PageItem = Addressed & (
+  // 717-2: the sections of this element — their fields live in their folders (`components/sections/<kind>/index.tsx`).
+  | SectionItem
   // 423: типографика элемента (`lib/content/text-set.tsx`) — третий вид рядом с блоками и виджетами.
   | { kind: 'text-h2' | 'text-h3' | 'text-h4'; text: string; id?: string }
   | { kind: 'text-p' | 'text-lead' | 'text-small' | 'text-code'; text: string }

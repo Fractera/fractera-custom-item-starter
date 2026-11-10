@@ -1,5 +1,6 @@
-import type { Block, FaqPair } from '@/lib/content/blocks/types'
-import { resolveMarkdownLinks } from '@/lib/content/blocks/links'
+import { SECTIONS, isSection, type SectionItem } from '@/components/sections'
+import type { PageItem, FaqPair } from '@/lib/content/page-items'
+import { resolveMarkdownLinks } from '@/lib/content/links'
 
 // Блоки страницы → markdown (шаг 505, AIO).
 //
@@ -29,24 +30,20 @@ import { resolveMarkdownLinks } from '@/lib/content/blocks/links'
 /** Текст виджета по его имени (`_widgets/markdown.ts` ветки); виджет без текста — пустая строка. */
 export type WidgetText = (kind: string) => string
 
-function lines(block: Block, widget?: WidgetText): string[] {
+function lines(block: PageItem, widget?: WidgetText): string[] {
+  // 717-2: a section brings its own words (`components/sections/<kind>/markdown.ts`).
+  if (isSection(block.kind)) return (SECTIONS[block.kind].markdown as (s: unknown) => string[])(block)
   // 428: виджет ветки несёт свой текст (лендинг — поле `landing` данных, форма — свои строки), и в копию он приходит через
   // `markdown(lang)` в папке виджета. 🪦 Здесь стояло «его слова уже в машинной версии» — неверно: главная отдавала 159 байт.
   if (block.kind.startsWith('widget-')) {
     const text = widget ? widget(block.kind).trim() : ''
     return text ? [text] : []
   }
-  const section = block as Exclude<Block, { kind: `widget-${string}` }>
-  // 314-2, 706-5: виды набора элемента (`lib/content/blocks/registry.tsx`). Проверка ИСЧЕРПЫВАЮЩАЯ: новый вид в `types.ts` без своей
+  const section = block as Exclude<PageItem, { kind: `widget-${string}` } | SectionItem>
+  // 314-2, 706-5: виды набора элемента (`components/sections/index.ts`). Проверка ИСЧЕРПЫВАЮЩАЯ: новый вид в `types.ts` без своей
   // строки здесь не соберётся (`never` ниже) — машинная копия страницы не может молча потерять текст секции, которую агент написал сам.
   switch (section.kind) {
-    case 'block-section-head':
-      return [`## ${section.title}`]
-    case 'block-warning-card':
-      return [`> **${section.title}** ${section.text}`]
     // 423: типографика элемента — сама почти Markdown.
-    case 'block-faq':
-      return [`## ${section.title}`, ...section.items.flatMap((f) => ['', `**${f.q}**`, f.a])]
     case 'text-h2':
       return [`## ${section.text}`]
     case 'text-h3':
@@ -86,9 +83,9 @@ function lines(block: Block, widget?: WidgetText): string[] {
  * во что. Параметр сделан ОБЯЗАТЕЛЬНЫМ намеренно: с умолчанием следующая
  * поверхность молча забыла бы его передать, и дефект вернулся бы туда же.
  */
-export function blocksToMarkdown(blocks: Block[], siteName: string, widget?: WidgetText): string {
+export function pageToMarkdown(body: PageItem[], siteName: string, widget?: WidgetText): string {
   return resolveMarkdownLinks(
-    blocks
+    body
       .flatMap(b => [...lines(b, widget), ''])
       .join('\n')
       .replace(/\n{3,}/g, '\n\n')

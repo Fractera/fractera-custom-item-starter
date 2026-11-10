@@ -6,7 +6,7 @@ import { AccessGate } from '@/components/auth/access-gate.client'
 import { accessGateUi } from '@/components/auth/access-gate.i18n'
 import { appDialogUi } from '@/components/dialog/app-dialog.i18n'
 import { createContentPage } from '@/lib/content/create-content-page'
-import type { Block } from '@/lib/content/blocks/types'
+import type { PageItem } from '@/lib/content/page-items'
 import { branchChild, branchRoot, wordsIn, type TreePage } from '@/lib/page-tree'
 import { ownId, ownName } from '@/lib/own-id'
 import { AwaitingTitle } from '@/components/content-page/awaiting-title'
@@ -28,12 +28,12 @@ const ogImageOf = (own: string | undefined, segments: string[], subPath: string)
 // 🔒 ЗАМОК РЕБЁНКА — ИЗ ЕГО ДАННЫХ (`meta.roles`) поверх замка ветки в `layout.tsx`; архитектор проходит всегда.
 
 /** Виджеты ветки: имя (`widget-*`) → отрисовка. Список живёт в `<ветка>/_widgets/index.tsx` (владелец 2026-10-07: «удалили
- *  маршрут — проект чистый»); страница ставит виджет в последовательность `blocks` на своё место (423). */
+ *  маршрут — проект чистый»); страница ставит виджет в последовательность `body` на своё место (423). */
 export type { WidgetSet }
 
 /** 423: страница без рамки — только её виджеты, по порядку последовательности. */
 function bareWidgets(page: TreePage, lang: string, set: WidgetSet | undefined) {
-  return wordsIn(page, lang).blocks
+  return wordsIn(page, lang).body
     .filter((b) => b.kind.startsWith('widget-'))
     .map((b, i) => <Fragment key={`${b.kind}-${i}`}>{set?.[b.kind]?.(lang) ?? null}</Fragment>)
 }
@@ -73,12 +73,12 @@ function contentOf(page: TreePage, lang: string, segments: string[]) {
     if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x)])) as T
     return v
   }
-  const blocks = fill(w.blocks).map((b) => {
+  const body = fill(w.body).map((b) => {
     if (b.kind !== 'text-p' || !roles) return b
     const text = b.text.replace('{roles}', roles)
     return text === b.text ? b : { ...b, text }
   })
-  return { title: fill(w.title), description: fill(w.description), keywords: w.keywords ?? '', blocks, faq: fill(w.faq) }
+  return { title: fill(w.title), description: fill(w.description), keywords: w.keywords ?? '', body, faq: fill(w.faq) }
 }
 
 type Crumb = { label: string; href?: string }
@@ -114,7 +114,7 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
       closedBranch: !isPublic(opts.segments),
       meta: { subPath: opts.subPath, ogImage: ogImageOf(page.meta.ogImage, opts.segments, opts.subPath), service: page.meta.service },
       resolve: (lang) => contentOf(page, lang, opts.segments),
-      // 423: виджеты ветки рисуются там, где стоят в последовательности `blocks`.
+      // 423: виджеты ветки рисуются там, где стоят в последовательности `body`.
       widgets: opts.widgets,
       titleInBody: opts.titleInBody,
       // 714-3: страница ждёт дизайна и своего заголовка не печатает — на её месте крупно стоит имя проекта.

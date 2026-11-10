@@ -1,13 +1,13 @@
 import { H2 } from '@/components/ui/typography'
-import { inline } from '@/lib/blocks/inline'
+import { inline } from '@/lib/content/inline'
 
 // ВОПРОСЫ И ОТВЕТЫ + разметка FAQPage — один источник для видимого блока и для машины: закрыть одно, оставив другое,
 // значит пообещать поисковику то, чего на странице нет. Ответ проходит через `inline` (ссылка внутри фразы), вопрос — нет.
-export type FaqProps = { blockKey?: string; title: string; items: { q: string; a: string }[] }
+export type FaqProps = { itemKey?: string; title: string; items: { q: string; a: string }[] }
 
 const plain = (s: string) => s.replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 
-export function Faq({ blockKey: k = 'faq', title, items }: FaqProps) {
+export function Faq({ itemKey: k = 'faq', title, items }: FaqProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -28,3 +28,9 @@ export function Faq({ blockKey: k = 'faq', title, items }: FaqProps) {
     </section>
   )
 }
+
+// 717-2: the set (`components/sections/index.ts`) reads this section by these names — the component, its fields in page data
+// and its words in the Markdown twin (`./markdown.ts`).
+export { Faq as Section }
+export type Shape = { title: string; items: { q: string; a: string }[] }
+export { markdown } from './markdown'

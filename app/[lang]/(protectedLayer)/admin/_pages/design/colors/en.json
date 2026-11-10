@@ -2,7 +2,7 @@
   "title": "Colours",
   "description": "Seven roles in two themes, with a live contrast check.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-design-colors",
       "bid": "q3v8n"

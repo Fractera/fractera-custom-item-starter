@@ -104,15 +104,15 @@ for (const file of files) {
   }
 }
 
-// 5 — движение в блоках. Блоки страницы (`components/blocks/`, из «Блоков») серверные: интерактив живёт в островке,
+// 5 — движение в блоках. Блоки страницы (`components/sections/`, из «Блоков») серверные: интерактив живёт в островке,
 // который блок монтирует. 314-2: прежде здесь проверялся удалённый слой `sections/`.
-for (const file of walk(path.join(ROOT, "components", "blocks"))) {
+for (const file of walk(path.join(ROOT, "components", "sections"))) {
   const code = codeOnly(fs.readFileSync(file, "utf8"));
   if (/^\s*["']use client["']/m.test(code)) {
-    errors.push(`${rel(file)}: "use client" под components/blocks/ — блок страницы серверный`);
+    errors.push(`${rel(file)}: "use client" под components/sections/ — блок страницы серверный`);
   }
   if (/from\s+["'](motion|framer-motion)/.test(code)) {
-    errors.push(`${rel(file)}: motion под components/blocks/ — блок серверный, движение монтируется островком`);
+    errors.push(`${rel(file)}: motion под components/sections/ — блок серверный, движение монтируется островком`);
   }
 }
 

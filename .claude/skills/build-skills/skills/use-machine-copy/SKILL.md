@@ -22,7 +22,7 @@ description: >
 
 | What | Where it comes from | Address |
 |---|---|---|
-| Markdown copy of the page | `lib/aio/surfaces.ts` → `blocksToMarkdown` (`lib/aio/blocks-to-markdown.ts`) | `/<lang>/index.md`, `/<lang>/<page>/index.md` |
+| Markdown copy of the page | `lib/aio/surfaces.ts` → `blocksToMarkdown` (`lib/aio/page-to-markdown.ts`) | `/<lang>/index.md`, `/<lang>/<page>/index.md` |
 | link to it in `<head>` | `lib/seo/alternates.ts` (`mdUrlFor`) | `<link rel="alternate" type="text/markdown" href="…">` |
 | map for agents | `lib/aio/llms.ts`, from the same list of pages | `/llms.txt`, `/<lang>/llms.txt` |
 | every page's full text in one file | the same list, the same copies | `/llms-full.txt` |
@@ -51,7 +51,7 @@ reader. Leave out what is decoration (an image's scene, «turn the TV on»), kee
 A widget with nothing to read (a pure animation, a map) says so in its `index.tsx`: `// @machine-text none: <reason>` — the
 guard prints it as a warning instead of failing.
 
-A new block kind in the registry → a `case` in `blocks-to-markdown.ts` in the same edit, or its text silently leaves the copy.
+A new block kind in the registry → a `case` in `page-to-markdown.ts` in the same edit, or its text silently leaves the copy.
 
 `npm run check:aio` fails on a public widget without `markdown.ts` and on one listed in `index.tsx` but not in `WIDGET_MARKDOWN`.
 

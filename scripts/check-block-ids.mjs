@@ -45,16 +45,16 @@ for (const dir of pageDirs(join(ROOT, 'app'))) {
   const files = readdirSync(dir).filter((f) => LANG.test(f)).sort((a, b) => (a === 'en.json' ? -1 : b === 'en.json' ? 1 : a.localeCompare(b)))
   const read = (f) => JSON.parse(readFileSync(join(dir, f), 'utf8'))
   const en = read('en.json')
-  const enBlocks = Array.isArray(en.blocks) ? en.blocks : []
-  const taken = new Set(enBlocks.map((b) => b.bid).filter(Boolean))
+  const enBody = Array.isArray(en.body) ? en.body : []
+  const taken = new Set(enBody.map((b) => b.bid).filter(Boolean))
   for (const f of files) {
     const data = f === 'en.json' ? en : read(f)
-    if (!Array.isArray(data.blocks)) continue
+    if (!Array.isArray(data.body)) continue
     const seen = new Set()
     let changed = false
-    data.blocks.forEach((b, i) => {
+    data.body.forEach((b, i) => {
       if (!b.bid && FIX) {
-        const twin = enBlocks[i]
+        const twin = enBody[i]
         b.bid = f !== 'en.json' && twin?.bid && twin.kind === b.kind ? twin.bid : newId(taken)
         changed = true
         fixed++

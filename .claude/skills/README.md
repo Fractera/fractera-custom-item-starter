@@ -10,7 +10,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 
 | Skill | Whose | What | Proof |
 |---|---|---|---|
-| `use-page-tree` | ours, `build-skills` | pages as data folders; a page is one sequence of block-* · text-* · widget-*; blocks from the registry | ✅ 2026-10-07 |
+| `use-page-tree` | ours, `build-skills` | pages as data folders; a page is one sequence of section-* · text-* · widget-*; blocks from the registry | ✅ 2026-10-07 |
 | `use-typography` | ours, `build-skills` | plain text on a page as `text-*`, drawn by the element typography | ✅ 2026-10-07 |
 | `build-widget` | ours, `build-skills` | a widget inside its route: static or dynamic, the branch list, its door in the branch, its skeleton | ✅ 2026-10-07 |
 | `use-tools` | ours, `build-skills` | tools: find, use only inside widgets, add with a card; the generated list | ✅ 2026-10-07 |

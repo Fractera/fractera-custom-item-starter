@@ -48,7 +48,7 @@ A production build is always the whole app; the only lever is how many route fil
 | reading the tree | `lib/page-tree.ts` — `branchRoot`, `branchChild`, `branchChildren`, `wordsIn` |
 | building a root and a child | `lib/branch-page.tsx` — `rootPage`, `childRoute` |
 | working widgets of a page | `<branch>/_widgets/static|dynamic/widget-…/`, listed in `<branch>/_widgets/index.tsx` |
-| kinds a page may use | `block-*` — the set in `lib/content/blocks/registry.tsx`; `text-*` — `lib/content/text-set.tsx`; `widget-*` — the branch's `_widgets/index.tsx`; all typed in `lib/content/blocks/types.ts` |
+| kinds a page may use | `section-*` — the set in `components/sections/index.ts`; `text-*` — `lib/content/text-set.tsx`; `widget-*` — the branch's `_widgets/index.tsx`; all typed in `lib/content/page-items.ts` |
 | the guard | `scripts/check-routes.mjs` |
 
 ## Adding a page — files of data, no code
@@ -74,18 +74,18 @@ A production build is always the whole app; the only lever is how many route fil
 
 | Kind | Example | How |
 |---|---|---|
-| `block-<name>` — a designed section | `{ "kind": "block-hero-centered", "title": "…", "description": "…" }` | below |
+| `section-<name>` — a designed section | `{ "kind": "section-hero-centered", "title": "…", "description": "…" }` | below |
 | `text-<name>` — plain text | `{ "kind": "text-p", "text": "…" }` | skill `use-typography` |
 | `widget-static-<name>` / `widget-dynamic-<name>` — this branch's own work | `{ "kind": "widget-dynamic-users-table" }` | skill `build-widget` |
 
 - Every language repeats the same sequence with its own words (same kinds, same order, same `bid`); `check:page-sequence`
   refuses anything else, an unknown kind and any `tool-*` — tools live only inside widgets (skill `use-tools`).
 - A page of one widget: the sequence holds only it; `meta.json` → `"bare": true` drops the page frame.
-- **Which `block-*` a page may name** = the keys of `BLOCK_SET` in `lib/content/blocks/registry.tsx` — read them before you
-  propose a block. A component in `components/blocks/` is not enough (✗ node step 464: an agent offered `block-cta-button`, which
+- **Which `section-*` a page may name** = the keys of `BLOCK_SET` in `components/sections/index.ts` — read them before you
+  propose a block. A component in `components/sections/` is not enough (✗ node step 464: an agent offered `section-cta-button`, which
   lives only inside the hero and is not in the set — the guard would refuse the page).
 - **A section** the set does not have — the design pass builds it here, as this element's own section; it is registered in
-  `lib/content/blocks/registry.tsx`, `lib/content/blocks/types.ts` and `lib/aio/blocks-to-markdown.ts`. Never put a section on a page outside the set.
+  `components/sections/index.ts`, `lib/content/page-items.ts` and `lib/aio/page-to-markdown.ts`. Never put a section on a page outside the set.
   After writing page data run `npm run check:page-sequence`: the live site renders data newer than its build and would drop an
   unknown section silently (✗ 2026-11-09, lqvop).
 - A public page has a Markdown copy for agents (`<page>/index.md`, `llms-full.txt`) built from this sequence; a `widget-*`

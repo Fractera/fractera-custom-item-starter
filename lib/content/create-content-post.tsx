@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import type { Block, FaqPair } from '@/lib/content/blocks/types'
+import type { PageItem, FaqPair } from '@/lib/content/page-items'
 import { buildAlternates } from '@/lib/seo/alternates'
 import { alternatesLanguages, isIndexable, type TranslatedPage } from '@/lib/seo/translation-state'
 import { author, authorSameAs } from '@/lib/author'
@@ -57,7 +57,7 @@ export type ContentPost = {
   readingMinutes: number
   /** Visible byline name; omit to show no author in the byline (e.g. docs). */
   authorName?: string
-  blocks: Block[]
+  body: PageItem[]
   faq?: FaqPair[]
   /** og:image / structured-data image — absolute or site-root-relative. */
   ogImage?: string
@@ -246,7 +246,7 @@ export function createContentPost(config: ContentPostConfig) {
           metaItems={metaItems}
           heroImage={post.heroImage}
           hero={post.hero}
-          blocks={post.blocks}
+          body={post.body}
           faq={faq}
           backHref={backHref}
           backLabel={backLabel}

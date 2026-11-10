@@ -1,7 +1,7 @@
 {
   "title": "H2H Messenger",
   "description": "Беседы между людьми, найденными через сеть Lagrix.",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-messenger-h2h",
       "bid": "d00cg"

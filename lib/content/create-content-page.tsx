@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { ServiceMeta } from '@/lib/page-tree'
 import type { ReactNode } from 'react'
-import type { Block, FaqPair } from '@/lib/content/blocks/types'
+import type { PageItem, FaqPair } from '@/lib/content/page-items'
 import { buildAlternates } from '@/lib/seo/alternates'
 import { alternatesLanguages, isIndexable, type TranslatedPage } from '@/lib/seo/translation-state'
 import { author, authorSameAs } from '@/lib/author'
@@ -41,7 +41,7 @@ export type ContentPageContent = {
   subtitle?: string
   description: string
   keywords: string
-  blocks: Block[]
+  body: PageItem[]
   faq?: FaqPair[]
 }
 
@@ -289,7 +289,7 @@ export function createContentPage<C extends ContentPageContent>(config: ContentP
           afterHero={afterHero?.(lang)}
           afterHeader={afterHeader?.(lang)}
           afterBody={afterBody?.(lang)}
-          blocks={c.blocks}
+          body={c.body}
           widgets={widgets}
           faq={faq}
           backHref={backHref}

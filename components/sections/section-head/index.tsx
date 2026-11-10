@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { H2, Lead } from '@/components/ui/typography'
-import { badgeClass } from '@/lib/blocks/tone'
+import { badgeClass } from '@/lib/content/tone'
 
 // Шапка секции: ярлык, заголовок, подзаголовок — одна у всех секций с заголовком.
 export function SectionHead({ id, badge, title, note }: { id: string; badge?: string; title: string; note?: ReactNode }) {
@@ -12,3 +12,9 @@ export function SectionHead({ id, badge, title, note }: { id: string; badge?: st
     </div>
   )
 }
+
+// 717-2: the set (`components/sections/index.ts`) reads this section by these names — the component, its fields in page data
+// and its words in the Markdown twin (`./markdown.ts`).
+export { SectionHead as Section }
+export type Shape = { id: string; title: string; badge?: string }
+export { markdown } from './markdown'

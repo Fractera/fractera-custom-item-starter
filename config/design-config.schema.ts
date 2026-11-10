@@ -55,7 +55,7 @@ export const designConfigSchema = z.looseObject({
     // 711-7: elevation of cards — a preset, never a free shadow string.
     shadow: z.enum(["none", "soft", "medium", "strong"]).optional(),
   }),
-  // 711-7: the interface's speed; the blocks branch of 308-1 went with the catalogue (706, 711-7).
+  // 711-7: the interface's speed; the body branch of 308-1 went with the catalogue (706, 711-7).
   motion: z.looseObject({ speed: z.enum(["none", "fast", "normal", "slow"]).optional() }).optional(),
 });
 

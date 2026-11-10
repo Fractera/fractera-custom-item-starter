@@ -39,7 +39,7 @@ if (cmd === 'new') {
   if (!exists(src)) fail(`no source page «${from}» (home, or a folder of (publicLayer)/_pages)`)
   mkdirSync(dir, { recursive: true })
   for (const f of readdirSync(src)) if (LANG.test(f)) copyFileSync(join(src, f), join(dir, f))
-  if (!existsSync(join(dir, 'en.json'))) write(join(dir, 'en.json'), { title: id, description: '', keywords: '', blocks: [] })
+  if (!existsSync(join(dir, 'en.json'))) write(join(dir, 'en.json'), { title: id, description: '', keywords: '', body: [] })
   write(join(dir, 'meta.json'), { order: Date.now() % 1_000_000 })
   write(join(dir, 'tokens.json'), readJson(designFile()) ?? {})
   const refs = flags('--ref').filter((u) => /^(https?:\/\/|\/)/.test(u)).map((url, i) => ({ url, ...(flags('--ref-caption')[i] ? { caption: flags('--ref-caption')[i] } : {}) }))
@@ -62,7 +62,7 @@ if (cmd === 'done') {
     ...readdirSync(dir).filter((f) => LANG.test(f)).flatMap((f) => colourLeaks(readJson(join(dir, f)), f).map((l) => `a colour in the words, not in the tokens — ${l}`)),
   ]
   const en = readJson(join(dir, 'en.json'))
-  if (!Array.isArray(en?.blocks) || en.blocks.length === 0) problems.push('en.json has no blocks — the page is not built yet')
+  if (!Array.isArray(en?.body) || en.body.length === 0) problems.push('en.json has no body — the page is not built yet')
   if (problems.length) fail(`${id} is not ready:\n  ${problems.join('\n  ')}`)
   write(join(dir, 'prototype.json'), { ...record, status: 'ready', readyAt: new Date().toISOString() })
   console.log(`===PROTOTYPE_READY=== ${id}: /<lang>/prototypes/${id} — take the screenshots into its shots/ (desktop.png, mobile.png) and report to the core.`)
@@ -89,7 +89,7 @@ if (cmd === 'pin') {
       if (!LANG.test(f)) continue
       const words = readJson(join(dir, f))
       const target = readJson(join(src, f)) ?? {}
-      write(join(src, f), { ...target, blocks: words?.blocks ?? target.blocks ?? [] })
+      write(join(src, f), { ...target, body: words?.body ?? target.body ?? [] })
     }
     const meta = readJson(join(src, 'meta.json'))
     if (meta && meta.awaitingDesign) { delete meta.awaitingDesign; write(join(src, 'meta.json'), meta) }

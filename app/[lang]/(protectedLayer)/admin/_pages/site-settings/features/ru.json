@@ -2,7 +2,7 @@
   "title": "Функции",
   "description": "Выключатели этого сайта: меню, подвал, вход, тема, язык и остальное.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-features",
       "bid": "f6c2p"

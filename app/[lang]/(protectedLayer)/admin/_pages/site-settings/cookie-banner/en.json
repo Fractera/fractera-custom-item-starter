@@ -2,7 +2,7 @@
   "title": "Cookie banner",
   "description": "The consent message for visitors and the link to the cookie page.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-cookie-banner",
       "bid": "c5w9d"

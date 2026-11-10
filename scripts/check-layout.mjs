@@ -186,7 +186,7 @@ for (const meta of filesIn(LANG_DIR, /^meta\.json$/)) {
   for (const words of filesIn(path.dirname(meta), /^[a-z]{2}\.json$/)) {
     if (path.dirname(words) !== path.dirname(meta)) continue
     try {
-      for (const b of JSON.parse(fs.readFileSync(words, "utf8")).blocks ?? []) if (String(b.kind).startsWith("widget-")) kinds.add(b.kind)
+      for (const b of JSON.parse(fs.readFileSync(words, "utf8")).body ?? []) if (String(b.kind).startsWith("widget-")) kinds.add(b.kind)
     } catch { /* слова страницы читает свой сторож */ }
   }
   for (const kind of kinds) {

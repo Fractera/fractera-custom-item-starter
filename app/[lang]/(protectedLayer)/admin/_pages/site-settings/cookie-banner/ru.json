@@ -2,7 +2,7 @@
   "title": "Баннер cookie",
   "description": "Сообщение о согласии для посетителей и ссылка на страницу о cookie.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-cookie-banner",
       "bid": "c5w9d"

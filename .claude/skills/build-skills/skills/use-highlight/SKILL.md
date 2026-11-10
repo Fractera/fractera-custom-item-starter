@@ -37,7 +37,7 @@ description: >
 
 | What | Address | How |
 |---|---|---|
-| an item of a page's sequence (`block-*`, `text-*`, `widget-*`) | `bid` in `<lang>.json`, the same in every language | `npm run blocks:ids`; the page factory draws it as `data-block` |
+| an item of a page's sequence (`section-*`, `text-*`, `widget-*`) | `bid` in `<lang>.json`, the same in every language | `npm run blocks:ids`; the page factory draws it as `data-block` |
 | a page and its data file | `data-page`, `data-file` | the branch page (`lib/branch-page.tsx`) — nothing to do |
 | a container in code: widgets, tools (`_tools/`), every `components/` file they import | `data-block="<letter + 4 base36>"` on each container | `npm run widgets:ids` — stamps the ones without |
 | shadcn containers (`Card`, `Field`, `Accordion`, `Table`, typography `H2`/`P` …) | the same `data-block` | the same command; they pass it to the DOM |

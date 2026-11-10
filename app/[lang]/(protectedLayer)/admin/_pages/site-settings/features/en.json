@@ -2,7 +2,7 @@
   "title": "Features",
   "description": "The switches of this site: menu, footer, sign-in, theme, language and the rest.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-features",
       "bid": "f6c2p"

@@ -608,7 +608,7 @@ function makeLocalDb() {
   for (const sql of LATE_COLUMNS) safeAddColumn(sqlite, sql)
 
   seedProducts(sqlite)
-  // (step 500) The ALTER blocks for deployment_records / telegram_notes / automation_finance
+  // (step 500) The ALTER body for deployment_records / telegram_notes / automation_finance
   // / automation_images are gone with their tables — those warehouses belonged to the
   // removed projects layer and to the Deployments journal.
 

@@ -40,7 +40,7 @@ import { ARCHITECT_LAYER_ROLES, PROTECTED_GROUP_ROLES } from "@/lib/roles"
 // admin, подпись — из данных страницы, роли — слоя администрирования (`PROTECTED_GROUP_ROLES.admin`). Что администратор именно ЭТОЙ
 // организации, решает служба входа: на сайт приложения чужой администратор не входит вовсе («Конфигуратор» владельца — страница
 // «Настройки сайта», `admin/_pages/site-settings`).
-const ADMIN_PAGES = ["users", "blocks", "design", "site-settings"] as const
+const ADMIN_PAGES = ["users", "body", "design", "site-settings"] as const
 
 function adminLinks(lang: string): DrawerLink[] {
   return ADMIN_PAGES.flatMap((slug) => {

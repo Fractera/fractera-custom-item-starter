@@ -41,7 +41,7 @@ app/[lang]/(guestLayer)/guest/_pages/<slug>/en.json
   "description": "Planting, the first weeks and watering.",
   "keywords": "",
   "blocks": [
-    { "kind": "block-section-head", "id": "planting", "title": "Planting" },
+    { "kind": "section-head", "id": "planting", "title": "Planting" },
     { "kind": "text-p", "text": "Water the seedlings once, right after planting." }
   ]
 }
@@ -51,11 +51,11 @@ app/[lang]/(guestLayer)/guest/_pages/<slug>/ru.json
   "title": "Как посадить арбуз",
   "description": "Посадка, первые недели и полив.",
   "blocks": [
-    { "kind": "block-section-head", "id": "planting", "title": "Посадка" },
+    { "kind": "section-head", "id": "planting", "title": "Посадка" },
     { "kind": "text-p", "text": "Полейте рассаду один раз, сразу после высадки." }
   ]
 }
 ```
 
-The page answers at `/<lang>/guest/<slug>`. Block kinds — `lib/content/blocks/types.ts`; a missing kind is written in this element by its design pass
-(`components/blocks/README.md`).
+The page answers at `/<lang>/guest/<slug>`. Block kinds — `lib/content/page-items.ts`; a missing kind is written in this element by its design pass
+(`components/sections/README.md`).

@@ -2,7 +2,7 @@
   "title": "User accounts",
   "description": "Who has access to this project, and with which roles.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "text-p",
       "text": "These are the people who registered through this application. Their accounts live in the authentication service, so there is no second copy of anyone here. The administrator of this application and the architect of the node may open this page and change roles. Only the architect grants or removes the architect role and deletes accounts.",

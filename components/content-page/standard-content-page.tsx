@@ -1,17 +1,17 @@
 import { type ReactNode } from 'react'
-import type { Block, FaqPair } from '@/lib/content/blocks/types'
+import type { PageItem, FaqPair } from '@/lib/content/page-items'
 // Импортируется под другим именем НАМЕРЕННО: у компонента есть проп `author`,
 // и одноимённая функция была бы перекрыта им внутри тела — значение по умолчанию
 // ссылалось бы само на себя.
 import { author as projectAuthor } from '@/lib/author'
 import { getPostBodyUi } from '@/lib/content/post-body-ui'
-import { renderBlocks } from '@/lib/content/blocks/registry'
+import { renderPage } from '@/components/sections/page-body'
 import { PostBody, type WidgetSet } from './post-body'
 import { PageHeader } from './page-header.server'
 import { PageCover } from './page-cover.server'
 import { BackLink } from './back-link.server'
 import { PageShell } from './page-shell'
-import { Toc, tocOf, withHeadingIds } from '@/components/blocks/block-toc'
+import { Toc, tocOf, withHeadingIds } from '@/components/content-page/toc'
 import { getPageUi } from '@/lib/content/page-ui'
 
 // PORTED FROM THE PLATFORM'S MARKETING SITE (2026-08-11). Three couplings were
@@ -26,7 +26,7 @@ import { getPageUi } from '@/lib/content/page-ui'
 // so future pages only supply data and reuse this chrome:
 //
 //   1. Breadcrumbs (visible)            5. 3× H2, each with 2× H3
-//   2. Max-size H1 (homepage hero style) 6. Quote / CTA / docref blocks
+//   2. Max-size H1 (homepage hero style) 6. Quote / CTA / docref body
 //   3. Table of contents (from H2s)      7. `sections` slot (injected by the route)
 //   4. "Did you know?" callout           8. Sponsorship (baked, every page)
 //                                        9. FAQ (last content section)
@@ -112,7 +112,7 @@ export type StandardContentPageProps = {
    */
   afterHeader?: ReactNode
   afterBody?: ReactNode
-  blocks: Block[]
+  body: PageItem[]
   /** 423: виджеты ветки для `widget-*` в последовательности страницы. */
   widgets?: WidgetSet
   faq?: FaqPair[]
@@ -145,7 +145,7 @@ export function StandardContentPage({
   afterHero,
   afterHeader,
   afterBody,
-  blocks,
+  body,
   widgets,
   faq,
   backHref,
@@ -161,7 +161,7 @@ export function StandardContentPage({
 
   // 🪦 ОГЛАВЛЕНИЕ УБРАНО ИЗ ШАБЛОНА (314-2) — и ВОЗВРАЩЕНО шагом 458-8 по слову владельца: «каждой странице должна содержать
   // элементы TOC». Вид — `toc` каталога секций «Блоков» (там он есть, но в реестр установки не выложен), файлом
-  // `components/blocks/block-toc.tsx`; список считает шаблон из заголовков ленты.
+  // `components/content-page/toc.tsx`; список считает шаблон из заголовков ленты.
 
   // ── ТРИ ЗОНЫ ШИРИНЫ, И ГРАНИЦА МЕЖДУ НИМИ — ЗАКОН СТРАНИЦЫ (2026-08-15) ────
   //
@@ -182,12 +182,12 @@ export function StandardContentPage({
   // шире неё — можно лишь вытягивать её отрицательными отступами, и это ломается
   // на каждой второй ширине экрана. Поэтому такие секции физически стоят снаружи
   // колонки, а внутри неё остаётся текст.
-  // Первым экраном считается первая секция, чьё имя начинается с `block-hero` (304-1; 706-5: герой каталога снят — свой первый экран
-  // агент элемента называет `block-hero-<имя>`, и он встаёт во всю ширину, вне колонки текста).
-  const heroBlock = blocks.find(b => b.kind.startsWith('block-hero'))
+  // Первым экраном считается первая секция, чьё имя начинается с `section-hero` (304-1; 706-5: герой каталога снят — свой первый экран
+  // агент элемента называет `section-hero-<имя>`, и он встаёт во всю ширину, вне колонки текста).
+  const heroItem = body.find(b => b.kind.startsWith('section-hero'))
   // 458-8: у заголовков ленты — адреса, по ним строится оглавление (вид toc из «Блоков», список считает шаблон, а не автор).
-  const bodyBlocks = withHeadingIds(blocks.filter(b => b !== heroBlock))
-  const toc = tocOf(bodyBlocks)
+  const bodyItems = withHeadingIds(body.filter(b => b !== heroItem))
+  const toc = tocOf(bodyItems)
 
   return (
     /* 🔒 ОБОЛОЧКА — ОБЩАЯ, А НЕ СВОЯ (2026-08-19). Здесь стоял собственный
@@ -210,7 +210,7 @@ export function StandardContentPage({
     <PageShell
       top={titleInBody ? "work" : "content"}
       columnAs="article"
-      hero={heroBlock ? <PostBody blocks={[heroBlock]} lang={lang} widgets={widgets} /> : undefined}
+      hero={heroItem ? <PostBody body={[heroItem]} lang={lang} widgets={widgets} /> : undefined}
       afterHero={afterHero}
       afterBody={afterBody}
     >
@@ -248,10 +248,10 @@ export function StandardContentPage({
         {/* 3. Оглавление (458-8): разделы и подразделы ленты; меньше двух разделов — его нет. */}
         <Toc items={toc} heading={getPageUi(lang).tocHeading} />
 
-        {/* 4–7, 9. Body blocks (callout, H2/H3, quote, CTA, docref download, …).
+        {/* 4–7, 9. Body body (callout, H2/H3, quote, CTA, docref download, …).
             Без первого экрана и завершающей секции: они нарисованы снаружи этой
             колонки, потому что подчиняются другой ширине. */}
-        <PostBody blocks={bodyBlocks} lang={lang} widgets={widgets} />
+        <PostBody body={bodyItems} lang={lang} widgets={widgets} />
 
         {/* Open sections slot — page-specific sections injected by the route entry
             (e.g. the VPS deploy form / the MCP connector + the founder quote). The
@@ -264,7 +264,7 @@ export function StandardContentPage({
             содержательный на странице: ниже только ссылка «назад» и подвал сайта.
             Материал не изменился — вопросы приходят полем `faq` языковой ячейки,
             и та же ячейка кормит разметку `FAQPage` для поисковика. */}
-        {faq && faq.length > 0 && renderBlocks([{ kind: 'block-faq', title: blockUi.faqTitle, items: faq }], 'faq')}
+        {faq && faq.length > 0 && renderPage([{ kind: 'section-faq', title: blockUi.faqTitle, items: faq }], 'faq')}
 
         {/* Ссылка «назад» — ПРИМИТИВ `BackLink`, последний элемент страницы.
             Ведёт на уровень выше; у корня сайта такого уровня нет, поэтому её

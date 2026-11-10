@@ -24,8 +24,8 @@ description: >
 | You need | Write |
 |---|---|
 | words to read: a heading, a paragraph, a list, a quote, a code sample | `text-*` |
-| a designed section: a first screen, cards, an FAQ, a warning card | a block (`block-*`, skill `use-page-tree`) |
-| a heading of a section with an anchor and a badge | `block-section-head` |
+| a designed section: a first screen, cards, an FAQ, a warning card | a block (`section-*`, skill `use-page-tree`) |
+| a heading of a section with an anchor and a badge | `section-head` |
 
 Plain text is not a block on purpose: a block is a section with its own spacing and width; text is the content between them.
 
@@ -61,7 +61,7 @@ A translation file repeats the sequence with its own words: the same kinds in th
 ## A kind that is missing
 
 Need a kind the set does not have (a table of text, a definition list)? Add one line to `lib/content/text-set.tsx` built on
-`components/ui/typography`, its type in `lib/content/blocks/types.ts`, and its Markdown line in `lib/aio/blocks-to-markdown.ts`
+`components/ui/typography`, its type in `lib/content/page-items.ts`, and its Markdown line in `lib/aio/page-to-markdown.ts`
 — otherwise the page's text twin for agents silently loses it. Never add styles that the typography primitives do not have.
 
 ## How you know it worked

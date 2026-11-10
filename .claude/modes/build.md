@@ -146,7 +146,7 @@ the route and everything that served it is gone, no tails. Only what two or more
 **Languages are files.** A translation is one more language file next to the base; until it exists the page answers in the
 default language.
 
-**What a page is made of.** Data, not a route file: one sequence of `block-*` · `text-*` · `widget-static-*` /
+**What a page is made of.** Data, not a route file: one sequence of `section-*` · `text-*` · `widget-static-*` /
 `widget-dynamic-*`, the same in every language. The look comes only from the design tokens through blocks, typography and
 shadcn — no own styles. A tool never stands on a page, only inside a widget.
 

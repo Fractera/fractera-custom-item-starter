@@ -1,4 +1,4 @@
-import { blocksToMarkdown, faqToMarkdown } from './blocks-to-markdown'
+import { pageToMarkdown, faqToMarkdown } from '@/lib/aio/page-to-markdown'
 import { urlFor, mdUrlFor } from '@/lib/seo/alternates'
 import { getAppConfig, metaForLang } from '@/config/app-config'
 import { branchChildren, branchRoot, wordsIn } from '@/lib/page-tree'
@@ -54,8 +54,8 @@ export function publicSurfaces(lang: string): Surface[] {
       // при ~16 тыс. знаков на странице. Нет данных главной — прежний минимум: имя и описание проекта.
       body: () => {
         const root = branchRoot('(publicLayer)')
-        const blocks = root ? wordsIn(root, lang).blocks ?? [] : []
-        const text = blocksToMarkdown(blocks, home.siteName, widgetText(lang))
+        const body = root ? wordsIn(root, lang).body ?? [] : []
+        const text = pageToMarkdown(body, home.siteName, widgetText(lang))
         return text
           ? text
           : [`# ${home.siteName}`, '', `> ${home.description}`, ...(cfg.url ? ['', cfg.url] : [])].join('\n')
@@ -76,7 +76,7 @@ export function publicSurfaces(lang: string): Surface[] {
       description: page.description.split("%SITE%").join(home.siteName),
       section: 'legal',
       body: () =>
-        [`# ${page.title.split("%SITE%").join(home.siteName)}`, "", `> ${page.description.split("%SITE%").join(home.siteName)}`, '', blocksToMarkdown(page.blocks, home.siteName, widgetText(lang))].join('\n').trim(),
+        [`# ${page.title.split("%SITE%").join(home.siteName)}`, "", `> ${page.description.split("%SITE%").join(home.siteName)}`, '', pageToMarkdown(page.body, home.siteName, widgetText(lang))].join('\n').trim(),
     })
   }
 

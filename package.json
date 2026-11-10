@@ -21,6 +21,7 @@
     "reset": "node scripts/ask-core.mjs --reset",
     "need": "node scripts/need.mjs",
     "blocks:ids": "node scripts/check-block-ids.mjs --fix",
+    "migrate:sections": "node scripts/migrate-sections.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

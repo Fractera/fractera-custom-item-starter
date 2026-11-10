@@ -24,7 +24,7 @@ it for that. This skill owns **what is allowed** in this element.
 
 ## The law
 
-Widgets (`<branch>/_widgets/`), tools (`_tools/`), blocks (`components/blocks/`) and every component they import are built
+Widgets (`<branch>/_widgets/`), tools (`_tools/`), blocks (`components/sections/`) and every component they import are built
 from `components/ui` and the typography primitives. A control the folder does not have is added, never written by hand:
 
 ```

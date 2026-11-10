@@ -5,7 +5,7 @@ Required folder of every route branch (owner 2026-10-07). The underscore keeps i
 ## What lives here
 
 Blocks of the **public** branch's pages that the catalog of blocks does not have: a list of orders, a role's dashboard, a
-form with its own logic. A page is one sequence of `block-*`, `text-*` and `widget-*` (`.claude/modes/build.md`, «Page»); a widget stands in it by its name
+form with its own logic. A page is one sequence of `section-*`, `text-*` and `widget-*` (`.claude/modes/build.md`, «Page»); a widget stands in it by its name
 from this branch's `_widgets/index.tsx`. Built from shadcn primitives and typography; a tool when it needs that capability;
 a block only as a whole section, unchanged.
 
@@ -27,7 +27,7 @@ Every widget is named by what it is (owner 2026-10-07): its folder and its entry
 
 The same name is the widget's name in the branch's widget list and in `meta.json` → `"widget"`. Why: a search, an import or a
 highlighted block tells what the thing is — and that it belongs to this route — without opening the file. The same family across
-the project: tools `tool-<name>`, blocks `block-<name>`.
+the project: tools `tool-<name>`, blocks `section-<name>`.
 
 How to make one, its door and its skeleton — skill `build-widget`.
 

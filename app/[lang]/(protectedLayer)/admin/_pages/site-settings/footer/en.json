@@ -2,7 +2,7 @@
   "title": "Footer",
   "description": "The links and pages at the bottom of every page.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-footer",
       "bid": "r2t7k"

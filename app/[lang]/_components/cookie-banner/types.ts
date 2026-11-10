@@ -7,7 +7,7 @@
 //
 // Ничего этого больше нет: правовых страниц три, они живут в
 // `app/[lang]/(publicLayer)/(footerPages)/` языковыми ячейками с блоками — как
-// пост блога, — а разметку внутри текста делает общий `lib/content/blocks/inline`.
+// пост блога, — а разметку внутри текста делает общий `lib/content/inline`.
 // Экспорты `LEGAL_LANGS`, `CONTENT_DOCS`, `ALL_DOCS`, `LegalConfig`,
 // `LegalLangEntry`, `isContentDoc` не звал НИКТО; `markup.tsx` удалён целиком.
 //

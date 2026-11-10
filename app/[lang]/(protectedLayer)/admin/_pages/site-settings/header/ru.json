@@ -2,7 +2,7 @@
   "title": "Шапка",
   "description": "Меню вверху каждой страницы.",
   "keywords": "",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-dynamic-site-header",
       "bid": "h8m3z"

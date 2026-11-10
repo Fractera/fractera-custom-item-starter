@@ -18,7 +18,7 @@ import fs from "fs"
 import path from "path"
 
 const ROOT = process.cwd()
-// 314-2: `sections/` удалён из шаблона — блоки «Блоков» лежат в `components/blocks/` и проверяются вместе с `components`.
+// 314-2: `sections/` удалён из шаблона — блоки «Блоков» лежат в `components/sections/` и проверяются вместе с `components`.
 const SCAN = ["app", "components"]
 const SKIP = new Set(["node_modules", ".next", ".git", ".swc"])
 
