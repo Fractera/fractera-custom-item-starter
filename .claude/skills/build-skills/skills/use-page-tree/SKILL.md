@@ -86,7 +86,8 @@ A production build is always the whole app; the only lever is how many route fil
   lives only inside the hero and is not in the set — the guard would refuse the page).
 - **A section** the set does not have — the design pass builds it here, as this element's own section; it is one folder
   `components/sections/<kind>/` (the component and its `Shape` in `index.tsx`, its words in `markdown.ts`, its README) and one line in
-  `components/sections/index.ts`. Never put a section on a page outside the set.
+  `components/sections/index.ts`. Never put a section on a page outside the set. A design prototype's section stays in the
+  prototype's own set until the pin (`.claude/modes/build-design.md`); `check:sections` holds every set both ways.
   After writing page data run `npm run check:page-sequence`: the live site renders data newer than its build and would drop an
   unknown section silently (✗ 2026-11-09, lqvop).
 - A public page has a Markdown copy for agents (`<page>/index.md`, `llms-full.txt`) built from this sequence; a `widget-*`

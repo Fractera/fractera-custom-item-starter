@@ -93,6 +93,10 @@ for (const d of dirs) for (const f of files(d, '.tsx')) follow(f)
 // 577-4: каждая секция `components/sections/` под процедурой, даже если его не импортирует ни один виджет.
 const BLOCK_DIR = join(ROOT, 'components', 'sections')
 if (existsSync(BLOCK_DIR)) for (const f of files(BLOCK_DIR, '.tsx')) { extraFiles.add(f); follow(f) }
+// 717-3: a design prototype's own sections (`prototypes/_pages/<id>/sections/`) — the element's sections from the pin on, under the
+// procedure from their first line; the prototypes' archive holds no code.
+const PROTOTYPES = join(ROOT, 'app', '[lang]', '(protectedLayer)', 'prototypes', '_pages')
+if (existsSync(PROTOTYPES)) for (const p of readdirSync(PROTOTYPES)) { const d = join(PROTOTYPES, p, 'sections'); if (existsSync(d)) for (const f of files(d, '.tsx')) { extraFiles.add(f); follow(f) } }
 
 
 // Занятые адреса — во всём DOM сайта: `bid` данных и уже стоящие в коде.

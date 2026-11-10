@@ -5,7 +5,8 @@ import * as sectionFaq from './section-faq'
 
 // THE SECTIONS OF THIS ELEMENT (node step 717-2). A section is one folder named by its kind: its component and its fields in page
 // data (`index.tsx`), its words in the Markdown twin (`markdown.ts`) and its README. A new section — its folder here and its line
-// below; a folder without `markdown` does not compile, so the twin never loses a section's words.
+// below; a folder without `markdown` does not compile, so the twin never loses a section's words. `check:sections` refuses a folder
+// without its line and a line without its folder (717-3); a design prototype keeps its own sections in its folder until the pin.
 
 export type SectionModule = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

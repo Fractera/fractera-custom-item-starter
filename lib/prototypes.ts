@@ -13,7 +13,8 @@ import { DEFAULT_DESIGN_CONFIG, type DesignConfig } from "@/config/design-config
 // `tokens.json` — СВОЯ копия документа дизайна (форма `DESIGN-CONFIG`), `DESIGN.md` — правила облика, которые токенами не выразить,
 // `prototype.json` — навык, исходная страница, референсы, статус. Токены первыми, страница второй: страница прототипа берёт цвета,
 // шрифты и отступы только из своей копии, и при «Закрепить» эта копия становится `DESIGN-CONFIG/design-config.json` элемента
-// (`npm run design:pin`). Читается во время работы — новый прототип виден без пересборки.
+// (`npm run design:pin`). Читается во время работы — новый прототип виден без пересборки; его свои секции (`<id>/sections/`, 717-3) —
+// код и видны после сборки.
 
 export const PROTOTYPE_ID = /^[a-z0-9][a-z0-9-]{0,47}$/
 export type PrototypeStatus = "draft" | "ready" | "pinned" | "archived"

@@ -233,6 +233,7 @@
   "app/[lang]/(protectedLayer)/prototypes/[slug]/page.tsx",
   "app/[lang]/(protectedLayer)/prototypes/_components/README.md",
   "app/[lang]/(protectedLayer)/prototypes/_components/prototype-page.tsx",
+  "app/[lang]/(protectedLayer)/prototypes/_components/prototype-sections.ts",
   "app/[lang]/(protectedLayer)/prototypes/_data/en.json",
   "app/[lang]/(protectedLayer)/prototypes/_data/meta.json",
   "app/[lang]/(protectedLayer)/prototypes/_data/ru.json",
