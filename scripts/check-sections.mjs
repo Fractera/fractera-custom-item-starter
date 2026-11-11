@@ -9,7 +9,13 @@
 // The archive of the prototypes (`prototypes/_archive/`) is history and holds no code — not read.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ID, elementSectionsDir, pagesDir, sectionsDir, wiringFresh } from './prototype-lib.mjs'
+// One guard for both templates: the native template has no design prototypes — then only the element's own set is held.
+const PROTO = existsSync(new URL('./prototype-lib.mjs', import.meta.url)) ? await import('./prototype-lib.mjs') : null
+const ID = PROTO?.ID ?? /^$/
+const elementSectionsDir = () => join(process.env.ELEMENT_DIR?.trim() || process.cwd(), 'components', 'sections')
+const pagesDir = () => PROTO?.pagesDir() ?? join(elementSectionsDir(), '__none__')
+const sectionsDir = (id) => PROTO?.sectionsDir(id) ?? null
+const wiringFresh = () => (PROTO ? PROTO.wiringFresh() : true)
 import { readSet, repeatedKinds, setProblems } from './sections-lib.mjs'
 
 const problems = setProblems(elementSectionsDir(), 'components/sections/')
