@@ -34,7 +34,8 @@ const note = (s) => done.push(s)
 const look = (file, line, text, why) => eye.push({ file, line, text: text.trim().slice(0, 200), why })
 
 const listed = () => {
-  const disk = execFileSync('git', ['ls-files', '-co', '--exclude-standard'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter(Boolean)
+  // 719: `trackedOnly` (the core's map) — a node's core folder also holds the person's own untracked files; they are not Fractera's text
+  const disk = execFileSync('git', MAP.trackedOnly ? ['ls-files', '-c'] : ['ls-files', '-co', '--exclude-standard'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter(Boolean)
   const all = new Set([...disk, ...out.keys()])
   return [...all].filter((f) => get(f) !== null).filter((f) => !MAP.skip.some((s) => f.startsWith(s) || f === s))
 }
