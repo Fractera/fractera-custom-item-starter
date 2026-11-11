@@ -84,7 +84,10 @@ for (const s of sections) {
   let body = mdLines.slice(i + 1, end)
   if (/\{\s*$/.test(mdLines[i]) && /^\s*\}\s*$/.test(body[body.length - 1] ?? '')) body = body.slice(0, -1)
   const ind = Math.min(...body.filter((l) => l.trim()).map((l) => l.match(/^\s*/)[0].length))
-  s.md = body.map((l) => (l.trim() ? '  ' + l.slice(ind) : ''))
+  // 717-9: the old switch named the item by its own parameter (`block`, `b` …); in the folder the function's parameter is `section`
+  const param = /switch\s*\(\s*(\w+)\.kind\s*\)/.exec(md ?? "")?.[1]
+  const rename = (l) => (param && param !== 'section' ? l.replace(new RegExp(`\\b${param}\\b`, 'g'), 'section') : l)
+  s.md = body.map((l) => (l.trim() ? '  ' + rename(l.slice(ind)) : ''))
   cut.push([i, end])
 }
 
