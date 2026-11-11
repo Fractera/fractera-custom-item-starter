@@ -282,6 +282,9 @@ for (const f of listed()) {
   if (isCode || /\.md$/.test(f)) t = t.replace(kindRe, MAP.kinds.to).replace(doubled, MAP.kinds.to)
   if (isJson && /^app\//.test(f)) {
     t = t.replace(/("kind"\s*:\s*")block-/g, '$1section-').replace(doubled, MAP.kinds.to)
+    // 717-9: an item's own key in page data (`"blockKey": "uses"`) is read by the code as `itemKey` now — left as it was, it is
+    // silently ignored and the section's anchor changes (found on the graph starter's cards)
+    t = t.replace(/"blockKey"(\s*:)/g, '"itemKey"$1')
     let top = null
     try { top = JSON.parse(t) } catch { /* not JSON — left */ }
     if (top && Array.isArray(top[MAP.pageKey.from])) {
