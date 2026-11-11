@@ -246,7 +246,9 @@
       "\\bself-block\\b",
       "\\bwe block\\b",
       "sign-in events, block",
-      "\\bblocks the server\\b"
+      "\\bblocks the server\\b",
+      "MCP у блоков",
+      "нижний блок с информации"
     ],
     "files": [
       "components/block-highlight/"
@@ -264,7 +266,8 @@
     "config/design-config.defaults.ts",
     "DESIGN-CONFIG/schema.json",
     "lib/design-css.ts",
-    "lib/memory/"
+    "lib/memory/",
+    "settings/design/"
   ],
   "vendoredSkillsRoot": ".claude/skills/"
 }
