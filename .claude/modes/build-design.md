@@ -20,6 +20,11 @@ its `DESIGN.md`, its own sections; there is no shared catalogue of sections and 
   (`references/slop-checklist.md`) before «done», `shadcn` (through `use-shadcn`), `ai-elements` (through `use-messenger`) — the line
   `Pass:` of each one's `SOURCE.md` says where it lives. There is no list of design skills in this template: the person finds and picks
   them in the core's «Build → Design» tab.
+- **The design skill's freedom has a mark** (node step 730; the owner: «навыку разрешено создавать то что он хочет только работа
+  интерфейса где навыков нет требует использования того что мы обсуждаем»). Every file this pass writes by a design skill carries
+  `// @design <the skill's mark>` on its first lines — the handed skill for a prototype, the pinned one after the pin. With it the skill
+  draws what it wants in its territory (`components/sections/`, prototypes, `_widgets/`); without it `check:shadcn-parts` holds the file
+  to shadcn like any other. The mark is legal only with the skill the passport or the prototype names.
 - **End of the pass:** commit, write `current-step.md` (what is done, «next: the main pass»), tell the person in one line with the
   screenshot; switch with `npm run pass -- main "<the next substep>"` when the step goes on, or stop when the person wants to look first.
 

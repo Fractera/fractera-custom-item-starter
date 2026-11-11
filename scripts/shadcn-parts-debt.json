@@ -1,0 +1,61 @@
+{
+  "_": "730-1: находки на день заморозки; файл тронут — выходит из правки чистым. Только --shrink.",
+  "files": {
+    "_tools/tool-translations-dialog/client/translations-dialog.client.tsx": {
+      "hash": "e07813eb56decee5",
+      "count": 1
+    },
+    "_tools/tool-voice-input/client/voice-input.client.tsx": {
+      "hash": "c29a592fcb09edcb",
+      "count": 1
+    },
+    "app/[lang]/(protectedLayer)/admin/_components/design-editors/design-colors.client.tsx": {
+      "hash": "ec0572503a326809",
+      "count": 2
+    },
+    "app/[lang]/(protectedLayer)/admin/_components/site-settings-editors/nav-editor.client.tsx": {
+      "hash": "b1c7da3f93fd8cc7",
+      "count": 3
+    },
+    "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-site-settings/languages-editor.client.tsx": {
+      "hash": "fc5aced8c1e30d5c",
+      "count": 2
+    },
+    "app/global-error.tsx": {
+      "hash": "37045f0f587cb694",
+      "count": 1
+    },
+    "components/form/voice-control.client.tsx": {
+      "hash": "5f84f66398f1356f",
+      "count": 1
+    },
+    "components/pwa/install-prompt.client.tsx": {
+      "hash": "b931b99803f6a565",
+      "count": 1
+    },
+    "components/request/pre-step-request.client.tsx": {
+      "hash": "332e5202a29c015c",
+      "count": 1
+    },
+    "components/shell/language-switcher.client.tsx": {
+      "hash": "ceb532df05dec6fc",
+      "count": 2
+    },
+    "components/shell/quick-nav.client.tsx": {
+      "hash": "af1cb64960fba47e",
+      "count": 1
+    },
+    "components/shell/shell-account.client.tsx": {
+      "hash": "a86a870398625500",
+      "count": 1
+    },
+    "components/shell/shell-attention.client.tsx": {
+      "hash": "2b53e6387765fbeb",
+      "count": 1
+    },
+    "components/shell/shell-toggles.client.tsx": {
+      "hash": "5ff752c7b1d6446c",
+      "count": 4
+    }
+  }
+}

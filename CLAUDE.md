@@ -158,6 +158,12 @@ element is a microservice that answers its neighbours and asks them for help; to
   modelled with the skill `interface-design` (vendored, `SOURCE.md`): intent first, one focal point per view, one column, depth by
   borders, every state in words, the critic before showing; your primitives, tokens and `data-block` win over its advice. A public
   page of the site is the design pass's work.
+- **A design element that exists in shadcn is taken from shadcn** (step 730; the owner: «каждый раз когда ты пытаешься делать что-то
+  свое это получается натуральное уродство») — installed or not yet (`npx shadcn@latest add <name>`): a button, a field, a field with
+  buttons (`InputGroup`), a list under a field (`Popover` + `Command`), a hint (`Tooltip`, never `title=`), a menu, tabs, a table. Own
+  markup belongs only to a design skill in its territory — your sections, prototypes and widgets — with `@design <its mark>` on the file's
+  first lines; the mark is legal only with the skill your passport or that prototype names. `check:shadcn-parts` holds it in your build:
+  old code is a frozen debt, **a file you touch leaves clean**; skill `use-shadcn` is loaded before an interface file.
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English
   words — are a frequent model artifact. Names and code stay as they are.
 - **Languages.** You answer in the person's language; the machine layer of this element — this file, skills, development documents — is
