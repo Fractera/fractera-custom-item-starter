@@ -21,8 +21,8 @@ it for that. This skill owns **what is allowed** in this element.
 
 ## 0. 🔒 Node step 730 — the catalogue is the law, outside a design skill's territory
 
-The owner, 2026-11-11: «каждый раз когда ты пытаешься делать что-то свое это получается натуральное уродство». Every interface element
-shadcn has comes from shadcn, installed or not yet (`npx shadcn@latest add <name>`): a button, a field, a field with buttons
+The owner, 2026-11-11: «каждый раз когда ты пытаешься делать что-то свое это получается натуральное уродство».
+Every interface element shadcn has comes from shadcn, installed or not yet (`npx shadcn@latest add <name>`): a button, a field, a field with buttons
 (`InputGroup`), a list under a field (`Popover` + `Command`), a hint (`Tooltip`, never `title=`), a menu (`DropdownMenu`), tabs, a table.
 `check:shadcn-parts` holds it in every build — old code is a frozen debt (`scripts/shadcn-parts-debt.json`), **a file you touch leaves
 clean**, a new file is clean at once; the node's hook refuses an interface file until this skill is loaded in the session. Own markup

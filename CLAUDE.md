@@ -158,8 +158,8 @@ element is a microservice that answers its neighbours and asks them for help; to
   modelled with the skill `interface-design` (vendored, `SOURCE.md`): intent first, one focal point per view, one column, depth by
   borders, every state in words, the critic before showing; your primitives, tokens and `data-block` win over its advice. A public
   page of the site is the design pass's work.
-- **A design element that exists in shadcn is taken from shadcn** (step 730; the owner: «каждый раз когда ты пытаешься делать что-то
-  свое это получается натуральное уродство») — installed or not yet (`npx shadcn@latest add <name>`): a button, a field, a field with
+- **A design element that exists in shadcn is taken from shadcn** (node step 730; the owner of the node: «натуральное уродство»
+  about hand-built markup) — installed or not yet (`npx shadcn@latest add <name>`): a button, a field, a field with
   buttons (`InputGroup`), a list under a field (`Popover` + `Command`), a hint (`Tooltip`, never `title=`), a menu, tabs, a table. Own
   markup belongs only to a design skill in its territory — your sections, prototypes and widgets — with `@design <its mark>` on the file's
   first lines; the mark is legal only with the skill your passport or that prototype names. `check:shadcn-parts` holds it in your build:
