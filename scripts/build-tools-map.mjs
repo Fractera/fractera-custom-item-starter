@@ -15,7 +15,7 @@
 // свежесть сторожем. Иначе `git status` грязный на ровном месте и прячет
 // настоящие правки.
 
-import { readFileSync, existsSync, readdirSync, writeFileSync } from "node:fs"
+import { readFileSync, existsSync, readdirSync, writeFileSync, unlinkSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -66,7 +66,9 @@ export function readCard(id) {
   if (raw.id !== id) problems.push(`${id}: поле id говорит «${raw.id}», а папка называется иначе`)
 
   // 🔒 НЕЙМИНГ (владелец 2026-10-07): папка инструмента называется `tool-<имя>` — по имени видно, что это инструмент.
-  if (!/^tool-[a-z0-9][a-z0-9-]*$/.test(id)) problems.push(`${id}: папка инструмента обязана называться tool-<имя>`)
+  // 733-5: копия, взятая из ядра или у соседа (`npm run tool:take`), хранит имя папки своего источника — её тело не правится, а ссылки
+  // внутри тела называют именно эту папку; правило `tool-<имя>` — для инструментов, рождённых в этом элементе.
+  if (!raw.source && !/^tool-[a-z0-9][a-z0-9-]*$/.test(id)) problems.push(`${id}: папка инструмента обязана называться tool-<имя>`)
 
   // 🔒 ВХОД ПРОВЕРЯЕТСЯ НА ДИСКЕ, А НЕ ПРИНИМАЕТСЯ НА ВЕРУ. Карточка, обещающая
   // файл, которого нет, — это витрина, показывающая инструмент, которого нет.
@@ -90,6 +92,12 @@ export function readCard(id) {
     }
   }
 
+  // 733-2: версия и рецепт — из чего инструмент состоит (инструменты по id и версии); сверку рецепта с кодом держит карта частей.
+  if (typeof raw.version !== "string" || !/^\d+\.\d+\.\d+$/.test(raw.version)) problems.push(`${id}: version — x.y.z`)
+  if (!Array.isArray(raw.parts) || !raw.parts.every((x) => typeof x?.id === "string" && typeof x?.version === "string"))
+    problems.push(`${id}: parts — рецепт [{ id, version }] (пустой [], когда частей нет)`)
+
+  if (raw.scope !== "panel" && raw.scope !== "any") problems.push(`${id}: scope — «panel» (только пульт ядра) или «any»`)
   if (problems.length) return { problems }
 
   // Поля перечислены явно, а не распылением: карточка может нести что угодно
@@ -99,6 +107,11 @@ export function readCard(id) {
       id,
       entry: raw.entry,
       dir: `_tools/${id}`,
+      version: raw.version,
+      parts: raw.parts.map((x) => ({ id: x.id, version: x.version })),
+      scope: raw.scope,
+      // 733-5: a copy taken from the core or a neighbour keeps where it came from — its body is not edited (733-9).
+      ...(raw.source && typeof raw.source === "object" ? { source: raw.source } : {}),
       needs,
       npmDeps: Array.isArray(raw.npmDeps) ? raw.npmDeps : [],
       usedBy: Array.isArray(raw.usedBy) ? raw.usedBy : [],
@@ -135,6 +148,13 @@ if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith
     console.error("Карта не порождена: сначала почините карточки.")
     process.exit(1)
   }
-  writeFileSync(TARGET, render(), "utf8")
-  console.log(`✓ _tools/TOOLS.json — инструментов: ${tools.length}`)
+  // 733-6: элемент рождается без инструментов — `_tools/` с одним `.gitkeep`; нет инструментов — нет и карты (её читатели принимают
+  // отсутствие за ноль). Первый взятый или рождённый инструмент порождает её.
+  if (!tools.length) {
+    if (existsSync(TARGET)) unlinkSync(TARGET)
+    console.log("✓ _tools/ — инструментов нет, карта не нужна")
+  } else {
+    writeFileSync(TARGET, render(), "utf8")
+    console.log(`✓ _tools/TOOLS.json — инструментов: ${tools.length}`)
+  }
 }

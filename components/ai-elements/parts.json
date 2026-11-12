@@ -10,7 +10,7 @@
         "en": "The vendored AI Elements family for a conversation with a model: the conversation, messages, the prompt input, attachments, a web preview.",
         "ru": "Семейство AI Elements для разговора с моделью: разговор, сообщения, ввод запроса, вложения, веб-превью."
       },
-      "how": "Never directly on a page: the chat tool _tools/tool-chat and the messenger window are built on them (skill ai-elements).",
+      "how": "Never directly on a page: the core's chat tool (taken with npm run tool:take) and the messenger window are built on them (skill ai-elements).",
       "words": {
         "en": [
           "chat ui",

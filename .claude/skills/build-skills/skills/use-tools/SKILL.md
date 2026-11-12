@@ -15,10 +15,15 @@ description: >
 
 **Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
-## First look — the tool may already exist
+## First look — the tool may already exist, here or in the node
 
-`_tools/TOOLS.json` lists every tool with what it does and how (`en` / `ru`); `npm run passport -- me` shows their names.
-Open the nearest one before writing anything similar.
+This element is born with an empty `_tools/` (node step 733-6): the tools live in the core and in the elements that bore them.
+`parts_find` answers in this order — **yours** (this repository), then **the core's** tools any element may take, then **your
+neighbours'** on a single-project node — and every answer says where it lives. Found elsewhere: **take a copy, never build it again**
+— `npm run tool:take -- <tool id> [--from <element>]` (`--dry` first shows what would come): the core copies the tool and the parts of
+its recipe you lack, each with its `source`; you rebuild the maps and commit. A refusal writes nothing and says why (a panel tool, a
+requirement you lack, a path you hold with something else). A copy keeps its source's folder name (`_tools/image-crop/`) and its
+body is never edited — add your own files beside it; a changed body is a fork with a name of its own.
 
 ## What a tool is — decided at its birth (node step 733)
 
@@ -47,8 +52,7 @@ The node's gate holds it: a new interface file is asked these questions, and a f
 
 ## Using a tool
 
-- **Only from inside a widget** — directly, or through another tool or a shared component (`components/form/voice-control`
-  is built on `tool-voice-input`). A page never names `tool-*` in its sequence (`check:page-sequence` refuses it), and sections
+- **Only from inside a widget** — directly, or through another tool it is made of (its recipe `parts`). A page never names `tool-*` in its sequence (`check:page-sequence` refuses it), and sections
   never use tools: a section is static and drawn with no client code, a tool is client code.
 - **Words come from the server.** A tool takes its strings as a prop (`strings`), chosen by the server for the page's
   language; it never imports a dictionary into the browser.
@@ -65,8 +69,8 @@ Only shadcn components and typography — no raw control (skill `use-shadcn`) �
 
 ```
 _tools/tool-<name>/
-├── tool.json    ← id = folder name · entry · needs (browser · https · openai-key · ffmpeg) · npmDeps · usedBy (real callers) ·
-│                  en/ru title · what · how · value
+├── tool.json    ← id = folder name · entry · version (x.y.z) · parts [{ id, version }] — the tools it is made of · scope «any»
+│                  (an element's tool) · needs (browser · https · openai-key · ffmpeg) · npmDeps · en/ru title · what · how · value
 ├── client/      ← browser half (the entry)
 ├── server/      ← when it calls a model or a service
 └── types/       ← its types and its words
@@ -79,5 +83,5 @@ _tools/tool-<name>/
 
 ## How you know it worked
 
-`npm run check:tools-map` → `===TOOLS_MAP_OK===`; the passport's `tools` has the new name after a rebuild; `npm run prebuild`
-passes. Reference: `_tools/README.md`.
+`npm run check:tools-map` → `===TOOLS_MAP_OK===`; `npm run check:parts-map` holds the recipe against your code (a tool used and
+not in `parts`, or named and not used, is red); the passport's `tools` has the new name after a rebuild; `npm run prebuild` passes.

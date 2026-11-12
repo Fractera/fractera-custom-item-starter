@@ -7,9 +7,10 @@ import { findParts } from "../lib/parts/parts-find.mjs"
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 process.env.DATA_SECRET = ""
 const CASES = [
-  ["поле с голосом", ["voice-control"], 1],
+  // 733-6: the element is born without tools — the voice and the chat are the core's, found through the node's index in a session.
+  ["многострочное текстовое поле", ["ui-textarea"], 1],
   ["modal window", ["app-dialog"], 1],
-  ["окно переписки с моделью", ["tool-chat"], 2],
+  ["окно переписки с моделью", ["messenger-shell", "ai-elements"], 2],
   ["шапка сайта", ["core-shell-parts"], 2],
   ["faq questions", ["section-faq"], 2],
   ["всплывающая подсказка", ["ui-tooltip"], 1],

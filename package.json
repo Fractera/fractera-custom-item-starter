@@ -86,6 +86,7 @@
     "check:parts-map": "node scripts/check-parts-map.mjs",
     "check:parts-dup": "node scripts/check-parts-dup.mjs",
     "parts": "node scripts/parts.mjs",
+    "tool:take": "node scripts/tool-take.mjs",
     "check:page-sequence": "node scripts/check-page-sequence.mjs",
     "check:sections": "node scripts/check-sections.mjs",
     "check:a2a-card": "node scripts/check-a2a-card.mjs",
