@@ -25,6 +25,7 @@ const ALLOWED = new Map([
   ['app/llms.txt/route.ts', 'карта для ИИ-агентов'],
   ['app/llms-full.txt/route.ts', 'полные тексты для ИИ-агентов'],
   ['app/[lang]/layout.tsx', 'макет языка: <html>, шапка, подвал'],
+  ['app/shell-kit/[file]/route.ts', 'файлы инструмента ядра «Оболочка проекта» через адрес элемента (узел 727-2; владелец 2026-11-12: «Да, берём A»)'],
   ['app/[lang]/llms.txt/route.ts', 'карта для ИИ-агентов на языке'],
   ['app/[lang]/llms-full.txt/route.ts', 'полные тексты для ИИ-агентов на языке'],
   ['app/[lang]/manifest.webmanifest/route.ts', 'манифест на языке'],

@@ -7,8 +7,7 @@ import { ThemeInit } from "@/components/theme-init";
 import { AppWidthInit } from "@/components/app-width-init";
 import { buildDesignCss } from "@/lib/design-css";
 import { DrawerProvider } from "@/providers/drawer-provider.client";
-import { TopMenu } from "@/components/menu/top/top-menu.server";
-import { FooterMenu } from "@/components/menu/footer/footer-menu.server";
+import { CoreShellHeader, CoreShellFooter } from "@/components/shell-kit/core-shell-parts"; // 727-2: the core's shell kit, own shell without the core
 import { QuickNav } from "@/components/shell/quick-nav.client";
 import { quickNavWords } from "@/components/shell/quick-nav.i18n";
 import { DrawerMenu } from "@/components/menu/drawer/drawer-menu.server";
@@ -167,7 +166,7 @@ export default async function LangLayout({
               between the header toggle icons and the drawer panels (sub-step 3).
               Footer is always present (site furniture + theme/language). */}
           <DrawerProvider>
-            <TopMenu lang={lang} />
+            <CoreShellHeader lang={lang} />
             {/* 706-3 (владелец 2026-11-09): полоса быстрой навигации вместо жёлтой вывески стартера — видна только владельцу (эта машина или
                 вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке.
                 714-2 (владелец 2026-11-10: «задача этих кнопок ввести в настройки на странице архитектора а не показывать собственные
@@ -180,7 +179,7 @@ export default async function LangLayout({
               subscriptionHref={coreTab(lang, "subscription")}
             />
             {children}
-            <FooterMenu lang={lang} />
+            <CoreShellFooter lang={lang} />
             {/* Left & right slide-in drawers (shadcn Sheet), controlled by the same
                 DrawerProvider state as the header toggle icons; each renders nothing
                 until a group enables its side's slot. */}
