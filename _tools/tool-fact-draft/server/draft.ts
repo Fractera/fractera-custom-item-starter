@@ -1,5 +1,8 @@
 import { openAiKey } from "@/lib/openai-key"
 import type { DraftField, DraftResult } from "../types/fact-draft"
+import { readOpenAiResponse, readOpenAiException, logOpenAiError } from "@/lib/openai-error.cjs"
+import { openAiErrorWords } from "@/lib/i18n/openai-error.i18n"
+import { recordOk, recordRefusal } from "@/lib/usage-ledger.cjs"
 
 // СВОБОДНОЕ ОПИСАНИЕ → ТИПИЗИРОВАННЫЙ ЧЕРНОВИК (81-5).
 //
@@ -77,6 +80,8 @@ export async function draftFromWords(
     "  and nothing else. Guessing is worse than refusing: a guessed record gets saved.",
   ].join("\n")
 
+  // Node step 726-2: every call writes one line of this element's ledger (`lib/usage-ledger.cjs`) — no prompt, no key.
+  const call = { who: "fact-draft", endpoint: "chat/completions", model: MODEL, started: Date.now() }
   try {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -92,9 +97,16 @@ export async function draftFromWords(
       }),
       signal: AbortSignal.timeout(30_000),
     })
-    if (!res.ok) return { ok: false, reason: "model-silent" }
+    if (!res.ok) {
+      // Node step 726-2: why OpenAI refused, by the node's one reader — the form names it instead of «the model is silent».
+      const info = await readOpenAiResponse(res)
+      logOpenAiError("fact-draft", info)
+      recordRefusal({ ...call, info })
+      return { ok: false, reason: "model-silent", openai: info.reason, openaiWords: openAiErrorWords(lang, info.reason) }
+    }
 
-    const data = (await res.json()) as { choices?: { message?: { content?: string } }[] }
+    const data = (await res.json()) as { choices?: { message?: { content?: string } }[]; usage?: unknown }
+    recordOk({ ...call, status: res.status, usage: data.usage })
     const parsed = JSON.parse(data.choices?.[0]?.message?.content ?? "{}") as Record<string, unknown>
     if (parsed.understood === false) return { ok: false, reason: "not-understood" }
 
@@ -114,7 +126,12 @@ export async function draftFromWords(
     }
 
     return { ok: true, draft, notes: String(parsed.notes ?? "").trim() }
-  } catch {
-    return { ok: false, reason: "model-silent" }
+  } catch (e) {
+    // A malformed answer of the model (JSON.parse) stays «silent»; a timeout or the network is named.
+    if (e instanceof SyntaxError) return { ok: false, reason: "model-silent" }
+    const info = readOpenAiException(e)
+    logOpenAiError("fact-draft", info)
+    recordRefusal({ ...call, info })
+    return { ok: false, reason: "model-silent", openai: info.reason, openaiWords: openAiErrorWords(lang, info.reason) }
   }
 }

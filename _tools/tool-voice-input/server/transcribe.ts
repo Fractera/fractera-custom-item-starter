@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { TranscribeResult } from "../types/voice-input";
+import { readOpenAiResponse, readOpenAiException, logOpenAiError } from "@/lib/openai-error.cjs";
+import { recordOk, recordRefusal } from "@/lib/usage-ledger.cjs";
 
 // СЕРВЕРНАЯ ФУНКЦИЯ микросервиса «голосовой ввод» — расшифровка аудио. Живёт РЯДОМ со своим клиентом
 // (микросервис: `client/` + `server/` + `types/` в одной папке), а не разбросана по `api/`. Дверь
@@ -38,8 +40,27 @@ export async function transcribeAudio(audio: unknown): Promise<TranscribeResult>
   upstream.append("model", MODEL);
   upstream.append("language", defaultLanguage());
 
-  const r = await fetch(OPENAI_URL, { method: "POST", headers: { Authorization: `Bearer ${key}` }, body: upstream });
-  if (!r.ok) return { ok: false, status: 502, error: `transcription failed (${r.status})` };
-  const d = (await r.json()) as { text?: string };
+  // Node step 726-2: the refusal is read by the node's ONE reader of OpenAI's errors (`lib/openai-error.cjs`, the list from OpenAI's
+  // guide) — «no money», «a spend limit», «the key», «slow down» ask the person for different actions; and every call writes one line
+  // of this element's ledger (`lib/usage-ledger.cjs` → `data/node/usage/`), which the core's «Все подписки» reads — never the audio,
+  // never the text.
+  const call = { who: "voice-input", endpoint: "audio/transcriptions", model: MODEL, started: Date.now() };
+  let r: Response;
+  try {
+    r = await fetch(OPENAI_URL, { method: "POST", headers: { Authorization: `Bearer ${key}` }, body: upstream, signal: AbortSignal.timeout(120_000) });
+  } catch (e) {
+    const info = readOpenAiException(e);
+    logOpenAiError("voice-input", info);
+    recordRefusal({ ...call, info });
+    return { ok: false, status: 502, error: `transcription failed (${info.reason})`, reason: info.reason, link: info.link };
+  }
+  if (!r.ok) {
+    const info = await readOpenAiResponse(r);
+    logOpenAiError("voice-input", info);
+    recordRefusal({ ...call, info });
+    return { ok: false, status: 502, error: `transcription failed (${r.status})`, reason: info.reason, link: info.link };
+  }
+  const d = (await r.json()) as { text?: string; usage?: unknown };
+  recordOk({ ...call, status: r.status, usage: d.usage });
   return { ok: true, text: (d.text ?? "").trim() };
 }

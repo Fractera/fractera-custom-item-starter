@@ -19,4 +19,5 @@ export type VoiceInputProps = {
 /** Результат серверной расшифровки — что дверь `api/transcribe` возвращает клиенту. */
 export type TranscribeResult =
   | { ok: true; text: string }
-  | { ok: false; status: number; error: string; reason?: string };
+  // Node step 726-2: `link` — OpenAI's own page to act on the refusal; `words`/`linkLabel` — added by the door on the page's language.
+  | { ok: false; status: number; error: string; reason?: string; link?: string | null; words?: string; linkLabel?: string | null };

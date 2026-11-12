@@ -183,10 +183,13 @@ export function useVoiceRecorder<S extends VoiceStrings = VoiceStrings>({
         const fd = new FormData();
         fd.append("audio", new File([blob], "speech.webm", { type: blob.type || "audio/webm" }));
         for (const [k, v] of Object.entries(extra ?? {})) fd.append(k, v);
+        // Node step 726-2: the door chooses the refusal's words for this page's language — the client carries no dictionary.
+        fd.append("uiLang", lang);
         const url = apiUrl ?? "/api/tools/tool-voice-input";
         const r = await fetch(url, { method: "POST", body: fd, credentials: "include" });
-        const d = (await r.json()) as { text?: string; reason?: string };
-        if (!r.ok) { setNote(d.reason === "no-key" ? L.noKey : d.reason === "rate-limit" ? L.failed : L.failed); return; }
+        const d = (await r.json()) as { text?: string; reason?: string; words?: string };
+        // Node step 726-2: OpenAI's refusal in the person's words («no money», «the key», «slow down») instead of a bare «failed».
+        if (!r.ok) { setNote(d.reason === "no-key" ? L.noKey : d.words || L.failed); return; }
         if (!d.text) { setNote(L.nothing); return; }
         setNote("");
         setDraft(d.text);
@@ -196,7 +199,7 @@ export function useVoiceRecorder<S extends VoiceStrings = VoiceStrings>({
         setBusy(false);
       }
     },
-    [L, apiUrl, extra],
+    [L, apiUrl, extra, lang],
   );
 
   const start = useCallback(async () => {

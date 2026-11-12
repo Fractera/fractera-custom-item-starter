@@ -14,7 +14,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import sharp from 'sharp'
+import { createRequire } from 'node:module'
 import { designColors, patternSvg, SNIPPET_WIDTH, SNIPPET_HEIGHT } from '../lib/snippet/render.mjs'
+// Node step 726-2: the node's ONE reader of OpenAI's errors and this element's ledger of paid calls (`data/node/usage/`).
+const { readOpenAiResponse, readOpenAiException, logOpenAiError } = createRequire(import.meta.url)('../lib/openai-error.cjs')
+const { recordOk, recordRefusal } = createRequire(import.meta.url)('../lib/usage-ledger.cjs')
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const OUT = path.join(ROOT, 'public', 'images', 'snippet', 'background.webp')
@@ -58,14 +62,27 @@ if (!key) fail('no OPENAI_API_KEY in the environment or .env.local — use --pat
 // ✗ 458-3: здесь стояло «no letters» — и спорило с заказчиком, попросившим букву на экранах; запрещены только слова и подписи.
 const theme = designColors(ROOT)
 const full = `${prompt}. Wide background image for a social preview card. Theme colours: background ${theme.background}, main colour ${theme.primary}, text colour ${theme.foreground}. No words, captions, logos or watermarks. Keep the left half calm and darker so a large white headline stays readable.`
+const model = arg('model') ?? 'gpt-image-2.5-flare'
+const call = { who: 'snippet-background', endpoint: 'images/generations', model, started: Date.now() }
 const res = await fetch('https://api.openai.com/v1/images/generations', {
   method: 'POST',
   headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-  body: JSON.stringify({ model: arg('model') ?? 'gpt-image-2.5-flare', prompt: full, size: '1536x864', quality: arg('quality') ?? 'medium', output_format: 'png', n: 1 }),
+  body: JSON.stringify({ model, prompt: full, size: '1536x864', quality: arg('quality') ?? 'medium', output_format: 'png', n: 1 }),
   signal: AbortSignal.timeout(180_000),
-}).catch((e) => fail(`no answer from OpenAI: ${e.message}`))
+}).catch((e) => {
+  const info = readOpenAiException(e)
+  logOpenAiError('snippet-background', info)
+  recordRefusal({ ...call, info }, ROOT)
+  return fail(`no answer from OpenAI: ${info.reason} — ${info.hint}`)
+})
+if (!res.ok) {
+  const info = await readOpenAiResponse(res)
+  logOpenAiError('snippet-background', info)
+  recordRefusal({ ...call, info }, ROOT)
+  fail(`OpenAI refused: ${info.reason} — ${info.hint}${info.link ? ` (${info.link})` : ''}`)
+}
 const body = await res.json().catch(() => ({}))
-if (!res.ok) fail(`OpenAI ${res.status}: ${body?.error?.message ?? 'unknown error'}`)
+recordOk({ ...call, status: res.status, usage: body?.usage }, ROOT)
 const b64 = body?.data?.[0]?.b64_json
 if (!b64) fail('OpenAI answered without data[0].b64_json')
 await save(Buffer.from(b64, 'base64'))

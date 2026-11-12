@@ -47,6 +47,10 @@ export type SocialRefusal = {
   ok: false
   reason: "no-key" | "unknown-network" | "model"
   detail?: string
+  /** Node step 726-2: why OpenAI refused, read by the node's one reader (`lib/openai-error.cjs`); absent — it did not refuse. */
+  openai?: string
+  /** The sentence for the person, chosen on the server for the page's language. */
+  openaiWords?: string
 }
 
 export type SocialResolveResult = SocialProposal | SocialRefusal

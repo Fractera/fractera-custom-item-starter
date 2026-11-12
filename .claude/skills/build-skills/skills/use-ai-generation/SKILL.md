@@ -42,4 +42,9 @@ The vendored `ai-sdk` (`.claude/skills/ai-sdk/`, its `SOURCE.md`) says HOW the A
   the check is dropped whole. What the person must approve, the person approves.
 - 🛑 **No `eval`, no `new Function`** — whatever the model writes never runs.
 - A call is a route with its `// @api` line (`check:api`), never a `fetch` from a component.
+- 🛑 **Every call reads OpenAI's refusal through `lib/openai-error.cjs` and writes one line through `lib/usage-ledger.cjs`** (node step
+  726-2): `recordOk` after a 200 with its `usage`, `recordRefusal` with the reader's `info` on a refusal or a thrown fetch (the AI SDK:
+  `readOpenAiSdkError`). The line lands in `data/node/usage/` and the core's «Все подписки» shows the person which element spends the
+  key — never a prompt, a key or a person's words in it. The guard `check:openai-calls` refuses a call that skips either; both files
+  are the core's copies, never edited here. A new paid provider writes its line the same way: `record({ who, provider: "<name>", … })`.
 - A person's own words or data in a prompt — skill `use-personal-data` first: the model gets the case, never the person.

@@ -49,10 +49,13 @@ export function FactDraft({
   const [words, setWords] = useState("")
   const [busy, setBusy] = useState(false)
   const [failure, setFailure] = useState<DraftFailure | "">("")
+  // Node step 726-2: why OpenAI refused, in words the server chose for this page's language.
+  const [openai, setOpenai] = useState("")
 
   async function ask() {
     setBusy(true)
     setFailure("")
+    setOpenai("")
     try {
       const r = await fetch("/api/architect/fact-draft", {
         method: "POST",
@@ -61,9 +64,10 @@ export function FactDraft({
       })
       const d = (await r.json()) as
         | { ok: true; draft: Record<string, string>; notes: string }
-        | { ok: false; reason: DraftFailure }
+        | { ok: false; reason: DraftFailure; openaiWords?: string }
       if (!d.ok) {
         setFailure(d.reason)
+        setOpenai(d.openaiWords ?? "")
         return
       }
       onDraft(d.draft, d.notes)
@@ -98,7 +102,7 @@ export function FactDraft({
 
       {failure && (
         <Small data-block="yqwwn" data-fact-draft-failure={failure} className="text-warning">
-          {labels.failures[failure]}
+          {openai || labels.failures[failure]}
         </Small>
       )}
 

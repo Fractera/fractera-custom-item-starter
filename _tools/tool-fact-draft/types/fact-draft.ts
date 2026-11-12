@@ -30,7 +30,8 @@ export type DraftField = {
 /** Что вернулось. Успех и отказ различимы по форме, а не по пустоте. */
 export type DraftResult =
   | { ok: true; draft: Record<string, string>; notes: string }
-  | { ok: false; reason: DraftFailure }
+  /** Node step 726-2: `openai` — why OpenAI refused, read by the node's one reader (`lib/openai-error.cjs`); absent — it did not refuse. */
+  | { ok: false; reason: DraftFailure; openai?: string; openaiWords?: string }
 
 /**
  * Почему не вышло.

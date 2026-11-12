@@ -125,7 +125,7 @@ export function SocialsAiDialog({
           ? ui.noKey
           : data.reason === "unknown-network"
             ? ui.unknownNetwork
-            : ui.modelFailed,
+            : data.openaiWords || ui.modelFailed,
       )
     } catch {
       setNote(ui.modelFailed)

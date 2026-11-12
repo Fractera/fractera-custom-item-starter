@@ -1,6 +1,9 @@
 import { openAiKey } from "@/lib/openai-key"
 import { SOCIAL_BRANDS } from "@/lib/socials/catalogue"
 import type { SocialCandidate, SocialOutcome, SocialResolveResult } from "../types/socials-ai"
+import { readOpenAiResponse, readOpenAiException, logOpenAiError } from "@/lib/openai-error.cjs"
+import { openAiErrorWords } from "@/lib/i18n/openai-error.i18n"
+import { recordOk, recordRefusal } from "@/lib/usage-ledger.cjs"
 
 // РАСПОЗНАВАНИЕ СОЦСЕТИ — ПОЛНЫЙ ЦИКЛ, А НЕ ОЦИФРОВКА НАЗВАНИЯ (31-25, 2026-08-29).
 //
@@ -128,6 +131,8 @@ export async function resolveSocial(phrase: string, lang: string): Promise<Socia
     candidates?: unknown
   }
 
+  // Node step 726-2: every call writes one line of this element's ledger (`lib/usage-ledger.cjs`) — no prompt, no key.
+  const call = { who: "socials-ai", endpoint: "chat/completions", model: MODEL, started: Date.now() }
   try {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -146,13 +151,22 @@ export async function resolveSocial(phrase: string, lang: string): Promise<Socia
       signal: AbortSignal.timeout(25000),
     })
     if (!res.ok) {
-      // Отказ модели называется своим именем, а не превращается в пустой список.
-      return { ok: false, reason: "model", detail: `${res.status} ${(await res.text()).slice(0, 200)}` }
+      // Отказ модели называется своим именем, а не превращается в пустой список. Node step 726-2: the node's one reader names
+      // why; OpenAI's own words go to the element's log with secrets hidden, never to the page.
+      const info = await readOpenAiResponse(res)
+      logOpenAiError("socials-ai", info)
+      recordRefusal({ ...call, info })
+      return { ok: false, reason: "model", detail: `${res.status} ${info.code || info.reason}`, openai: info.reason, openaiWords: openAiErrorWords(lang, info.reason) }
     }
-    const data = (await res.json()) as { choices?: { message?: { content?: string } }[] }
+    const data = (await res.json()) as { choices?: { message?: { content?: string } }[]; usage?: unknown }
+    recordOk({ ...call, status: res.status, usage: data.usage })
     proposal = JSON.parse(data.choices?.[0]?.message?.content ?? "{}")
   } catch (e) {
-    return { ok: false, reason: "model", detail: String(e).slice(0, 200) }
+    if (e instanceof SyntaxError) return { ok: false, reason: "model", detail: "the model's answer is not JSON" }
+    const info = readOpenAiException(e)
+    logOpenAiError("socials-ai", info)
+    recordRefusal({ ...call, info })
+    return { ok: false, reason: "model", detail: info.reason, openai: info.reason, openaiWords: openAiErrorWords(lang, info.reason) }
   }
 
   if (!proposal?.name) return { ok: false, reason: "unknown-network" }

@@ -33,6 +33,8 @@ export function useTranslations(fields: TranslatableField[], baseLang: string) {
   const [drafts, setDrafts] = useState<Drafts>({})
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<TranslateError>(null)
+  /** Node step 726-2: the door's sentence for OpenAI's refusal, on the page's language; empty — no refusal or the old reasons. */
+  const [errorWords, setErrorWords] = useState("")
   /** Языки, уже сохранённые в этом сеансе, — по ним прячется кнопка карточки. */
   const [saved, setSaved] = useState<Record<string, boolean>>({})
 
@@ -74,6 +76,7 @@ export function useTranslations(fields: TranslatableField[], baseLang: string) {
     if (!source.length || !targets.length) return
     setBusy(true)
     setError(null)
+    setErrorWords("")
     try {
       const res = await fetch("/api/i18n/translate", {
         method: "POST",
@@ -82,11 +85,13 @@ export function useTranslations(fields: TranslatableField[], baseLang: string) {
           texts: Object.fromEntries(source.map(f => [f.key, f.value])),
           from: baseLang,
           to: targets,
+          uiLang: baseLang,
         }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         setError((data?.error as TranslateError) ?? "upstream")
+        setErrorWords(typeof data?.words === "string" ? data.words : "")
         return
       }
       const data = await res.json() as { translations?: Drafts }
@@ -107,5 +112,5 @@ export function useTranslations(fields: TranslatableField[], baseLang: string) {
     }
   }, [fields, targets, baseLang])
 
-  return { targets, drafts, setCell, translate, busy, error, setError, saved, markSaved }
+  return { targets, drafts, setCell, translate, busy, error, errorWords, setError, saved, markSaved }
 }

@@ -80,7 +80,7 @@ export function TranslationsDialog(
   const t = ui
   const [active, setActive] = useState(0)
   const [savingLang, setSavingLang] = useState<string | null>(null)
-  const { targets, drafts, setCell, translate, busy, error, saved, markSaved } =
+  const { targets, drafts, setCell, translate, busy, error, errorWords, saved, markSaved } =
     useTranslations(fields, lang)
 
   if (!open || SINGLE_LANG_MODE || targets.length === 0) return null
@@ -102,7 +102,8 @@ export function TranslationsDialog(
     : error === "bad-key" ? errors.badKey
     : error === "no-funds" ? errors.noFunds
     : error === "rate-limit" ? errors.rateLimit
-    : error ? errors.upstream : null
+    // Node step 726-2: a reason the old list does not name (a spend limit, the region, a timeout) reads in the door's words.
+    : error ? errorWords || errors.upstream : null
 
   return (
     /* 🔒 ЭТО ОКНО БЫЛО СОБРАНО РУКАМИ ИЗ ГОЛЫХ `div` — и в нём не было НИЧЕГО из

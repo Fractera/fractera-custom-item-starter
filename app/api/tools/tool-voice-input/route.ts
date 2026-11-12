@@ -4,6 +4,7 @@ import { requireRoles } from "@/lib/auth/require-roles"
 import { PROTECTED_GROUP_ROLES } from "@/lib/roles"
 import { openAiKey } from "@/lib/openai-key"
 import { transcribeAudio } from "@/_tools/tool-voice-input/server/transcribe"
+import { openAiRefusal } from "@/lib/i18n/openai-error.i18n"
 
 // Дверь расшифровки речи для приложения.
 //
@@ -40,7 +41,12 @@ export async function POST(req: NextRequest) {
   process.env.OPENAI_API_KEY = key
   try {
     const result = await transcribeAudio(file)
-    return NextResponse.json(result, { status: result.ok ? 200 : (result.status || 500) })
+    if (result.ok) return NextResponse.json(result)
+    // Node step 726-2: a refusal of OpenAI carries the person's words, chosen HERE for the page's language (`uiLang`; a client
+    // carries no dictionary) — the reason itself comes from the node's one reader of OpenAI's errors.
+    const uiLang = form?.get("uiLang")
+    const words = result.reason ? openAiRefusal(typeof uiLang === "string" ? uiLang : "en", result.reason, result.link) : {}
+    return NextResponse.json({ ...result, ...words }, { status: result.status || 500 })
   } finally {
     if (had === undefined) delete process.env.OPENAI_API_KEY
     else process.env.OPENAI_API_KEY = had

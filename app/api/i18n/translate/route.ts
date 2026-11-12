@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server"
 import { requireRoles } from "@/lib/auth/require-roles"
 import { PROTECTED_GROUP_ROLES } from "@/lib/roles"
 import { openAiKey } from "@/lib/openai-key"
+import { readOpenAiResponse, readOpenAiException, logOpenAiError } from "@/lib/openai-error.cjs"
+import { openAiRefusal } from "@/lib/i18n/openai-error.i18n"
+import { recordOk, recordRefusal } from "@/lib/usage-ledger.cjs"
 
 // Перевод полей записи — дверь для диалога добавления переводов.
 //
@@ -40,6 +43,8 @@ type Body = {
   from?: string
   /** Языки, на которые переводим. */
   to?: string[]
+  /** Node step 726-2: the language of the page that asks — the refusal's words are chosen here, on the server. */
+  uiLang?: string
 }
 
 export async function POST(req: NextRequest) {
@@ -56,6 +61,7 @@ export async function POST(req: NextRequest) {
   const texts = body?.texts ?? {}
   const from = body?.from ?? "en"
   const to = (body?.to ?? []).filter(l => l && l !== from)
+  const uiLang = typeof body?.uiLang === "string" ? body.uiLang : from
   if (!Object.keys(texts).length || !to.length) {
     return NextResponse.json({ error: "texts and to are required" }, { status: 400 })
   }
@@ -70,6 +76,8 @@ export async function POST(req: NextRequest) {
     `Source: ${JSON.stringify(texts)}`,
   ].join("\n")
 
+  // Node step 726-2: every call writes one line of this element's ledger (`lib/usage-ledger.cjs`) — no prompt, no key.
+  const call = { who: "i18n/translate", endpoint: "chat/completions", model: MODEL, started: Date.now() }
   try {
     const res = await fetch(API, {
       method: "POST",
@@ -84,15 +92,17 @@ export async function POST(req: NextRequest) {
     if (!res.ok) {
       // Разбираем ответ OpenAI: «кончились деньги» и «ключ не тот» — разные беды
       // с разными действиями, и человек обязан видеть, какая из них случилась.
-      // Общее «не удалось» оставляет его без следующего шага.
-      const detail = await res.json().catch(() => null)
-      const code = String(detail?.error?.code ?? "")
-      if (res.status === 401) return NextResponse.json({ error: "bad-key" }, { status: 401 })
-      if (code === "insufficient_quota") return NextResponse.json({ error: "no-funds" }, { status: 402 })
-      if (res.status === 429) return NextResponse.json({ error: "rate-limit" }, { status: 429 })
-      return NextResponse.json({ error: "upstream", upstreamStatus: res.status }, { status: 502 })
+      // Node step 726-2: read by the node's ONE reader of OpenAI's errors (`lib/openai-error.cjs`, the list from OpenAI's own guide —
+      // the old reading here took `credit_balance_exhausted` for a rate limit). `error` keeps the reason (the dialog's contract),
+      // `words`/`link` add the sentence and OpenAI's page to act on; OpenAI's own words go to the element's log.
+      const info = await readOpenAiResponse(res)
+      logOpenAiError("i18n/translate", info)
+      recordRefusal({ ...call, info })
+      const status = info.reason === "bad-key" ? 401 : info.reason === "no-funds" ? 402 : info.reason === "rate-limit" ? 429 : 502
+      return NextResponse.json({ error: info.reason, ...openAiRefusal(uiLang, info.reason, info.link), upstreamStatus: res.status }, { status })
     }
     const data = await res.json()
+    recordOk({ ...call, status: res.status, usage: data?.usage })
     const raw = data?.choices?.[0]?.message?.content ?? "{}"
     const parsed = JSON.parse(raw) as Record<string, Record<string, string>>
 
@@ -108,7 +118,11 @@ export async function POST(req: NextRequest) {
       }
     }
     return NextResponse.json({ translations: out })
-  } catch {
-    return NextResponse.json({ error: "upstream" }, { status: 502 })
+  } catch (e) {
+    // A thrown fetch is a timeout or the network; a thrown JSON.parse is the model's malformed answer — both named, never silent.
+    const info = e instanceof SyntaxError ? null : readOpenAiException(e)
+    if (info) { logOpenAiError("i18n/translate", info); recordRefusal({ ...call, info }) }
+    const reason = info?.reason ?? "upstream"
+    return NextResponse.json({ error: reason, ...openAiRefusal(uiLang, reason, info?.link) }, { status: 502 })
   }
 }
