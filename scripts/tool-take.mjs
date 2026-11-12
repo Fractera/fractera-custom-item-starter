@@ -41,7 +41,8 @@ const fi = args.indexOf("--from")
 const from = fi >= 0 ? args[fi + 1] : undefined
 const dry = args.includes("--dry")
 const update = args.includes("--update")
-const tool = args.filter((a, i) => !a.startsWith("--") && i !== fi + 1)[0]
+// 735 (D12): with no --from, `fi + 1` was 0 and the tool id itself was dropped — `npm run tool:take -- <id>` never worked.
+const tool = args.filter((a, i) => !a.startsWith("--") && (fi < 0 || i !== fi + 1))[0]
 if (!tool) { console.error("npm run tool:take -- <tool id from parts_find> [--from <element>] [--dry] [--update]"); process.exit(1) }
 const key = env.ELEMENT_KEY?.trim()
 const core = coreUrl()

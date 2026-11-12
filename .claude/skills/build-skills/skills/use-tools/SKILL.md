@@ -15,6 +15,15 @@ description: >
 
 **Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
 
+## The cycle — one command per act (node step 735)
+
+1. **Find** — `parts_find` (or `npm run parts -- <words>`): yours, then the core's, then your neighbours'.
+2. **Take** — found elsewhere: `npm run tool:take -- <id> [--from <element>]` (`--dry` first). Already yours: use it.
+3. **Change** — extend it in your own file beside it; or `npm run tool:own -- <id> [--as <new id>]`: the copy becomes yours
+   (`origin` keeps where it came from, v1.0.0), then edit it — every later change of its body raises its version.
+4. **Create** — nothing fits: `npm run tool:new -- <name> "<the task in one sentence>"` bears `_tools/tool-<name>/` with a complete
+   card and an empty entry; it refuses when a close tool exists (read it; `--new-anyway` after). Your neighbours find it at once.
+
 ## First look — the tool may already exist, here or in the node
 
 This element is born with an empty `_tools/` (node step 733-6): the tools live in the core and in the elements that bore them.
@@ -24,7 +33,8 @@ neighbours'** on a single-project node — and every answer says where it lives.
 its recipe you lack, each with its `source`; you rebuild the maps and commit. A refusal writes nothing and says why (a panel tool, a
 requirement you lack, a path you hold with something else). A copy keeps its source's folder name (`_tools/image-crop/`) and its
 body is never edited — add your own files beside it; a changed body is a fork with a name of its own. Your map holds it: a copy whose
-body moved from its `source.bodyHash` is red (undo the edit, or make it your own tool — a new id, no `source`). When `parts_find` says
+body moved from its `source.bodyHash` is red (undo the edit, or `npm run tool:own -- <id>`). An unedited copy is judged by its source
+(`check:shadcn-parts` leaves its debt to it); a copy made yours is your code — clean it like any file you touch. When `parts_find` says
 **a newer version is in the core**, `npm run tool:take -- <id> --update` (after `--dry`) replaces the copy and the parts of its recipe
 — only while they are unedited; rebuild the maps, check the pages that use it, commit (node step 733-9).
 
@@ -69,6 +79,9 @@ Only shadcn components and typography — no raw control (skill `use-shadcn`) �
 (`npm run widgets:ids` covers `_tools/`; skill `use-highlight`).
 
 ## Adding a tool
+
+`npm run tool:new -- <name> "<task>"` does steps 1–2 below for you (the folder, a complete card, an empty entry that declares itself,
+both maps). By hand, the shape is:
 
 ```
 _tools/tool-<name>/

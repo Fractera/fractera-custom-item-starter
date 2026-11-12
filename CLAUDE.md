@@ -179,7 +179,8 @@ server, client or combined function. One page changes nothing: it is still a ser
   «вместо того чтобы взять готовые инструмент ты … полез создавать новый»): your parts map `lib/parts/PARTS.json` — tools,
   composites with their cards, primitives, your sections; a ready part is taken as it is, never built twice. It answers yours first,
   then the core's tools and your neighbours' (node step 733); found elsewhere — `npm run tool:take -- <id>` copies it with the parts of
-  its recipe, each with its `source`; its body is never edited. A new interface file says on its first lines `// @part <id> — <what>` (its card in
+  its recipe, each with its `source`; its body is never edited — to change it, `npm run tool:own -- <id>` makes the copy yours first;
+  nothing fits — `npm run tool:new -- <name> "<the task>"` bears a tool with its complete card (node step 735). A new interface file says on its first lines `// @part <id> — <what>` (its card in
   the folder's `parts.json`) or `// @local — <why>`; the node's hook refuses a birth that did not ask, `check:parts-map` and
   `check:parts-dup` (the second copy of a long class string) hold it in your build; `npm run parts -- <words>` asks from the terminal.
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English

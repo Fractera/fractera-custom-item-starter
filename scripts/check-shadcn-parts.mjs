@@ -23,6 +23,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import crypto from "node:crypto"
+import { pathToFileURL } from "node:url"
 
 const args = process.argv.slice(2)
 const ROOT = path.resolve(args.includes("--root") ? args[args.indexOf("--root") + 1] : process.cwd())
@@ -127,6 +128,24 @@ for (const f of files.sort()) {
   if (found.length) now.set(rel(f), { hash: hash(raw), found })
 }
 
+// 🔒 ВЗЯТАЯ КОПИЯ — НЕ НОВЫЙ КОД ЭЛЕМЕНТА (узел, шаг 735, дефект D11). Инструмент, взятый у ядра или соседа (`npm run tool:take`),
+// приходит со своим телом и его долгом: голос ядра намеренно без shadcn (архив, который работает там, куда распакован), и шесть из
+// тринадцати инструментов ядра — в его замороженном долге. Без этого правила элемент, взявший поле с голосом, краснел здесь на чужом
+// коде («новый код») и не собирался. Тело копии, НЕ тронутое после взятия (карточка `source.bodyHash` = отпечаток тела по карте частей),
+// судит её источник; копия правленая или ставшая своей (`npm run tool:own`) — код элемента, и закон тронутого файла для неё в силе.
+const copied = new Map()
+try {
+  const map = readJson(path.join(ROOT, "lib", "parts", "PARTS.json"))
+  const taken = (map?.parts ?? []).filter((p) => p.kind === "tool" && p.source?.bodyHash && Array.isArray(p.body) && p.body.length)
+  if (taken.length) {
+    const { bodyHash } = await import(pathToFileURL(path.join(ROOT, "lib", "parts", "parts-map.mjs")).href)
+    for (const p of taken) {
+      if (!p.body.every((f) => fs.existsSync(path.join(ROOT, f)))) continue
+      if (bodyHash(ROOT, p.body) === p.source.bodyHash) for (const f of p.body) copied.set(f, `${p.id} ← ${p.source.from}`)
+    }
+  }
+} catch { /* нет карты частей или её кода — копии судятся как всё остальное */ }
+
 const debt = readJson(DEBT)
 if (args.includes("--freeze")) {
   if (debt) { console.error("===SHADCN_PARTS_REFUSED=== долг уже заморожен — его можно только сократить (--shrink), не переписать"); process.exit(1) }
@@ -148,16 +167,20 @@ if (args.includes("--shrink")) {
 
 const bad = []
 let quiet = 0
+let quietCopies = 0
 for (const [f, v] of now) {
+  if (copied.has(f)) { quietCopies += v.found.length; continue }
   const d = debt?.files?.[f]
   if (d && d.hash === v.hash) { quiet += v.found.length; continue }
   for (const x of v.found) bad.push({ file: f, ...x, why: d ? "файл тронут — выходит из правки чистым" : "новый код" })
 }
 console.log(`\n  просмотрено файлов: ${files.length}; долг нетронутых файлов: ${quiet} находок в ${[...now.keys()].filter((f) => debt?.files?.[f]?.hash === now.get(f).hash).length} файлах`)
+if (quietCopies) console.log(`  взятые копии, не тронутые после взятия (их судит источник): ${quietCopies} находок в ${[...now.keys()].filter((f) => copied.has(f)).length} файлах — ${[...new Set([...now.keys()].filter((f) => copied.has(f)).map((f) => copied.get(f)))].join(", ")}`)
 if (bad.length) {
   console.error("\n===SHADCN_PARTS_FAILED===")
   for (const b of bad) console.error(`  ✗ ${b.file}:${b.line} ${b.rule} → ${b.owner} (${b.why})`)
-  console.error(`\n  ${bad.length} находок. Элемент дизайна, который есть в shadcn, берётся из shadcn (use-primitives, use-shadcn); свой вид — только у навыка дизайна с меткой @design.\n`)
+  console.error(`\n  ${bad.length} находок. Элемент дизайна, который есть в shadcn, берётся из shadcn (use-primitives, use-shadcn); свой вид — только у навыка дизайна с меткой @design.`)
+  console.error(`  Только что взятый инструмент? Его тело судит источник, когда карта частей знает копию: npm run build:tools-map && npm run build:parts-map.\n`)
   process.exit(1)
 }
 console.log("\n===SHADCN_PARTS_OK===\n")

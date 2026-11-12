@@ -96,6 +96,24 @@ expect("cleaned in the same pass — passes", run(), 0)
 expect("shrink strikes it from the debt", run("--shrink"), 0, "вычеркнуто 1")
 put("components/x/new.client.tsx", RED)
 expect("a new file with the same markup fails although it is in no debt", run(), 1, "новый код")
+del("components/x/new.client.tsx")
+
+// 5. Узел, шаг 735 (D11): взятая копия инструмента, не тронутая после взятия, — долг её источника, не новый код элемента; правленая — код
+// элемента. Отпечаток тела — тот же, что пишет взятие (`lib/parts/parts-map.mjs`).
+{
+  const HERE = path.dirname(new URL(import.meta.url).pathname)
+  const { bodyHash } = await import(new URL("../lib/parts/parts-map.mjs", import.meta.url).href)
+  fs.mkdirSync(path.join(root, "lib/parts"), { recursive: true })
+  fs.copyFileSync(path.join(HERE, "..", "lib/parts/parts-map.mjs"), path.join(root, "lib/parts/parts-map.mjs"))
+  const body = ["_tools/voice-input/client/v.client.tsx"]
+  put(body[0], RED)
+  put("lib/parts/PARTS.json", JSON.stringify({ parts: [{ id: "tool-voice-input", kind: "tool", body, source: { from: "core", tool: "tool-voice-input", version: "1.0.0", bodyHash: bodyHash(root, body) } }] }))
+  expect("a taken copy, unedited: its source judges it, not this element", run(), 0, "взятые копии")
+  put(body[0], RED + "// edited after the take\n")
+  expect("the same copy edited after the take is the element's code", run(), 1, "новый код")
+  del(body[0])
+  del("lib/parts/PARTS.json")
+}
 
 fs.rmSync(root, { recursive: true, force: true })
 console.log(failed ? `\n===TEST_FAILED=== ${failed}` : "\n===TEST_OK===")

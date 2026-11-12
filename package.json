@@ -87,6 +87,8 @@
     "check:parts-dup": "node scripts/check-parts-dup.mjs",
     "parts": "node scripts/parts.mjs",
     "tool:take": "node scripts/tool-take.mjs",
+    "tool:own": "node scripts/tool-own.mjs",
+    "tool:new": "node scripts/tool-new.mjs",
     "check:page-sequence": "node scripts/check-page-sequence.mjs",
     "check:sections": "node scripts/check-sections.mjs",
     "check:a2a-card": "node scripts/check-a2a-card.mjs",
