@@ -17,6 +17,7 @@
     "door:add": "node scripts/door-add.mjs",
     "ask-core": "node scripts/ask-core.mjs",
     "reply-core": "node scripts/ask-core.mjs --reply",
+    "recommend": "node scripts/recommend.mjs",
     "tell-core": "node scripts/ask-core.mjs --tell",
     "reset": "node scripts/ask-core.mjs --reset",
     "need": "node scripts/need.mjs",

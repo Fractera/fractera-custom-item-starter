@@ -18,6 +18,13 @@ description: >
 Owner, 2026-10-12: «…мы единственное что делаем это создаем навык который обучит агента в случае если он будет использовать какой-то
 внешний ресурс в правильное место его разместить и правильным образом с программировать интерфейс и серверный функции».
 
+## Before you pick the service (node step 726-6)
+
+`npm run recommend -- "<the person's need, their words>" --lang <their language>` — the node's checked helpful links, one list kept in
+the core. A link that fits is one honest option among others, its verdict said; a partner link keeps its disclosure line next to it,
+always. `===RECOMMEND_NONE===` — recommend nothing and choose on merit. A paid call of the service writes its line through
+`lib/usage-ledger.cjs` (skill `use-ai-generation` §3), so the person sees which element spends what.
+
 ## Where each part lives
 
 | Part | Place | Rule |
