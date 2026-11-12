@@ -42,7 +42,8 @@ const ROLES = { tab: "Tabs", tablist: "Tabs", tooltip: "Tooltip", menu: "Dropdow
   listbox: "Select / Command", option: "Select / Command", combobox: "Popover + Command", progressbar: "Progress" }
 
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/")
-const hash = (s) => crypto.createHash("sha256").update(s).digest("hex").slice(0, 16)
+// CRLF → LF before the print: a Windows checkout (core.autocrlf) rewrote every frozen file, and CI read all of them as touched (measured on v0.3.189, 2026-11-12).
+const hash = (s) => crypto.createHash("sha256").update(s.replace(/\r\n/g, "\n")).digest("hex").slice(0, 16)
 const readJson = (f) => { try { return JSON.parse(fs.readFileSync(f, "utf8")) } catch { return null } }
 const hint = (owner, ui) => `${owner}${ui && !INSTALLED.has(ui) ? ` (нет в components/ui — npx shadcn@latest add ${ui})` : ""}`
 
