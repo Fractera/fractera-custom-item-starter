@@ -2,9 +2,9 @@
 // процесса в котором ты находишься в процессе строительства понять что именно сейчас ты создаёшь инструмент этот инструмент который будет
 // нужен тебе в будущем». ✗ 722-8: the row «state dot + element name» was written by hand three times in one step and extracted only after
 // the owner's verdict — search would not have caught it, there was nothing to find yet.
-// 🔒 The tell (interface-design: «the same long className sprayed everywhere — that is a missing component»): one long class string
+// 🔒 The tell («the same long className sprayed everywhere — that is a missing component», the craft of interface design): one long class string
 // (MIN classes or more, order and repeats ignored) in .tsx files of two or more folders → red at the SECOND copy, naming both files and
-// asking for one part (`// @part <id>` + its card, skill use-primitives §5) — model-free, no guessing.
+// asking for one part (`// @part <id>` + its card in the folder's parts.json) — model-free, no guessing.
 // 🔒 The copies that already exist are a frozen debt (`lib/parts/dup-debt.json`, `--freeze` writes it) listed for the sweep 725-6; a
 // frozen group that gains another file is red too. Not counted: shadcn sources (components/ui, ai-elements) and the agent-kit copies
 // (`_agent-kit/`, byte copies of one master held by check:agent-kits).
