@@ -23,7 +23,10 @@ neighbours'** on a single-project node — and every answer says where it lives.
 — `npm run tool:take -- <tool id> [--from <element>]` (`--dry` first shows what would come): the core copies the tool and the parts of
 its recipe you lack, each with its `source`; you rebuild the maps and commit. A refusal writes nothing and says why (a panel tool, a
 requirement you lack, a path you hold with something else). A copy keeps its source's folder name (`_tools/image-crop/`) and its
-body is never edited — add your own files beside it; a changed body is a fork with a name of its own.
+body is never edited — add your own files beside it; a changed body is a fork with a name of its own. Your map holds it: a copy whose
+body moved from its `source.bodyHash` is red (undo the edit, or make it your own tool — a new id, no `source`). When `parts_find` says
+**a newer version is in the core**, `npm run tool:take -- <id> --update` (after `--dry`) replaces the copy and the parts of its recipe
+— only while they are unedited; rebuild the maps, check the pages that use it, commit (node step 733-9).
 
 ## What a tool is — decided at its birth (node step 733)
 
