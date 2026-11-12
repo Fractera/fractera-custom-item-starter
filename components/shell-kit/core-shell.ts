@@ -38,7 +38,13 @@ export function shellDrawers(lang: string) {
 export const loadCoreShell = cache(async (lang: string): Promise<CoreShell | null> => {
   const core = coreUrl()
   const key = process.env.SETTINGS_SECRET?.trim()
-  if (!core || !key) return null
+  // ✗ 727-3: молча возвращённый `null` выглядел как «ядро ответило, но фрагмента нет» — агент элемента искал причину не там. Без адреса
+  // ядра или ключа заглушка говорит, чего не хватает (обычно это сервер разработки без окружения узла).
+  if (!core || !key) {
+    const missing = [!core && "the core's address (NODE_DOMAIN_FILE → logs/runtime.json)", !key && "the node key (SETTINGS_SECRET)"].filter(Boolean).join(" and ")
+    console.warn(`[shell-kit] ${lang}: no ${missing} — the core is not asked, own header and footer`)
+    return null
+  }
   try {
     const r = await fetch(`${core}/api/shell-kit/${encodeURIComponent(lang)}`, {
       method: "POST",
