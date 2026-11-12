@@ -164,6 +164,11 @@ element is a microservice that answers its neighbours and asks them for help; to
   markup belongs only to a design skill in its territory — your sections, prototypes and widgets — with `@design <its mark>` on the file's
   first lines; the mark is legal only with the skill your passport or that prototype names. `check:shadcn-parts` holds it in your build:
   old code is a frozen debt, **a file you touch leaves clean**; skill `use-shadcn` is loaded before an interface file.
+- **An interface piece — `parts_find` first** (node step 725; the owner of the node:
+  «вместо того чтобы взять готовые инструмент ты … полез создавать новый»): your parts map `lib/parts/PARTS.json` — tools,
+  composites with their cards, primitives, your sections; a ready part is taken as it is, never built twice. A new interface file says on its first lines `// @part <id> — <what>` (its card in
+  the folder's `parts.json`) or `// @local — <why>`; the node's hook refuses a birth that did not ask, `check:parts-map` and
+  `check:parts-dup` (the second copy of a long class string) hold it in your build; `npm run parts -- <words>` asks from the terminal.
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English
   words — are a frequent model artifact. Names and code stay as they are.
 - **Languages.** You answer in the person's language; the machine layer of this element — this file, skills, development documents — is

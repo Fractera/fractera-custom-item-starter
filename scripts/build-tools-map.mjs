@@ -104,6 +104,8 @@ export function readCard(id) {
       usedBy: Array.isArray(raw.usedBy) ? raw.usedBy : [],
       en: { title: raw.en.title, what: raw.en.what, how: raw.en.how, value: raw.en.value },
       ru: { title: raw.ru.title, what: raw.ru.what, how: raw.ru.how, value: raw.ru.value },
+      // 725-2: the words a person or an agent would search the tool by, in both languages — `parts_find` reads them from the parts map.
+      ...(raw.words && Array.isArray(raw.words.en) && Array.isArray(raw.words.ru) ? { words: { en: raw.words.en, ru: raw.words.ru } } : {}),
     },
   }
 }

@@ -1,0 +1,9 @@
+{
+  "_": "Frozen second copies of long class strings (725-7); the sweep 725-6 extracts them. Written by node scripts/check-parts-dup.mjs --freeze.",
+  "groups": {
+    "bg-muted/40 border border-border flex flex-col gap-2 p-4 rounded-xl text-muted-foreground text-sm": [
+      "app/[lang]/(protectedLayer)/admin/_components/design-editors/access-notice.tsx",
+      "app/[lang]/(protectedLayer)/admin/_components/site-settings-editors/access-notice.tsx"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "_": "Cards of the reusable parts of this folder (node step 725-5). One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "core-shell-parts",
+      "kind": "composite",
+      "path": "components/shell-kit/core-shell-parts.tsx",
+      "export": "CoreShellHeader, CoreShellFooter",
+      "what": {
+        "en": "The header and the footer drawn by the core's tool with this element's own data; the core silent — this element's own TopMenu and FooterMenu (727).",
+        "ru": "Шапка и подвал, нарисованные инструментом ядра с данными этого элемента; ядро молчит — свои TopMenu и FooterMenu элемента (727)."
+      },
+      "how": "In app/[lang]/layout.tsx; how to draw your own instead — components/shell-kit/README.md.",
+      "words": {
+        "en": [
+          "header",
+          "footer",
+          "site header from the core"
+        ],
+        "ru": [
+          "шапка",
+          "подвал",
+          "шапка от ядра"
+        ]
+      }
+    }
+  ]
+}

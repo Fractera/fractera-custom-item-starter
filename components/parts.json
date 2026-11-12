@@ -1,0 +1,51 @@
+{
+  "_": "Cards of the reusable parts of this folder (node step 725-5). One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "theme-init",
+      "kind": "composite",
+      "path": "components/theme-init.tsx",
+      "export": "ThemeInit",
+      "what": {
+        "en": "The theme script that runs before the first paint, so a dark page never flashes light; a re-export of the shell's init.",
+        "ru": "Скрипт темы до первой отрисовки, чтобы тёмная страница не мигала светлой; переадресация к инициализации оболочки."
+      },
+      "how": "Put <ThemeInit /> in the <head> of a layout that owns <html>.",
+      "words": {
+        "en": [
+          "theme script",
+          "dark mode flash",
+          "theme init"
+        ],
+        "ru": [
+          "скрипт темы",
+          "мигание темы",
+          "тёмная тема при загрузке"
+        ]
+      }
+    },
+    {
+      "id": "not-found-content",
+      "kind": "composite",
+      "path": "components/not-found-content.tsx",
+      "export": "NotFoundContent",
+      "what": {
+        "en": "The one body of a 404 page for every zone that owns its own <html> — the same words and look everywhere.",
+        "ru": "Одно тело страницы 404 для каждой зоны со своим <html>: везде одни слова и один вид."
+      },
+      "how": "Render <NotFoundContent /> from a zone's not-found.tsx.",
+      "words": {
+        "en": [
+          "404",
+          "not found page",
+          "page missing"
+        ],
+        "ru": [
+          "страница не найдена",
+          "404",
+          "нет страницы"
+        ]
+      }
+    }
+  ]
+}
