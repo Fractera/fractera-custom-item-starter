@@ -20,10 +20,30 @@ description: >
 `_tools/TOOLS.json` lists every tool with what it does and how (`en` / `ru`); `npm run passport -- me` shows their names.
 Open the nearest one before writing anything similar.
 
-## Tool or widget
+## What a tool is — decided at its birth (node step 733)
 
-One question: **will a second caller want exactly this thing?** Yes — a tool. Only this page — a widget (skill `build-widget`).
-A tool knows no page and no domain; it does not know where its result goes — the caller passes the door and takes the result.
+The owner of the node, 2026-11-12:
+«Инструмент это то что решает задачу и используют для этого визуальный интерфейс. Один инструмент может быть частью другого»
+
+**A tool solves a task and shows its own interface for it**, and it does not know which page it stands on: its material comes from
+outside, its result goes back out — the caller passes the door and takes the result. **Tools nest**: an image-editing form is a modal
+window; inside it the crop, the voice input that turns speech into text and the call to the image technology — four tools, and the form
+is a tool too. **A combination is kept as a recipe**: its own glue and its parts by id and version, never copies of the parts inside it.
+
+Not a tool: a shadcn primitive (a button solves no task by itself), a section (how a page's content looks), a widget (code of one page —
+it reads that page's data and holds tools). A server job without a screen of its own (transcription, a model call) is a part of the tool
+whose interface calls it.
+
+**Three questions, in this order, before a new interface piece** — each a yes or a no, no guessing about the future:
+
+1. How a page's content looks (a hero, prices, questions)? → a **section**.
+2. Bound to this page — reads its data, knows where it stands? → a **widget** (skill `build-widget`); the tools inside it are taken or
+   born as tools, never written into it.
+3. A task with its own interface, its material from outside? → a **tool** in `_tools/<id>/`, its card `tool.json` first (the task, the
+   interface, its parts), even when one place needs it today. Made of other tools — find each with `parts_find` or bear it first, from
+   the inside out.
+
+The node's gate holds it: a new interface file is asked these questions, and a file under `_tools/<id>/` is born only after its card.
 
 ## Using a tool
 

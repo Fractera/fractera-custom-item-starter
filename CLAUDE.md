@@ -164,6 +164,12 @@ element is a microservice that answers its neighbours and asks them for help; to
   markup belongs only to a design skill in its territory — your sections, prototypes and widgets — with `@design <its mark>` on the file's
   first lines; the mark is legal only with the skill your passport or that prototype names. `check:shadcn-parts` holds it in your build:
   old code is a frozen debt, **a file you touch leaves clean**; skill `use-shadcn` is loaded before an interface file.
+- **What a tool is** (node step 733; the owner of the node, 2026-11-12:
+  «Инструмент это то что решает задачу и используют для этого визуальный интерфейс. Один инструмент может быть частью другого»):
+  a tool solves a task with its own interface and does not know which page it stands on; tools nest, and a combination is a tool kept
+  as a recipe — its glue and its parts by id and version. Before a new interface piece, three questions (skill `use-tools`): a page's
+  look → a section; bound to this page → a widget that holds tools; a task with its own interface → a tool in `_tools/<id>/`, its card
+  first, even when one place needs it today.
 - **An interface piece — `parts_find` first** (node step 725; the owner of the node:
   «вместо того чтобы взять готовые инструмент ты … полез создавать новый»): your parts map `lib/parts/PARTS.json` — tools,
   composites with their cards, primitives, your sections; a ready part is taken as it is, never built twice. A new interface file says on its first lines `// @part <id> — <what>` (its card in
