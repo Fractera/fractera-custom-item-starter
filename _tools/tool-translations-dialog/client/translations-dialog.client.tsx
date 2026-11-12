@@ -40,6 +40,7 @@ import { useState } from "react"
 import { AlertTriangle, ExternalLink, HelpCircle, Languages, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { AppDialog } from "@/components/dialog/app-dialog.client"
 import type { AppDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { SINGLE_LANG_MODE } from "@/config/translations/translations.config"
@@ -137,18 +138,25 @@ export function TranslationsDialog(
           {/* Вкладки полей — только когда полей больше одного. */}
           {fields.length > 1 && (
             <div data-block="a9rle" className="flex flex-wrap items-center gap-1.5">
-              {fields.map((f, i) => (
-                <Button
-                  key={f.key}
-                  size="sm"
-                  variant={i === active ? "default" : "outline"}
-                  className="h-7 min-w-7 px-2 text-[11px]"
-                  onClick={() => setActive(i)}
-                  title={f.label}
-                >
-                  {i + 1}
-                </Button>
-              ))}
+              {/* Node step 726-2 (the file touched, `check:shadcn-parts`): the field's name is a shadcn Tooltip, never `title=`. */}
+              <TooltipProvider delayDuration={100}>
+                {fields.map((f, i) => (
+                  <Tooltip key={f.key}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant={i === active ? "default" : "outline"}
+                        className="h-7 min-w-7 px-2 text-[11px]"
+                        onClick={() => setActive(i)}
+                        aria-label={f.label}
+                      >
+                        {i + 1}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">{f.label}</TooltipContent>
+                  </Tooltip>
+                ))}
+              </TooltipProvider>
               <span className="ml-1 text-[11px] text-muted-foreground">{field?.label}</span>
             </div>
           )}
