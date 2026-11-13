@@ -27,7 +27,11 @@ export function QuickNav({ lang, words, designHref, settingsHref, subscriptionHr
 }) {
   const [shown, setShown] = useState(false)
   useEffect(() => {
-    if (sessionStorage.getItem(HIDDEN_KEY) === '1') return
+    // 736 (✗ 2026-11-13, the owner's Chrome: «Failed to read the 'sessionStorage' property … Access is denied» — the whole page fell to
+    // «This page could not be displayed»): a browser that keeps no data for this address only loses the «hidden» mark, never the page.
+    let hidden = false
+    try { hidden = sessionStorage.getItem(HIDDEN_KEY) === '1' } catch { /* no storage here — the strip shows */ }
+    if (hidden) return
     const host = window.location.hostname
     const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host), showcase: isShowcaseHostname(host) }
     if (quickNavVisible(place, null)) { setShown(true); return }
@@ -51,7 +55,7 @@ export function QuickNav({ lang, words, designHref, settingsHref, subscriptionHr
         {subscriptionHref ? <a href={subscriptionHref} className={link} data-quick-nav-link="subscription">{words.subscription}</a> : null}
         <span className="ms-auto flex items-center gap-3">
           <Button variant="ghost" size="icon-sm" type="button" aria-label={words.hide} title={words.hide}
-            onClick={() => { sessionStorage.setItem(HIDDEN_KEY, '1'); setShown(false) }}>
+            onClick={() => { try { sessionStorage.setItem(HIDDEN_KEY, '1') } catch { /* no storage — hidden until a reload */ } setShown(false) }}>
             <X aria-hidden className="size-4" />
           </Button>
         </span>
