@@ -34,7 +34,14 @@ console.log(`Three questions before a new interface piece (skill use-tools):
 // (lib/parts/node-tools.mjs, 736); outside a node only your own map is asked, and that is said.
 const { core, node } = await nodeTools(ROOT)
 if (!core) console.log("  (the node's core is not known here — only this element's own map was asked; parts_find in your session asks the node)")
-const found = (await findParts(ROOT, { query: `${name.replace(/-/g, " ")} ${task}`, kinds: ["tool"], node })).parts
+// 736 (D16, ✗ 2026-11-13 02:2x live): «tool:new -- image-crop» bore `tool-image-crop` beside the core's tool of the same id — the long task
+// sentence diluted the search below its threshold. The same id in the node always refuses; the name alone is searched as well.
+const clash = node.find((p) => p.id === id)
+if (clash && !anyway) fail(`«${id}» is the id of a tool that already lives in ${clash.where?.owner === "core" ? "the core" : `the element «${clash.where?.owner}»`} — take it (npm run tool:take -- ${id}${clash.where?.owner && clash.where.owner !== "core" ? ` --from ${clash.where.owner}` : ""}), make a taken copy yours (npm run tool:own), or give your new tool another name`)
+const seen = new Map()
+for (const q of [name.replace(/-/g, " "), `${name.replace(/-/g, " ")} ${task}`])
+  for (const p of (await findParts(ROOT, { query: q, kinds: ["tool"], node })).parts) if (!seen.has(p.id)) seen.set(p.id, p)
+const found = [...seen.values()]
 if (found.length && !anyway) {
   for (const p of found.slice(0, 3)) {
     const where = p.where?.owner === "self" ? "yours — it is in this repository" : `in ${p.where?.owner === "core" ? "the core" : `the element «${p.where?.owner}»`}: npm run tool:take -- ${p.toolId ?? p.id}${p.where?.owner && p.where.owner !== "core" ? ` --from ${p.where.owner}` : ""}`
