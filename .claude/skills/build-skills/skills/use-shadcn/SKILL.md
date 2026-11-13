@@ -65,7 +65,7 @@ look — `<Link className={buttonVariants({ variant: "outline" })} href=…>` �
 
 ## An own look is still shadcn
 
-A landing or a widget with its own world (a design skill such as `impeccable`) keeps its look **through** the components:
+A landing or a widget with its own world (the design skill the architect picked) keeps its look **through** the components:
 `variant`, `size` and `className` on design tokens. Its buttons are `Button`, its fields are `Input` — never a raw tag.
 
 ## Every container has an address

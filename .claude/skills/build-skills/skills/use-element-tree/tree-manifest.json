@@ -1,7 +1,7 @@
 {
  "_": "Starting tree of a Fractera element (node step 462). Written by scripts/tree-manifest.mjs in fractera-custom-item-starter; checked by scripts/check-tree.mjs. Never edit by hand.",
  "template": "fractera-custom-item-starter",
- "after": "after v0.3.197",
+ "after": "after v0.3.201",
  "files": [
   "app/.well-known/agent-card.json/route.ts",
   "app/[lang]/(guestLayer)/README.md",
@@ -468,11 +468,9 @@
   ".claude/skills/build-skills/skills/use-typography",
   ".claude/skills/copy-editing",
   ".claude/skills/copywriting",
-  ".claude/skills/design-taste-frontend",
   ".claude/skills/frontend-design-deslop",
   ".claude/skills/frontend-design",
   ".claude/skills/humanizer",
-  ".claude/skills/impeccable",
   ".claude/skills/interface-design",
   ".claude/skills/messenger-skills/skills/use-h2a",
   ".claude/skills/messenger-skills/skills/use-h2h",

@@ -128,9 +128,12 @@ The test is one question: **does it change what the product does for someone?** 
    stage with the lines `Stage: N` and `Serves: …` (skill `use-development-docs`). `npm run check:product` refuses a step planned for a
    later stage.
 8. **Write as you go,** each item as a `draft`; show the person what you wrote, item by item, with its number.
-9. **The first session of a new element** (a task from the core's main agent in your intake): there is no quiz yet. Put the
-   task's words into your plan (`current-step.md`) as the vision draft, ask the first question — the vision: who it is for, what
-   pain, what counts as success — and stop: report done. The quiz files are written with the first answer.
+9. **The first session of a new element** (a task from the core's main agent in your intake). Born after node step 736: the main
+   agent has already written its draft of your quiz (`development-docs/product/quiz.json`, `vision` and `stages` as drafts, its open
+   questions) and your step 1 «analyse the product quiz» (`current-step.md`, `steps-new/1-…`) — do step 1: enough to build stage 0 →
+   plan step 2 and give the three confirming lines; not enough → the questions into `openQuestions`, then one message to the main
+   agent (`npm run tell-core`) and stop. Born before 736 (no quiz): put the task's words into `current-step.md` as the vision draft,
+   ask the first question — who it is for, what pain, what counts as success — and stop: report done.
 
 ## 4. «And also I need…» — impact before code
 

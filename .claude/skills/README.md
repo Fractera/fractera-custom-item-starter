@@ -48,9 +48,7 @@ skill itself: a `<!-- PROOF … -->` mark under its header). Vendored skills are
 | `page-snippet` | ours, `build-skills` | every public page has its own 1200×630 snippet at `<page>/snippet.png`, drawn on the first request (no rebuild) from title, description and the project background, tinted with the design primary; the background script asks the customer, names the price, or makes a free pattern | ✅ 2026-10-12 (after a fix) |
 | `use-shadcn` | ours, `build-skills` | the gatekeeper: widgets, tools and sections only from shadcn; where our law beats the shadcn skill | 🟨 2026-10-07: law kept, skill not loaded |
 | `shadcn` | vendored, shadcn/ui, MIT | components, CLI, registries, composition rules — `SOURCE.md` | — not proven |
-| `design-taste-frontend` | vendored, Leon Lin, MIT | anti-generic landing design — `SOURCE.md` | — not proven |
 | `interface-design` | vendored, Damola Akinleye, MIT | craft of the screens a person works in — admin panel, dashboards, settings (main and design passes, step 714-4) — `SOURCE.md` | — not proven |
-| `impeccable` | vendored, Paul Bakaus, Apache-2.0 | design direction from the audience's world — `SOURCE.md` (without hooks and agents) | — not proven |
 | `copywriting` | vendored, Corey Haines, MIT | writes page copy: headlines, value, calls to action — `SOURCE.md` | — not proven |
 | `copy-editing` | vendored, Corey Haines, MIT | edits existing copy line by line — `SOURCE.md` | — not proven |
 | `humanizer` | vendored, blader, MIT | removes the signs of AI writing from any text a person reads, the product quiz too — `SOURCE.md`, `.claude/modes/build-texts.md` «Texts»; lives only in the texts pass (node step 590-5) | — not proven |

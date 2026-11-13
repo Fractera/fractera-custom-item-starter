@@ -7,10 +7,11 @@
 // (`tool.json`: id, entry, version 1.0.0, scope «any», parts [], the task in both languages) and an empty client entry that declares
 // itself (`// @part tool-<name>`), and rebuilds both maps. Model-free: you build the interface, translate the card, commit.
 import { execFileSync } from "node:child_process"
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
-import { fileURLToPath, pathToFileURL } from "node:url"
+import { fileURLToPath } from "node:url"
 import { findParts } from "../lib/parts/parts-find.mjs"
+import { nodeTools } from "../lib/parts/node-tools.mjs"
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 const args = process.argv.slice(2)
@@ -29,19 +30,10 @@ console.log(`Three questions before a new interface piece (skill use-tools):
   2. Bound to this page — reads its data, knows where it stands? → a widget (skill build-widget), not a tool.
   3. A task with its own interface, its material from outside? → a tool. You are bearing one: «${task}».`)
 
-// The node's tools — the core's «any» ones and the neighbours' — read by the core's own index, the one the parts_find of a build session
-// uses. The core is found the way tool:take finds it (NODE_DOMAIN_FILE); outside a node only your own map is asked, and that is said.
-function coreRoot() {
-  let file = process.env.NODE_DOMAIN_FILE?.trim()
-  if (!file) try { file = (readFileSync(join(ROOT, ".env.local"), "utf8").match(/^NODE_DOMAIN_FILE=(.*)$/m)?.[1] ?? "").trim() } catch { /* no file */ }
-  const core = file ? dirname(dirname(file)) : null
-  return core && existsSync(join(core, "lib", "parts", "node-index.mjs")) ? core : null
-}
-const core = coreRoot()
-let node = []
-if (core) {
-  try { node = (await import(pathToFileURL(join(core, "lib", "parts", "node-index.mjs")).href)).nodeTools(core, ROOT) } catch { node = [] }
-} else console.log("  (the node's core is not known here — only this element's own map was asked; parts_find in your session asks the node)")
+// The node's tools — the core's «any» ones and the neighbours' — read by the core's own index, the one parts_find of a build session uses
+// (lib/parts/node-tools.mjs, 736); outside a node only your own map is asked, and that is said.
+const { core, node } = await nodeTools(ROOT)
+if (!core) console.log("  (the node's core is not known here — only this element's own map was asked; parts_find in your session asks the node)")
 const found = (await findParts(ROOT, { query: `${name.replace(/-/g, " ")} ${task}`, kinds: ["tool"], node })).parts
 if (found.length && !anyway) {
   for (const p of found.slice(0, 3)) {
