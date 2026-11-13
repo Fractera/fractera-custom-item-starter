@@ -54,7 +54,7 @@ export function QuickNav({ lang, words, designHref, settingsHref, subscriptionHr
         {settingsHref ? <a href={settingsHref} className={link} data-quick-nav-link="settings">{words.settings}</a> : null}
         {subscriptionHref ? <a href={subscriptionHref} className={link} data-quick-nav-link="subscription">{words.subscription}</a> : null}
         <span className="ms-auto flex items-center gap-3">
-          <Button variant="ghost" size="icon-sm" type="button" aria-label={words.hide} title={words.hide}
+          <Button variant="ghost" size="icon-sm" type="button" aria-label={words.hide}
             onClick={() => { try { sessionStorage.setItem(HIDDEN_KEY, '1') } catch { /* no storage — hidden until a reload */ } setShown(false) }}>
             <X aria-hidden className="size-4" />
           </Button>
