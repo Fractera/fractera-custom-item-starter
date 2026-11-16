@@ -183,6 +183,10 @@ server, client or combined function. One page changes nothing: it is still a ser
   nothing fits — `npm run tool:new -- <name> "<the task>"` bears a tool with its complete card (node step 735). A new interface file says on its first lines `// @part <id> — <what>` (its card in
   the folder's `parts.json`) or `// @local — <why>`; the node's hook refuses a birth that did not ask, `check:parts-map` and
   `check:parts-dup` (the second copy of a long class string) hold it in your build; `npm run parts -- <words>` asks from the terminal.
+- **Your person's own act is a window, never a chat line** (the owner of the node, 2026-11-16: «уведомление на экране которое невозможно
+  пропустить … и подтвердить о его завершении»): `npm run ask-person -- "<what>" --href <where> --why <why only they> --hint <what may
+  pop up>` — orange at the bottom of every page of the node's panel, naming you; «Готово» wakes you, and you check the result yourself
+  (skill `ask-core`, «The person's hands»).
 - **Proofread before you send:** stray characters from another script — CJK, Arabic, Devanagari or others inside Russian or English
   words — are a frequent model artifact. Names and code stay as they are.
 - **Languages.** You answer in the person's language; the machine layer of this element — this file, skills, development documents — is
@@ -197,7 +201,7 @@ session shares; the group of your session's mode is in its mode file (`.claude/m
 
 | Group | Mode | Skills |
 |---|---|---|
-| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `answer-the-leader` (the core's main agent asks where your development stands — three lines, nothing built), `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `act-for-the-person` (in your person's browser and accounts — with their permission, under their responsibility; a yes before every public action), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
+| own-service-props-skills | every mode | `own-service-props-detection`, `node-elements-detection`, `ask-core` (the core answers how the node works — the last resort; `npm run tell-core` — words for the architect through it), `answer-the-leader` (the core's main agent asks where your development stands — three lines, nothing built), `a2a-conversation`, `telegram-channel` (your person writes to you from Telegram, right into this terminal), `act-for-the-person` (in your person's browser and accounts — with their permission, under their responsibility; a yes before every public action; their own hands — a password, a sign-in, a final press — `npm run ask-person`, a window in the node's panel), `element-power` (being turned on or off: the node holds the switch, you declare your default and pass requests), `need-capability` (anything a neighbour or nobody has: `npm run need` — the core names who does it, or builds it, and tells you), `schedule-cron-automations-calendar-reminders-recurring-and-one-time-tasks` (your calendar: an entry is data; your alarm wakes you) |
 | messenger-skills | messenger | `use-h2a` (with the media rule), `use-h2h` |
 
 ## 9. Glossary
