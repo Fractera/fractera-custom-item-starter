@@ -21,6 +21,7 @@
     "tell-core": "node scripts/ask-core.mjs --tell",
     "reset": "node scripts/ask-core.mjs --reset",
     "ask-person": "node scripts/ask-person.mjs",
+    "browser": "node scripts/browser.mjs",
     "need": "node scripts/need.mjs",
     "blocks:ids": "node scripts/check-block-ids.mjs --fix",
     "migrate:sections": "node scripts/migrate-sections.mjs",
