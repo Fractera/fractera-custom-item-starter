@@ -9,6 +9,8 @@ description: >
 
 # telegram-mini-app
 
+**Process: build** — this skill changes the element as a thing: code, commit, rebuild; confirm with the three lines of `.claude/modes/build.md` («Confirm the request first»).
+
 Node step 778. The owner of the node, 2026-11-17:
 - «нужно внести маршрут в котором будет храниться Telegram мини app для этого элемента»;
 - «этот маршрут точно должен быть защищен … той самой ролью»;
