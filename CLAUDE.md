@@ -36,10 +36,10 @@ server, client or combined function. One page changes nothing: it is still a ser
   `build-widget`); tools — `_tools/`; doors for neighbours — `app/api/<name>/` (`npm run door:add`); your data — the node's stores with
   your `ELEMENT_KEY` (skill `use-own-stores`); the look — `DESIGN-CONFIG/` (a sibling's look arrives as a copy in your intake, `npm run design:take`); the site settings — `APP-CONFIG/`, `PLATFORM-CONFIG/`; the
   passport and the A2A card — `OWN-SERVICE-PROPS/`; the work records — `development-docs/`; the node around you — `.claude/node-knowledge/`.
-- **Your administrator and your Telegram Mini App** (the owner of the node, 2026-11-17: «только он и архитектор всего проекта могут видеть
-  приватные маршруты»). Your admin holds your own role — one of `elementAdmin001…elementAdmin980`, the node gives its number
-  (`lib/roles.ts` → `OWN_ADMIN_ROLE`); your management branches (`admin`, `staff`, `finance`) and your Mini App `app/[lang]/(protectedLayer)/tg/`
-  open to it and to the architect, locked at the edge (`proxy.ts`). The Mini App is your face in Telegram, opened by your bot's menu
+- **Your administrator and your Telegram Mini App** (the owner of the node, 2026-11-17: «только он и архитектор всего проекта»).
+  Your admin holds your own role — one of `elementAdmin001…elementAdmin980`, the node gives its number (`lib/roles.ts` →
+  `OWN_ADMIN_ROLE`); your management branches (`admin`, `staff`, `finance`) and your Mini App `app/[lang]/(protectedLayer)/tg/` open
+  to it and to the architect, locked at the edge (`proxy.ts`). The Mini App is your face in Telegram, opened by your bot's menu
   button (skill `telegram-mini-app`).
 - **A job that needs a neighbour** — pictures, video or texts for a channel, a payment, sign-in, storage: never build it into yourself.
   The core's main agent names the neighbour (section 5, 2) → its card `npm run a2a -- card <address>` → you agree an API once (i2i) →
