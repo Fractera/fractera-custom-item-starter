@@ -16,7 +16,7 @@ import { join, relative, sep } from "node:path"
 const ROOT = process.cwd()
 const LAYER = join(ROOT, "app", "[lang]", "(protectedLayer)")
 // 314-2: категории — ветки с собственным адресом (/<lang>/account …), а не группы в скобках.
-const GROUPS = ["account", "admin", "finance", "staff"]
+const GROUPS = ["account", "admin", "finance", "staff", "tg"] // 778: tg — the Mini App, locked by the admin category
 
 const problems = []
 const fail = (file, rule, detail) => problems.push({ file: relative(ROOT, file), rule, detail })

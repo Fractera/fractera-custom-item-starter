@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { toast } from "sonner"
+import { OWN_ADMIN_ROLE } from "@/lib/roles"
 import type { SignInNoticeStrings } from "./sign-in-notice.i18n"
 
 // ПЛАШКА «ВЫ ВОШЛИ» НА САЙТЕ ПОСЛЕ ВОЗВРАТА СО СЛУЖБЫ ВХОДА (260-3).
@@ -19,11 +20,16 @@ import type { SignInNoticeStrings } from "./sign-in-notice.i18n"
 
 export const SIGN_IN_TOASTER = "sign-in"
 const MARK = "signed-in"
+// 778: прокси увёл сюда вошедшего без роли со страниц управления элементом (/tg, /admin) — плашка говорит, почему он здесь.
+const NO_ACCESS = "no-access"
 
 /** То же правило, что `lib/auth/role-label.ts` службы входа: роль, ради которой
  *  человек пришёл, здесь неизвестна, поэтому — сильнейший тир, затем первая. */
-function pickRole(roles: string[]): string {
-  return ["architect", "admin"].find((r) => roles.includes(r)) ?? roles[0] ?? "user"
+function pickRole(roles: string[], strings: SignInNoticeStrings): string {
+  if (roles.includes("architect")) return "architect"
+  // 778: свой админ элемента — словами, а не номером роли.
+  if (OWN_ADMIN_ROLE && roles.includes(OWN_ADMIN_ROLE)) return strings.elementAdmin
+  return ["admin"].find((r) => roles.includes(r)) ?? roles[0] ?? "user"
 }
 
 const fill = (t: string, v: Record<string, string>) => t.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? `{${k}}`)
@@ -31,6 +37,12 @@ const fill = (t: string, v: Record<string, string>) => t.replace(/\{(\w+)\}/g, (
 export function SignInNotice({ strings }: { strings: SignInNoticeStrings }) {
   useEffect(() => {
     const url = new URL(window.location.href)
+    if (url.searchParams.has(NO_ACCESS)) {
+      url.searchParams.delete(NO_ACCESS)
+      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash)
+      toast.error(strings.noAccess, { toasterId: SIGN_IN_TOASTER })
+      return
+    }
     if (!url.searchParams.has(MARK)) return
     url.searchParams.delete(MARK)
     window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash)
@@ -39,7 +51,7 @@ export function SignInNotice({ strings }: { strings: SignInNoticeStrings }) {
       .then(async (r) => {
         const me = r.ok ? ((await r.json()) as { email?: string; roles?: string[] }) : null
         if (me?.email) {
-          toast.success(fill(strings.signedIn, { who: me.email, role: pickRole(me.roles ?? []) }), { toasterId: SIGN_IN_TOASTER })
+          toast.success(fill(strings.signedIn, { who: me.email, role: pickRole(me.roles ?? [], strings) }), { toasterId: SIGN_IN_TOASTER })
         } else {
           toast.error(strings.failed, { toasterId: SIGN_IN_TOASTER })
         }

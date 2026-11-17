@@ -37,6 +37,30 @@ export type AppRole = typeof ALL_ROLES[number]
 export const ACCESS_TIERS = ['guest', 'user', 'architect'] as const
 export type AccessTier = typeof ACCESS_TIERS[number]
 
+// ── Админ элемента (шаг 778 узла, владелец 2026-11-17) ──────────────────────
+//
+// Одно семейство на все проекты Fractera: `elementAdmin001…elementAdmin980` («во всех проектах могут быть одинаковыми изначально создать
+// и жёстко пришить использовать только эти названия»). Номер ЭТОГО элемента узел берёт из своего реестра при рождении и кладёт в
+// окружение (`NEXT_PUBLIC_ELEMENT_ADMIN_ROLE`, род derived в .env.example) — он вшивается в сборку, поэтому и замок страницы в браузере,
+// и прокси, и двери знают одно и то же имя. Нет номера (элемент вне узла, чужая сборка) — роли нет: войдёт только архитектор.
+// 🔒 Семейство НЕ в `ALL_ROLES`: этот список читают выборы ролей, и 980 имён похоронили бы настоящие.
+export const ELEMENT_ADMIN_COUNT = 980
+const ELEMENT_ADMIN_RE = /^elementAdmin(\d{3})$/
+
+/** Одна из 980 ролей админов элементов? */
+export function isElementAdminRole(role: string): boolean {
+  const m = ELEMENT_ADMIN_RE.exec(role)
+  if (!m) return false
+  const n = Number(m[1])
+  return n >= 1 && n <= ELEMENT_ADMIN_COUNT
+}
+
+/** Роль админа ЭТОГО элемента (`elementAdmin007`) или пусто. */
+export const OWN_ADMIN_ROLE: string = (() => {
+  const r = (process.env.NEXT_PUBLIC_ELEMENT_ADMIN_ROLE ?? "").trim()
+  return isElementAdminRole(r) ? r : ""
+})()
+
 // ── Role groups of the protected layer ──────────────────────────────────────
 //
 // One subgroup of `app/[lang]/(protectedLayer)/` = one entry here, and this is
@@ -60,12 +84,19 @@ export type AccessTier = typeof ACCESS_TIERS[number]
 //
 // `architect` остаётся везде — по-прежнему намеренно: владелец развёртывания
 // никогда не заперт снаружи собственного приложения. Он один такой.
-export const PROTECTED_GROUP_ROLES = {
+//
+// 🔒 778 (владелец 2026-11-17): «если мы говорим о том что у каждого элемента может быть свой владелец то это значит только он и
+// архитектор всего проекта могут видеть приватные маршруты». Свой админ элемента (`OWN_ADMIN_ROLE`) входит в разделы управления
+// своего элемента — staff, finance, admin — и в его Mini App (`/tg`); `admin` проекта из раздела admin ЭЛЕМЕНТА ушёл: там теперь
+// только админ этого элемента и архитектор. Кабинет посетителя (`account`) — по-прежнему каждого посетителя.
+const OWN: readonly string[] = OWN_ADMIN_ROLE ? [OWN_ADMIN_ROLE] : []
+
+export const PROTECTED_GROUP_ROLES: Readonly<Record<"account" | "staff" | "finance" | "admin", readonly string[]>> = {
   account: ['user', 'buyer', 'vip_user', 'subscriber_lite', 'subscriber_standard', 'subscriber_max', 'architect'],
-  staff: ['manager', 'senior_manager', 'support_manager', 'delivery_manager', 'content_editor', 'architect'],
-  finance: ['finance', 'architect'],
-  admin: ['admin', 'architect'],
-} as const satisfies Record<string, readonly AppRole[]>
+  staff: ['manager', 'senior_manager', 'support_manager', 'delivery_manager', 'content_editor', 'architect', ...OWN],
+  finance: ['finance', 'architect', ...OWN],
+  admin: ['architect', ...OWN],
+}
 
 export type ProtectedGroup = keyof typeof PROTECTED_GROUP_ROLES
 

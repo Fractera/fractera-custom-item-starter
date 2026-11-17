@@ -166,35 +166,41 @@ export default async function LangLayout({
               between the header toggle icons and the drawer panels (sub-step 3).
               Footer is always present (site furniture + theme/language). */}
           <DrawerProvider>
-            <CoreShellHeader lang={lang} />
-            {/* 706-3 (владелец 2026-11-09): полоса быстрой навигации вместо жёлтой вывески стартера — видна только владельцу (эта машина или
-                вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке.
-                714-2 (владелец 2026-11-10: «задача этих кнопок ввести в настройки на странице архитектора а не показывать собственные
-                страницы»): все три — во вкладки «Строительства» элемента в ядре; узла нет — «Дизайн» остаётся на своей странице. */}
-            <QuickNav
-              lang={lang}
-              words={quickNavWords(lang)}
-              designHref={coreTab(lang, "design") ?? `/${lang}/admin/design`}
-              settingsHref={coreTab(lang, "site-settings")}
-              subscriptionHref={coreTab(lang, "subscription")}
-            />
+            {/* 778: шапка и полоса быстрой навигации — «обвязка сайта»; в Mini App элемента (/tg) её нет (styles/globals.css). */}
+            <div data-block="site-chrome-top" data-site-chrome="" className="contents">
+              <CoreShellHeader lang={lang} />
+              {/* 706-3 (владелец 2026-11-09): полоса быстрой навигации вместо жёлтой вывески стартера — видна только владельцу (эта машина или
+                  вошедший архитектор на своём домене), стоит в потоке под шапкой; ведёт к брифу, настройкам сайта и подписке.
+                  714-2 (владелец 2026-11-10: «задача этих кнопок ввести в настройки на странице архитектора а не показывать собственные
+                  страницы»): все три — во вкладки «Строительства» элемента в ядре; узла нет — «Дизайн» остаётся на своей странице. */}
+              <QuickNav
+                lang={lang}
+                words={quickNavWords(lang)}
+                designHref={coreTab(lang, "design") ?? `/${lang}/admin/design`}
+                settingsHref={coreTab(lang, "site-settings")}
+                subscriptionHref={coreTab(lang, "subscription")}
+              />
+            </div>
             {children}
-            <CoreShellFooter lang={lang} />
-            {/* Left & right slide-in drawers (shadcn Sheet), controlled by the same
-                DrawerProvider state as the header toggle icons; each renders nothing
-                until a group enables its side's slot. */}
-            <DrawerMenu side="left" lang={lang} />
-            <DrawerMenu side="right" lang={lang} />
-            {/* 715 (владелец 2026-11-10): индикатор ширины и навыка дизайна — снова круг в левом нижнем углу на каждой странице, как шапка и
-                подвал; видит только владелец (правило полосы), выключатель `viewportBadge`. */}
-            {featureOn("viewportBadge") && <ViewportBadge skill={designSkill()} skillLabel={quickNavWords(lang).skill} />}
-            {/* Cookie-consent banner (step 305) — on every public page via this layout. Strings are
-                server-provided per language (readBannerConfig, ISR) so anonymous visitors get a fully
-                localized banner without hitting the gated /api. */}
-            {/* Выключатель панели решает, есть ли баннер вообще. До 2026-08-12
-                он не проверялся: баннер показывался всегда, а переключатель в
-                панели не значил ничего. */}
-            {bannerOn && <CookieBanner lang={lang} strings={bannerStrings} />}
+            {/* 778: подвал, выдвижные меню, индикатор ширины и баннер cookie — тоже обвязка сайта, в Mini App их нет. */}
+            <div data-block="site-chrome-bottom" data-site-chrome="" className="contents">
+              <CoreShellFooter lang={lang} />
+              {/* Left & right slide-in drawers (shadcn Sheet), controlled by the same
+                  DrawerProvider state as the header toggle icons; each renders nothing
+                  until a group enables its side's slot. */}
+              <DrawerMenu side="left" lang={lang} />
+              <DrawerMenu side="right" lang={lang} />
+              {/* 715 (владелец 2026-11-10): индикатор ширины и навыка дизайна — снова круг в левом нижнем углу на каждой странице, как шапка и
+                  подвал; видит только владелец (правило полосы), выключатель `viewportBadge`. */}
+              {featureOn("viewportBadge") && <ViewportBadge skill={designSkill()} skillLabel={quickNavWords(lang).skill} />}
+              {/* Cookie-consent banner (step 305) — on every public page via this layout. Strings are
+                  server-provided per language (readBannerConfig, ISR) so anonymous visitors get a fully
+                  localized banner without hitting the gated /api. */}
+              {/* Выключатель панели решает, есть ли баннер вообще. До 2026-08-12
+                  он не проверялся: баннер показывался всегда, а переключатель в
+                  панели не значил ничего. */}
+              {bannerOn && <CookieBanner lang={lang} strings={bannerStrings} />}
+            </div>
             <Toaster position="bottom-right" richColors closeButton />
             {/* 260-3: плашка «вы вошли» — сверху, своим контейнером, как просил владелец. */}
             <Toaster id={SIGN_IN_TOASTER} position="top-center" richColors closeButton />
@@ -207,7 +213,9 @@ export default async function LangLayout({
                 едут пропсом: словарь на 82 языка не имеет права оказаться в
                 браузере. Кнопка появляется, только когда браузер сам сообщил,
                 что сайт устанавливаем. */}
-            <InstallPrompt strings={installUi(lang)} />
+            <div data-block="site-chrome-install" data-site-chrome="" className="contents">
+              <InstallPrompt strings={installUi(lang)} />
+            </div>
             {/* 317-3: подсветка адресов — спит, пока Preview ядра не включит её сообщением (только свой источник). */}
             <BlockHighlight words={blockHighlightWords(lang)} />
             {/* 356-2: окно отчёта о задаче — только ?report= на этой машине (предпросмотр); иначе ничего не рисует. */}

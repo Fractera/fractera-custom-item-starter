@@ -6,6 +6,7 @@ import { isOwnerAtMachine } from "@/lib/auth/owner-at-machine";
 import { isTemporaryPublicAddress } from "@/lib/auth/temporary-address";
 import { isShowcaseRequest } from "@/lib/showcase";
 import { getSession } from "@/lib/auth/get-session";
+import { PROTECTED_GROUP_ROLES } from "@/lib/roles";
 import { authBaseFromHost, connectedDomainAuthBase, projectsBaseFromHost, publicAuthBaseFor } from "@/lib/auth-base-server";
 import { authUrl as nodeAuthUrl } from "@/lib/microservices/urls";
 import { temporaryAddressPage } from "@/lib/auth/temporary-address.page";
@@ -566,6 +567,10 @@ export async function proxy(request: NextRequest): Promise<NextResponse> {
   const architectGate = await architectPagesGate(request);
   if (architectGate) return architectGate;
 
+  // Job 1.6 — ворота СТРАНИЦ управления элементом: /tg и /admin (шаг 778).
+  const elementAdminGate = await elementAdminPagesGate(request);
+  if (elementAdminGate) return elementAdminGate;
+
   // Job 2 — language routing for everything else.
   return languageRouter(request);
 }
@@ -651,6 +656,58 @@ async function architectPagesGate(request: NextRequest): Promise<NextResponse | 
 
   // Чужой на постоянном адресе без подключённого входа: страницы для него не существует.
   return new NextResponse(null, { status: 404 });
+}
+
+// ── Job 1.6 — ВОРОТА СТРАНИЦ УПРАВЛЕНИЯ ЭЛЕМЕНТОМ: /tg И /admin (шаг 778 узла) ───────────────────────────────────────────
+//
+// Владелец 2026-11-17, дословно: «пользуйтесь сможет на компьютере ввести в адресной строке адрес который позволит ему войти в маршрут
+// Telegram mini app И поэтому этот маршрут точно должен быть защищен именно такой попытки входа и защищенный должен быть той самой
+// ролью»; «только он и архитектор всего проекта могут видеть приватные маршруты».
+// 🔒 ЗАКРЫТО НА КРАЮ, А НЕ ОСТРОВКОМ: каркас страницы не уходит ни гостю, ни вошедшему без роли. Гость — на форму входа и обратно сюда;
+// вошедший без роли — на главную с меткой `no-access` (плашка `SignInNotice` скажет почему; на форму входа его не шлём — уже вошедший
+// вернулся бы сюда же, и круг не кончился бы). Роль — архитектор или свой админ элемента (lib/roles.ts → PROTECTED_GROUP_ROLES.admin).
+// 🔒 Двери ветки (`/<язык>/admin/api/…`) мимо: они стерегут себя сами ролью по сессии и отвечают JSON, а не переадресацией.
+// Исключения — те же, что у ворот /api: хозяин за своей клавиатурой, режим разработки, временный адрес туннеля, ЧТЕНИЕ витрины Fractera.
+const ELEMENT_ADMIN_BRANCHES = new Set(["tg", "admin"]);
+
+async function elementAdminPagesGate(request: NextRequest): Promise<NextResponse | null> {
+  const { pathname, search } = request.nextUrl;
+  const segs = pathname.split("/").filter(Boolean);
+  const rest = segs[0] && SUPPORTED_LANGUAGES.includes(segs[0]) ? segs.slice(1) : segs;
+  if (!rest[0] || !ELEMENT_ADMIN_BRANCHES.has(rest[0]) || rest.includes("api")) return null;
+
+  if (isOwnerAtMachine(request)) return null;
+  if (shouldBypassAuthEdge()) return null;
+  if (isTemporaryPublicAddress(request)) return null;
+  if (isShowcaseRequest(request) && (request.method === "GET" || request.method === "HEAD")) return null;
+
+  const session = await getSession(request);
+  if (session?.roles?.some((r) => PROTECTED_GROUP_ROLES.admin.includes(r))) return null;
+
+  const host = (request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "").split(":")[0].toLowerCase();
+  const back = new URLSearchParams(search);
+  if (session) {
+    // Вошёл, но роли нет: страницы для него нет — главная скажет об этом плашкой.
+    const home = request.nextUrl.clone();
+    home.pathname = "/";
+    home.search = "?no-access=1";
+    return NextResponse.redirect(home);
+  }
+  back.set("signed-in", "1");
+  const path = `${pathname}?${back.toString()}`;
+  // Свой домен элемента: вход через код центра узла, возврат — на эту же страницу (только путь этого сайта).
+  const center = connectedDomainAuthBase();
+  const zone = center ? new URL(center).hostname.replace(/^auth\./, "") : "";
+  const ownDomain = !!center && !!host && host !== zone && !host.endsWith(`.${zone}`) && host !== "localhost" && !/^\d{1,3}(\.\d{1,3}){3}$/.test(host);
+  if (ownDomain) {
+    const ret = `https://${host}/api/auth/callback?next=${encodeURIComponent(path)}`;
+    return NextResponse.redirect(`${center}/api/auth/sso?return=${encodeURIComponent(ret)}&requireRole=user`);
+  }
+  // Зона узла: форма входа сайта (/login ниже ведёт к службе входа) с возвратом сюда.
+  const login = request.nextUrl.clone();
+  login.pathname = "/login";
+  login.search = `?callbackUrl=${encodeURIComponent(`https://${host}${path}`)}&requireRole=user`;
+  return NextResponse.redirect(login);
 }
 
 // Match API routes (for the auth gate) AND content pages (for language routing).

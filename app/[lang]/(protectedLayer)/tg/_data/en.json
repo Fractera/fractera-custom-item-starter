@@ -1,0 +1,12 @@
+{
+  "title": "Mini App",
+  "description": "The element's Mini App in Telegram — for its administrator.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "This is the element's Mini App in Telegram. Its screens appear here once the element's agent builds them.",
+      "bid": "hp6ms"
+    }
+  ]
+}

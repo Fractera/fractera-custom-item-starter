@@ -1,6 +1,6 @@
 # Inner pages — the rules of this layer
 
-- Every branch here (`account`, `admin`, `staff`, `finance`, the messengers, the prototypes) is locked by role; its pages are data
+- Every branch here (`account`, `admin`, `staff`, `finance`, `tg` — the element's Telegram Mini App, the messengers, the prototypes) is locked by role; its pages are data
   folders `<branch>/_pages/<slug>/` (a role's pages one level deeper, `_pages/<role>/<page>/`), read by the branch's one `[...slug]/`
   route — never a new `page.tsx` (skills `use-page-tree`, `use-auth`).
 - The page's gate is a sign, the door is the lock: data a role may see is served by a door that checks the role itself (skill `use-auth`).

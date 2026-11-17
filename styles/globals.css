@@ -1132,3 +1132,10 @@ html[data-app-width="narrow"] { --app-w: 64rem; }
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+
+/* 778 (node step): the element's Telegram Mini App (/<lang>/tg) wears no site chrome — header, quick nav, footer, drawers, badges,
+   the cookie banner and the install offer are marked `data-site-chrome` in app/[lang]/layout.tsx. Unlayered on purpose: it must beat
+   the `contents` utility of the wrappers. The element's own design tokens stay — its look is its own. */
+:root:has([data-tg-app]) [data-site-chrome] {
+  display: none;
+}
