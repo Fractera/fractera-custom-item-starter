@@ -52,6 +52,10 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/finance/layout.tsx', 'замок ветки finance'],
   ['app/[lang]/(protectedLayer)/finance/page.tsx', 'КОРЕНЬ ветки finance'],
   ['app/[lang]/(protectedLayer)/finance/[...slug]/page.tsx', 'РЕБЁНОК ветки finance: страница и страница в папке роли (402)'],
+  // 778 (владелец 2026-11-17: «нужно внести маршрут в котором будет храниться Telegram мини app для этого элемента»): ветка tg.
+  ['app/[lang]/(protectedLayer)/tg/layout.tsx', 'замок ветки tg — Mini App элемента в Telegram (778)'],
+  ['app/[lang]/(protectedLayer)/tg/page.tsx', 'КОРЕНЬ ветки tg — Mini App элемента в Telegram (778)'],
+  ['app/[lang]/(protectedLayer)/tg/[...slug]/page.tsx', 'РЕБЁНОК ветки tg: экраны Mini App — папки _pages (778)'],
   ['app/[lang]/(protectedLayer)/admin/layout.tsx', 'замок ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/page.tsx', 'КОРЕНЬ ветки admin'],
   ['app/[lang]/(protectedLayer)/admin/[...slug]/page.tsx', 'РЕБЁНОК ветки admin: страница и страница в папке роли (402)'],
