@@ -104,7 +104,8 @@
     "prototype": "node scripts/prototype.mjs",
     "design:pin": "node scripts/prototype.mjs pin",
     "design:take": "node scripts/design-take.mjs",
-    "check:prototypes": "node scripts/check-prototypes.mjs"
+    "check:prototypes": "node scripts/check-prototypes.mjs",
+    "test:tg-menu": "node app/api/tg-menu/tg-menu.test.mjs"
   },
   "dependencies": {
     "@a2a-js/sdk": "1.3.0",

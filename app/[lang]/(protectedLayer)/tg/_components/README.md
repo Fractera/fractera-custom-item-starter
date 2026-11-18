@@ -16,3 +16,10 @@ the lock screen of the branch. `page.tsx` stays thin and re-exports from here.
 ## Rule of thumb
 
 Delete the branch folder and nothing else in the element breaks: then the component was in the right place.
+
+## In this branch
+
+- `tg-bridge.client.tsx` — tells Telegram the app is ready, expands it, paints its header with the element's background.
+- `tg-shell.client.tsx` — the frame: the top bar (☰ and the current screen's title), the left drawer (the element, the two modes,
+  groups, categories opening downward, «Open the element's site»). It draws `../_data/menu.json`; it never holds a menu of its own —
+  the same file feeds the core's «Working process» (`../README.md`, «One menu — two windows»).

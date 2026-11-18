@@ -1,0 +1,11 @@
+{
+  "title": "Cron automation",
+  "description": "The element's calendar: current events and planned actions.",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "The element's own calendar: what happens today and what is planned. Say in Telegram what to do and when — the element's agent writes it into the calendar, and at that minute the action runs or the reminder comes.",
+      "bid": "teotd"
+    }
+  ]
+}

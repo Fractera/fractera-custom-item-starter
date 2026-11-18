@@ -105,6 +105,7 @@ const ALLOWED = new Map([
   ['app/api/settings/brief/route.ts', 'пульт ядра: бриф дизайна элемента и его объявление (712-1)'],
   ['app/api/shell/[lang]/route.ts', 'шапка и подвал для служб узла'],
   ['app/api/users/[[...path]]/route.ts', 'люди этого приложения: список, истории, пакет — через службу входа /api/app-users (580)'],
+  ['app/api/tg-menu/route.ts', 'door tg-menu: the Mini App menu for the core\'s Working process (door:add, node step 548-16)'],
 ])
 
 const found = []

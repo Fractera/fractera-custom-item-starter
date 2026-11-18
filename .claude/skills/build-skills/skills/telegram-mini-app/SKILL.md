@@ -52,6 +52,19 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
 - A screen is seen before it is shown: `npm run eyes -- <the address>/tg/<slug>` at 390 px in both themes (skill `use-eyes`); on this
   computer you pass every lock — check it as the admin role sees it.
 
+## 3a. The menu — one file, two windows (node steps 789, 790)
+
+- The drawer of the Mini App (☰) and the core's «Working process» of this element draw ONE menu: `tg/_data/menu.json`. The core reads
+  it through the door `GET /api/tg-menu`; Telegram through `tg/_libs/tg-menu.ts`. Never a second menu, never a screen built for the
+  core apart.
+- Two modes: `work` «My projects» (the person's own work — posts for their Instagram, their sites) and `a2a` «A2A · Web4» (this
+  element's services sold outward through Lagrix — said honestly while the network is not live). Drop a mode the element does not need.
+- A category opens downward: its `children` are this element's own things — projects, author portraits, services — each with its
+  screen folder; `add` names the line that adds one. Add a child, its folder `tg/_pages/<slug>/` and its line in one commit.
+- «Subscriptions» and «Cron automation» stay in every element: they are what the core's «Working process» always had.
+- Proofs of a menu change: `npm run test:tg-menu` (the door accepts the file, a bad slug is refused) and eyes of the drawer open at
+  390 px in both themes.
+
 ## 4. Telegram's side
 
 - The bridge (`tg-bridge.client.tsx`) already tells Telegram the app is ready, expands it and paints its header. More of Telegram's

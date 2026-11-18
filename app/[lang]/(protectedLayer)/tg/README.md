@@ -29,11 +29,28 @@ A branch of the element's frame (node step 778). The owner, 2026-11-17: «В ф�
 | `page.tsx` | the ROOT of the branch — `/<lang>/tg`, words in `_data/{meta,en,ru}.json` (the start screen) |
 | `layout.tsx` | the sign of the lock (`AccessGate`, the admin category's roles), the chrome-less wrapper, the Telegram bridge |
 | `[...slug]/page.tsx` | the ONE child route — draws every folder of `_pages/` |
-| `_data/` | the words of the root: `meta.json`, `en.json` (required), `ru.json` |
-| `_components/` | the branch's own components; `tg-bridge.client.tsx` lives here |
-| `_libs/` | the branch's own logic without markup |
+| `_data/` | the words of the root: `meta.json`, `en.json` (required), `ru.json`; and **`menu.json` — the ONE menu of the Mini App and of the core's «Working process»** (below) |
+| `_components/` | the branch's own components: `tg-bridge.client.tsx` (Telegram's header and background), `tg-shell.client.tsx` (the top bar with ☰ and the left drawer) |
+| `_libs/` | the branch's own logic without markup: `tg-menu.ts` gives the menu in one language |
 | `_widgets/` | the branch's widgets, `static/<name>` · `dynamic/<name>` — a Mini App's cards and lists usually live here |
 | `_pages/<slug>/` | the Mini App's screens — data only, one folder per screen |
+
+## One menu — two windows (node steps 789, 790)
+
+The owner of the node, 2026-11-18: «очень важно понимать что мы одновременно все что делаем и строим в Telegram отображается в рабочих
+процессах на левом меню». The Mini App IS this element's working process, seen from the phone; the core's «Working process» shows the
+same thing on the computer.
+
+- **The source is one file:** `_data/menu.json` — two modes (`work` «My projects» — the person's own work; `a2a` «A2A · Web4» — the
+  element's services sold outward through Lagrix, a precedent while the network is not live), groups, items, and categories that open
+  downward (`children` — the element's own projects, authors, services; `add` — the line that adds one).
+- **Telegram** draws it in the drawer of `/tg` (`_components/tg-shell.client.tsx`, through `_libs/tg-menu.ts`).
+- **The core** draws the same tree in the left menu of this element under «Working process», asking the door `GET /api/tg-menu`
+  (`app/api/tg-menu/`, the node key) — it never copies the file; a press opens the same screen `/<lang>/tg/<slug>`.
+- **So:** an item, a project or an author is added ONCE, in `menu.json`, with its screen folder `_pages/<slug>/` — and it appears in
+  both windows. Never build a screen for the core separately, never keep a second menu.
+- **In every element:** «Subscriptions» (a category) and «Cron automation» (the calendar of events and planned actions) — the two items
+  the core's «Working process» always had. An element may drop a mode or another item; these two stay.
 
 ## How the element's agent builds it
 

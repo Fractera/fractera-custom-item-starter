@@ -170,6 +170,19 @@
               "callers": [
                 "*"
               ]
+            },
+            {
+              "skill": "tg-menu",
+              "protocol": "http",
+              "method": "GET",
+              "path": "/api/tg-menu",
+              "key": "node-key",
+              "input": {},
+              "output": {},
+              "errors": {
+                "401": "bad_key"
+              },
+              "callers": []
             }
           ],
           "consumes": [
@@ -438,6 +451,21 @@
       "examples": [
         "Save this hero section for everyone"
       ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "tg-menu",
+      "name": "The Mini App menu for the core's Working process",
+      "description": "the Mini App menu for the core's Working process. Not over A2A: an HTTP door — GET /api/tg-menu (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door"
+      ],
+      "examples": [],
       "inputModes": [
         "application/json"
       ],

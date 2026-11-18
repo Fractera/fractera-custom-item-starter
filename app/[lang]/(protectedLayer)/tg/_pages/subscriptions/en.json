@@ -1,0 +1,11 @@
+{
+  "title": "Subscriptions",
+  "description": "The element's subscriptions: each one opens below it in the menu.",
+  "body": [
+    {
+      "kind": "text-p",
+      "text": "Here live the subscriptions this element keeps — services it pays for and plans its people buy. The element's agent adds each one to the menu, and it appears in Telegram and in the core's Working process at once.",
+      "bid": "tdsre"
+    }
+  ]
+}

@@ -16,3 +16,8 @@ Code without markup that only the **tg** branch uses: reading and shaping its da
 ## Rule of thumb
 
 If a function would make sense in another branch tomorrow, it belongs in `lib/` today.
+
+## In this branch
+
+- `tg-menu.ts` — `tgMenu(lang)`: `../_data/menu.json` in ONE language for the drawer (the other languages never reach the browser).
+  The door `app/api/tg-menu/` serves the same file whole to the core (`../README.md`, «One menu — two windows»).

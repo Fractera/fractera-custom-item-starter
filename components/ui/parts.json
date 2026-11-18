@@ -786,6 +786,29 @@
           "диапазон"
         ]
       }
+    },
+    {
+      "id": "ui-tabs",
+      "kind": "primitive",
+      "path": "components/ui/tabs.tsx",
+      "export": "Tabs, TabsList, TabsTrigger, TabsContent",
+      "what": {
+        "en": "Tabs — switch between views of one place; the two modes of the Mini App drawer.",
+        "ru": "Вкладки — переключение между видами одного места; два режима ящика мини-приложения."
+      },
+      "how": "import { Tabs } from \"@/components/ui/tabs\" — one owner per kind.",
+      "words": {
+        "en": [
+          "tabs",
+          "tab bar",
+          "segmented switch"
+        ],
+        "ru": [
+          "вкладки",
+          "табы",
+          "переключатель режимов"
+        ]
+      }
     }
   ]
 }

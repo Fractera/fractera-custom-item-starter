@@ -1,0 +1,199 @@
+{
+  "_": "The ONE menu of this element's Telegram Mini App and of its «Working process» in the core (node steps 789, 790). Telegram draws it in the drawer of /tg; the core's left menu draws the same tree through the door GET /api/tg-menu. Edit only here: an item added here appears in both windows. Every `slug` is a screen folder in ../_pages/<slug>/ (the empty slug is the branch's own page). A category opens downward: its `children` are the element's own things (projects, authors, services), written by its agent; `add` names the new-item line. Modes: «work» — the person's own projects; «a2a» — the element's services sold outward through Lagrix (a precedent while the network is not live). An element may drop a mode or an item here; the two «always at hand» items — subscriptions and cron — stay in every element.",
+  "ui": {
+    "open": {
+      "en": "Open the menu",
+      "ru": "Открыть меню"
+    },
+    "close": {
+      "en": "Close the menu",
+      "ru": "Закрыть меню"
+    },
+    "role": {
+      "en": "Element administrator",
+      "ru": "Администратор элемента"
+    },
+    "site": {
+      "en": "Open the element's site",
+      "ru": "Открыть сайт элемента"
+    },
+    "modes": {
+      "en": "Mode",
+      "ru": "Режим"
+    }
+  },
+  "modes": [
+    {
+      "id": "work",
+      "title": {
+        "en": "My projects",
+        "ru": "Мои проекты"
+      },
+      "groups": [
+        {
+          "items": [
+            {
+              "slug": "",
+              "icon": "home",
+              "title": {
+                "en": "Overview",
+                "ru": "Обзор"
+              },
+              "hint": {
+                "en": "The element's state and latest events",
+                "ru": "Состояние элемента и последние события"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Always at hand",
+            "ru": "Всегда под рукой"
+          },
+          "items": [
+            {
+              "slug": "subscriptions",
+              "icon": "card",
+              "title": {
+                "en": "Subscriptions",
+                "ru": "Подписки"
+              },
+              "children": [],
+              "add": {
+                "en": "New subscription",
+                "ru": "Новая подписка"
+              }
+            },
+            {
+              "slug": "cron",
+              "icon": "calendar",
+              "title": {
+                "en": "Cron automation",
+                "ru": "Крон-автоматизация"
+              },
+              "hint": {
+                "en": "The calendar of events and planned actions",
+                "ru": "Календарь событий и запланированных действий"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Element",
+            "ru": "Элемент"
+          },
+          "items": [
+            {
+              "slug": "settings",
+              "icon": "settings",
+              "title": {
+                "en": "Element settings",
+                "ru": "Настройки элемента"
+              },
+              "hint": {
+                "en": "Name, description, bot",
+                "ru": "Имя, описание, бот"
+              }
+            },
+            {
+              "slug": "help",
+              "icon": "help",
+              "title": {
+                "en": "Help",
+                "ru": "Помощь"
+              },
+              "hint": {
+                "en": "How to use the Mini App",
+                "ru": "Как пользоваться мини-приложением"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2a",
+      "title": {
+        "en": "A2A · Web4",
+        "ru": "A2A · Web4"
+      },
+      "groups": [
+        {
+          "items": [
+            {
+              "slug": "a2a",
+              "icon": "home",
+              "title": {
+                "en": "A2A overview",
+                "ru": "Обзор A2A"
+              },
+              "hint": {
+                "en": "Who found you in the Web4 network",
+                "ru": "Кто нашёл вас в сети Web4"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Outward",
+            "ru": "Наружу"
+          },
+          "items": [
+            {
+              "slug": "a2a-services",
+              "icon": "store",
+              "title": {
+                "en": "My services",
+                "ru": "Мои услуги"
+              },
+              "children": [],
+              "add": {
+                "en": "New service",
+                "ru": "Новая услуга"
+              }
+            },
+            {
+              "slug": "a2a-orders",
+              "icon": "inbox",
+              "title": {
+                "en": "Orders",
+                "ru": "Заказы"
+              },
+              "hint": {
+                "en": "None yet: the Lagrix network is not live",
+                "ru": "Пока нет: сеть Lagrix ещё не запущена"
+              }
+            },
+            {
+              "slug": "a2a-reviews",
+              "icon": "star",
+              "title": {
+                "en": "Reviews",
+                "ru": "Отзывы"
+              },
+              "hint": {
+                "en": "Reputation comes only from paid work",
+                "ru": "Репутация — только за оплаченную работу"
+              }
+            },
+            {
+              "slug": "a2a-wallet",
+              "icon": "wallet",
+              "title": {
+                "en": "Wallet",
+                "ru": "Кошелёк"
+              },
+              "hint": {
+                "en": "The node's USDC",
+                "ru": "USDC узла"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

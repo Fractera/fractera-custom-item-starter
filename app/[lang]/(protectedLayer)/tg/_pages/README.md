@@ -36,3 +36,9 @@ app/[lang]/(protectedLayer)/tg/_pages/<slug>/ru.json
 The page answers at `/<lang>/tg/<slug>`. Kinds — `section-*` (this element's sections, `components/sections/`), `text-*` (typography, `lib/content/text-set.tsx`), `widget-*` (this branch's `_widgets/index.tsx`), one sequence in every language (`lib/content/page-items.ts`); a missing kind is written in this element by its design pass
 (`components/sections/README.md`).
 `roles` adds roles to the lock of the page (inside a role folder the folder's role and its heirs are already there); `{roles}` in a paragraph prints the whole list. The architect always passes.
+
+## The Mini App's screens and its menu
+
+Every `slug` of `../_data/menu.json` has its folder here (the empty slug is the branch's own page `../_data/`). A new menu item, a
+project or an author in a category — its folder here and its line in `menu.json`, both in one commit: the screen then opens from the
+Telegram drawer and from the core's «Working process» alike (`../README.md`, «One menu — two windows»).
