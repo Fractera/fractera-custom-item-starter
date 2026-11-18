@@ -1,5 +1,5 @@
 {
-  "_": "The ONE menu of this element's Telegram Mini App and of its «Working process» in the core (node steps 789, 790). Telegram draws it in the drawer of /tg; the core's left menu draws the same tree through the door GET /api/tg-menu. Edit only here: an item added here appears in both windows. Every `slug` is a screen folder in ../_pages/<slug>/ (the empty slug is the branch's own page). A category opens downward: its `children` are the element's own things (projects, authors, services), written by its agent; `add` names the new-item line. Modes: «work» — the person's own projects; «a2a» — the element's services sold outward through Lagrix (a precedent while the network is not live). An element may drop a mode or an item here; the two «always at hand» items — subscriptions and cron — stay in every element.",
+  "_": "The ONE menu of this element's Telegram Mini App and of its «Working process» in the core (node steps 789, 790). Telegram draws it in the drawer of /tg; the core's left menu draws the same tree through the door GET /api/tg-menu. Edit only here: an item added here appears in both windows. Every `slug` is a screen folder in ../_pages/<slug>/ (the empty slug is the branch's own page). A category opens downward: its `children` are the element's own things (projects, authors, services), written by its agent; `add` names the new-item line. Modes: «work» — the person's own projects; «a2a» — the element's services sold outward through Lagrix (a precedent while the network is not live). `common` — the items OUTSIDE the modes, on the same level as «My projects» and «A2A · Web4» (the owner, Telegram 757): subscriptions, cron automation, the element's settings, help; shown in every mode. An element may drop a mode or an item; subscriptions and cron stay in every element.",
   "ui": {
     "open": {
       "en": "Open the menu",
@@ -42,71 +42,6 @@
               "hint": {
                 "en": "The element's state and latest events",
                 "ru": "Состояние элемента и последние события"
-              }
-            }
-          ]
-        },
-        {
-          "title": {
-            "en": "Always at hand",
-            "ru": "Всегда под рукой"
-          },
-          "items": [
-            {
-              "slug": "subscriptions",
-              "icon": "card",
-              "title": {
-                "en": "Subscriptions",
-                "ru": "Подписки"
-              },
-              "children": [],
-              "add": {
-                "en": "New subscription",
-                "ru": "Новая подписка"
-              }
-            },
-            {
-              "slug": "cron",
-              "icon": "calendar",
-              "title": {
-                "en": "Cron automation",
-                "ru": "Крон-автоматизация"
-              },
-              "hint": {
-                "en": "The calendar of events and planned actions",
-                "ru": "Календарь событий и запланированных действий"
-              }
-            }
-          ]
-        },
-        {
-          "title": {
-            "en": "Element",
-            "ru": "Элемент"
-          },
-          "items": [
-            {
-              "slug": "settings",
-              "icon": "settings",
-              "title": {
-                "en": "Element settings",
-                "ru": "Настройки элемента"
-              },
-              "hint": {
-                "en": "Name, description, bot",
-                "ru": "Имя, описание, бот"
-              }
-            },
-            {
-              "slug": "help",
-              "icon": "help",
-              "title": {
-                "en": "Help",
-                "ru": "Помощь"
-              },
-              "hint": {
-                "en": "How to use the Mini App",
-                "ru": "Как пользоваться мини-приложением"
               }
             }
           ]
@@ -194,6 +129,57 @@
           ]
         }
       ]
+    }
+  ],
+  "common": [
+    {
+      "slug": "subscriptions",
+      "icon": "card",
+      "title": {
+        "en": "Subscriptions",
+        "ru": "Подписки"
+      },
+      "children": [],
+      "add": {
+        "en": "New subscription",
+        "ru": "Новая подписка"
+      }
+    },
+    {
+      "slug": "cron",
+      "icon": "calendar",
+      "title": {
+        "en": "Cron automation",
+        "ru": "Крон-автоматизация"
+      },
+      "hint": {
+        "en": "The calendar of events and planned actions",
+        "ru": "Календарь событий и запланированных действий"
+      }
+    },
+    {
+      "slug": "settings",
+      "icon": "settings",
+      "title": {
+        "en": "Element settings",
+        "ru": "Настройки элемента"
+      },
+      "hint": {
+        "en": "Name, description, bot",
+        "ru": "Имя, описание, бот"
+      }
+    },
+    {
+      "slug": "help",
+      "icon": "help",
+      "title": {
+        "en": "Help",
+        "ru": "Помощь"
+      },
+      "hint": {
+        "en": "How to use the Mini App",
+        "ru": "Как пользоваться мини-приложением"
+      }
     }
   ]
 }

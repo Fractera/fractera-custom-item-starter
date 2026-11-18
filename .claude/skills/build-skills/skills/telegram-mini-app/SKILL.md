@@ -61,7 +61,8 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
   element's services sold outward through Lagrix — said honestly while the network is not live). Drop a mode the element does not need.
 - A category opens downward: its `children` are this element's own things — projects, author portraits, services — each with its
   screen folder; `add` names the line that adds one. Add a child, its folder `tg/_pages/<slug>/` and its line in one commit.
-- «Subscriptions» and «Cron automation» stay in every element: they are what the core's «Working process» always had.
+- `common` holds the items OUTSIDE the modes, on their level (the owner, Telegram 757): «Subscriptions», «Cron automation», «Element
+  settings», «Help» — never put them inside a mode. Subscriptions and cron stay in every element.
 - Proofs of a menu change: `npm run test:tg-menu` (the door accepts the file, a bad slug is refused) and eyes of the drawer open at
   390 px in both themes.
 

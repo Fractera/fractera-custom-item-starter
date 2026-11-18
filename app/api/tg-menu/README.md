@@ -5,6 +5,6 @@ machine's loopback with `X-Node-Key` and draws the same tree in its left menu (n
 computer. The menu itself lives in `app/[lang]/(protectedLayer)/tg/_data/menu.json`; this door only checks it and hands it over.
 
 - `?lang=ru` — the caller's language (the menu keeps every language; the core picks).
-- 200 `{ base: "/tg", lang, modes }` · 422 `{ error, reason }` for a broken menu (`no_menu`, `bad_mode`, `bad_item`, `bad_child`) — a
+- 200 `{ base: "/tg", lang, modes, common }` (`common` — the items outside the modes, on their level) · 422 `{ error, reason }` for a broken menu (`no_menu`, `bad_mode`, `bad_item`, `bad_child`) — a
   slug that climbs out (`../admin`) is refused, never half-sent.
 - Samples: `npm run test:tg-menu`.

@@ -49,8 +49,11 @@ same thing on the computer.
   (`app/api/tg-menu/`, the node key) — it never copies the file; a press opens the same screen `/<lang>/tg/<slug>`.
 - **So:** an item, a project or an author is added ONCE, in `menu.json`, with its screen folder `_pages/<slug>/` — and it appears in
   both windows. Never build a screen for the core separately, never keep a second menu.
-- **In every element:** «Subscriptions» (a category) and «Cron automation» (the calendar of events and planned actions) — the two items
-  the core's «Working process» always had. An element may drop a mode or another item; these two stay.
+- **Outside the modes, on their level** (the owner, Telegram 757: «Подписки, крон автоматизации, настройки элемента должны существовать
+  снаружи вкладки мои проекты и находиться на одном уровне с мои проекты и a2a web4»): `common` in `menu.json` — «Subscriptions» (a
+  category), «Cron automation» (the calendar of events and planned actions), «Element settings», «Help». The drawer shows them under
+  the mode switch in every mode; the core's left menu puts them beside «My projects» and «A2A · Web4». Subscriptions and cron stay in
+  every element.
 
 ## How the element's agent builds it
 

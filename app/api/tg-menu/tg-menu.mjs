@@ -16,6 +16,11 @@ export async function handle(input, menu) {
       for (const c of it.children ?? []) if (typeof c?.slug !== 'string' || !SLUG.test(c.slug) || !words(c.title)) return { status: 422, body: { error: 'bad_child', reason: `mode ${m.id}: a child of «${it.title.en}» without a valid slug or title` } }
     }
   }
+  // 757: `common` — the items outside the modes, on their level (subscriptions, cron, the element's settings, help)
+  const common = Array.isArray(menu?.common) ? menu.common : []
+  for (const it of common) {
+    if (typeof it?.slug !== 'string' || !SLUG.test(it.slug) || !words(it.title)) return { status: 422, body: { error: 'bad_item', reason: 'common: an item without a valid slug or title' } }
+  }
   const lang = typeof input?.lang === 'string' && /^[a-z]{2}$/.test(input.lang) ? input.lang : null
-  return { status: 200, body: { base: '/tg', lang, modes } }
+  return { status: 200, body: { base: '/tg', lang, modes, common } }
 }

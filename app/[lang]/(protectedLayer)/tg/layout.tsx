@@ -15,12 +15,12 @@ export default async function Layout(
   { children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> },
 ) {
   const { lang } = await params
-  const { modes, ui } = tgMenu(lang)
+  const { modes, common, ui } = tgMenu(lang)
   return (
     <AccessGate roles={PROTECTED_GROUP_ROLES.admin} lang={lang} ui={accessGateUi(lang)} dialogUi={appDialogUi(lang)}>
       <div data-block="tg-app" data-tg-app="" className="min-h-dvh bg-background text-foreground">
         <TgBridge />
-        <TgShell lang={lang} modes={modes} site={`/${lang}`} siteName={metaForLang(lang).siteName} ui={ui}>{children}</TgShell>
+        <TgShell common={common} lang={lang} modes={modes} site={`/${lang}`} siteName={metaForLang(lang).siteName} ui={ui}>{children}</TgShell>
       </div>
     </AccessGate>
   )

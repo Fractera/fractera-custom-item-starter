@@ -20,18 +20,29 @@ const ICONS: Record<string, LucideIcon> = { home: House, card: CreditCard, calen
 const ROW = "relative flex min-h-14 items-center gap-3 rounded-xl px-3 py-2 text-foreground transition-colors hover:bg-muted/60"
 const CURRENT = "bg-muted before:absolute before:inset-y-3.5 before:left-0 before:w-[3px] before:rounded-full before:bg-primary"
 
-type Props = { lang: string; siteName: string; site: string; modes: TgMode[]; ui: TgUi; children: ReactNode }
+type Props = { lang: string; siteName: string; site: string; modes: TgMode[]; common: TgItem[]; ui: TgUi; children: ReactNode }
 
-export function TgShell({ lang, siteName, site, modes, ui, children }: Props) {
+export function TgShell({ lang, siteName, site, modes, common, ui, children }: Props) {
   const path = usePathname() ?? ""
   const base = `/${lang}/tg`
   const slug = path.startsWith(base) ? path.slice(base.length).replace(/^\/+|\/+$/g, "") : ""
+  // 757: the common items are outside every mode — opening one keeps the mode the person chose
   const owner = (m: TgMode) => m.groups.some((g) => g.items.some((it) => it.slug === slug || it.children?.some((c) => c.slug === slug)))
   const [mode, setMode] = useState(() => (modes.find(owner) ?? modes[0])?.id ?? "")
   const [open, setOpen] = useState(false)
-  const current = modes.flatMap((m) => m.groups.flatMap((g) => g.items.flatMap((it) => [it, ...(it.children ?? []).map((c) => ({ ...c, title: c.title }))]))).find((it) => it.slug === slug)
+  const all = [...modes.flatMap((m) => m.groups.flatMap((g) => g.items)), ...common]
+  const current = all.flatMap((it) => [it, ...(it.children ?? [])]).find((it) => it.slug === slug)
   const active = modes.find((m) => m.id === mode) ?? modes[0]
   const href = (s: string) => (s ? `${base}/${s}` : base)
+  const row = (it: TgItem) => it.children ? <Category href={href} item={it} key={it.slug} onGo={() => setOpen(false)} slug={slug} /> : (
+    <Link className={cn(ROW, it.slug === slug && CURRENT)} href={href(it.slug)} key={it.slug} onClick={() => setOpen(false)}>
+      <Tile icon={it.icon} on={it.slug === slug} />
+      <span className="flex min-w-0 flex-col">
+        <span className="font-medium text-[15px] leading-tight">{it.title}</span>
+        {it.hint ? <span className="truncate text-[13px] text-muted-foreground leading-snug">{it.hint}</span> : null}
+      </span>
+    </Link>
+  )
 
   return (
     <div className="flex min-h-dvh flex-col" data-block="tg-shell">
@@ -61,17 +72,12 @@ export function TgShell({ lang, siteName, site, modes, ui, children }: Props) {
             {active?.groups.map((g, gi) => (
               <div className="pt-2" data-block="tg-drawer-group" key={`${active.id}-${gi}`}>
                 {g.title ? <p className="px-3 pt-2 pb-1.5 font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">{g.title}</p> : null}
-                {g.items.map((it) => it.children ? <Category href={href} item={it} key={it.slug} onGo={() => setOpen(false)} slug={slug} /> : (
-                  <Link className={cn(ROW, it.slug === slug && CURRENT)} href={href(it.slug)} key={it.slug} onClick={() => setOpen(false)}>
-                    <Tile icon={it.icon} on={it.slug === slug} />
-                    <span className="flex min-w-0 flex-col">
-                      <span className="font-medium text-[15px] leading-tight">{it.title}</span>
-                      {it.hint ? <span className="truncate text-[13px] text-muted-foreground leading-snug">{it.hint}</span> : null}
-                    </span>
-                  </Link>
-                ))}
+                {g.items.map(row)}
               </div>
             ))}
+            {/* 757 (the owner: «Подписки, крон автоматизации, настройки элемента должны существовать снаружи вкладки мои проекты и
+                находиться на одном уровне с мои проекты и a2a web4»): the common items, under a line, in every mode */}
+            {common.length ? <div className="mt-2 border-t border-border pt-2" data-block="tg-drawer-common">{common.map(row)}</div> : null}
           </nav>
           {site ? (
             <div className="border-t border-border px-4 pt-3 pb-7" data-block="tg-drawer-foot">

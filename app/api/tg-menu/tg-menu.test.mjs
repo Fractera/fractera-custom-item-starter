@@ -8,9 +8,9 @@ const check = (label, ok, got) => { if (!ok) failures++; console.log(`${ok ? 'ok
 const menu = JSON.parse(readFileSync(new URL('../../[lang]/(protectedLayer)/tg/_data/menu.json', import.meta.url), 'utf8'))
 const real = await handle({ lang: 'ru' }, menu)
 check('the real menu: two modes, «work» and «a2a», the base /tg', real.status === 200 && real.body.base === '/tg' && real.body.modes.map((m) => m.id).join() === 'work,a2a', real)
-const items = real.body.modes.flatMap((m) => m.groups.flatMap((g) => g.items.map((i) => i.slug)))
-check('subscriptions and cron are in every element', items.includes('subscriptions') && items.includes('cron'), items)
-const withKid = structuredClone(menu); withKid.modes[0].groups[1].items[0].children.push({ slug: 'subscriptions/claude', title: { en: 'Claude', ru: 'Claude' } })
+const common = real.body.common.map((i) => i.slug)
+check('subscriptions, cron, settings and help stand OUTSIDE the modes, on their level (Telegram 757)', ['subscriptions', 'cron', 'settings', 'help'].every((s) => common.includes(s)) && !real.body.modes.some((m) => m.groups.some((g) => g.items.some((i) => common.includes(i.slug)))), real.body)
+const withKid = structuredClone(menu); withKid.common[0].children.push({ slug: 'subscriptions/claude', title: { en: 'Claude', ru: 'Claude' } })
 check('a child the agent adds passes', (await handle({}, withKid)).status === 200)
 const bad = structuredClone(menu); bad.modes[0].groups[0].items[0].slug = '../admin'
 check('refused: a slug that climbs out', (await handle({}, bad)).body.error === 'bad_item')
