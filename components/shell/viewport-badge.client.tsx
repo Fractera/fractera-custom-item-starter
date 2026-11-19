@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { isLoopbackHostname } from '@/lib/auth/owner-at-machine'
 import { isTemporaryHostname } from '@/lib/auth/temporary-address'
-import { isShowcaseHostname } from '@/lib/showcase'
 import { quickNavVisible } from './quick-nav-visibility'
 
 // ИНДИКАТОР ШИРИНЫ И НАВЫКА ДИЗАЙНА — круг в ЛЕВОМ нижнем углу (узел, шаг 715; владелец 2026-11-10: «по дефолту он должен существовать
@@ -30,9 +29,9 @@ export function ViewportBadge({ skill, skillLabel }: { skill: string | null; ski
 
   useEffect(() => {
     const host = window.location.hostname
-    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host), showcase: isShowcaseHostname(host) }
+    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host) }
     if (quickNavVisible(place, null)) { setShown(true); return }
-    if (place.temporary || place.showcase) return
+    if (place.temporary) return
     let alive = true
     fetch('/api/me', { cache: 'no-store', credentials: 'include' })
       .then((r) => (r.ok ? r.json() : null))

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAppConfig } from "@/config/app-config";
 import { SUPPORTED_LANGUAGES } from "@/config/translations/translations.config";
-import { isShowcaseBuild } from "@/lib/showcase.server";
 
 // Static robots (step 131). Config-driven so it stays correct under white-label:
 // indexing toggle, disallow paths and sitemap URL come from Site Settings
@@ -47,13 +46,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   //
   // Раскрытие идёт по включённому набору, поэтому новый язык добавляет строку сам,
   // без правки кода. Голый путь остаётся тоже: одноязычный режим убирает сегмент.
-  //
-  // 🔒 НА ВИТРИНЕ СЛУЖЕБНЫХ ЗАПРЕТОВ НЕТ (256-2): там слой архитектора открыт
-  // намеренно и обязан индексироваться — иначе мы обещаем поисковику страницы,
-  // которые сами же запретили.
-  const servicePaths = isShowcaseBuild()
-    ? []
-    : SERVICE_DISALLOW.flatMap(p => [p, ...SUPPORTED_LANGUAGES.map(l => `/${l}${p}`)]);
+  const servicePaths = SERVICE_DISALLOW.flatMap(p => [p, ...SUPPORTED_LANGUAGES.map(l => `/${l}${p}`)]);
   const disallow = [...(cfg.seo?.disallowPaths ?? []), ...servicePaths];
   const isAllowed = cfg.seo?.indexing !== "disallow";
   // Icons cut from the own logo live under `/api` (node step 413): the longer Allow wins over `Disallow: /api`, so a search

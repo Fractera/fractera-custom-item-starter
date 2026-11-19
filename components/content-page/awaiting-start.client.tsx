@@ -5,7 +5,6 @@ import { buttonVariants } from '@/components/ui/button'
 import { P } from '@/components/ui/typography'
 import { isLoopbackHostname } from '@/lib/auth/owner-at-machine'
 import { isTemporaryHostname } from '@/lib/auth/temporary-address'
-import { isShowcaseHostname } from '@/lib/showcase'
 import { quickNavVisible } from '@/components/shell/quick-nav-visibility'
 import type { AwaitingStartWords } from './awaiting-start.i18n'
 
@@ -17,9 +16,9 @@ export function AwaitingStart({ subscriptionHref, terminalHref, words }: { subsc
   const [shown, setShown] = useState(false)
   useEffect(() => {
     const host = window.location.hostname
-    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host), showcase: isShowcaseHostname(host) }
+    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host) }
     if (quickNavVisible(place, null)) { setShown(true); return }
-    if (place.temporary || place.showcase) return
+    if (place.temporary) return
     let alive = true
     fetch('/api/me', { cache: 'no-store', credentials: 'include' })
       .then((r) => (r.ok ? r.json() : null))

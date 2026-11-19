@@ -4,7 +4,6 @@ import { Compass, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { isLoopbackHostname } from '@/lib/auth/owner-at-machine'
 import { isTemporaryHostname } from '@/lib/auth/temporary-address'
-import { isShowcaseHostname } from '@/lib/showcase'
 import { quickNavVisible } from './quick-nav-visibility'
 import type { QuickNavWords } from './quick-nav.i18n'
 
@@ -33,9 +32,9 @@ export function QuickNav({ lang, words, designHref, settingsHref, subscriptionHr
     try { hidden = sessionStorage.getItem(HIDDEN_KEY) === '1' } catch { /* no storage here — the strip shows */ }
     if (hidden) return
     const host = window.location.hostname
-    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host), showcase: isShowcaseHostname(host) }
+    const place = { loopback: isLoopbackHostname(host), temporary: isTemporaryHostname(host) }
     if (quickNavVisible(place, null)) { setShown(true); return }
-    if (place.temporary || place.showcase) return
+    if (place.temporary) return
     let alive = true
     fetch('/api/me', { cache: 'no-store', credentials: 'include' })
       .then((r) => (r.ok ? r.json() : null))

@@ -55,8 +55,6 @@ function siteUrl() {
 }
 
 const SITE = siteUrl()
-const SHOWCASE_ORIGIN = "https://fractera.ai"
-const IS_SHOWCASE = SITE === SHOWCASE_ORIGIN
 
 // ── Чтение одной страницы ──────────────────────────────────────────────────
 function walk(dir, out = []) {
@@ -160,9 +158,9 @@ for (const [route, group] of byRoute) {
       fail(p.file, "lang-mismatch", `<html lang="${p.htmlLang}">, а маршрут на «${p.lang}»`)
     }
 
-    // ПРАВИЛО 8 — вне витрины слой архитектора и приватные страницы не индексируемы.
-    if (!IS_SHOWCASE && p.isArchitect && indexable(p)) {
-      fail(p.file, "private-indexed", `страница слоя объявлена индексируемой вне витрины: ${p.robots}`)
+    // ПРАВИЛО 8 — слой архитектора и приватные страницы не индексируемы ни на одном адресе (витрина fractera.ai убрана, шаг ядра 800).
+    if (p.isArchitect && indexable(p)) {
+      fail(p.file, "private-indexed", `страница слоя объявлена индексируемой: ${p.robots}`)
     }
 
     if (!indexable(p)) continue
@@ -258,7 +256,7 @@ const OPEN = LANGS.filter(l => l === "en" || l === DEFAULT || UNLOCKED.includes(
 
 for (const p of pages) {
   // ПРАВИЛО 9 — страница закрытого языка не индексируется.
-  if (!OPEN.includes(p.lang) && indexable(p) && !(IS_SHOWCASE && p.isArchitect)) {
+  if (!OPEN.includes(p.lang) && indexable(p)) {
     fail(p.file, "closed-language-indexed", `язык «${p.lang}» закрыт для поисковика, а страница объявлена индексируемой: ${p.robots}`)
   }
   // ПРАВИЛО 10 — закрытая версия не объявляет переводов: её hreflang односторонний по построению (замер 340-1, aifa.dev/fr).
@@ -302,7 +300,7 @@ if (existsSync(robotsBody)) {
 const shown = pages.length
 const live = pages.filter(indexable).length
 console.log(`страниц в сборке: ${shown}, индексируемых: ${live}, языков: ${LANGS.join(",") || "—"}, открыто поисковику: ${OPEN.join(",") || "—"}`)
-console.log(`адрес сайта: ${SITE || "(не задан)"}${IS_SHOWCASE ? " — ВИТРИНА" : ""}`)
+console.log(`адрес сайта: ${SITE || "(не задан)"}`)
 
 if (!errors.length) {
   console.log("\n===SEO_HTML_OK=== языковые сигналы согласованы")

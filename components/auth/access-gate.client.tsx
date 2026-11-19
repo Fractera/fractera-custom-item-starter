@@ -29,7 +29,6 @@ import type { AppDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { signInRedirectUrl } from "@/lib/runtime-urls"
 import { isTemporaryHostname } from "@/lib/auth/temporary-address"
 import { isLoopbackHostname } from "@/lib/auth/owner-at-machine"
-import { isShowcaseHostname } from "@/lib/showcase"
 import type { AccessGateUi } from "./access-gate.i18n"
 
 // 🔒 «НЕ СМОГ СПРОСИТЬ» — ЭТО НЕ «ОТКАЗАНО» (2026-09-19). Четвёртое значение
@@ -46,25 +45,19 @@ import type { AccessGateUi } from "./access-gate.i18n"
 type Verdict = "checking" | "allowed" | "denied" | "unknown"
 
 /**
- * Адрес, на котором слой открыт по решению владельца: сама машина, временный
- * туннель и **витрина Fractera**.
+ * Адрес, на котором слой открыт по решению владельца: сама машина и временный
+ * туннель. Имя fractera.ai — обычное имя (шаг ядра 800, 2026-11-19: витрина убрана).
  *
- * 🔒 ПРИЗНАКИ — ТЕ ЖЕ ФУНКЦИИ, ЧТО ЧИТАЕТ СЕРВЕР (`lib/auth/*`, `lib/showcase`),
- * а не вторая их копия: две половины одного знания расходятся молча, и здесь
- * расхождение выглядит как запертая дверь у себя дома.
- *
- * 🛑 ТРИ ПРИЗНАКА СВЕРЯЮТ РАЗНОЕ, И ЭТО НЕ НЕБРЕЖНОСТЬ. У туннеля сверяется ХВОСТ
- * имени: оно случайно и меняется при каждом перезапуске. У витрины — имя ЦЕЛИКОМ:
- * совпадение по хвосту открыло бы режим любому поддомену, включая тот, что
- * однажды заведёт себе чужой человек.
+ * 🔒 ПРИЗНАКИ — ТЕ ЖЕ ФУНКЦИИ, ЧТО ЧИТАЕТ СЕРВЕР (`lib/auth/*`), а не вторая их
+ * копия: две половины одного знания расходятся молча, и здесь расхождение
+ * выглядит как запертая дверь у себя дома. У туннеля сверяется ХВОСТ имени: оно
+ * случайно и меняется при каждом перезапуске.
  *
  * 🔒 ОДНА ЭТА ФУНКЦИЯ ОТКРЫВАЕТ И СЛОЙ АРХИТЕКТОРА, И ЧЕТЫРЕ ПРИВАТНЫЕ ГРУППЫ —
- * потому что замок у них общий (`AccessGate` стоит в макете каждой). Решение
- * владельца 2026-09-20: «проиндексируем слой архитектора и одновременно
- * индексируемый слой приватных страниц… только у Fractera».
+ * потому что замок у них общий (`AccessGate` стоит в макете каждой).
  */
 function isOpenAddress(hostname: string): boolean {
-  return isLoopbackHostname(hostname) || isTemporaryHostname(hostname) || isShowcaseHostname(hostname)
+  return isLoopbackHostname(hostname) || isTemporaryHostname(hostname)
 }
 
 export function AccessGate(

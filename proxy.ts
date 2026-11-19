@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { shouldBypassAuthEdge } from "@/lib/auth/auth-bypass.edge";
 import { isOwnerAtMachine } from "@/lib/auth/owner-at-machine";
 import { isTemporaryPublicAddress } from "@/lib/auth/temporary-address";
-import { isShowcaseRequest } from "@/lib/showcase";
 import { getSession } from "@/lib/auth/get-session";
 import { PROTECTED_GROUP_ROLES } from "@/lib/roles";
 import { authBaseFromHost, connectedDomainAuthBase, projectsBaseFromHost, publicAuthBaseFor } from "@/lib/auth-base-server";
@@ -234,37 +233,6 @@ async function apiAuthGate(request: NextRequest): Promise<NextResponse> {
       return NextResponse.next();
     }
 
-    // 🔒 ВИТРИНА FRACTERA — ТРЕТЬЕ ИСКЛЮЧЕНИЕ ТОЙ ЖЕ ПРИРОДЫ (256-2).
-    //
-    // Решение владельца 2026-09-20, дословно: «я собираюсь использовать страницы
-    // архитектора на сайте Fractera.ai как демонстрационные страницы, которым
-    // нужен обязательный индекс… проиндексируем слой архитектора и одновременно
-    // индексируемый слой приватных страниц… только у Fractera».
-    //
-    // 🔒 ПОЧЕМУ ЭТО ЗДЕСЬ, А НЕ ТОЛЬКО У СТРАНИЦ. Замок приватного слоя и слоя
-    // архитектора — КЛИЕНТСКИЙ: островок спрашивает `/api/me`. Открой мы страницы
-    // и оставь ворота — человек увидел бы окно «Эта страница вам недоступна»
-    // поверх открытой страницы. Это уже оплачено дважды (243 и 252), и цена
-    // каждый раз была одна: открытая страница с закрытой дверью выглядит как
-    // поломка продукта, а не как защита.
-    //
-    // 🛑 ЧТЕНИЕ, И ТОЛЬКО ЧТЕНИЕ — ПРОВЕРКА МЕТОДА СТОИТ ЗДЕСЬ ЖЕ, А НЕ «ПОТОМ».
-    //
-    // ✗ ОПЛАЧЕНО ИЗМЕРЕНИЕМ В ТОТ ЖЕ ЧАС. Сперва здесь стояло голое
-    // `isShowcaseRequest(request)`, и я собирался запретить запись отдельным
-    // барьером следующим подшагом. Замер показал цену такого порядка:
-    // `POST /api/revalidate` с витринным хостом вернул **200**, а до моей правки
-    // тот же запрос получал 401. То есть подшаг, открывавший ЧТЕНИЕ, на полчаса
-    // открыл и ЗАПИСЬ.
-    //
-    // 🔒 ЗАКОН, КОТОРЫЙ ИЗ ЭТОГО СЛЕДУЕТ: послабление вводится сразу в своих
-    // границах. «Сузим в следующем подшаге» означает, что между подшагами
-    // существует состояние, которого никто не проектировал, — а именно оно и
-    // попадёт в сборку, если работу прервут.
-    if (isShowcaseRequest(request) && (request.method === "GET" || request.method === "HEAD")) {
-      return NextResponse.next();
-    }
-
     if (!shouldBypassAuthEdge()) {
       const agentIdentity = request.headers.get("x-agent-identity");
       if (!agentIdentity) {
@@ -363,39 +331,6 @@ function languageRouter(request: NextRequest): NextResponse {
 
 export async function proxy(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
-
-  // ── Job −1: ВИТРИНА НЕ ПРИНИМАЕТ ЗАПИСЬ (256-3) ──────────────────────────
-  //
-  // 🔒 РЕШЕНИЕ ВЛАДЕЛЬЦА 2026-09-20, дословно: «если это Fractera — то индексацию
-  // открыть, изменения в базу данных не сохранять. Пусть базы данных будут
-  // доступны, пусть хранилища будут доступны на чтение».
-  //
-  // 🔒 ПОЧЕМУ САМЫМ ПЕРВЫМ, ДО ВСЕХ ОСТАЛЬНЫХ РАБОТ. Запись приходит не только в
-  // `/api/*`: серверные действия Next отправляются `POST`-ом на адрес ОБЫЧНОЙ
-  // СТРАНИЦЫ, и правило, стоящее внутри ворот `/api`, их не увидит вовсе. Одно
-  // правило о методе выше всех остальных закрывает разом мутирующие маршруты,
-  // загрузку файлов, серверные действия, вход в сессию и все маршруты ИИ — они
-  // тоже `POST`, то есть ключ в окружении витрины не станет бесплатной
-  // генерацией для прохожего.
-  //
-  // 🛑 ОТКАЗ ОБЪЯСНЯЕТ СЕБЯ, А НЕ МОЛЧИТ. Голый 403 читается как поломка и стоит
-  // часа разбирательств — собственный закон проекта о третьем состоянии (252).
-  //
-  // 🛑 ЭТО КАСАЕТСЯ И ВЛАДЕЛЬЦА: барьер не знает, кто пришёл. Управлять узлом с
-  // адреса витрины нельзя; управление остаётся на его машине, где действует
-  // правило хозяина за клавиатурой. Цена названа ему до согласования и принята.
-  if (isShowcaseRequest(request) && request.method !== "GET" && request.method !== "HEAD") {
-    return NextResponse.json(
-      {
-        error: "ReadOnlyShowcase",
-        message:
-          "Это витрина Fractera — демонстрационный узел, работающий только на чтение. " +
-          "Изменения здесь не сохраняются намеренно. Поставьте свой узел из репозитория: " +
-          "он ваш целиком, и в нём эти страницы закрыты и доступны только вам.",
-      },
-      { status: 403 },
-    );
-  }
 
   // Job 0 — rescue stray auth-form links to the auth host (before language
   // routing, which would otherwise rewrite "/register" → "/<lang>/register").
@@ -621,23 +556,7 @@ async function architectPagesGate(request: NextRequest): Promise<NextResponse | 
   if (shouldBypassAuthEdge()) return null;
   if (isTemporaryPublicAddress(request)) return null;
 
-  // 🔒 ЧЕТВЁРТОЕ ИСКЛЮЧЕНИЕ — ВИТРИНА FRACTERA (256-2), И ОНО ОТЛИЧАЕТСЯ ОТ ТРЁХ
-  // ПРЕДЫДУЩИХ ТЕМ, ЧТО ПОСТОЯННО.
-  //
-  // Решение владельца 2026-09-20, дословно: «Я всего один разработчик, не могу
-  // тянуть отдельно разработку своего демонстрационного сайта и отдельно версию
-  // для копирования. Я хочу, чтоб всё, что я буду делать в своём сайте,
-  // автоматически появлялось у каждого нового гостя, когда он будет копировать
-  // наш репозиторий, при этом я не хочу каждый раз нагружать себя требованием
-  // создания отдельных прав».
-  //
-  // 🔒 ГОСТЯ ЭТО НЕ ЗАДЕВАЕТ, И В ЭТОМ ВЕСЬ ЗАМЫСЕЛ: признак — точное совпадение
-  // домена с `fractera.ai` (`lib/showcase.ts`), а у гостя домен другой, поэтому
-  // тот же код закрывает его слой по умолчанию. Витрина не форк и не стенд —
-  // это тот же продукт в режиме, который включается адресом.
-  if (isShowcaseRequest(request)) return null;
-
-  // 🔒 ПЯТОЕ — ВОШЕДШИЙ АРХИТЕКТОР НА СВОЁМ ДОМЕНЕ (2026-09-21). Долг, названный
+  // 🔒 ЧЕТВЁРТОЕ — ВОШЕДШИЙ АРХИТЕКТОР НА СВОЁМ ДОМЕНЕ (2026-09-21). Долг, названный
   // выше («день, когда у узла появится вход, — день, когда здесь появится проверка
   // роли»), наступил в 259-8/260 и не был закрыт: вход на `auth.<зона>` работал, а
   // ворота по-прежнему отвечали 404 всем. ✗ увидено владельцем: «Начать строить» на
@@ -679,7 +598,6 @@ async function elementAdminPagesGate(request: NextRequest): Promise<NextResponse
   if (isOwnerAtMachine(request)) return null;
   if (shouldBypassAuthEdge()) return null;
   if (isTemporaryPublicAddress(request)) return null;
-  if (isShowcaseRequest(request) && (request.method === "GET" || request.method === "HEAD")) return null;
 
   const session = await getSession(request);
   if (session?.roles?.some((r) => PROTECTED_GROUP_ROLES.admin.includes(r))) return null;

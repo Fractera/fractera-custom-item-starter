@@ -1,6 +1,5 @@
 import { isRemoteData } from "@/lib/microservices/urls"
 import type Database from "better-sqlite3"
-import { isShowcaseBuild } from "@/lib/showcase.server"
 import { slugify } from "@/lib/ids"
 import { mkdirSync } from "fs"
 import { join, dirname } from "path"
@@ -730,51 +729,7 @@ function awaitingSchema(ready: Promise<unknown>): typeof remoteDb {
 // по умолчанию, и полагаться на это умолчание здесь нельзя: на машине
 // разработчика без `REMOTE_DATA_URL` приложение начало бы стучаться в
 // несуществующую службу вместо того, чтобы честно открыть локальный файл.
-// ── ВТОРОЙ БАРЬЕР ЗАПИСИ: ВИТРИНА ТОЛЬКО ЧИТАЕТ (256-3) ────────────────────
-//
-// 🔒 ЗАЧЕМ ВТОРОЙ, ЕСЛИ ПЕРВЫЙ СТОИТ В `proxy.ts`. Закон проекта: правило допуска
-// обязано стоять в ДВУХ местах. Прокси видит только то, что пришло по HTTP, и
-// слеп ко всему остальному: заданию по расписанию, скрипту обслуживания,
-// серверному коду, позванному из другого серверного кода. В этом же месяце это
-// оплачено дважды — обходом авторизации без правила в прокси и наоборот.
-//
-// 🔒 ПРИЗНАК — СБОРКА, А НЕ ЗАПРОС, И ЭТО НЕ КОМПРОМИСС. У слоя данных запроса
-// нет вовсе. Зато есть признак вернее: узел, собранный с адресом `fractera.ai`,
-// ЯВЛЯЕТСЯ витриной целиком и всегда, а не «для этого запроса». Локальный узел
-// владельца адреса не имеет и пишет как обычно.
-//
-// 🛑 СХЕМУ ПРИ СТАРТЕ БАРЬЕР НЕ ЗАДЕВАЕТ, И ЭТО ПРОВЕРЕНО ЧТЕНИЕМ, А НЕ
-// ПРЕДПОЛОЖЕНО: `makeLocalDb()` исполняет `SCHEMA` на СЫРОМ дескрипторе SQLite
-// раньше, чем объект уедет сюда, а удалённая дорога готовит схему в
-// `initRemoteSchema()`. Обёртка встаёт на дверь, которой пользуется приложение,
-// и рождению узла не мешает.
-const WRITING_SQL = /^\s*(insert|update|delete|replace|drop|alter|truncate|create)\b/i
-
-function refuseWrite(sql: string): never {
-  throw new Error(
-    "ReadOnlyShowcase: это витрина Fractera, запись запрещена. Отказавший запрос: " +
-      sql.slice(0, 120).replace(/\s+/g, " "),
-  )
-}
-
-/** Дверь к данным, отказывающая в записи на витрине. Чтение идёт как обычно. */
-function readOnlyOnShowcase<T extends { prepare: (sql: string) => unknown; exec: (sql: string) => unknown }>(inner: T): T {
-  if (!isShowcaseBuild()) return inner
-
-  return {
-    ...inner,
-    prepare(sql: string) {
-      if (WRITING_SQL.test(sql)) refuseWrite(sql)
-      return inner.prepare(sql)
-    },
-    exec(sql: string) {
-      if (WRITING_SQL.test(sql)) refuseWrite(sql)
-      return inner.exec(sql)
-    },
-  } as T
-}
-
-export const db = readOnlyOnShowcase(
+export const db =
   // 🔒 257-6: признак РЕЖИМА, а не адрес. Смысл прежний — «слой данных стоит не
   // на этой машине»; изменилось только то, что переменную читает одна дверь.
   (isRemoteData() && dataService().key)
@@ -784,5 +739,4 @@ export const db = readOnlyOnShowcase(
         // без этой строки причина пустой витрины не называется нигде.
         console.error("[db] Схема в слое данных не подготовлена:", err)
       }))
-    : makeLocalDb(),
-)
+    : makeLocalDb()
