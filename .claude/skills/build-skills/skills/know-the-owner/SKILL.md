@@ -1,16 +1,16 @@
 ---
 name: know-the-owner
 description: >
-  Both natures. This element is an app of its own (core step 804: answered once at its birth) and has its own owner — not the
-  node's architect. Build and keep a small, honest picture of that owner: first contact, saving, updating, forgetting. Load it when
-  the session start says you have no picture of the app's owner yet and the owner writes to you, when the owner corrects how you
-  speak or work, and when they say «что ты обо мне знаешь», «забудь» or «не запоминай». Never in an element that is part of the
-  project: there the person is the architect, and the core gives you their picture.
+  Both natures. An app of its own (core step 804) has its own owner, not the node's architect: build and keep a small, honest
+  picture of that owner — first contact, saving, updating, forgetting. Load it when the session start says you have no picture of
+  the app's owner and the owner writes, when the owner corrects how you work, and on «что ты обо мне знаешь», «забудь», «не запоминай».
 ---
 
 # Know the owner
 
-**Process: both.** A small picture, not a file on a person. It exists to build the dialogue with the owner of this app, nothing
+**Process: both**
+
+A small picture, not a file on a person. It exists to build the dialogue with the owner of this app, nothing
 else. The owner of the node asked for it on 2026-11-19 (core step 804): «если элемент является по природе принадлежащим другому
 хозяину … прошел шаг знакомства такой же как мы проходим с узлом».
 
