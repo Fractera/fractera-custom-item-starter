@@ -92,15 +92,15 @@ export function accountLinks(lang: string): DrawerLink[] {
       label: ARCHITECT_TITLE[lang] ?? ARCHITECT_TITLE.en,
       roles: ARCHITECT_LAYER_ROLES,
     },
+    // 805 (the owner of the node, 2026-11-19: «отсутствует выпадающем списке возможностью видеть страницы администратора … Если такая
+    // страница есть то достаточно добавить просто ссылку»): the admin pages of this element — accounts, design, site settings — for the
+    // architect and this element's own admin only (the drawer shows a link only to its roles; the page locks itself too).
+    ...adminLinks(lang),
   ]
 }
 
-// 🪦 СКРЫТО, НЕ УДАЛЕНО (645-3): мессенджеры H2H и H2A (459) и страницы администрирования — учётные записи, дизайн,
-// настройки сайта (314-2, 580-4). Страницы живы по своим адресам; вернуть в ящик — `...hiddenAccountLinks(lang)` в список выше,
-// по слову владельца.
+// 🪦 СКРЫТО, НЕ УДАЛЕНО (645-3): мессенджеры H2H и H2A (459) — до Lagrix. Страницы администрирования вернулись в ящик по слову
+// владельца (805); вернуть мессенджеры — `...hiddenAccountLinks(lang)` в список выше, по его слову.
 export function hiddenAccountLinks(lang: string): DrawerLink[] {
-  return [
-    ...MESSENGERS.map((m) => ({ href: `/${lang}${m.href}`, label: m.label, roles: ARCHITECT_LAYER_ROLES })),
-    ...adminLinks(lang),
-  ]
+  return MESSENGERS.map((m) => ({ href: `/${lang}${m.href}`, label: m.label, roles: ARCHITECT_LAYER_ROLES }))
 }

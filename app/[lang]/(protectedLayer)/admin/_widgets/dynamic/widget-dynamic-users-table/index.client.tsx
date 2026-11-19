@@ -15,6 +15,7 @@ import { ClampedChips } from "./clamped-chips.client"
 import { ServerTableTools, SERVER_PER_PAGE, type ServerTableQuery } from "./server-table-tools.client"
 import { UsersTableSkeleton } from "./skeleton"
 import { UserDialog } from "./user-dialog.client"
+import { AddUser } from "./add-user.client"
 
 // ВИДЖЕТ «УЧЁТНЫЕ ЗАПИСИ» — люди ЭТОГО ПРИЛОЖЕНИЯ (узел, шаг 580-3). Динамический островок в статической странице.
 //
@@ -45,6 +46,8 @@ const fullName = (r: Pick<AppUserRow, "firstName" | "lastName">) => [r.firstName
 
 export function UsersTable({ lang, ui, dialogUi }: { lang: string; ui: UsersTableUi; dialogUi: AppDialogUi }) {
   const [revealed, setRevealed] = useState(false)
+  // 805: a new person made by «Add a user» redraws the list (the island asks its door again).
+  const [round, setRound] = useState(0)
   const cols = [ui.cols.user, ui.cols.email, ui.cols.roles, ui.cols.methods, ui.cols.status, ui.cols.created, ui.cols.lastSeen]
   return (
     <div data-block="rhpwj" className="flex flex-col">
@@ -56,9 +59,10 @@ export function UsersTable({ lang, ui, dialogUi }: { lang: string; ui: UsersTabl
             {ui.reveal}
           </Button>
         )}
+        {revealed && <AddUser ui={ui} dialogUi={dialogUi} onCreated={() => setRound((n) => n + 1)} />}
       </div>
       {revealed ? (
-        <AppUsers lang={lang} ui={ui} dialogUi={dialogUi} />
+        <AppUsers key={round} lang={lang} ui={ui} dialogUi={dialogUi} />
       ) : (
         <>
           <UsersTableSkeleton labels={cols} />

@@ -11,7 +11,7 @@ import { branchChild, branchRoot, wordsIn, type TreePage } from '@/lib/page-tree
 import { ownId, ownName } from '@/lib/own-id'
 import { AwaitingTitle } from '@/components/content-page/awaiting-title'
 import { brand } from '@/lib/brand'
-import { ALL_ROLES, rolesThatSee } from '@/lib/roles'
+import { ALL_ROLES, PROTECTED_GROUP_ROLES, rolesThatSee } from '@/lib/roles'
 import { snippetPath } from '@/lib/snippet/page-snippet'
 import type { KindSet } from '@/components/sections/page-body'
 
@@ -58,6 +58,11 @@ function allowedRoles(page: TreePage, segments: string[]): string[] | null {
   if (base.length === 0) return null
   const set = new Set(base.flatMap(rolesThatSee))
   set.add('architect')
+  // 805 (measured by the owner on his server, 2026-11-19): the element's own admin (`OWN_ADMIN_ROLE`, 778) enters its management
+  // branches — the branch lock lets it in, and a child page of that branch must not lock it out again. Its role is per element (the
+  // node gives the number), so no page's data can name it: the branch's own roles are added here.
+  const branch = segments[0] === '(protectedLayer)' ? segments[1] : ''
+  if (branch === 'admin' || branch === 'staff' || branch === 'finance') for (const r of PROTECTED_GROUP_ROLES[branch]) set.add(r)
   return [...set]
 }
 

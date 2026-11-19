@@ -81,6 +81,8 @@ export type UsersTableUi = {
   logActions: Record<string, string>
   walletBad: string
   table: TableUi
+  /** 805: «Add a user» — a person of this app by e-mail and password; `{email}` in `done`. */
+  add: { button: string; title: string; text: string; email: string; password: string; passwordHint: string; create: string; creating: string; done: string; errors: Record<"taken" | "email" | "password" | "forbidden" | "failed", string> }
 }
 
 const EN: UsersTableUi = {
@@ -96,6 +98,24 @@ const EN: UsersTableUi = {
   any: "All",
   sortNewest: "Newest first",
   sortOldest: "Oldest first",
+  add: {
+    button: "Add a user",
+    title: "New user of this app",
+    text: "The person signs in on this app's site with this e-mail and password. Share the password with them yourself.",
+    email: "E-mail",
+    password: "Password",
+    passwordHint: "8 to 200 characters.",
+    create: "Create",
+    creating: "Creating…",
+    done: "User {email} is created and can sign in on this app's site.",
+    errors: {
+      taken: "This e-mail already exists in the node — in this or another app. For now one e-mail is one account across the whole node.",
+      email: "This does not look like an e-mail.",
+      password: "The password must be 8 to 200 characters.",
+      forbidden: "Only the architect or this app's own admin may add people here.",
+      failed: "The user was not created — try again in a minute.",
+    },
+  },
   status: { active: "Active", blocked: "Blocked", anonymized: "Deleted (anonymized)" },
   methods: { password: "Password", guest: "Guest", google: "Google", "email-link": "Email link" },
   guest: "guest",
@@ -160,6 +180,24 @@ const RU: UsersTableUi = {
   any: "Все",
   sortNewest: "Сначала новые",
   sortOldest: "Сначала старые",
+  add: {
+    button: "Добавить пользователя",
+    title: "Новый пользователь этого приложения",
+    text: "Человек входит на сайте этого приложения с этим e-mail и паролем. Пароль передайте ему сами.",
+    email: "E-mail",
+    password: "Пароль",
+    passwordHint: "От 8 до 200 знаков.",
+    create: "Создать",
+    creating: "Создаю…",
+    done: "Пользователь {email} создан и может войти на сайте этого приложения.",
+    errors: {
+      taken: "Такой e-mail уже есть в узле — в этом или другом приложении. Пока один e-mail — одна учётная запись на весь узел.",
+      email: "Это не похоже на e-mail.",
+      password: "Пароль — от 8 до 200 знаков.",
+      forbidden: "Добавлять людей сюда может только архитектор или собственный админ этого приложения.",
+      failed: "Пользователь не создан — попробуйте ещё раз через минуту.",
+    },
+  },
   status: { active: "Активен", blocked: "Заблокирован", anonymized: "Удалён (обезличен)" },
   methods: { password: "Пароль", guest: "Гость", google: "Google", "email-link": "Ссылка в письме" },
   guest: "гость",
