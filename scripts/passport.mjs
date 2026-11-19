@@ -53,13 +53,10 @@ try {
   // size — never the list of elements. Measured: the list was ~230 bytes per element (1000 elements → ~250 KB on every wake).
   // A neighbour is found by need: npm run a2a -- find <English words> (at most five).
   const core = p.project?.core
-  // 553: the node type in one line — it decides whether this element lives under the core's CONFIG by default.
-  const type = p.project?.nodeType === 'factory' ? 'factory' : 'project'
+  // Core step 804: the node has no type — this element answered once at its birth what it is (its row of the core's registry, `app`).
+  const app = (p.project?.elements ?? []).find((e) => e.id === p.id)?.app ?? null
   const node = {
     domain: p.project?.domain, core,
-    type: type === 'factory'
-      ? 'factory — hosting for projects of different owners; new custom elements live on their own settings'
-      : 'project — one owner; every element under the core\'s CONFIG (one header and footer)',
     mainAgent: `the core's main agent routes a need to an element and creates new elements — its terminal ${core}/${lang}/architect/build/terminal`,
     elements: (p.project?.elements ?? []).length,
     find: 'npm run a2a -- find <plain English words of the job> — who in the node does it, at most five; npm run a2a -- card <address> — one of them in full',
@@ -71,6 +68,12 @@ try {
         // 548-6 (repeat QA, 2026-10-20): the role in the node and the languages come with the first answer. Measured: without them
         // the agent spent three model requests looking for its default language and learned its role only from `project`.
         role: (p.project?.elements ?? []).find((e) => e.id === p.id)?.role || null,
+        // Core step 804: part of the project or an app of its own — fixed at birth.
+        app: app === 'own'
+          ? 'an app of its own — its own owner, people and settings; the core puts «Whose app this is» into every session of this element'
+          : app === 'project'
+            ? 'part of the project — the project\'s people and sign-in; the site settings follow the core\'s CONFIG'
+            : 'unknown — the core did not answer',
         languages: { default: env.NEXT_PUBLIC_DEFAULT_LOCALE?.trim().toLowerCase() || 'en', supported: (env.NEXT_PUBLIC_SUPPORTED_LANGUAGES || 'en').split(',').map((l) => l.trim()).filter(Boolean) },
         id: p.id, name: p.name, shortDescription: p.shortDescription, accepts: p.accepts, returns: p.returns, designSkill: p.designSkill, isFracteraArchitecture: p.isFracteraArchitecture, framework: p.framework, skills: p.skills, tools: p.tools,
         visibility: p.visibility,

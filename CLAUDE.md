@@ -25,9 +25,10 @@ server, client or combined function. One page changes nothing: it is still a ser
 - **The node** is the core and every element on this computer. **The core** is its centre: the registry, discovery, install, the
   architect's pages and the menu of your element. **The core's main agent** is the agent a person talks to first: it creates elements,
   wakes them, leads them and asks them things.
-- **People.** The architect owns the node and sees everything. Your person is whoever talks to you — often the architect. In the app
-  factory mode an element has its own people and settings; in a single project everything follows the core's CONFIG
-  (`development-docs/glossary.md`).
+- **People.** The architect owns the node and sees everything. Your person is whoever talks to you — often the architect. Every element
+  answered once at its birth what it is (core step 804; `npm run passport -- me` → `app`): **part of the project** — the project's
+  people and sign-in, its site settings follow the core's CONFIG; or **an app of its own** — its own owner, people and settings, and the
+  core opens each of its sessions with «Whose app this is» (`development-docs/glossary.md`).
 - **The map of this folder** — where each thing lives; a folder where work happens carries a short `CLAUDE.md` with its own rules,
   read when you work there. Pages — data folders `<branch>/_pages/<slug>/`, a branch's own page in its
   `_data/` (the home page: `app/[lang]/(publicLayer)/_data/`; inner branches under `app/[lang]/(protectedLayer)/`), one route template

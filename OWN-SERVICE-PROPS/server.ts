@@ -118,20 +118,16 @@ async function calledBy(id: string): Promise<string[]> {
   }
 }
 
-type Row = { id: string; custom: boolean; service: string; title: string | null; description: string | null; link: string | null; status: string; role?: string | null }
+type Row = { id: string; custom: boolean; service: string; title: string | null; description: string | null; link: string | null; status: string; role?: string | null; app?: string | null }
 
 /** The node's composition as the core sees it (Dashboard → Projects), for this element's own agent. */
 async function project(core: string | null, zone: string): Promise<Record<string, unknown>> {
   const key = process.env.SETTINGS_SECRET ?? ""
   let elements: unknown[] = []
-  // 553: the node type — project (one owner, every element under the core's CONFIG) or factory (hosting of projects of
-  // different owners). Unknown or no answer — project, the default.
-  let nodeType = "project"
   if (core && key) {
     try {
       const r = await fetch(`${core}/api/node/projects`, { headers: { "X-Node-Key": key }, signal: AbortSignal.timeout(8000) })
-      const b = (await r.json()) as { rows?: Row[]; nodeType?: unknown }
-      if (b.nodeType === "factory") nodeType = "factory"
+      const b = (await r.json()) as { rows?: Row[] }
       elements = (b.rows ?? []).map((x) => ({
         id: x.id,
         name: x.service,
@@ -139,6 +135,8 @@ async function project(core: string | null, zone: string): Promise<Record<string
         description: x.description ?? x.title ?? "",
         // 548-10: the role the node gives this element in one sentence (the core's roles) — what it does for the others.
         role: x.role ?? null,
+        // Core step 804: what the element answered at its birth — part of the project (`project`) or an app of its own (`own`).
+        app: x.app === "own" ? "own" : x.app === "project" ? "project" : null,
         url: x.link ?? "",
         status: x.status,
       }))
@@ -147,7 +145,6 @@ async function project(core: string | null, zone: string): Promise<Record<string
   return {
     domain: zone,
     core: core ?? "",
-    nodeType,
     elements,
     // Владелец 2026-10-06: как работать с соседом, паспорт не объясняет — сосед находится в реестре ядра, а об API договариваются по i2i.
     cooperation: "i2i: the connectors with the core, auth, data, config and design are built — use them in code; for a new need find the element in the core's registry, agree an API with its agent (npm run a2a), then call that API with no model.",

@@ -24,16 +24,16 @@ This skill is the map. The details of two areas live in their own skills: the he
 
 ## Who owns the settings — the link decides
 
-The element has a link to the node's CONFIG element; the node keeps it in `SERVICE_DATA_DIR/links.json` (`config`), the person
-switches it in the core: the element's «Settings → Danger zone», card of links. No file or no key — the link is on.
+The element has a link to the node's CONFIG element; the node keeps it in `SERVICE_DATA_DIR/links.json` (`config`), written once at
+the element's birth from its one answer and never switched after (core step 804). No file or no key — the link is on.
 
 | Link | Who sets them | What `/<lang>/admin/site-settings/*` does |
 |---|---|---|
-| **on** (one owner, `project`) | the node's CONFIG, for every element that follows it; its copy is laid over this element's files (`lib/project-settings.ts`) | says so and links to CONFIG and to the switch; it does not edit (the doors answer 409) |
-| **off** (app factory, or set apart) | this element alone, in its own files | edits; saved — the pages of this element redraw at once |
+| **on** (part of the project) | the node's CONFIG, for every element that follows it; its copy is laid over this element's files (`lib/project-settings.ts`) | says so and links to CONFIG and to the switch; it does not edit (the doors answer 409) |
+| **off** (an app of its own) | this element alone, in its own files | edits; saved — the pages of this element redraw at once |
 
-In an app factory (`npm run passport -- me` → `node.type` is `factory`) new elements are born with the link off: each app is set up
-by its own owner. The node's mode and the «All projects» catalog are decisions of the node, not of one site — they stay in CONFIG.
+An app of its own (`npm run passport -- me` → `app`) is born with the link off: it is set up by its own owner. The «All projects»
+catalog is a decision of the node, not of one site — it stays in CONFIG.
 
 ## The pages — one per section, each a route
 

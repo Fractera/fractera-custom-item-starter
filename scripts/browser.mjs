@@ -60,7 +60,8 @@ else fail('npm run browser -- focus <https://… or a host> | open <https://…>
 const WHY = {
   'not-found': 'no open tab has that address — nothing was opened; open it: npm run browser -- open <https://…>',
   'own-subscription': 'this element runs on its own person\'s subscription: the browser of this computer is the architect\'s',
-  'app-factory': 'this node holds projects of several owners: the browser of this computer is the architect\'s — pass the wish by npm run tell-core',
+  // Core step 804: the node has no type; an app of its own (another owner's app) does not drive the architect's browser.
+  'own-app': 'this element is an app of its own: the browser of this computer is the architect\'s — pass the wish by npm run tell-core',
   'not-mac': 'the computer of the node is not a Mac: the browser from Telegram is built for macOS so far',
   'automation-pending': 'macOS is asking on the screen whether the node may control Google Chrome — your person presses OK once (npm run ask-person with that hint), then again',
   'automation-denied': 'macOS refused the node control of Chrome — your person turns it on in System Settings → Privacy & Security → Automation (npm run ask-person)',
