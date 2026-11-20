@@ -21,7 +21,7 @@ re-renders them once and serves ready HTML again. The visitor sees the change af
 
 ## Environment
 
-`CONFIG_SERVICE_URL` (the CONFIG element), `SETTINGS_SECRET` (the node key — the same for reading and for the signal),
+`CONFIG_SERVICE_URL` (the CONFIG element), `SETTINGS_SECRET` (this element's key — the same for reading and for the signal; a custom element's own key since core step 818-7, CONFIG checks it and signs the signal with it),
 `PORT` (the door address is `http://127.0.0.1:<PORT>/api/settings/changed`). `proxy.ts` must let `/api/settings`
 through without a session (`PUBLIC_API_PREFIXES`) — the key guards the door.
 

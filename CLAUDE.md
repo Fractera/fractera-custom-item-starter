@@ -44,7 +44,8 @@ server, client or combined function. One page changes nothing: it is still a ser
   button (skill `telegram-mini-app`).
 - **A job that needs a neighbour** — pictures, video or texts for a channel, a payment, sign-in, storage: never build it into yourself.
   The core's main agent names the neighbour (section 5, 2) → its card `npm run a2a -- card <address>` → you agree an API once (i2i) →
-  its agent builds the door, and you call `http://127.0.0.1:<its port>/api/<name>` with the header `X-Node-Key`, with no model.
+  its agent builds the door, and your code calls `http://127.0.0.1:<its port>/api/<name>` with the header `X-Node-Key` through
+  `neighbourFetch("<its id>", "/api/<name>")` (`lib/neighbour.mjs`: the key for that one neighbour comes from the core), with no model.
 - **On or off.** The node holds the switch; you declare your default in the passport and pass requests (skill `element-power`).
 - **Your boundary is this folder.** Every file in it — `package.json` (`npm run` lists your commands) and `proxy.ts` too — you read
   without asking. The node you know from `npm run passport -- me` (its part `node`), the core's main agent and the core's doors — never

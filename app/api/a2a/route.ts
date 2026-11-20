@@ -1,6 +1,6 @@
-// @api answer agent-to-agent JSON-RPC calls from neighbours holding the node key
-import { timingSafeEqual } from "node:crypto"
+// @api answer agent-to-agent JSON-RPC calls from the core and neighbours
 import { NextRequest, NextResponse } from "next/server"
+import { nodeCaller } from "@/lib/node-key"
 import { rpcError } from "@/lib/a2a/endpoint"
 import { handleA2A } from "@/lib/a2a/sdk-server"
 import { fromOutside, hiddenFrom } from "@/lib/a2a/boundary"
@@ -12,14 +12,6 @@ import { describeCall, logCall } from "@/lib/a2a/log"
 export const dynamic = "force-dynamic"
 
 const JSON_HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" }
-
-function keyOk(given: string | null): boolean {
-  const expected = process.env.SETTINGS_SECRET ?? ""
-  if (!expected || !given) return false
-  const a = Buffer.from(given)
-  const b = Buffer.from(expected)
-  return a.length === b.length && timingSafeEqual(a, b)
-}
 
 export async function POST(req: NextRequest) {
   // Каждый исход — и отказ — уходит в журнал узла (шаг узла 408): «до элемента не дозвались» лента обязана показать.
@@ -42,8 +34,10 @@ export async function POST(req: NextRequest) {
   if (hiddenFrom(req.headers)) {
     return reply(rpcError(id, -32000, "Forbidden: this element serves only its own node", "NOT_VISIBLE_OUTSIDE_NODE", "fractera.ai"), { status: 403, headers: JSON_HEADERS })
   }
-  if (!keyOk(req.headers.get("x-node-key"))) {
-    return reply(rpcError(id, -32000, "Unauthenticated: send the node key in the X-Node-Key header", "UNAUTHENTICATED", "fractera.ai"), {
+  // 818-7 (the red team's H6): this element's own key (the core, a native) or a neighbour's pair key from the core (lib/node-key.ts).
+  const caller = nodeCaller(req.headers.get("x-node-key"))
+  if (!caller) {
+    return reply(rpcError(id, -32000, "Unauthenticated: send this element's key or your pair key from the core in the X-Node-Key header", "UNAUTHENTICATED", "fractera.ai"), {
       status: 401, headers: { ...JSON_HEADERS, "WWW-Authenticate": 'ApiKey header="X-Node-Key"' },
     })
   }
@@ -55,7 +49,9 @@ export async function POST(req: NextRequest) {
   // ставит эта дверь и ТОЛЬКО она: присланное вызывающим значение перезаписывается. Исполнитель по ней открывает задачу первым
   // словом процесса (`lib/a2a/executor.ts`), и ядро ведёт её в сессию этого процесса.
   const message = (body as { params?: { message?: { metadata?: Record<string, unknown> } } })?.params?.message
-  if (message && typeof message === "object") message.metadata = { ...(message.metadata ?? {}), fracteraOutside: fromOutside(req.headers) }
+  // 818-7: and WHO sent it, when the key names a neighbour — a pair key carries the caller's id; the `from` it writes itself is only a
+  // claim (the executor prefers this mark). The core and the natives keep their own `from`.
+  if (message && typeof message === "object") message.metadata = { ...(message.metadata ?? {}), fracteraOutside: fromOutside(req.headers), fracteraCaller: caller.kind === "element" ? caller.id : null }
   // 418-1: протокол — официальный SDK A2A (lib/a2a/sdk-server.ts); ворота узла выше остаются нашими.
   return reply(await handleA2A(body, version), { headers: JSON_HEADERS })
 }

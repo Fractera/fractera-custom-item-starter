@@ -91,7 +91,9 @@ function failed(task: Task, reason: string, text: string): Task {
 /** The work of one incoming message — the same rules as before the SDK, now on the SDK's task id and context id. */
 function work(ctx: RequestContext): Task {
   const message = SdkMessage.toJSON(ctx.userMessage) as Message
-  const from = typeof message.metadata?.from === "string" ? message.metadata.from.slice(0, 64) : "unknown"
+  // 818-7: a neighbour's id from its pair key (the A2A door marks it) beats the name it wrote itself.
+  const caller = typeof message.metadata?.fracteraCaller === "string" ? message.metadata.fracteraCaller : null
+  const from = caller ?? (typeof message.metadata?.from === "string" ? message.metadata.from.slice(0, 64) : "unknown")
   const prior = ctx.task ? (SdkTask.toJSON(ctx.task) as Task) : null
   const task: Task = prior
     ? { ...prior, history: [...(prior.history ?? []), message] }

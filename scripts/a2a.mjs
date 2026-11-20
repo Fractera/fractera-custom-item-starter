@@ -1,6 +1,7 @@
 // npm run a2a -- <command> — this element's agent talks to its neighbours through the official A2A SDK client (step 418-2).
-// The SDK builds and reads every message (A2A v1.0.0), so the agent never hand-writes JSON-RPC or curl. The node key and the
-// port come from .env.local; the key is sent as a header and never printed. Body text travels as UTF-8 by itself.
+// The SDK builds and reads every message (A2A v1.0.0), so the agent never hand-writes JSON-RPC or curl. This element's own key and
+// port come from .env.local, a neighbour's key from the core (lib/neighbour.mjs, 818-7d); keys are sent as a header and never printed.
+// Body text travels as UTF-8 by itself.
 //
 //   find <words…>                         who in the node can do it (the core's A2A registry), best first
 //   card <address>                        a neighbour's card: what it does, its skills
@@ -16,6 +17,7 @@ import { randomUUID } from 'node:crypto'
 import { Message, Task, SendMessageRequest, GetTaskRequest, CancelTaskRequest } from '@a2a-js/sdk'
 import { ClientFactory, ClientFactoryOptions, DefaultAgentCardResolver, JsonRpcTransportFactory } from '@a2a-js/sdk/client'
 import { blockedReason, checkOutboundData, loadPolicy, logGuard } from '../lib/a2a/guard.mjs'
+import { neighbourDoor } from '../lib/neighbour.mjs'
 
 const env = Object.fromEntries(
   readFileSync(join(process.cwd(), '.env.local'), 'utf8')
@@ -79,17 +81,19 @@ async function patientFetch(url, init, { asleep, address }) {
   }
 }
 
+// 818-7d (the red team's H6): the key for THIS neighbour comes from the core (lib/neighbour.mjs) — a pair key that names this element to
+// it, its own key, or this element's own key for a native; never one key for every door.
 async function clientFor(address) {
-  const headers = { 'X-Node-Key': KEY }
   const entry = await entryOf(address)
+  const { key } = await neighbourDoor(entry.id, { env })
+  const headers = { 'X-Node-Key': key }
   const factory = new ClientFactory(ClientFactoryOptions.createFrom(ClientFactoryOptions.default, {
     cardResolver: new DefaultAgentCardResolver({ fetchImpl: (url, init = {}) => patientFetch(url, { ...init, headers: { ...(init.headers ?? {}), ...headers } }, { asleep: entry.sleep === 'by-rule', address }) }),
     transports: [new JsonRpcTransportFactory()],
   }))
-  return factory.createFromUrl(entry.url)
+  return { client: await factory.createFromUrl(entry.url), opts: { serviceParameters: headers } }
 }
 
-const opts = { serviceParameters: { 'X-Node-Key': KEY } }
 const flag = (name) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : undefined }
 const has = (name) => process.argv.includes(`--${name}`)
 // Positionals: every argument that is neither a flag nor the value right after a flag that takes one.
@@ -129,7 +133,7 @@ try {
       : `Nothing found for «${words}»: the node's registry is written in English — search again with English words.`)
   } else if (cmd === 'card') {
     if (!rest[0]) fail('card <address>')
-    const client = await clientFor(rest[0])
+    const { client } = await clientFor(rest[0])
     const card = await client.getAgentCard()
     show({ name: card.name, description: card.description, skills: card.skills?.map((s) => ({ id: s.id, description: s.description, examples: s.examples })) })
   } else if (cmd === 'send') {
@@ -147,13 +151,13 @@ try {
     if (checked.rules.length) logGuard(env.SERVICE_DATA_DIR, { channel: 'send', verdict: checked.verdict, rules: checked.rules, to: address })
     if (checked.verdict === 'deny') fail(blockedReason(checked.rules))
     message.parts = checked.data
-    const client = await clientFor(address)
+    const { client, opts } = await clientFor(address)
     const result = await client.sendMessage(SendMessageRequest.fromJSON({ message, configuration: { returnImmediately: true } }), opts)
     show(result && 'status' in result ? summary(result) : Message.toJSON(result))
   } else if (cmd === 'status' || cmd === 'cancel') {
     const [address, id] = rest
     if (!address || !id) fail(`${cmd} <address> <taskId>`)
-    const client = await clientFor(address)
+    const { client, opts } = await clientFor(address)
     const task = cmd === 'status'
       ? await client.getTask(GetTaskRequest.fromJSON({ id }), opts)
       : await client.cancelTask(CancelTaskRequest.fromJSON({ id }), opts)

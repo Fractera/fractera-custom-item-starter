@@ -1,5 +1,5 @@
 // @api the element's own agent puts its answer into an A2A task
-import { timingSafeEqual } from "node:crypto"
+import { nodeOnly } from "@/lib/node-key"
 import { newA2aId } from "@/lib/a2a/ids"
 import { NextRequest, NextResponse } from "next/server"
 import { hiddenFrom } from "@/lib/a2a/boundary"
@@ -16,17 +16,10 @@ export const dynamic = "force-dynamic"
 
 const HEADERS = { "Content-Type": "application/json", "Cache-Control": "no-store" }
 
-function keyOk(given: string | null): boolean {
-  const expected = process.env.SETTINGS_SECRET ?? ""
-  if (!expected || !given) return false
-  const a = Buffer.from(given)
-  const b = Buffer.from(expected)
-  return a.length === b.length && timingSafeEqual(a, b)
-}
-
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (hiddenFrom(req.headers)) return NextResponse.json({ ok: false, error: "not-found" }, { status: 404, headers: HEADERS })
-  if (!keyOk(req.headers.get("x-node-key"))) return NextResponse.json({ ok: false, error: "node key required (X-Node-Key)" }, { status: 401, headers: HEADERS })
+  // 818-7: only this element's own key — its agent and the core; a neighbour's pair key never answers this element's tasks.
+  if (!nodeOnly(req.headers.get("x-node-key"))) return NextResponse.json({ ok: false, error: "this element's key required (X-Node-Key)" }, { status: 401, headers: HEADERS })
   const { id } = await params
   const task = getTask(id)
   if (!task) return NextResponse.json({ ok: false, error: "task not found" }, { status: 404, headers: HEADERS })

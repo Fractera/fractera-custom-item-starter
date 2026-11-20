@@ -107,7 +107,7 @@ values the core shows on its node-state indicator and its «Dashboard → Projec
 | `calledBy` | the core's A2A log — real elements of the node only, names | only with the node key |
 | `project` | the core's composition of the node: `domain`, `core`, `elements` (id, name, native/custom, short description, url, status), `cooperation` (i2i), `a2aRegistry` | only with the node key |
 
-The node key is the header `X-Node-Key` (`SETTINGS_SECRET` of the node). The core asks with it; a stranger gets the open part.
+The key is the header `X-Node-Key` — this element's own key (`SETTINGS_SECRET`; since core step 818-7 it is the element's own, not the node's). The core asks with it; a stranger gets the open part.
 
 ## How the element's own agent reads it
 

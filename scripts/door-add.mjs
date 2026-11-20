@@ -5,7 +5,7 @@
 // The owner of the node chose this recipe on 2026-10-20 to make building cheaper: one small door cost an element 65 requests
 // (9.4 M tokens, journal of y7jos, node step 548-14), and about 17 of them went on finding out how a door is protected, listed
 // and described. This command does that part, so the agent writes only the work itself:
-//   app/api/<name>/route.ts          — the door: the `// @api` line, the node key (`lib/node-key.ts`), JSON in and out
+//   app/api/<name>/route.ts          — the door: the `// @api` line, who calls (`lib/node-key.ts`), JSON in and out
 //   app/api/<name>/<name>.mjs        — `handle(input)`: the work, the only file the agent fills in
 //   app/api/<name>/<name>.test.mjs   — samples of `handle` (`npm run test:<name>`)
 //   scripts/check-routes.mjs         — the door in the closed list of routes
@@ -56,26 +56,30 @@ const input = method === 'POST'
 
 const routeTs = `// @api ${says}
 import { NextRequest, NextResponse } from "next/server"
-import { needNodeKey, nodeKeyOk, NO_STORE } from "@/lib/node-key"
+import { needNodeKey, nodeCaller, NO_STORE } from "@/lib/node-key"
 import { handle } from "./${name}.mjs"
 
 // DOOR ${name} — made by \`npm run door:add\` (node step 548-16). The other elements of the node call it on the machine's loopback
-// (http://127.0.0.1:<port>/api/${name}) with the header X-Node-Key; the gate of proxy.ts lets the loopback through, the key decides
-// here. The work is \`handle()\` in ./${name}.mjs — this file only checks the key and turns JSON in and out.
+// (http://127.0.0.1:<port>/api/${name}) with the header X-Node-Key — their code through \`neighbourFetch\` (lib/neighbour.mjs); the gate
+// of proxy.ts lets the loopback through, the key decides here and names the caller (818-7). The work is \`handle()\` in ./${name}.mjs —
+// this file only checks the key and turns JSON in and out.
 export const dynamic = "force-dynamic"
 
 export async function ${method}(req: NextRequest) {
-  if (!nodeKeyOk(req.headers.get("x-node-key"))) return needNodeKey()
+  const caller = nodeCaller(req.headers.get("x-node-key"))
+  if (!caller) return needNodeKey()
 ${input}
-  const { status, body } = await handle(input)
+  const { status, body } = await handle(input, caller)
   return NextResponse.json(body, { status, headers: NO_STORE })
 }
 `
 
 const handleMjs = `// The work of the door ${method} /api/${name}: ${says}.
-// Gets what the caller sent (${method === 'POST' ? 'the JSON body' : 'the query string as an object'}), returns { status, body }:
-// 200 with the result, 400 or 422 with { error, reason } for input it cannot use. Pure: no request, no key — route.ts does that.
-export async function handle(input) {
+// Gets what the caller sent (${method === 'POST' ? 'the JSON body' : 'the query string as an object'}) and who it is — \`caller\`, from its key:
+// { kind: 'node' } the core or a native element, { kind: 'element', id } a neighbour — answer it with its own data
+// only, the id from the key and never from the input. Returns { status, body }: 200 with the result, 400 or 422 with { error, reason }
+// for input it cannot use. Pure: no request, no key — route.ts does that.
+export async function handle(input, caller) {
   // TODO: the work of the door — replace this line and keep the shape { status, body }.
   return { status: 501, body: { error: 'not_built', reason: 'the door ${name} is not built yet' } }
 }

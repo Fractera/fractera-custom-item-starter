@@ -17,8 +17,10 @@ A hint, not a law: models of late 2026 work worse under rigid step-by-step instr
 1. `npm run door:add -- <name> --says "<what it does, 6-12 words>" [--method GET]` (POST by default) writes
    `app/api/<name>/route.ts` (key `X-Node-Key` through `lib/node-key.ts`, JSON in and out), `<name>.mjs`, `<name>.test.mjs`,
    the line in `scripts/check-routes.mjs`, `test:<name>` and the door in `OWN-SERVICE-PROPS/A2A-CARD.json`.
-2. The work goes into `<name>.mjs`: `handle(input)` returns `{ status, body }`; input it cannot use — 400 or 422 with
-   `{ error, reason }`.
+2. The work goes into `<name>.mjs`: `handle(input, caller)` returns `{ status, body }`; input it cannot use — 400 or 422 with
+   `{ error, reason }`. `caller` comes from the key (node step 818-7): `{ kind: "node" }` — the core or a native element;
+   `{ kind: "element", id }` — a neighbour: answer it with its own data only, the id from `caller`, never from the input. A neighbour's
+   code calls the door through `neighbourFetch("<your id>", "/api/<name>", …)` (`lib/neighbour.mjs`) — the core gives it the key.
 3. Real samples in `<name>.test.mjs` → `npm run test:<name>`.
 4. The card: a real input and output, the errors, `callers` (element ids); the passport `accepts`/`returns` (`passport-description`);
    then `npm run check:passport` — the core's guard of the card — prints no violation: a card the core rejects is not published, and
