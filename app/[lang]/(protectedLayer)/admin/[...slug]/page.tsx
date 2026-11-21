@@ -4,7 +4,7 @@ import { WIDGETS } from '../_widgets'
 // Ребёнок ветки «admin»: одна страница на все папки ../_pages/<slug>/; замок — роли из его meta.json.
 const route = childRoute({ segments: ['(protectedLayer)', 'admin'], subPath: '/admin', widgets: WIDGETS })
 
-export const revalidate = 300
+export const revalidate = 30 // 824: one person reads it — 30 s (the owner, Telegram 492); the public layer keeps 300
 export const dynamicParams = true
 export const generateStaticParams = route.generateStaticParams
 export const generateMetadata = route.generateMetadata

@@ -1,0 +1,12 @@
+{
+ "order": 10,
+ "icon": "film",
+ "title": {
+  "en": "Films, books and music",
+  "ru": "Кино, книги и музыка"
+ },
+ "line": {
+  "en": "What to watch, read and hear, and what you think of it.",
+  "ru": "Что посмотреть, прочесть и послушать, и что вы об этом думаете."
+ }
+}

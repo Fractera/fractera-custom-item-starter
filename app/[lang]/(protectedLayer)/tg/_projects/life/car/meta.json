@@ -1,0 +1,12 @@
+{
+ "order": 7,
+ "icon": "car",
+ "title": {
+  "en": "Car and transport",
+  "ru": "Авто и транспорт"
+ },
+ "line": {
+  "en": "Service, costs and everything about your car.",
+  "ru": "Обслуживание, расходы и всё, что связано с машиной."
+ }
+}

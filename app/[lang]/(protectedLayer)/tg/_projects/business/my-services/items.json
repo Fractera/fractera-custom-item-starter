@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "formats",
+  "title": {
+   "en": "Kinds and formats",
+   "ru": "Виды услуг и форматы"
+  }
+ },
+ {
+  "slug": "briefs",
+  "title": {
+   "en": "Briefs and requests",
+   "ru": "Брифы и приём заявок"
+  }
+ },
+ {
+  "slug": "stages",
+  "title": {
+   "en": "Stages of the work",
+   "ru": "Этапы реализации"
+  }
+ },
+ {
+  "slug": "booking",
+  "title": {
+   "en": "Schedule and booking",
+   "ru": "Расписание и запись"
+  }
+ },
+ {
+  "slug": "quality",
+  "title": {
+   "en": "Quality standards and checklists",
+   "ru": "Стандарты и чек-листы качества"
+  }
+ }
+]

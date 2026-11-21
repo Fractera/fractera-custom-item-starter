@@ -1,0 +1,23 @@
+[
+ {
+  "slug": "metrics",
+  "title": {
+   "en": "Metrics",
+   "ru": "Метрики"
+  }
+ },
+ {
+  "slug": "analytics",
+  "title": {
+   "en": "Analytics",
+   "ru": "Аналитика"
+  }
+ },
+ {
+  "slug": "pitch",
+  "title": {
+   "en": "Pitch deck and terms",
+   "ru": "Питч-дек и условия"
+  }
+ }
+]

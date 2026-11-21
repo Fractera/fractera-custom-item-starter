@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "budget",
+  "title": {
+   "en": "Budget and spending",
+   "ru": "Бюджет и личные траты"
+  }
+ },
+ {
+  "slug": "savings",
+  "title": {
+   "en": "Savings and goals",
+   "ru": "Накопления и финансовые цели"
+  }
+ },
+ {
+  "slug": "investing",
+  "title": {
+   "en": "Investing, stocks and crypto",
+   "ru": "Инвестиции, акции и крипта"
+  }
+ },
+ {
+  "slug": "payments",
+  "title": {
+   "en": "Loans and regular payments",
+   "ru": "Кредиты и регулярные платежи"
+  }
+ }
+]

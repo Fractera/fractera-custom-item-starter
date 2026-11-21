@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "ai-tools",
+  "title": {
+   "en": "AI tools",
+   "ru": "AI-инструменты"
+  }
+ },
+ {
+  "slug": "prompts",
+  "title": {
+   "en": "Prompt library",
+   "ru": "Библиотека промптов"
+  }
+ },
+ {
+  "slug": "bots",
+  "title": {
+   "en": "Chat bots and scripts",
+   "ru": "Чат-боты и скрипты"
+  }
+ },
+ {
+  "slug": "integrations",
+  "title": {
+   "en": "Service integrations",
+   "ru": "Связки сервисов"
+  }
+ }
+]

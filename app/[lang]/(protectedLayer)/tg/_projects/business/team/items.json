@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "freelancers",
+  "title": {
+   "en": "Freelancers",
+   "ru": "Фрилансеры"
+  }
+ },
+ {
+  "slug": "partners",
+  "title": {
+   "en": "Partners",
+   "ru": "Партнёры"
+  }
+ },
+ {
+  "slug": "roles",
+  "title": {
+   "en": "Areas of responsibility",
+   "ru": "Зоны ответственности"
+  }
+ },
+ {
+  "slug": "hiring",
+  "title": {
+   "en": "Search and hiring",
+   "ru": "Поиск и найм"
+  }
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "accounts",
+  "title": {
+   "en": "Bank accounts, cards and neobanks",
+   "ru": "Банковские счета, карты и необанки"
+  }
+ },
+ {
+  "slug": "acquiring",
+  "title": {
+   "en": "Payment gateways and acquiring",
+   "ru": "Платёжные шлюзы и приём оплат (эквайринг)"
+  }
+ },
+ {
+  "slug": "transfers",
+  "title": {
+   "en": "International transfers and exchange",
+   "ru": "Международные переводы и обмен валют"
+  }
+ },
+ {
+  "slug": "billing",
+  "title": {
+   "en": "Billing, instalments and recurring payments",
+   "ru": "Биллинг, рассрочки и рекуррентные платежи"
+  }
+ },
+ {
+  "slug": "loyalty",
+  "title": {
+   "en": "Finance trackers, cashback and loyalty",
+   "ru": "Финансовые трекеры, кэшбэк и программы лояльности"
+  }
+ },
+ {
+  "slug": "kyc",
+  "title": {
+   "en": "Account safety, limits and KYC",
+   "ru": "Безопасность счетов, лимиты и верификация (KYC)"
+  }
+ }
+]

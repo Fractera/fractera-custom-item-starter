@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "webinars",
+  "title": {
+   "en": "Webinars and broadcasts",
+   "ru": "Вебинары и эфиры"
+  }
+ },
+ {
+  "slug": "conferences",
+  "title": {
+   "en": "Conferences and meetings",
+   "ru": "Конференции и встречи"
+  }
+ },
+ {
+  "slug": "launch",
+  "title": {
+   "en": "Launch checklists",
+   "ru": "Чек-листы запуска"
+  }
+ },
+ {
+  "slug": "newsjacking",
+  "title": {
+   "en": "News hooks calendar",
+   "ru": "Календарь инфоповодов"
+  }
+ }
+]

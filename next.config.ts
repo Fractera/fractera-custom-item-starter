@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: root,
   // 314-2: данные страниц (JSON дерева) едут в standalone-сборку — запасной источник, когда `ELEMENT_DIR` не задан.
   outputFileTracingIncludes: {
-    '/**': ['./app/**/_data/*.json', './app/**/_pages/**/*.json'],
+    '/**': ['./app/**/_data/*.json', './app/**/_pages/**/*.json', './app/**/_projects/**/*.json'],
     // 458-3: шрифт сниппетов читается с диска (lib/snippet/render.mjs), сборщик сам его не находит.
     '/[lang]/**': ['./node_modules/@fontsource/inter/files/inter-*-normal.woff'],
   },

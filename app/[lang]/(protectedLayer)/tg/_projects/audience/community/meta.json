@@ -1,0 +1,12 @@
+{
+ "order": 7,
+ "icon": "users-round",
+ "title": {
+  "en": "Community and networking",
+  "ru": "Комьюнити и нетворкинг"
+ },
+ "line": {
+  "en": "The people around you: clubs, contacts, partners.",
+  "ru": "Люди вокруг вас: клубы, контакты, партнёры."
+ }
+}

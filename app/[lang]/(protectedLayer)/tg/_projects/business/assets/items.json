@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "property",
+  "title": {
+   "en": "Property and land",
+   "ru": "Недвижимость и земельные участки"
+  }
+ },
+ {
+  "slug": "shares",
+  "title": {
+   "en": "Business shares and securities",
+   "ru": "Доли в бизнесе и ценные бумаги"
+  }
+ },
+ {
+  "slug": "ip",
+  "title": {
+   "en": "Intellectual property, patents and brands",
+   "ru": "Интеллектуальная собственность, патенты и бренды"
+  }
+ },
+ {
+  "slug": "equipment",
+  "title": {
+   "en": "Equipment and tangible assets",
+   "ru": "Оборудование, техника и материальные ценности"
+  }
+ },
+ {
+  "slug": "digital",
+  "title": {
+   "en": "Digital assets, domains and accounts",
+   "ru": "Цифровые активы, домены и аккаунты"
+  }
+ },
+ {
+  "slug": "registry",
+  "title": {
+   "en": "Ownership registry, valuation and insurance",
+   "ru": "Реестр владения, оценка стоимости и страхование"
+  }
+ }
+]

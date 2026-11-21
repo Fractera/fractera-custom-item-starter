@@ -1,0 +1,12 @@
+{
+ "order": 10,
+ "icon": "search",
+ "title": {
+  "en": "Job search",
+  "ru": "Поиск работы и трудоустройство"
+ },
+ "line": {
+  "en": "Applications, interviews and offers in one place.",
+  "ru": "Отклики, собеседования и сравнение офферов в одном месте."
+ }
+}

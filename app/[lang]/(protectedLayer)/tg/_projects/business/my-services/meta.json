@@ -1,0 +1,12 @@
+{
+ "order": 2,
+ "icon": "hand-helping",
+ "title": {
+  "en": "My services",
+  "ru": "Мои услуги"
+ },
+ "line": {
+  "en": "The services you give people, from the request to the result.",
+  "ru": "Услуги, которые вы оказываете людям, от заявки до результата."
+ }
+}

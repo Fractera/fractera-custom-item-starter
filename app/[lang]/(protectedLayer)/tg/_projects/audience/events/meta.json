@@ -1,0 +1,12 @@
+{
+ "order": 8,
+ "icon": "calendar-clock",
+ "title": {
+  "en": "Events",
+  "ru": "Мероприятия и события"
+ },
+ "line": {
+  "en": "Broadcasts, meetings and reasons to be heard.",
+  "ru": "Эфиры, встречи и поводы рассказать о себе."
+ }
+}

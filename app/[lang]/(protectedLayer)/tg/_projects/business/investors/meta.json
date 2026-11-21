@@ -1,0 +1,12 @@
+{
+ "order": 10,
+ "icon": "trending-up",
+ "title": {
+  "en": "Investors",
+  "ru": "Инвесторы"
+ },
+ "line": {
+  "en": "Everything to show those who will invest.",
+  "ru": "Всё, что нужно показать тем, кто вложит деньги."
+ }
+}

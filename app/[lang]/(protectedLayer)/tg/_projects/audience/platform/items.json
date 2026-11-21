@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "medium",
+  "title": {
+   "en": "Medium",
+   "ru": "Медиум"
+  }
+ },
+ {
+  "slug": "site",
+  "title": {
+   "en": "Own site / landing",
+   "ru": "Свой сайт / лендинг"
+  }
+ }
+]

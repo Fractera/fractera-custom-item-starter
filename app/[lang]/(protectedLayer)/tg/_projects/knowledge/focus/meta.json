@@ -1,0 +1,12 @@
+{
+ "order": 2,
+ "icon": "list-checks",
+ "title": {
+  "en": "Tasks and focus",
+  "ru": "Задачи и фокус"
+ },
+ "line": {
+  "en": "Goals, tasks and the rhythm that moves them.",
+  "ru": "Цели, задачи и ритм, который их двигает."
+ }
+}

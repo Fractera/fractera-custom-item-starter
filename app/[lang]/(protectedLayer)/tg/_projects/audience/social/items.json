@@ -1,0 +1,23 @@
+[
+ {
+  "slug": "instagram",
+  "title": {
+   "en": "Instagram",
+   "ru": "Instagram"
+  }
+ },
+ {
+  "slug": "youtube",
+  "title": {
+   "en": "YouTube",
+   "ru": "YouTube"
+  }
+ },
+ {
+  "slug": "telegram",
+  "title": {
+   "en": "Telegram",
+   "ru": "Telegram"
+  }
+ }
+]

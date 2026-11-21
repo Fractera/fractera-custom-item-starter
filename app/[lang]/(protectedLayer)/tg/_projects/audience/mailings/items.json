@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "email",
+  "title": {
+   "en": "Email",
+   "ru": "Имейл"
+  }
+ },
+ {
+  "slug": "whatsapp",
+  "title": {
+   "en": "WhatsApp",
+   "ru": "WhatsApp"
+  }
+ },
+ {
+  "slug": "telegram",
+  "title": {
+   "en": "Telegram",
+   "ru": "Telegram"
+  }
+ },
+ {
+  "slug": "funnels",
+  "title": {
+   "en": "Auto-funnels and warm-ups",
+   "ru": "Автоворонки и прогревы"
+  }
+ }
+]

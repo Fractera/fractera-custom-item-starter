@@ -1,0 +1,12 @@
+{
+ "order": 2,
+ "icon": "globe",
+ "title": {
+  "en": "Platform",
+  "ru": "Платформа"
+ },
+ "line": {
+  "en": "The places where your texts and site live.",
+  "ru": "Площадки, где живут ваши тексты и сайт."
+ }
+}

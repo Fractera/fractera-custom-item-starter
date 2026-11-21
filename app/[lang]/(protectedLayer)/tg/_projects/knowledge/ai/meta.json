@@ -1,0 +1,12 @@
+{
+ "order": 7,
+ "icon": "sparkles",
+ "title": {
+  "en": "Artificial intelligence",
+  "ru": "Искусственный интеллект"
+ },
+ "line": {
+  "en": "Models, agents and everything new in AI.",
+  "ru": "Модели, агенты и всё новое в мире ИИ."
+ }
+}

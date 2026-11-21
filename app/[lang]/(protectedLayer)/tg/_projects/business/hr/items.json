@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "structure",
+  "title": {
+   "en": "Team structure and staffing",
+   "ru": "Структура команды и штатное расписание"
+  }
+ },
+ {
+  "slug": "onboarding",
+  "title": {
+   "en": "Onboarding and a knowledge base",
+   "ru": "Онбординг и база знаний для новичков"
+  }
+ },
+ {
+  "slug": "pay",
+  "title": {
+   "en": "Pay, bonuses and KPI",
+   "ru": "Зарплаты, премии и система KPI"
+  }
+ },
+ {
+  "slug": "shifts",
+  "title": {
+   "en": "Shifts, holidays and sick leave",
+   "ru": "Графики смен, отпуска и больничные"
+  }
+ },
+ {
+  "slug": "growth",
+  "title": {
+   "en": "Reviews, training and motivation",
+   "ru": "Оценка, обучение и мотивация сотрудников"
+  }
+ },
+ {
+  "slug": "vacancies",
+  "title": {
+   "en": "Talent pool and vacancies",
+   "ru": "Кадровый резерв и вакансии"
+  }
+ }
+]

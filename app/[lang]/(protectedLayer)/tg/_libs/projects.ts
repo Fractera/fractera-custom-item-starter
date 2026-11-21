@@ -2,17 +2,19 @@ import "server-only"
 import { isOff, occursOn, readPlan } from "@/lib/cron/due"
 import { elementRoot } from "@/lib/page-tree"
 import raw from "../_data/projects.json"
-import { countsOf, sitePages } from "./projects-catalog.mjs"
+import { countsOf, readItems, sitePages, treeDir } from "./projects-catalog.mjs"
 
-// The projects of this element's Mini App (node step 821; the owner, Telegram 416–417, 424, 434): four sections, 46 groups and their
-// items — all visible from the first day, empty but ready («сама архитектура вдохновит его»). A project's work lives on the element's
-// SITE (434: «сайт для того и существует чтобы заменить собой артефакты»): a page of the public layer names its project in meta.json —
-// `"project": "<group>/<item>"` or `"<group>"` — and a calendar entry of `data/cron.json` names it the same way. Everything here is
-// counted by code at render (the page is cached for 5 minutes); there is no state of its own and no timer.
+// The projects of this element's Mini App (node steps 821, 824; the owner, Telegram 416–417, 424, 434, 494): four sections, 46 groups
+// and their items — all visible from the first day, empty but ready («сама архитектура вдохновит его»). Sections and groups are STATIC:
+// the folders of ../_projects compiled into ../_data/projects.json by `npm run tg:projects`, imported at build. Items are DYNAMIC: each
+// group's items.json is read at render from the element's folder — a new network needs no build. A project's work lives on the
+// element's SITE or in «Администрирование» (434, 490): a page names its project in meta.json — `"project": "<group>/<item>"` or
+// `"<group>"` — and a calendar entry of `data/cron.json` names it the same way. Everything is counted by code at render (the page is
+// cached for 30 seconds); there is no state of its own and no timer.
 
 type Words = { en: string; [lang: string]: string | undefined }
 type RawItem = { slug: string; title: Words; line?: Words }
-type RawGroup = { slug: string; icon?: string; title: Words; line?: Words; items: RawItem[] }
+type RawGroup = { slug: string; icon?: string; title: Words; line?: Words }
 type RawSection = { slug: string; icon?: string; title: Words; groups: RawGroup[] }
 
 /** pages — pages of the site that name the project; active — its calendar entries that are on; today — the ones that run today. */
@@ -43,6 +45,7 @@ export function projects(lang: string): ProjectSection[] {
   const cal = calendar()
   const count = (key: string): Counts => countsOf(key, site, cal)
   const base = `/${lang}/tg/projects`
+  const tree = treeDir(elementRoot())
   return SECTIONS.map((s) => {
     const groups = s.groups.map((g) => ({
       ...count(g.slug),
@@ -52,7 +55,7 @@ export function projects(lang: string): ProjectSection[] {
       line: pick(g.line, lang),
       href: `${base}/${g.slug}`,
       section: s.slug,
-      items: g.items.map((it) => ({
+      items: (readItems(tree, s.slug, g.slug) as RawItem[]).map((it) => ({
         ...count(`${g.slug}/${it.slug}`),
         slug: it.slug,
         title: pick(it.title, lang) ?? it.slug,

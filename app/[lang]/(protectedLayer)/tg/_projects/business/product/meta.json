@@ -1,0 +1,12 @@
+{
+ "order": 1,
+ "icon": "package",
+ "title": {
+  "en": "Product and services",
+  "ru": "Продукт и услуги"
+ },
+ "line": {
+  "en": "What you sell, what it costs and where it grows.",
+  "ru": "Что вы продаёте, сколько это стоит и куда растёт."
+ }
+}

@@ -1,7 +1,7 @@
 # `/<lang>/tg/<slug>` and `/<lang>/tg/<role>/<page>` — the child route of the tg branch (the element's Telegram Mini App)
 
 One file draws every page of `../_pages/`: `childRoute` from `lib/branch-page.tsx`. `generateStaticParams` returns `[]`
-— the build draws no child; each is drawn on its first visit and kept for five minutes (`revalidate = 300`). An unknown
+— the build draws no child; each is drawn on its first visit and kept for 30 seconds (`revalidate = 30`, node step 824: one person reads it). An unknown
 `<slug>` is a 404. The page's lock — the role of its folder with every inheriting role, plus `meta.roles` and the architect (node step 402) — sits on top of the branch lock.
 
 **Do not add a file here.** A new page is a new folder in `../_pages/` — see `../README.md`.
@@ -13,7 +13,7 @@ folder of data in `_pages/`, never a new `page.tsx`** — the build grows with t
 (measured: 300 page files 1252 s, the same pages through one template 98 s). `scripts/check-routes.mjs` fails the build
 on any route file outside its closed list. Skill: `.claude/skills/build-skills/skills/use-page-tree`.
 
-Pages are static: the build draws only the roots; a child is drawn on its first visit and refreshed every five minutes
-(`revalidate = 300`). Texts are JSON read at run time (`lib/page-tree.ts`, `ELEMENT_DIR`): a corrected paragraph shows
-up within five minutes without a rebuild — or at once after `npm run pages:refresh`, which the agent runs after every
+Pages are static: the build draws only the roots; a child is drawn on its first visit and refreshed every 30 seconds
+(`revalidate = 30`). Texts are JSON read at run time (`lib/page-tree.ts`, `ELEMENT_DIR`): a corrected paragraph shows
+up within 30 seconds without a rebuild — or at once after `npm run pages:refresh`, which the agent runs after every
 text change before telling the person the change is live. Every page has `en.json` (required) and `ru.json`; no visible string in code.

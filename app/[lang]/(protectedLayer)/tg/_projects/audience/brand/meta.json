@@ -1,0 +1,12 @@
+{
+ "order": 6,
+ "icon": "badge-check",
+ "title": {
+  "en": "Brand and packaging",
+  "ru": "Бренд и упаковка"
+ },
+ "line": {
+  "en": "How people recognise you and how you sound.",
+  "ru": "Как вас узнают и как вы звучите."
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "order": 5,
+ "icon": "target",
+ "title": {
+  "en": "Marketing and traffic",
+  "ru": "Маркетинг и трафик"
+ },
+ "line": {
+  "en": "Where people come from and what it costs.",
+  "ru": "Откуда приходят люди и сколько это стоит."
+ }
+}

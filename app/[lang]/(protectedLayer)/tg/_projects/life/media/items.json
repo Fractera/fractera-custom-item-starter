@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "films",
+  "title": {
+   "en": "Films and series",
+   "ru": "Фильмы и сериалы"
+  }
+ },
+ {
+  "slug": "books",
+  "title": {
+   "en": "Books and notes",
+   "ru": "Книги и конспекты"
+  }
+ },
+ {
+  "slug": "music",
+  "title": {
+   "en": "Music and podcasts",
+   "ru": "Музыка и подкасты"
+  }
+ },
+ {
+  "slug": "ratings",
+  "title": {
+   "en": "Recommendations and ratings",
+   "ru": "Рекомендации и оценки"
+  }
+ }
+]

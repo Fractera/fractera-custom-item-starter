@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "cnn",
+  "title": {
+   "en": "CNN",
+   "ru": "CNN"
+  }
+ },
+ {
+  "slug": "trends",
+  "title": {
+   "en": "Niche trends and news",
+   "ru": "Тренды и новости ниши"
+  }
+ }
+]

@@ -1,0 +1,12 @@
+{
+ "order": 8,
+ "icon": "paw-print",
+ "title": {
+  "en": "Pets",
+  "ru": "Питомцы"
+ },
+ "line": {
+  "en": "Health, care and shopping for your pets.",
+  "ru": "Здоровье, уход и покупки для ваших питомцев."
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "order": 3,
+ "icon": "heart-handshake",
+ "title": {
+  "en": "Family and relationships",
+  "ru": "Семья и отношения"
+ },
+ "line": {
+  "en": "Dates, gifts, children and shared plans.",
+  "ru": "Даты, подарки, дети и общие планы."
+ }
+}

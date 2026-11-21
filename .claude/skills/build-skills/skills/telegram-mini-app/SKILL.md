@@ -66,22 +66,29 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
   subscriptions, MCP). `common` stays empty in the shape the core reads. The A2A screens return when the network lives.
 - Proofs of a menu change: `npm run test:tg-menu` and eyes of the drawer open at 390 px in both themes.
 
-## 3b. Projects — where the person's work lives (node step 821)
+## 3b. Projects — where the person's work lives (node steps 821, 824)
 
-- The catalog `tg/_data/projects.json`: 4 sections, 46 directions (groups), their items — all visible from the first day, empty but
-  ready (the owner: «сама архитектура вдохновит его»). Addresses: `/tg/projects/<section>`, `/tg/projects/<group>`,
-  `/tg/projects/<group>/<item>` — drawn by the catalog's own screens with no folder.
-- **A project's work is the element's SITE, not the Mini App** (the owner, Telegram 434: «сайт для того и существует чтобы заменить
-  собой артефакты»). A page you build for a project names it in its `meta.json`: `"project": "<group>/<item>"` (or `"<group>"`) — the
-  Mini App counts it under «страниц на сайте» and «Открыть сайт» opens it.
+- **The tree of folders is the source** (the owner, Telegram 494): `tg/_projects/<section>/<group>/`. Every section and group folder has
+  `meta.json` (order, icon, title, a group's line) and a **README.md — read it before you put anything there**: what the group holds,
+  «not here → the neighbour», how work joins it. All 4 sections and 46 groups are visible from the first day, empty but ready (the
+  owner: «сама архитектура вдохновит его»). Addresses: `/tg/projects/<section>`, `/tg/projects/<group>`, `/tg/projects/<group>/<item>`.
+- **Sections and groups are static**: `npm run tg:projects` compiles them into `tg/_data/projects.json` and the «Projects» children of
+  `menu.json` (both generated — never edit by hand); the prebuild stops a build whose files differ from the tree. A new section or
+  group = a folder with `meta.json`, `README.md`, `items.json` → `npm run tg:projects` → commit → the element's build; then the Mini App
+  and the core's «Рабочий процесс» show it.
+- **Items are dynamic**: `items.json` of the group, read at run time. The person's own item («добавь Twitter в соцсети») = one entry —
+  `slug`, `title` and `line` in every language — and **no build**: it shows within 30 s, at once after `npm run pages:refresh`.
+- **A project's work is a page of the element's SITE or of «Администрирование»** — which one is yours and the person's choice (the owner,
+  Telegram 434, 490). The page names its project in its `meta.json`: `"project": "<group>/<item>"` (or `"<group>"`) — the Mini App
+  counts it under «страниц на сайте» and «Открыть сайт» opens it.
 - **A calendar entry for a project** names it the same way in `data/cron.json`: `"project": "social/instagram"` — it counts as «активных
   в Cron», today's as «задач сегодня», and «Cron» shows its direction. An entry without `project` belongs to the element as a whole.
-- **The person names a project** («мой Instagram», «тренировки») → find its group and item in the catalog and work there; tell the
-  person the address. Their own direction or item that the catalog lacks → add it to `projects.json` (slug, title and line in every
-  language) in the commit of the work; `npm run test:tg-projects` proves the catalog stays whole.
+- **The person names a project** («мой Instagram», «тренировки») → find its group by the READMEs and work there; tell the person the
+  address.
 - A direction that needs its own dashboard → a folder `tg/_pages/projects/<group>/` with a widget: a real folder wins over the
   catalog's screen.
-- Proofs: `npm run test:tg-projects` (the catalog whole; counts from the site and the calendar, with negatives) and eyes of the screen.
+- Proofs: `npm run test:tg-projects` (the tree whole, items read at run time, counts from the site, «Администрирование» and the
+  calendar — with negatives) and eyes of the screen.
 
 ## 3c. The core's facts and the chat (node step 821)
 

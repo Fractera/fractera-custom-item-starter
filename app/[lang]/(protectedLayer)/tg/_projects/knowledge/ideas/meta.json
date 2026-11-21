@@ -1,0 +1,12 @@
+{
+ "order": 1,
+ "icon": "lightbulb",
+ "title": {
+  "en": "Ideas",
+  "ru": "Идеи"
+ },
+ "line": {
+  "en": "The place where ideas are not lost.",
+  "ru": "Место, где идеи не теряются."
+ }
+}

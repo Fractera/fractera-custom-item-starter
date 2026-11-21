@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "positioning",
+  "title": {
+   "en": "Positioning",
+   "ru": "Позиционирование"
+  }
+ },
+ {
+  "slug": "identity",
+  "title": {
+   "en": "Visual identity",
+   "ru": "Фирменный стиль"
+  }
+ },
+ {
+  "slug": "tov",
+  "title": {
+   "en": "Tone of voice",
+   "ru": "Тон голоса (ToV)"
+  }
+ },
+ {
+  "slug": "personal",
+  "title": {
+   "en": "Personal brand",
+   "ru": "Личный бренд"
+  }
+ }
+]

@@ -1,0 +1,12 @@
+{
+ "order": 8,
+ "icon": "telescope",
+ "title": {
+  "en": "Competitors",
+  "ru": "Конкуренты"
+ },
+ "line": {
+  "en": "What others do and how you are better.",
+  "ru": "Что делают другие и чем вы лучше."
+ }
+}

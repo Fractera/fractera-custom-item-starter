@@ -1,0 +1,12 @@
+{
+ "order": 6,
+ "icon": "plane",
+ "title": {
+  "en": "Travel and relocation",
+  "ru": "Путешествия и релокация"
+ },
+ "line": {
+  "en": "Routes, stays, documents and trip budgets.",
+  "ru": "Маршруты, жильё, документы и бюджет поездок."
+ }
+}

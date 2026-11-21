@@ -1,0 +1,12 @@
+{
+ "order": 11,
+ "icon": "credit-card",
+ "title": {
+  "en": "Fintech and payments",
+  "ru": "Финтех и платёжные сервисы"
+ },
+ "line": {
+  "en": "Accounts, taking payments, transfers and their safety.",
+  "ru": "Счета, приём оплат, переводы и их безопасность."
+ }
+}

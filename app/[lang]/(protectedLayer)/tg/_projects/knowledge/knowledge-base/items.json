@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "references",
+  "title": {
+   "en": "References and inspiration",
+   "ru": "Референсы и вдохновение"
+  }
+ },
+ {
+  "slug": "books",
+  "title": {
+   "en": "Books and courses",
+   "ru": "Книги и курсы"
+  }
+ },
+ {
+  "slug": "guides",
+  "title": {
+   "en": "Guides and checklists",
+   "ru": "Гайды и чек-листы"
+  }
+ },
+ {
+  "slug": "archive",
+  "title": {
+   "en": "Archive",
+   "ru": "Архив материалов"
+  }
+ }
+]

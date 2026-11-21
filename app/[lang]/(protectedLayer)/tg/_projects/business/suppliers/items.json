@@ -1,0 +1,23 @@
+[
+ {
+  "slug": "wholesale",
+  "title": {
+   "en": "Wholesale",
+   "ru": "Опт"
+  }
+ },
+ {
+  "slug": "retail",
+  "title": {
+   "en": "Retail",
+   "ru": "Розница"
+  }
+ },
+ {
+  "slug": "logistics",
+  "title": {
+   "en": "Logistics and terms",
+   "ru": "Логистика и условия"
+  }
+ }
+]

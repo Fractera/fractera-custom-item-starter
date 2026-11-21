@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "dates",
+  "title": {
+   "en": "Important dates and gift ideas",
+   "ru": "Важные даты и идеи подарков"
+  }
+ },
+ {
+  "slug": "household",
+  "title": {
+   "en": "Family budget and chores",
+   "ru": "Семейный бюджет и дела"
+  }
+ },
+ {
+  "slug": "kids",
+  "title": {
+   "en": "Children and activities",
+   "ru": "Дети, кружки и развитие"
+  }
+ },
+ {
+  "slug": "plans",
+  "title": {
+   "en": "Shared plans and leisure",
+   "ru": "Совместные планы и досуг"
+  }
+ }
+]

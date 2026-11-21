@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "clubs",
+  "title": {
+   "en": "Clubs and chats",
+   "ru": "Клубы и чаты"
+  }
+ },
+ {
+  "slug": "contacts",
+  "title": {
+   "en": "Useful contacts",
+   "ru": "Полезные контакты"
+  }
+ },
+ {
+  "slug": "affiliate",
+  "title": {
+   "en": "Affiliate programs",
+   "ru": "Партнёрские программы"
+  }
+ },
+ {
+  "slug": "experts",
+  "title": {
+   "en": "Experts",
+   "ru": "База экспертов"
+  }
+ }
+]

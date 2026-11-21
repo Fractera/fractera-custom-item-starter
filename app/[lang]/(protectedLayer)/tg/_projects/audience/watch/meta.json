@@ -1,0 +1,12 @@
+{
+ "order": 9,
+ "icon": "radar",
+ "title": {
+  "en": "Watchtower",
+  "ru": "Дозорный"
+ },
+ "line": {
+  "en": "News and trends of your niche while they are fresh.",
+  "ru": "Новости и тренды вашей ниши, пока они свежие."
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "order": 13,
+ "icon": "landmark",
+ "title": {
+  "en": "Assets",
+  "ru": "Организация активов"
+ },
+ "line": {
+  "en": "What you own: property, shares, brands, digital assets.",
+  "ru": "Чем вы владеете: недвижимость, доли, бренды, цифровые активы."
+ }
+}

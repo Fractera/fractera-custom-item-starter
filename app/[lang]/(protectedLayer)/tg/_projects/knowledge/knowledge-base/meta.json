@@ -1,0 +1,12 @@
+{
+ "order": 4,
+ "icon": "book-open",
+ "title": {
+  "en": "Knowledge base",
+  "ru": "База знаний"
+ },
+ "line": {
+  "en": "Everything you read, collected and want to find again.",
+  "ru": "Всё, что вы прочли, собрали и хотите найти снова."
+ }
+}

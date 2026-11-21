@@ -1,0 +1,12 @@
+{
+ "order": 9,
+ "icon": "calculator",
+ "title": {
+  "en": "Economy",
+  "ru": "Экономика"
+ },
+ "line": {
+  "en": "The money of the business: income, costs, budget and taxes.",
+  "ru": "Деньги дела: доходы, расходы, бюджет и налоги."
+ }
+}

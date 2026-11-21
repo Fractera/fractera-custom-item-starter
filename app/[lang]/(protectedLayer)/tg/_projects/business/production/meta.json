@@ -1,0 +1,12 @@
+{
+ "order": 6,
+ "icon": "factory",
+ "title": {
+  "en": "Production",
+  "ru": "Производство"
+ },
+ "line": {
+  "en": "How your product is made: equipment, materials, quality.",
+  "ru": "Как делается ваш товар: оборудование, материалы, качество."
+ }
+}

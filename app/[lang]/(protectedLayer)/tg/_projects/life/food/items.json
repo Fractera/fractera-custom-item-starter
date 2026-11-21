@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "menu",
+  "title": {
+   "en": "Weekly menu",
+   "ru": "Меню на неделю"
+  }
+ },
+ {
+  "slug": "recipes",
+  "title": {
+   "en": "Recipe book",
+   "ru": "Книга рецептов"
+  }
+ },
+ {
+  "slug": "shopping",
+  "title": {
+   "en": "Shopping list",
+   "ru": "Список покупок"
+  }
+ },
+ {
+  "slug": "nutrition",
+  "title": {
+   "en": "Calories and nutrition",
+   "ru": "Калории, БЖУ и рацион"
+  }
+ }
+]

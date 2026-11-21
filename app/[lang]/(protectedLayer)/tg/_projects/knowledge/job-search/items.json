@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "boards",
+  "title": {
+   "en": "Job boards (LinkedIn, HeadHunter, niche boards)",
+   "ru": "Площадки (LinkedIn, HeadHunter, профильные биржи)"
+  }
+ },
+ {
+  "slug": "letters",
+  "title": {
+   "en": "CV, cover letters and portfolio",
+   "ru": "Резюме, сопроводительные письма и портфолио"
+  }
+ },
+ {
+  "slug": "pipeline",
+  "title": {
+   "en": "Applications pipeline and statuses",
+   "ru": "Воронка откликов и статусы вакансий"
+  }
+ },
+ {
+  "slug": "interviews",
+  "title": {
+   "en": "Interview prep and test tasks",
+   "ru": "Подготовка к собеседованиям и тестовые задания"
+  }
+ },
+ {
+  "slug": "offers",
+  "title": {
+   "en": "Comparing offers",
+   "ru": "Сравнение офферов и условий"
+  }
+ },
+ {
+  "slug": "recruiters",
+  "title": {
+   "en": "Recruiters and referrals",
+   "ru": "Контакты рекрутеров и рекомендации"
+  }
+ }
+]

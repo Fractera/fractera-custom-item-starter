@@ -1,0 +1,12 @@
+{
+ "order": 1,
+ "icon": "heart-pulse",
+ "title": {
+  "en": "Self-improvement",
+  "ru": "Самосовершенствование"
+ },
+ "line": {
+  "en": "Health, body, mind and habits: everything that keeps you in shape.",
+  "ru": "Здоровье, тело, голова и привычки: всё, что держит вас в форме."
+ }
+}

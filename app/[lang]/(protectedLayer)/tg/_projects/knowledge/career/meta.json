@@ -1,0 +1,12 @@
+{
+ "order": 9,
+ "icon": "graduation-cap",
+ "title": {
+  "en": "Career and study",
+  "ru": "Карьера и учёба"
+ },
+ "line": {
+  "en": "Your growth: study, portfolio, the next step.",
+  "ru": "Ваш рост: учёба, портфолио, следующая ступень."
+ }
+}

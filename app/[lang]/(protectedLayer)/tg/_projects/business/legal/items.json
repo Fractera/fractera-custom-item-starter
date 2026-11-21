@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "contracts",
+  "title": {
+   "en": "Contracts and offer",
+   "ru": "Договоры и оферта"
+  }
+ },
+ {
+  "slug": "taxes",
+  "title": {
+   "en": "Taxes and reporting",
+   "ru": "Налоги и отчётность"
+  }
+ },
+ {
+  "slug": "copyright",
+  "title": {
+   "en": "Copyright",
+   "ru": "Авторские права"
+  }
+ },
+ {
+  "slug": "licences",
+  "title": {
+   "en": "Licences and permits",
+   "ru": "Лицензии и разрешения"
+  }
+ }
+]

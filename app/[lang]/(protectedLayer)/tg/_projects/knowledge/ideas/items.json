@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "business",
+  "title": {
+   "en": "Business",
+   "ru": "Бизнес"
+  }
+ },
+ {
+  "slug": "personal",
+  "title": {
+   "en": "Content and personal projects",
+   "ru": "Контент и личные проекты"
+  }
+ }
+]

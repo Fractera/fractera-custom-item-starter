@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "service",
+  "title": {
+   "en": "Service, repairs and mileage",
+   "ru": "ТО, ремонт и пробег"
+  }
+ },
+ {
+  "slug": "insurance",
+  "title": {
+   "en": "Insurance, taxes and fines",
+   "ru": "Страховки, налоги и штрафы"
+  }
+ },
+ {
+  "slug": "fuel",
+  "title": {
+   "en": "Fuel and washing",
+   "ru": "Расходы на топливо и мойку"
+  }
+ },
+ {
+  "slug": "parts",
+  "title": {
+   "en": "Tuning and parts",
+   "ru": "Тюнинг и запчасти"
+  }
+ }
+]

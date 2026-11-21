@@ -1,0 +1,12 @@
+{
+ "order": 16,
+ "icon": "bot",
+ "title": {
+  "en": "Digital staff",
+  "ru": "Цифровые сотрудники"
+ },
+ "line": {
+  "en": "AI staff that work for you around the clock.",
+  "ru": "ИИ-сотрудники, которые работают на вас круглые сутки."
+ }
+}

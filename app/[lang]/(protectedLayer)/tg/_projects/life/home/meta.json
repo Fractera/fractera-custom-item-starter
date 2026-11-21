@@ -1,0 +1,12 @@
+{
+ "order": 4,
+ "icon": "house",
+ "title": {
+  "en": "Home and smart home",
+  "ru": "Дом и умный дом"
+ },
+ "line": {
+  "en": "Your home, its devices, repairs and daily life.",
+  "ru": "Дом, его устройства, ремонт и быт."
+ }
+}

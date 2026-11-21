@@ -1,0 +1,12 @@
+{
+ "order": 3,
+ "icon": "shopping-cart",
+ "title": {
+  "en": "Sales",
+  "ru": "Продажи"
+ },
+ "line": {
+  "en": "The catalog and the client's way from interest to payment.",
+  "ru": "Каталог и путь клиента от интереса до оплаты."
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "order": 11,
+ "icon": "gamepad-2",
+ "title": {
+  "en": "Games",
+  "ru": "Игры и гейминг"
+ },
+ "line": {
+  "en": "What to play, how to beat it and with whom.",
+  "ru": "Во что играть, как пройти и с кем."
+ }
+}

@@ -5,7 +5,7 @@ import { VIRTUAL, WIDGETS } from '../_widgets'
 // meta.json. 821: адрес каталога проектов без папки рисует свой экран (`virtual`), папка сильнее.
 const route = childRoute({ segments: ['(protectedLayer)', 'tg'], subPath: '/tg', widgets: WIDGETS, virtual: VIRTUAL })
 
-export const revalidate = 300
+export const revalidate = 30 // 824: one person reads it — 30 s (the owner, Telegram 492); the public layer keeps 300
 export const dynamicParams = true
 export const generateStaticParams = route.generateStaticParams
 export const generateMetadata = route.generateMetadata

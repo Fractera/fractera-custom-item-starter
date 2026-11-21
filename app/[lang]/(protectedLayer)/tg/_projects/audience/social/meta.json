@@ -1,0 +1,12 @@
+{
+ "order": 1,
+ "icon": "share-2",
+ "title": {
+  "en": "Social networks",
+  "ru": "Соцсети"
+ },
+ "line": {
+  "en": "Your channels and what you publish there.",
+  "ru": "Ваши каналы и публикации в них."
+ }
+}

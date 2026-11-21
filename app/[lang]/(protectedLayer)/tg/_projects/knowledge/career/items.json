@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "cv",
+  "title": {
+   "en": "CV and portfolio",
+   "ru": "Резюме и портфолио"
+  }
+ },
+ {
+  "slug": "jobs",
+  "title": {
+   "en": "Job search and interviews",
+   "ru": "Поиск работы и собеседования"
+  }
+ },
+ {
+  "slug": "study",
+  "title": {
+   "en": "University, courses and exams",
+   "ru": "Университет, курсы и экзамены"
+  }
+ },
+ {
+  "slug": "grades",
+  "title": {
+   "en": "Growth plan and grades",
+   "ru": "План развития и грейды"
+  }
+ }
+]

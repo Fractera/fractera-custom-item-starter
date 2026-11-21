@@ -1,0 +1,12 @@
+{
+ "order": 6,
+ "icon": "workflow",
+ "title": {
+  "en": "AI tools and automation",
+  "ru": "Нейросети и автоматизация"
+ },
+ "line": {
+  "en": "Tools and links that work for you.",
+  "ru": "Инструменты и связки, которые работают за вас."
+ }
+}

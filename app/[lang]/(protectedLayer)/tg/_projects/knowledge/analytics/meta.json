@@ -1,0 +1,12 @@
+{
+ "order": 3,
+ "icon": "flask-conical",
+ "title": {
+  "en": "Analytics and hypotheses",
+  "ru": "Аналитика и гипотезы"
+ },
+ "line": {
+  "en": "Check ideas with numbers, not with feelings.",
+  "ru": "Проверяйте идеи цифрами, а не чувством."
+ }
+}

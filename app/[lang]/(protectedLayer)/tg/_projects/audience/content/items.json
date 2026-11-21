@@ -1,0 +1,65 @@
+[
+ {
+  "slug": "author",
+  "title": {
+   "en": "Author portrait",
+   "ru": "Портрет автора"
+  }
+ },
+ {
+  "slug": "images",
+  "title": {
+   "en": "Images",
+   "ru": "Картинки"
+  }
+ },
+ {
+  "slug": "video",
+  "title": {
+   "en": "Video",
+   "ru": "Видео"
+  }
+ },
+ {
+  "slug": "editing",
+  "title": {
+   "en": "Editing",
+   "ru": "Монтаж"
+  }
+ },
+ {
+  "slug": "music",
+  "title": {
+   "en": "Music",
+   "ru": "Музыка"
+  }
+ },
+ {
+  "slug": "clip",
+  "title": {
+   "en": "Clip",
+   "ru": "Клип"
+  }
+ },
+ {
+  "slug": "texts",
+  "title": {
+   "en": "Texts and scripts",
+   "ru": "Тексты и сценарии"
+  }
+ },
+ {
+  "slug": "covers",
+  "title": {
+   "en": "Covers and design",
+   "ru": "Обложки и дизайн"
+  }
+ },
+ {
+  "slug": "shorts",
+  "title": {
+   "en": "Short formats (Reels / Shorts)",
+   "ru": "Короткие форматы (Reels / Shorts)"
+  }
+ }
+]

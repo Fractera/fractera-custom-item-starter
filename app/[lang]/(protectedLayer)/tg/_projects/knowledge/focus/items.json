@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "goals",
+  "title": {
+   "en": "Goals for the month / year",
+   "ru": "Цели на месяц / год"
+  }
+ },
+ {
+  "slug": "current",
+  "title": {
+   "en": "Current tasks",
+   "ru": "Текущие задачи"
+  }
+ },
+ {
+  "slug": "routine",
+  "title": {
+   "en": "Routine",
+   "ru": "Регулярная рутина"
+  }
+ },
+ {
+  "slug": "sprints",
+  "title": {
+   "en": "Sprints and deadlines",
+   "ru": "Спринты и дедлайны"
+  }
+ }
+]

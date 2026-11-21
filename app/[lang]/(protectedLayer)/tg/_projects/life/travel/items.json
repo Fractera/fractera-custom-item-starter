@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "routes",
+  "title": {
+   "en": "Routes and tickets",
+   "ru": "Маршруты и билеты"
+  }
+ },
+ {
+  "slug": "stays",
+  "title": {
+   "en": "Stays and hotels",
+   "ru": "Жильё и отели"
+  }
+ },
+ {
+  "slug": "wishlist",
+  "title": {
+   "en": "Places wishlist",
+   "ru": "Вишлист стран и мест"
+  }
+ },
+ {
+  "slug": "packing",
+  "title": {
+   "en": "Packing lists and documents",
+   "ru": "Чек-листы сборов и документы"
+  }
+ },
+ {
+  "slug": "budget",
+  "title": {
+   "en": "Trip budget",
+   "ru": "Бюджет поездок"
+  }
+ }
+]

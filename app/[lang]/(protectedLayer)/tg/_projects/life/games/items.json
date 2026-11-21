@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "backlog",
+  "title": {
+   "en": "Backlog",
+   "ru": "Бэклог (во что поиграть)"
+  }
+ },
+ {
+  "slug": "guides",
+  "title": {
+   "en": "Walkthroughs, guides and builds",
+   "ru": "Прохождения, гайды и билды"
+  }
+ },
+ {
+  "slug": "esports",
+  "title": {
+   "en": "Esports and tournaments",
+   "ru": "Киберспорт и турниры"
+  }
+ },
+ {
+  "slug": "squad",
+  "title": {
+   "en": "Streams, clans and teammates",
+   "ru": "Стримы, кланы и напарники"
+  }
+ },
+ {
+  "slug": "hardware",
+  "title": {
+   "en": "Hardware and consoles",
+   "ru": "Железо, консоли и девайсы"
+  }
+ },
+ {
+  "slug": "gamedev",
+  "title": {
+   "en": "Game dev and mods",
+   "ru": "Геймдев и моды"
+  }
+ }
+]

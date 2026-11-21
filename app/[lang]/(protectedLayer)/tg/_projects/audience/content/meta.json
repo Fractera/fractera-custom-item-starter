@@ -1,0 +1,12 @@
+{
+ "order": 3,
+ "icon": "clapperboard",
+ "title": {
+  "en": "Content",
+  "ru": "Контент"
+ },
+ "line": {
+  "en": "Everything your publications are made of.",
+  "ru": "Всё, из чего делаются ваши публикации."
+ }
+}

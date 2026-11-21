@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "catalog",
+  "title": {
+   "en": "Catalog",
+   "ru": "Каталог"
+  }
+ },
+ {
+  "slug": "funnel",
+  "title": {
+   "en": "Funnel and requests",
+   "ru": "Воронка и обработка заявок"
+  }
+ }
+]

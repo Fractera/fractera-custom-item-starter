@@ -1,0 +1,23 @@
+[
+ {
+  "slug": "product-research",
+  "title": {
+   "en": "Product research",
+   "ru": "Продуктовые исследования"
+  }
+ },
+ {
+  "slug": "financial-research",
+  "title": {
+   "en": "Financial research",
+   "ru": "Финансовые исследования"
+  }
+ },
+ {
+  "slug": "offers",
+  "title": {
+   "en": "Marketing and offers",
+   "ru": "Маркетинг и офферы"
+  }
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "wallets",
+  "title": {
+   "en": "Wallets, exchanges and key storage",
+   "ru": "Криптокошельки, биржи и хранение ключей"
+  }
+ },
+ {
+  "slug": "defi",
+  "title": {
+   "en": "Portfolio, staking and DeFi",
+   "ru": "Портфель активов, стейкинг и DeFi"
+  }
+ },
+ {
+  "slug": "contracts",
+  "title": {
+   "en": "Smart contracts, tokenomics and launches",
+   "ru": "Смарт-контракты, токеномика и запуск проектов"
+  }
+ },
+ {
+  "slug": "nft",
+  "title": {
+   "en": "NFT, DAO and Web3 communities",
+   "ru": "NFT, DAO и Web3-сообщества"
+  }
+ },
+ {
+  "slug": "airdrops",
+  "title": {
+   "en": "Testnets, airdrops and on-chain analytics",
+   "ru": "Тестнеты, аирдропы и ончейн-аналитика"
+  }
+ },
+ {
+  "slug": "networks",
+  "title": {
+   "en": "Networks, fees and bridges",
+   "ru": "Блокчейн-сети, комиссии и кроссчейн-мосты"
+  }
+ }
+]

@@ -1,0 +1,16 @@
+[
+ {
+  "slug": "income",
+  "title": {
+   "en": "Income and costs",
+   "ru": "Доходы и расходы"
+  }
+ },
+ {
+  "slug": "budget",
+  "title": {
+   "en": "Budget and taxes",
+   "ru": "Бюджет и налоги"
+  }
+ }
+]

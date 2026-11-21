@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "health",
+  "title": {
+   "en": "Health",
+   "ru": "Здоровье"
+  }
+ },
+ {
+  "slug": "psychology",
+  "title": {
+   "en": "Psychology",
+   "ru": "Психология"
+  }
+ },
+ {
+  "slug": "sport",
+  "title": {
+   "en": "Sport",
+   "ru": "Спорт"
+  }
+ },
+ {
+  "slug": "habits",
+  "title": {
+   "en": "Habits and routine",
+   "ru": "Привычки и режим"
+  }
+ },
+ {
+  "slug": "learning",
+  "title": {
+   "en": "Learning and skills",
+   "ru": "Обучение и навыки"
+  }
+ }
+]

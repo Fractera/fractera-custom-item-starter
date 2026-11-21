@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "ads",
+  "title": {
+   "en": "Paid ads",
+   "ru": "Платная реклама"
+  }
+ },
+ {
+  "slug": "collabs",
+  "title": {
+   "en": "Collaborations and bloggers",
+   "ru": "Коллаборации и блогеры"
+  }
+ },
+ {
+  "slug": "promos",
+  "title": {
+   "en": "Promotions and special offers",
+   "ru": "Акции и спецпредложения"
+  }
+ },
+ {
+  "slug": "seo",
+  "title": {
+   "en": "Organic and SEO",
+   "ru": "Органика и SEO"
+  }
+ }
+]

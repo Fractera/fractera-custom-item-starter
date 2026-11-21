@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "value",
+  "title": {
+   "en": "Description and value",
+   "ru": "Описание и ценность"
+  }
+ },
+ {
+  "slug": "pricing",
+  "title": {
+   "en": "Plans and prices",
+   "ru": "Тарифы и цены"
+  }
+ },
+ {
+  "slug": "roadmap",
+  "title": {
+   "en": "Roadmap",
+   "ru": "План развития (roadmap)"
+  }
+ },
+ {
+  "slug": "cases",
+  "title": {
+   "en": "Cases and reviews",
+   "ru": "Кейсы и отзывы"
+  }
+ }
+]

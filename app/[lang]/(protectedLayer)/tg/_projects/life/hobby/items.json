@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "music",
+  "title": {
+   "en": "Music and instruments",
+   "ru": "Музыка и инструменты"
+  }
+ },
+ {
+  "slug": "art",
+  "title": {
+   "en": "Drawing, photo and design",
+   "ru": "Рисование, фото и дизайн"
+  }
+ },
+ {
+  "slug": "diy",
+  "title": {
+   "en": "Crafts and DIY",
+   "ru": "Рукоделие и DIY"
+  }
+ },
+ {
+  "slug": "collecting",
+  "title": {
+   "en": "Collecting",
+   "ru": "Коллекционирование"
+  }
+ }
+]

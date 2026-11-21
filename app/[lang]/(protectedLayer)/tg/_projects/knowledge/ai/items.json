@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "llm",
+  "title": {
+   "en": "Chats and language models",
+   "ru": "Чаты и языковые модели"
+  }
+ },
+ {
+  "slug": "system-prompts",
+  "title": {
+   "en": "Prompts and system instructions",
+   "ru": "Библиотека промптов и системных инструкций"
+  }
+ },
+ {
+  "slug": "generation",
+  "title": {
+   "en": "Images, video and sound generation",
+   "ru": "Генерация картинок, видео и звука"
+  }
+ },
+ {
+  "slug": "agents",
+  "title": {
+   "en": "AI agents and automation scenarios",
+   "ru": "AI-агенты и сценарии автоматизации"
+  }
+ },
+ {
+  "slug": "rag",
+  "title": {
+   "en": "Knowledge bases and model training (RAG)",
+   "ru": "Базы знаний и обучение моделей (RAG)"
+  }
+ },
+ {
+  "slug": "news",
+  "title": {
+   "en": "News, reviews and AI selections",
+   "ru": "Новости, обзоры и подборки нейросетей"
+  }
+ }
+]

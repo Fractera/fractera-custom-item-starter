@@ -1,0 +1,12 @@
+{
+ "order": 14,
+ "icon": "handshake",
+ "title": {
+  "en": "Team and contractors",
+  "ru": "Команда и подрядчики"
+ },
+ "line": {
+  "en": "Who does the work with you.",
+  "ru": "Кто делает работу вместе с вами."
+ }
+}

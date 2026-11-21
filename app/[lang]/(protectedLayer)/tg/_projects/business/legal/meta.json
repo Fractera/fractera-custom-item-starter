@@ -1,0 +1,12 @@
+{
+ "order": 12,
+ "icon": "scale",
+ "title": {
+  "en": "Legal and documents",
+  "ru": "Юридическое и документы"
+ },
+ "line": {
+  "en": "Contracts, taxes, rights and licences.",
+  "ru": "Договоры, налоги, права и разрешения."
+ }
+}

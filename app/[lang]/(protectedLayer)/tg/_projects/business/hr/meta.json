@@ -1,0 +1,12 @@
+{
+ "order": 15,
+ "icon": "user-cog",
+ "title": {
+  "en": "Staff and HR",
+  "ru": "Персонал и HR"
+ },
+ "line": {
+  "en": "Staff, schedules, pay and growth of people.",
+  "ru": "Штат, графики, зарплаты и развитие людей."
+ }
+}

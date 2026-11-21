@@ -1,0 +1,12 @@
+{
+ "order": 7,
+ "icon": "repeat",
+ "title": {
+  "en": "Subscriptions",
+  "ru": "Подписки"
+ },
+ "line": {
+  "en": "The subscriptions you sell to your clients.",
+  "ru": "Подписки, которые вы продаёте своим клиентам."
+ }
+}

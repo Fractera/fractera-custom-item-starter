@@ -1,0 +1,12 @@
+{
+ "order": 5,
+ "icon": "utensils-crossed",
+ "title": {
+  "en": "Food and recipes",
+  "ru": "Питание и рецепты"
+ },
+ "line": {
+  "en": "Menus, recipes, shopping and diet.",
+  "ru": "Меню, рецепты, покупки и рацион."
+ }
+}

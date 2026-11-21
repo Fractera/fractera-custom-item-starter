@@ -1,0 +1,12 @@
+{
+ "order": 4,
+ "icon": "users",
+ "title": {
+  "en": "Customers",
+  "ru": "Покупатели"
+ },
+ "line": {
+  "en": "Who buys from you and how to keep each of them.",
+  "ru": "Кто у вас покупает и как удержать каждого."
+ }
+}

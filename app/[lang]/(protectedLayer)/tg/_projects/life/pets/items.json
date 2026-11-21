@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "health",
+  "title": {
+   "en": "Health, vaccines and tests",
+   "ru": "Здоровье, прививки и анализы"
+  }
+ },
+ {
+  "slug": "care",
+  "title": {
+   "en": "Food, care and routine",
+   "ru": "Корм, уход и режим"
+  }
+ },
+ {
+  "slug": "vets",
+  "title": {
+   "en": "Vets and grooming",
+   "ru": "Ветклиники и груминг"
+  }
+ },
+ {
+  "slug": "training",
+  "title": {
+   "en": "Training and shopping",
+   "ru": "Дрессировка и покупки"
+  }
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "tests",
+  "title": {
+   "en": "Test ideas",
+   "ru": "Идеи для тестов"
+  }
+ },
+ {
+  "slug": "ab",
+  "title": {
+   "en": "A/B experiments",
+   "ru": "A/B-эксперименты"
+  }
+ },
+ {
+  "slug": "dashboards",
+  "title": {
+   "en": "Dashboards and reports",
+   "ru": "Дашборды и отчёты"
+  }
+ },
+ {
+  "slug": "insights",
+  "title": {
+   "en": "Conclusions and insights",
+   "ru": "Выводы и инсайты"
+  }
+ }
+]

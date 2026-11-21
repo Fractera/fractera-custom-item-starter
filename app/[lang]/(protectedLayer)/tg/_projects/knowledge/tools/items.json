@@ -1,0 +1,30 @@
+[
+ {
+  "slug": "software",
+  "title": {
+   "en": "Software",
+   "ru": "Рабочий софт"
+  }
+ },
+ {
+  "slug": "cloud",
+  "title": {
+   "en": "Clouds and storage",
+   "ru": "Облака и хранилища"
+  }
+ },
+ {
+  "slug": "domains",
+  "title": {
+   "en": "Domains and hosting",
+   "ru": "Домены и хостинг"
+  }
+ },
+ {
+  "slug": "access",
+  "title": {
+   "en": "Access and passwords",
+   "ru": "Доступы и пароли"
+  }
+ }
+]

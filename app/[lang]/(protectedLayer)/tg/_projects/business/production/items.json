@@ -1,0 +1,23 @@
+[
+ {
+  "slug": "equipment",
+  "title": {
+   "en": "Equipment",
+   "ru": "Оборудование"
+  }
+ },
+ {
+  "slug": "materials",
+  "title": {
+   "en": "Materials",
+   "ru": "Материалы"
+  }
+ },
+ {
+  "slug": "technology",
+  "title": {
+   "en": "Technology and quality control",
+   "ru": "Технология и контроль качества"
+  }
+ }
+]

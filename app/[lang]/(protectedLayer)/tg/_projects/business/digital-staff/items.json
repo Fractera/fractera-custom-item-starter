@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "sales-ai",
+  "title": {
+   "en": "AI sales and lead manager",
+   "ru": "AI-менеджер по продажам и обработке лидов"
+  }
+ },
+ {
+  "slug": "assistant",
+  "title": {
+   "en": "AI assistant (mail, calendar, digests)",
+   "ru": "AI-ассистент (почта, календарь, сводки)"
+  }
+ },
+ {
+  "slug": "support",
+  "title": {
+   "en": "AI support operator",
+   "ru": "AI-оператор поддержки клиентов"
+  }
+ },
+ {
+  "slug": "smm",
+  "title": {
+   "en": "AI content maker and SMM",
+   "ru": "AI-контент-мейкер и SMM-специалист"
+  }
+ },
+ {
+  "slug": "analyst",
+  "title": {
+   "en": "AI analyst and researcher",
+   "ru": "AI-аналитик и ресёрчер"
+  }
+ },
+ {
+  "slug": "rules",
+  "title": {
+   "en": "Instructions, roles and quality control",
+   "ru": "Инструкции, роли и контроль качества работы"
+  }
+ }
+]

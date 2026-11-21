@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "scenarios",
+  "title": {
+   "en": "Automation scenarios",
+   "ru": "Сценарии автоматизации"
+  }
+ },
+ {
+  "slug": "devices",
+  "title": {
+   "en": "Devices and sensors",
+   "ru": "Устройства и датчики"
+  }
+ },
+ {
+  "slug": "renovation",
+  "title": {
+   "en": "Renovation and interior",
+   "ru": "Ремонт и интерьер"
+  }
+ },
+ {
+  "slug": "upkeep",
+  "title": {
+   "en": "Upkeep",
+   "ru": "Быт и обслуживание"
+  }
+ },
+ {
+  "slug": "shopping",
+  "title": {
+   "en": "Home shopping",
+   "ru": "Покупки для дома"
+  }
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "slug": "new",
+  "title": {
+   "en": "New",
+   "ru": "Новые"
+  }
+ },
+ {
+  "slug": "regular",
+  "title": {
+   "en": "Regular",
+   "ru": "Постоянные"
+  }
+ },
+ {
+  "slug": "fading",
+  "title": {
+   "en": "Fading",
+   "ru": "Угасающие"
+  }
+ },
+ {
+  "slug": "vip",
+  "title": {
+   "en": "VIP and ambassadors",
+   "ru": "VIP и амбассадоры"
+  }
+ },
+ {
+  "slug": "feedback",
+  "title": {
+   "en": "Reviews and feedback",
+   "ru": "Отзывы и обратная связь"
+  }
+ }
+]

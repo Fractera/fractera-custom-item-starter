@@ -1,0 +1,12 @@
+{
+ "order": 4,
+ "icon": "mail",
+ "title": {
+  "en": "Mailings",
+  "ru": "Рассылки"
+ },
+ "line": {
+  "en": "Letters and messages that warm people up and bring them back.",
+  "ru": "Письма и сообщения, которые греют и возвращают людей."
+ }
+}

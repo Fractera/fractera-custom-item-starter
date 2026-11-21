@@ -1,0 +1,12 @@
+{
+ "order": 2,
+ "icon": "piggy-bank",
+ "title": {
+  "en": "Personal finance and investing",
+  "ru": "Личные финансы и инвестиции"
+ },
+ "line": {
+  "en": "Your money: spending, savings, investing and payments.",
+  "ru": "Ваши деньги: траты, накопления, инвестиции и платежи."
+ }
+}
