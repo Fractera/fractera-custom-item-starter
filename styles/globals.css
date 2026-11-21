@@ -1139,3 +1139,37 @@ html[data-app-width="narrow"] { --app-w: 64rem; }
 :root:has([data-tg-app]) [data-site-chrome] {
   display: none;
 }
+
+/* 821 (node step): the Mini App's two surfaces — the page and the cards on it (Telegram's grouped lists, the Pult's family; the owner,
+   Telegram 429, 438). Outside Telegram they are the element's own tokens: in light the cards stand white on the muted page, in dark on
+   the background. Inside Telegram the bridge (tg/_components/tg-bridge.client.tsx) writes Telegram's theme on <html> as
+   `--tg-theme-*` with `data-tg-theme`, and the element's tokens follow Telegram — the Mini App looks native in every theme. */
+:root:has([data-tg-app]) {
+  --tg-page: var(--muted);
+  --tg-card: var(--card);
+}
+.dark:has([data-tg-app]) {
+  --tg-page: var(--background);
+  --tg-card: var(--card);
+}
+:root[data-tg-theme]:has([data-tg-app]) {
+  --tg-page: var(--tg-theme-secondary-bg-color);
+  --tg-card: var(--tg-theme-section-bg-color, var(--tg-theme-bg-color));
+  --background: var(--tg-theme-bg-color);
+  --foreground: var(--tg-theme-text-color);
+  --card: var(--tg-theme-section-bg-color, var(--tg-theme-bg-color));
+  --card-foreground: var(--tg-theme-text-color);
+  --popover: var(--tg-theme-bg-color);
+  --popover-foreground: var(--tg-theme-text-color);
+  --muted: var(--tg-theme-secondary-bg-color);
+  --muted-foreground: var(--tg-theme-hint-color);
+  --accent: var(--tg-theme-secondary-bg-color);
+  --accent-foreground: var(--tg-theme-text-color);
+  --secondary: var(--tg-theme-secondary-bg-color);
+  --secondary-foreground: var(--tg-theme-text-color);
+  --primary: var(--tg-theme-button-color);
+  --primary-foreground: var(--tg-theme-button-text-color);
+  --ring: var(--tg-theme-button-color);
+  --border: var(--tg-theme-section-separator-color, color-mix(in oklab, var(--tg-theme-hint-color) 35%, transparent));
+  --input: var(--tg-theme-section-separator-color, color-mix(in oklab, var(--tg-theme-hint-color) 35%, transparent));
+}

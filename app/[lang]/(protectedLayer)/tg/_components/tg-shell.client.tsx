@@ -4,8 +4,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { type ReactNode, useState } from "react"
-import { CalendarDays, ChevronDown, ChevronRight, Circle, CircleHelp, CreditCard, Folder, Globe, House, Inbox, type LucideIcon, Menu, PenLine, Plus, Settings, Star, Store, Wallet } from "lucide-react"
+import { createContext, type ReactNode, useContext, useState } from "react"
+import { Boxes, CalendarClock, CalendarDays, ChevronDown, ChevronRight, Circle, CircleHelp, CreditCard, Folder, Globe, House, Inbox, LayoutGrid, type LucideIcon, Menu, PenLine, Plus, Settings, Star, Store, Wallet } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -16,7 +16,11 @@ import type { TgItem, TgMode, TgUi } from "../_libs/tg-menu"
 // авторы» · «верхнее меню … рабочее пространство для собственных проектов … А2А web4 взаимодействия» · «подписки с выпадающим
 // списком. И крон автоматизация». Design (interface-design): one hand on a phone, Telegram's own settings lists as the native feel; the
 // current page is the focal point (muted fill + a primary bar); rows 56 px, children 44 px; depth by borders only; tokens only.
-const ICONS: Record<string, LucideIcon> = { home: House, card: CreditCard, calendar: CalendarDays, settings: Settings, help: CircleHelp, store: Store, inbox: Inbox, star: Star, wallet: Wallet, folder: Folder, pen: PenLine }
+const ICONS: Record<string, LucideIcon> = { home: House, card: CreditCard, calendar: CalendarDays, clock: CalendarClock, grid: LayoutGrid, element: Boxes, settings: Settings, help: CircleHelp, store: Store, inbox: Inbox, star: Star, wallet: Wallet, folder: Folder, pen: PenLine }
+
+// 821: a screen draws its own head (the large title with ☰ beside it, `tg-head.client.tsx`); the head opens the drawer through this.
+const MenuCtx = createContext<{ open: () => void; label: string }>({ open: () => {}, label: "" })
+export const useTgMenu = () => useContext(MenuCtx)
 const ROW = "relative flex min-h-14 items-center gap-3 rounded-xl px-3 py-2 text-foreground transition-colors hover:bg-muted/60"
 const CURRENT = "bg-muted before:absolute before:inset-y-3.5 before:left-0 before:w-[3px] before:rounded-full before:bg-primary"
 
@@ -45,9 +49,11 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
   )
 
   return (
-    <div className="flex min-h-dvh flex-col" data-block="tg-shell">
+    <MenuCtx.Provider value={{ open: () => setOpen(true), label: ui.open }}>
+    <div className="group/shell flex min-h-dvh flex-col" data-block="tg-shell">
       <Sheet onOpenChange={setOpen} open={open}>
-        <div className="sticky top-0 z-10 flex h-14 items-center gap-1 border-b border-border bg-background px-2" data-block="tg-bar">
+        {/* 821: the bar stays only for a screen without its own head (a page the agent made as plain content) */}
+        <div className="sticky top-0 z-10 flex h-14 items-center gap-1 border-b border-border bg-[var(--tg-page)] px-2 group-has-[[data-tg-head]]/shell:hidden" data-block="tg-bar">
           <SheetTrigger aria-label={ui.open} className="grid size-11 place-items-center rounded-xl text-foreground hover:bg-muted">
             <Menu className="size-5" />
           </SheetTrigger>
@@ -62,7 +68,7 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
             </span>
           </SheetHeader>
           {modes.length > 1 ? (
-            <Tabs className="px-3 pt-3" onValueChange={setMode} value={active?.id}>
+            <Tabs data-block="hzcdx" className="px-3 pt-3" onValueChange={setMode} value={active?.id}>
               <TabsList aria-label={ui.modes} className="h-11 w-full">
                 {modes.map((m) => <TabsTrigger className="h-9 whitespace-nowrap" key={m.id} value={m.id}>{m.title}</TabsTrigger>)}
               </TabsList>
@@ -71,7 +77,7 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
           <nav className="flex-1 overflow-y-auto px-2 pb-2" data-block="tg-drawer-nav">
             {active?.groups.map((g, gi) => (
               <div className="pt-2" data-block="tg-drawer-group" key={`${active.id}-${gi}`}>
-                {g.title ? <p className="px-3 pt-2 pb-1.5 font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">{g.title}</p> : null}
+                {g.title ? <p data-block="vjboq" className="px-3 pt-2 pb-1.5 font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">{g.title}</p> : null}
                 {g.items.map(row)}
               </div>
             ))}
@@ -90,6 +96,7 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
       </Sheet>
       <div className="flex-1" data-block="tg-screen">{children}</div>
     </div>
+    </MenuCtx.Provider>
   )
 }
 
@@ -111,7 +118,7 @@ function Category({ item, slug, href, onGo }: { item: TgItem; slug: string; href
         {kids.length ? <span className="grid h-[22px] min-w-[22px] place-items-center rounded-full bg-muted px-1.5 font-medium text-muted-foreground text-xs tabular-nums">{kids.length}</span> : null}
         {open ? <ChevronDown className="size-[18px] text-muted-foreground" /> : <ChevronRight className="size-[18px] text-muted-foreground" />}
       </CollapsibleTrigger>
-      <CollapsibleContent className="mb-1.5 ml-[29px] flex flex-col border-l border-border pl-[19px]">
+      <CollapsibleContent data-block="dx0li" className="mb-1.5 ml-[29px] flex flex-col border-l border-border pl-[19px]">
         {kids.map((c) => (
           <Link className={cn("flex min-h-11 items-center gap-2.5 rounded-[10px] px-2.5 text-[15px] text-foreground hover:bg-muted/60", c.slug === slug && "bg-muted font-medium")} href={href(c.slug)} key={c.slug} onClick={onGo}>
             <span className={cn("size-1.5 shrink-0 rounded-full bg-muted-foreground", c.slug === slug && "bg-primary")} />

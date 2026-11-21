@@ -16,6 +16,7 @@ The person speaks by voice and in their own language: their word goes in the sec
 | **node** | «узел», «нода» | Every element on one person's computer together with the core. It belongs to the person and works without Fractera. |
 | **core** | «ядро» | The node's centre: the registry of elements, discovery, install, the architect's pages (the element's menu is drawn by the core). It is not an element and is not replaced. |
 | **neighbour** | «сосед» | Another element of the same node. |
+| **element admin layer** | «Администрирование», «слой администратора элемента» | This element's private pages for its administrator — the branches `admin`, `staff`, `finance` and the Telegram Mini App `tg` — open to the element's own admin (`OWN_ADMIN_ROLE`) and the architect. On screen it is «Администрирование»; never «the architect layer», which is the core's (node step 821, the owner's Telegram 409). |
 | **live site** | «живой сайт», «Preview» | The element's running build as a visitor sees it, shown on the core's page of the element. |
 | **Preview & Deploy** | «предпросмотр», «развёртывание», «Принять» | A new version built next to the running one; «Accept» switches to it, «Reject» drops it. Skill `deploy-element`. |
 

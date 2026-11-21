@@ -7,10 +7,13 @@ const check = (label, ok, got) => { if (!ok) failures++; console.log(`${ok ? 'ok
 
 const menu = JSON.parse(readFileSync(new URL('../../[lang]/(protectedLayer)/tg/_data/menu.json', import.meta.url), 'utf8'))
 const real = await handle({ lang: 'ru' }, menu)
-check('the real menu: two modes, «work» and «a2a», the base /tg', real.status === 200 && real.body.base === '/tg' && real.body.modes.map((m) => m.id).join() === 'work,a2a', real)
-const common = real.body.common.map((i) => i.slug)
-check('subscriptions, cron, settings and help stand OUTSIDE the modes, on their level (Telegram 757)', ['subscriptions', 'cron', 'settings', 'help'].every((s) => common.includes(s)) && !real.body.modes.some((m) => m.groups.some((g) => g.items.some((i) => common.includes(i.slug)))), real.body)
-const withKid = structuredClone(menu); withKid.common[0].children.push({ slug: 'subscriptions/claude', title: { en: 'Claude', ru: 'Claude' } })
+check('the real menu: one mode «work», the base /tg (821: the A2A screens wait for the network)', real.status === 200 && real.body.base === '/tg' && real.body.modes.map((m) => m.id).join() === 'work', real)
+const items = real.body.modes[0].groups.flatMap((g) => g.items)
+check('821: Главная, Проекты, Cron, Элемент, Настройки — in this order', items.map((i) => i.slug).join() === ',projects,cron,element,settings', items.map((i) => i.slug))
+const projects = items.find((i) => i.slug === 'projects')
+check('821: «Проекты» opens into its four sections (Telegram 425)', projects?.children?.map((c) => c.slug).join() === 'projects/business,projects/audience,projects/knowledge,projects/life', projects)
+check('821: `common` stays in the shape the core reads — empty', Array.isArray(real.body.common) && real.body.common.length === 0, real.body.common)
+const withKid = structuredClone(menu); withKid.modes[0].groups[0].items[1].children.push({ slug: 'projects/my-own', title: { en: 'My own', ru: 'Своё' } })
 check('a child the agent adds passes', (await handle({}, withKid)).status === 200)
 const bad = structuredClone(menu); bad.modes[0].groups[0].items[0].slug = '../admin'
 check('refused: a slug that climbs out', (await handle({}, bad)).body.error === 'bad_item')

@@ -1,11 +1,10 @@
 {
-  "title": "Cron automation",
-  "description": "The element's calendar: current events and planned actions.",
+  "title": "Cron",
+  "description": "The element's calendar — one for every project: today and every task with its rhythm.",
   "body": [
     {
-      "kind": "text-p",
-      "text": "The element's own calendar: what happens today and what is planned. Say in Telegram what to do and when — the element's agent writes it into the calendar, and at that minute the action runs or the reminder comes.",
-      "bid": "teotd"
+      "kind": "widget-static-tg-cron",
+      "bid": "c4n8w"
     }
   ]
 }

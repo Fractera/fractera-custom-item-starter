@@ -28,6 +28,9 @@ export type PageMeta = {
   bare?: boolean
   /** Картинка для соцсетей. */
   ogImage?: string
+  /** 821: the project of the Mini App's catalog this page belongs to — `<group>` or `<group>/<item>` of `tg/_data/projects.json`; the
+   *  Mini App counts the site's pages of a project by it. */
+  project?: string
   /** 706-5: страница ждёт своего дизайна (главная нового элемента рождается пустой — владелец 2026-11-09: «всё остальное так
    *  называемое тело в идеальном состоянии лучше бы оставалось пустым»). Закрыта от поиска и не стоит в карте сайта, пока дизайн-проход
    *  не наполнит её и не снимет флаг. */

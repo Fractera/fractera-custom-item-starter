@@ -19,6 +19,8 @@ export type CronEvent = { id: string; name: string; description: string }
 export type CronSchedule = {
   id: string; event: string; name?: string; message?: string; saidAt?: string
   time: string; repeat: CronRepeat; start: string; until?: string; enabled: boolean
+  /** 821: the project of the Mini App's catalog this entry works for — `<group>` or `<group>/<item>` (tg/_data/projects.json). */
+  project?: string
 }
 export type CronPlan = { repeatsPaused: boolean; events: CronEvent[]; schedules: CronSchedule[] }
 

@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import type { Metadata } from 'next'
 import type { WidgetSet } from '@/components/content-page/post-body'
 import { notFound } from 'next/navigation'
@@ -156,8 +156,13 @@ export function rootPage(opts: { segments: string[]; subPath: string; titleInBod
 type SlugParam = string | string[]
 const slugOf = (slug: SlugParam) => (Array.isArray(slug) ? slug.join('/') : slug)
 
+/** 821: a screen a branch draws at an address that has no folder — a catalog's own address (the Mini App's projects: `projects/<group>`).
+ *  A real folder at the same address always wins. The branch's own lock (its layout and `proxy.ts`) keeps it. */
+export type VirtualScreen = { title: string; draw: () => ReactNode }
+
 // 717-3: `moreSections` — the sections a child draws besides the element's set, by its slug (a design prototype's own, until the pin).
-export function childRoute(opts: { segments: string[]; subPath: string; widgets?: WidgetSet; moreSections?: (slug: string) => KindSet | undefined }) {
+// 821: `virtual` — the branch's screens without a folder (see VirtualScreen); null — the address is not the branch's, 404.
+export function childRoute(opts: { segments: string[]; subPath: string; widgets?: WidgetSet; moreSections?: (slug: string) => KindSet | undefined; virtual?: (slug: string, lang: string) => VirtualScreen | null }) {
   function build(slug: string) {
     const page = branchChild(opts.segments, slug)
     if (!page) return null
@@ -189,14 +194,24 @@ export function childRoute(opts: { segments: string[]; subPath: string; widgets?
     const { lang } = await params
     const slug = slugOf((await params).slug)
     const b = build(slug)
-    return b ? b.factory.generateMetadata({ params: Promise.resolve({ lang }) }) : {}
+    if (b) return b.factory.generateMetadata({ params: Promise.resolve({ lang }) })
+    const v = opts.virtual?.(slug, lang)
+    return v ? { title: v.title, robots: { index: false, follow: false } } : {}
   }
 
   async function Page({ params }: { params: Promise<{ lang: string; slug: SlugParam }> }) {
     const { lang } = await params
     const slug = slugOf((await params).slug)
     const b = build(slug)
-    if (!b) notFound()
+    if (!b) {
+      const v = opts.virtual?.(slug, lang)
+      if (!v) notFound()
+      return (
+        <PageAddress page={`/${lang}${opts.subPath}/${slug}`} file="">
+          <main className="flex-1">{v.draw()}</main>
+        </PageAddress>
+      )
+    }
     // 423: ребёнок без рамки — как корень с `bare`.
     const whole = b.page.meta.bare
     const body = (

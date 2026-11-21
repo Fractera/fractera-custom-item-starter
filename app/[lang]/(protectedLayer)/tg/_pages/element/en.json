@@ -1,0 +1,10 @@
+{
+  "title": "Element",
+  "description": "Everything the element lives on as a server: its site, people, agent and building.",
+  "body": [
+    {
+      "kind": "widget-static-tg-element",
+      "bid": "e5r2t"
+    }
+  ]
+}

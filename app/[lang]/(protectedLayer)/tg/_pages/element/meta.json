@@ -1,0 +1,7 @@
+{
+  "order": 30,
+  "roles": [
+    "admin"
+  ],
+  "bare": true
+}

@@ -28,11 +28,11 @@ A branch of the element's frame (node step 778). The owner, 2026-11-17: «В ф�
 |---|---|
 | `page.tsx` | the ROOT of the branch — `/<lang>/tg`, words in `_data/{meta,en,ru}.json` (the start screen) |
 | `layout.tsx` | the sign of the lock (`AccessGate`, the admin category's roles), the chrome-less wrapper, the Telegram bridge |
-| `[...slug]/page.tsx` | the ONE child route — draws every folder of `_pages/` |
-| `_data/` | the words of the root: `meta.json`, `en.json` (required), `ru.json`; and **`menu.json` — the ONE menu of the Mini App and of the core's «Working process»** (below) |
-| `_components/` | the branch's own components: `tg-bridge.client.tsx` (Telegram's header and background), `tg-shell.client.tsx` (the top bar with ☰ and the left drawer) |
-| `_libs/` | the branch's own logic without markup: `tg-menu.ts` gives the menu in one language |
-| `_widgets/` | the branch's widgets, `static/<name>` · `dynamic/<name>` — a Mini App's cards and lists usually live here |
+| `[...slug]/page.tsx` | the ONE child route — draws every folder of `_pages/` and, with no folder, the projects catalog's own screens (`virtual`, 821) |
+| `_data/` | the words of the root: `meta.json`, `en.json` (required), `ru.json`; **`menu.json` — the ONE menu of the Mini App and of the core's «Working process»** (below); **`projects.json` — the catalog of Projects: 4 sections, 46 directions** (821) |
+| `_components/` | the branch's own components: `tg-bridge.client.tsx` (Telegram's header, theme and Back button), `tg-shell.client.tsx` (the left drawer), `tg-head.client.tsx` (☰ beside a screen's large title), `tg-list.tsx` (the grouped lists), `tg-to-chat.client.tsx` («Перейти в чат») |
+| `_libs/` | the branch's own logic without markup: `tg-menu.ts` (the menu in one language), `projects.ts` + `projects-catalog.mjs` (the catalog and its numbers; test `npm run test:tg-projects`), `element-facts.ts` (what the element knows about itself), `words.ts` (plurals) |
+| `_widgets/` | the branch's widgets: `static/widget-static-tg-{home,cron,element,settings}`, `dynamic/widget-dynamic-tg-projects` (with the catalog's screens) |
 | `_pages/<slug>/` | the Mini App's screens — data only, one folder per screen |
 
 ## One menu — two windows (node steps 789, 790)
@@ -41,19 +41,17 @@ The owner of the node, 2026-11-18: «очень важно понимать чт
 процессах на левом меню». The Mini App IS this element's working process, seen from the phone; the core's «Working process» shows the
 same thing on the computer.
 
-- **The source is one file:** `_data/menu.json` — two modes (`work` «My projects» — the person's own work; `a2a` «A2A · Web4» — the
-  element's services sold outward through Lagrix, a precedent while the network is not live), groups, items, and categories that open
-  downward (`children` — the element's own projects, authors, services; `add` — the line that adds one).
+- **The source is one file:** `_data/menu.json` — one mode (the owner, Telegram 412, 2026-11-21): «Главная» · «Проекты» (opens into
+  its four sections; `add` «Все направления») · «Cron» (one calendar for every project) · «Элемент» (site, people, agent, building) ·
+  «Настройки» (instruction, owner, project, skills, subscriptions, MCP). The A2A screens return when the network lives.
 - **Telegram** draws it in the drawer of `/tg` (`_components/tg-shell.client.tsx`, through `_libs/tg-menu.ts`).
 - **The core** draws the same tree in the left menu of this element under «Working process», asking the door `GET /api/tg-menu`
   (`app/api/tg-menu/`, the node key) — it never copies the file; a press opens the same screen `/<lang>/tg/<slug>`.
-- **So:** an item, a project or an author is added ONCE, in `menu.json`, with its screen folder `_pages/<slug>/` — and it appears in
-  both windows. Never build a screen for the core separately, never keep a second menu.
-- **Outside the modes, on their level** (the owner, Telegram 757: «Подписки, крон автоматизации, настройки элемента должны существовать
-  снаружи вкладки мои проекты и находиться на одном уровне с мои проекты и a2a web4»): `common` in `menu.json` — «Subscriptions» (a
-  category), «Cron automation» (the calendar of events and planned actions), «Element settings», «Help». The drawer shows them under
-  the mode switch in every mode; the core's left menu puts them beside «My projects» and «A2A · Web4». Subscriptions and cron stay in
-  every element.
+- **So:** an item is added ONCE, in `menu.json`, with its screen — and it appears in both windows. Never build a screen for the core
+  separately, never keep a second menu. `common` stays empty in the shape the core reads.
+- **Projects** (821): the catalog `_data/projects.json`; a project's work lives on the element's site (a page names its project in
+  `meta.json`: `"project": "<group>/<item>"`), its tasks in the calendar (`data/cron.json`, the same `project`). Skill
+  `telegram-mini-app`, §3b.
 
 ## How the element's agent builds it
 

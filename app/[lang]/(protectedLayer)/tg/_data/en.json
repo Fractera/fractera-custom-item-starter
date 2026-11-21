@@ -1,12 +1,10 @@
 {
   "title": "Mini App",
-  "description": "The element's Mini App in Telegram — for its administrator.",
-  "keywords": "",
+  "description": "The element's Telegram Mini App for its administrator: today, the agent, projects, Cron, the element and its settings.",
   "body": [
     {
-      "kind": "text-p",
-      "text": "This is the element's Mini App in Telegram. Its screens appear here once the element's agent builds them.",
-      "bid": "hp6ms"
+      "kind": "widget-static-tg-home",
+      "bid": "h3m7q"
     }
   ]
 }

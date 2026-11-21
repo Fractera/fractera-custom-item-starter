@@ -363,6 +363,31 @@
       }
     },
     {
+      "id": "ui-item",
+      "kind": "primitive",
+      "path": "components/ui/item.tsx",
+      "export": "Item, ItemGroup, ItemSeparator, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions, ItemHeader, ItemFooter",
+      "what": {
+        "en": "A list row — an icon or picture, a title, a quiet line and actions on the right; rows grouped with separators (settings lists, the Mini App's menus).",
+        "ru": "Строка списка — значок или картинка, заголовок, тихая строка и действия справа; строки в группе с разделителями (списки настроек, меню мини-приложения)."
+      },
+      "how": "import { Item, ItemGroup, ItemMedia, ItemContent, ItemTitle } from \"@/components/ui/item\" — one owner per kind; a link row: <Item asChild><Link …/></Item>.",
+      "words": {
+        "en": [
+          "list row",
+          "list item",
+          "settings list",
+          "grouped list"
+        ],
+        "ru": [
+          "строка списка",
+          "пункт списка",
+          "список настроек",
+          "группа строк"
+        ]
+      }
+    },
+    {
       "id": "ui-label",
       "kind": "primitive",
       "path": "components/ui/label.tsx",

@@ -1,11 +1,10 @@
 {
-  "title": "Element settings",
-  "description": "The element's name, description and bot.",
+  "title": "Settings",
+  "description": "What the element knows about itself: its instruction, owner, project, skills, subscriptions and MCP connectors.",
   "body": [
     {
-      "kind": "text-p",
-      "text": "The element's name and description as people and agents see them, and its Telegram bot. Ask the element's agent to change any of them.",
-      "bid": "t5xs5"
+      "kind": "widget-static-tg-settings",
+      "bid": "s9k4v"
     }
   ]
 }

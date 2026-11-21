@@ -1,10 +1,10 @@
 ---
 name: telegram-mini-app
 description: >
-  Builder skill. This element's Telegram Mini App — the branch `/<lang>/tg`, opened by the menu button of the element's own bot and
-  closed by the element's admin role. Load it when the person asks for «приложение в Telegram», «мини-приложение», «экран в боте»,
-  «дашборд на телефоне», «кнопку меню бота», when a job wants cards, lists or a dashboard on the phone, and before you add anything
-  under `app/[lang]/(protectedLayer)/tg/`.
+  Builder skill. This element's Telegram Mini App — the branch `/<lang>/tg` for its administrator: home, Projects (4 sections, 46
+  directions), Cron, Element, Settings. Load it when the person asks for «мини-приложение», «экран в боте», «дашборд на телефоне»,
+  names a project or a direction («мой Instagram», «финансы»), asks where a project's work goes, and before you add anything under
+  `app/[lang]/(protectedLayer)/tg/`.
 ---
 
 # telegram-mini-app
@@ -35,8 +35,11 @@ Node step 778. The owner of the node, 2026-11-17:
 | the sign | `tg/layout.tsx` (`AccessGate`) | tells a person why they were not let in |
 | the door | every `/api/*` the Mini App calls | `requireRoles(req, PROTECTED_GROUP_ROLES.admin)` on its first line — the only lock that decides |
 
-🔒 A screen's data comes only through such a door. Never put data into the page's static words, never trust what the browser sends
-about who it is (Telegram's `initDataUnsafe` included).
+🔒 Data about people or money (accounts, orders, payments) comes only through such a door. Never put data into the page's static
+words (`en.json`, `ru.json`), never trust what the browser sends about who it is (Telegram's `initDataUnsafe` included).
+821: the facts of this element's own folder — the projects' numbers, the calendar, the settings' summaries — are drawn by the screen's
+widget on the server (cached 5 minutes): the edge lock keeps the page's HTML from anyone without the role, and nothing in them is
+another person's data.
 
 Inside Telegram the person signs in once with the node's sign-in form, the same as on the computer.
 
@@ -52,24 +55,39 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
 - A screen is seen before it is shown: `npm run eyes -- <the address>/tg/<slug>` at 390 px in both themes (skill `use-eyes`); on this
   computer you pass every lock — check it as the admin role sees it.
 
-## 3a. The menu — one file, two windows (node steps 789, 790)
+## 3a. The menu — one file, two windows (node steps 789, 790, 821)
 
-- The drawer of the Mini App (☰) and the core's «Working process» of this element draw ONE menu: `tg/_data/menu.json`. The core reads
-  it through the door `GET /api/tg-menu`; Telegram through `tg/_libs/tg-menu.ts`. Never a second menu, never a screen built for the
-  core apart.
-- Two modes: `work` «My projects» (the person's own work — posts for their Instagram, their sites) and `a2a` «A2A · Web4» (this
-  element's services sold outward through Lagrix — said honestly while the network is not live). Drop a mode the element does not need.
-- A category opens downward: its `children` are this element's own things — projects, author portraits, services — each with its
-  screen folder; `add` names the line that adds one. Add a child, its folder `tg/_pages/<slug>/` and its line in one commit.
-- `common` holds the items OUTSIDE the modes, on their level (the owner, Telegram 757): «Subscriptions», «Cron automation», «Element
-  settings», «Help» — never put them inside a mode. Subscriptions and cron stay in every element.
-- Proofs of a menu change: `npm run test:tg-menu` (the door accepts the file, a bad slug is refused) and eyes of the drawer open at
-  390 px in both themes.
+- The drawer of the Mini App (☰, beside the large title of every screen — `tg/_components/tg-head.client.tsx`) and the core's «Working
+  process» of this element draw ONE menu: `tg/_data/menu.json`. The core reads it through the door `GET /api/tg-menu`; Telegram through
+  `tg/_libs/tg-menu.ts`. Never a second menu, never a screen built for the core apart.
+- One mode (the owner, Telegram 412, 2026-11-21): «Главная» · «Проекты» (opens into its four sections, `add` «Все направления») ·
+  «Cron» (one calendar for every project) · «Элемент» (site, people, agent, building) · «Настройки» (instruction, owner, project, skills,
+  subscriptions, MCP). `common` stays empty in the shape the core reads. The A2A screens return when the network lives.
+- Proofs of a menu change: `npm run test:tg-menu` and eyes of the drawer open at 390 px in both themes.
+
+## 3b. Projects — where the person's work lives (node step 821)
+
+- The catalog `tg/_data/projects.json`: 4 sections, 46 directions (groups), their items — all visible from the first day, empty but
+  ready (the owner: «сама архитектура вдохновит его»). Addresses: `/tg/projects/<section>`, `/tg/projects/<group>`,
+  `/tg/projects/<group>/<item>` — drawn by the catalog's own screens with no folder.
+- **A project's work is the element's SITE, not the Mini App** (the owner, Telegram 434: «сайт для того и существует чтобы заменить
+  собой артефакты»). A page you build for a project names it in its `meta.json`: `"project": "<group>/<item>"` (or `"<group>"`) — the
+  Mini App counts it under «страниц на сайте» and «Открыть сайт» opens it.
+- **A calendar entry for a project** names it the same way in `data/cron.json`: `"project": "social/instagram"` — it counts as «активных
+  в Cron», today's as «задач сегодня», and «Cron» shows its direction. An entry without `project` belongs to the element as a whole.
+- **The person names a project** («мой Instagram», «тренировки») → find its group and item in the catalog and work there; tell the
+  person the address. Their own direction or item that the catalog lacks → add it to `projects.json` (slug, title and line in every
+  language) in the commit of the work; `npm run test:tg-projects` proves the catalog stays whole.
+- A direction that needs its own dashboard → a folder `tg/_pages/projects/<group>/` with a widget: a real folder wins over the
+  catalog's screen.
+- Proofs: `npm run test:tg-projects` (the catalog whole; counts from the site and the calendar, with negatives) and eyes of the screen.
 
 ## 4. Telegram's side
 
-- The bridge (`tg-bridge.client.tsx`) already tells Telegram the app is ready, expands it and paints its header. More of Telegram's
-  controls (the main button, the back button, haptics) — events of core.telegram.org/api/web-events, read there before the code;
-  posted the same way as in the bridge, no extra script.
+- The bridge (`tg-bridge.client.tsx`) tells Telegram the app is ready, expands it and paints its header; 821 — Telegram's theme
+  becomes this element's tokens inside Telegram (`data-tg-theme`, `styles/globals.css`) and Telegram's own Back button walks back
+  through the screens. «Перейти в чат» (`tg-to-chat.client.tsx`) closes the Mini App back to the chat. More of Telegram's controls
+  (the main button, haptics) — events of core.telegram.org/api/web-events, read there before the code; posted with `tgPost`, no extra
+  script.
 - The purpose of this element's Mini App lives in `tg/README.md`, section «Назначение этого элемента» — written by your person or by
   you from their words. Keep it true when the screens change.

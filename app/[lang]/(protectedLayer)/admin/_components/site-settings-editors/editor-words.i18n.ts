@@ -45,7 +45,7 @@ const WORDS: Record<'en' | 'ru', Words> = {
         "hint": "The sign-in button and the visitor cabinet.",
         "guard": {
           "title": "Switching off sign-in",
-          "text": "Without the sign-in button there is no drawer and no way to the architect pages from the site. The parts of the project are reachable only by direct links. Remember or copy them before you continue."
+          "text": "Without the sign-in button there is no drawer and no way to the administration and the architect pages from the site. The parts of the project are reachable only by direct links. Remember or copy them before you continue."
         }
       },
       {
@@ -105,7 +105,7 @@ const WORDS: Record<'en' | 'ru', Words> = {
       "guardProceed": "Switch off",
       "guardCancel": "Cancel",
       "linkSite": "The site of this element",
-      "linkAdmin": "The architect pages of this element",
+      "linkAdmin": "The administration of this element",
       "linkCore": "The core of the node"
     }
   },
@@ -142,7 +142,7 @@ const WORDS: Record<'en' | 'ru', Words> = {
         "hint": "Кнопка входа и кабинет посетителя.",
         "guard": {
           "title": "Выключение входа",
-          "text": "Без кнопки входа не будет выдвижного ящика и перехода на страницы архитектора с сайта. Части проекта будут доступны только по прямым ссылкам. Запомните или скопируйте их, прежде чем продолжить."
+          "text": "Без кнопки входа не будет выдвижного ящика и перехода в администрирование и на страницы архитектора с сайта. Части проекта будут доступны только по прямым ссылкам. Запомните или скопируйте их, прежде чем продолжить."
         }
       },
       {
@@ -202,7 +202,7 @@ const WORDS: Record<'en' | 'ru', Words> = {
       "guardProceed": "Выключить",
       "guardCancel": "Отмена",
       "linkSite": "Сайт этого элемента",
-      "linkAdmin": "Страницы архитектора этого элемента",
+      "linkAdmin": "Администрирование этого элемента",
       "linkCore": "Ядро узла"
     }
   }
