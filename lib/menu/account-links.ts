@@ -89,6 +89,7 @@ const AGENT_PAGES: { page: string; label: Record<string, string> }[] = [
   { page: "telegram", label: { en: "Telegram bot", ru: "Telegram-бот" } },
   { page: "openai", label: { en: "OpenAI key", ru: "Ключ OpenAI" } },
 ]
+const MAIN_AGENT: Record<string, string> = { en: "Main agent", ru: "Главный агент" }
 const OWN_WORDS: Record<string, { dashboard: string; projects: string }> = {
   en: { dashboard: "Dashboard", projects: "Projects" },
   ru: { dashboard: "Дашборд", projects: "Проекты" },
@@ -120,11 +121,14 @@ function ownAgentLinks(lang: string): DrawerLink[] {
 export function accountLinks(lang: string): DrawerLink[] {
   return [
     ...ownAgentLinks(lang),
-    ...OWNER_PAGES.map((p) => ({
-      href: architectHref(lang, p.path),
-      label: p.label[lang] ?? p.label.en,
+    // 834-8 (✗ seen 2026-11-21 21:15 on j58fl: «Подписка Claude Code» and «Терминал» twice in the architect's drawer — the element's
+    // and the main agent's): the main agent's pages fold into one list «Главный агент ▸», the architect's only.
+    {
+      href: architectHref(lang, "build"),
+      label: MAIN_AGENT[lang] ?? MAIN_AGENT.en,
       roles: ARCHITECT_LAYER_ROLES,
-    })),
+      children: OWNER_PAGES.map((p) => ({ href: architectHref(lang, p.path), label: p.label[lang] ?? p.label.en })),
+    },
     // 🔒 СЛОЙ АРХИТЕКТОРА — ТОЛЬКО ЕГО РОЛЯМ (268, слово владельца 2026-09-22: «в правом
     // выпадающем ящике Account сделать кнопку страницы архитектора чтобы я мог быстро на неё переходить»).
     // Адрес, роли и подпись взяты у самого слоя — `ARCHITECT_HOME`, `ARCHITECT_LAYER_ROLES` и его словарь, —
