@@ -277,7 +277,8 @@
             "/[lang]/admin/api/settings/brief",
             "/[lang]/admin/api/settings/platform",
             "/[lang]/tg/api/agent",
-            "/[lang]/tg/api/context"
+            "/[lang]/tg/api/context",
+            "/[lang]/tg/api/items"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [
