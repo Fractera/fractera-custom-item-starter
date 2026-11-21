@@ -7,6 +7,8 @@ const ARCHITECT_TITLE: Record<string, string> = {
   ru: "Группа страниц архитектора",
 }
 import { ARCHITECT_LAYER_ROLES, PROTECTED_GROUP_ROLES } from "@/lib/roles"
+import { ownId } from "@/lib/own-id"
+import { projects } from "@/app/[lang]/(protectedLayer)/tg/_libs/projects"
 
 // РАБОЧИЕ РАЗДЕЛЫ, которые ящик аккаунта показывает вошедшему.
 //
@@ -76,8 +78,48 @@ const OWNER_PAGES: { path: string; label: Record<string, string> }[] = [
   { path: "build/telegram", label: { en: "Telegram activation", ru: "Активация Telegram" } },
 ]
 
+// 834-5/6 (the owner of the node, Telegram 641, 644, 646, 648): the element's own admin manages its agent from this drawer and watches its
+// projects on a wide screen — «управляет она через Telegram а просматривает она на широком компьютере». For the architect and this
+// element's own admin: «Дашборд» (the element's home), «Проекты» (only the pages already built for a project — the Mini App's map, with
+// nothing empty), then its agent's four pages in the core's bare frame `/<lang>/element-agent/<id>/<page>` (core step 834-4): only this
+// element, nothing else of the node.
+const AGENT_PAGES: { page: string; label: Record<string, string> }[] = [
+  { page: "subscription", label: { en: "Claude Code subscription", ru: "Подписка Claude Code" } },
+  { page: "terminal", label: { en: "Terminal", ru: "Терминал" } },
+  { page: "telegram", label: { en: "Telegram bot", ru: "Telegram-бот" } },
+  { page: "openai", label: { en: "OpenAI key", ru: "Ключ OpenAI" } },
+]
+const OWN_WORDS: Record<string, { dashboard: string; projects: string }> = {
+  en: { dashboard: "Dashboard", projects: "Projects" },
+  ru: { dashboard: "Дашборд", projects: "Проекты" },
+}
+
+/** The pages built for the person's projects, one link each: «<item>» (a second page of it — «<item> · 2»). */
+function projectPages(lang: string): DrawerLink[] {
+  const out: DrawerLink[] = []
+  try {
+    for (const s of projects(lang)) for (const g of s.groups) for (const it of g.items) {
+      if (it.site) out.push({ href: it.site, label: `${g.title} · ${it.title}` })
+    }
+  } catch { /* the Mini App's catalog is missing — no projects in the drawer */ }
+  return out
+}
+
+function ownAgentLinks(lang: string): DrawerLink[] {
+  const w = OWN_WORDS[lang] ?? OWN_WORDS.en
+  const roles = PROTECTED_GROUP_ROLES.admin
+  const id = ownId()
+  const built = projectPages(lang)
+  return [
+    { href: `/${lang}`, label: w.dashboard, roles },
+    ...(built.length ? [{ href: `/${lang}#projects`, label: w.projects, roles, children: built }] : []),
+    ...(id && ARCHITECT_URL ? AGENT_PAGES.map((p) => ({ href: `${ARCHITECT_URL}/${lang}/element-agent/${id}/${p.page}`, label: p.label[lang] ?? p.label.en, roles })) : []),
+  ]
+}
+
 export function accountLinks(lang: string): DrawerLink[] {
   return [
+    ...ownAgentLinks(lang),
     ...OWNER_PAGES.map((p) => ({
       href: architectHref(lang, p.path),
       label: p.label[lang] ?? p.label.en,

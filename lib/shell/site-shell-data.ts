@@ -53,7 +53,7 @@ export function siteShellData(lang: string): ShellData {
       ? {
           side,
           labels: { signIn: acc.signIn, account: acc.account, signOut: acc.signOut },
-          links: accountLinks(lang).map((l) => ({ href: l.href, label: l.label, ...(l.roles ? { roles: [...l.roles] } : {}) })),
+          links: accountLinks(lang).map((l) => ({ href: l.href, label: l.label, ...(l.roles ? { roles: [...l.roles] } : {}), ...(l.children?.length ? { children: l.children.map((c) => ({ href: c.href, label: c.label })) } : {}) })),
         }
       : null,
     toggles: { theme: featureOn("themeToggle"), width: featureOn("widthToggle"), language: featureOn("languageSwitcher") },

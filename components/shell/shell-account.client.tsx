@@ -2,11 +2,12 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { LogIn, LogOut, User } from "lucide-react"
+import { ChevronDown, LogIn, LogOut, User } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
 import type { ShellLink, ShellSide } from "./shell-types"
 import { useShellMe } from "./shell-me.client"
@@ -44,7 +45,7 @@ function AccountDrawer({ side, labels, email, roles = [], links, logoutHref, att
   return (
     <>
       {/* md и уже — только значок (278); подпись остаётся доступным именем на любой ширине. */}
-      <Button variant="ghost" size="sm" onClick={openDrawer} aria-label={labels.account} title={labels.account} className="relative">
+      <Button variant="ghost" size="sm" onClick={openDrawer} aria-label={labels.account} className="relative">
         <User /><span className="hidden lg:inline">{labels.account}</span>
         {waiting && <AttentionDot className="absolute right-0.5 top-0.5" />}
       </Button>
@@ -58,7 +59,21 @@ function AccountDrawer({ side, labels, email, roles = [], links, logoutHref, att
           <div className="flex-1 overflow-y-auto px-4 py-4">
             {items.length > 0 && (
               <nav className="flex flex-col gap-0.5">
-                {items.map((l) => waiting && attention && attentionWords && /\/architect\/?$/.test(l.href) ? (
+                {items.map((l) => l.children?.length ? (
+                  // 834-6: «Проекты» — the pages built for the person's projects, opened in place
+                  <Collapsible key={l.href} data-block="shell-account-group">
+                    <CollapsibleTrigger className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "group w-full justify-between")}>
+                      {l.label}<ChevronDown className="transition-transform group-data-[state=open]:rotate-180" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="flex flex-col gap-0.5 border-l border-border ml-3 pl-2">
+                      {l.children.map((c) => (
+                        <Link key={c.href} href={c.href} onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "w-full justify-start")}>
+                          {c.label}
+                        </Link>
+                      ))}
+                    </CollapsibleContent>
+                  </Collapsible>
+                ) : waiting && attention && attentionWords && /\/architect\/?$/.test(l.href) ? (
                   <ArchitectAttention key={l.href} href={l.href} label={l.label} attention={attention} words={attentionWords} onGo={() => setOpen(false)} />
                 ) : (
                   <Link

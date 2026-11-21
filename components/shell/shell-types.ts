@@ -37,6 +37,8 @@ export type ShellLink = {
   label: string
   /** Кому показывать пункт кабинета. Нет поля — всем вошедшим. Вежливость, а не замок. */
   roles?: readonly string[]
+  /** 834-6: a list that opens under the item (the drawer's «Проекты»: the pages built for the person's projects). */
+  children?: ShellLink[]
 }
 
 /** `icon` — ключ каталога значков или адрес загруженной картинки (начинается с `/` или `http`). */

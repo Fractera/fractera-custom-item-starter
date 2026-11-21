@@ -617,7 +617,8 @@
         "app/[lang]/(protectedLayer)/tg/_components/tg-shell.client.tsx",
         "components/ai-elements/chain-of-thought.tsx",
         "components/ai-elements/task.tsx",
-        "components/ai-elements/tool.tsx"
+        "components/ai-elements/tool.tsx",
+        "components/shell/shell-account.client.tsx"
       ]
     },
     {
