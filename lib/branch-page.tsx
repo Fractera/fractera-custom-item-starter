@@ -12,6 +12,7 @@ import { ownId, ownName } from '@/lib/own-id'
 import { AwaitingTitle } from '@/components/content-page/awaiting-title'
 import { brand } from '@/lib/brand'
 import { ALL_ROLES, PROTECTED_GROUP_ROLES, rolesThatSee } from '@/lib/roles'
+import { pageLock } from '@/lib/page-lock.mjs'
 import { snippetPath } from '@/lib/snippet/page-snippet'
 import type { KindSet } from '@/components/sections/page-body'
 
@@ -50,20 +51,12 @@ function folderRole(page: TreePage, segments: string[]): string | null {
   return (ALL_ROLES as readonly string[]).includes(first) ? first : null
 }
 
-/** `{roles}` в тексте страницы — список её замка: роль папки и `meta.roles`, каждая со всеми наследниками (402, «роли
- *  наследуются»), плюс архитектор. Один список, два читателя: замок и текст. Нет ни папки роли, ни `meta.roles` — замка нет. */
+/** `{roles}` в тексте страницы — список её замка (`lib/page-lock.mjs`): роль папки и `meta.roles`, каждая со всеми наследниками (402,
+ *  «роли наследуются»), плюс архитектор, а внутри ветки управления элементом — роли замка самой ветки (805; ветка `tg` — шаг узла 830).
+ *  Один список, два читателя: замок и текст. Нет ни папки роли, ни `meta.roles` — замка нет. */
 function allowedRoles(page: TreePage, segments: string[]): string[] | null {
-  const own = folderRole(page, segments)
-  const base = [...(own ? [own] : []), ...(page.meta.roles ?? [])]
-  if (base.length === 0) return null
-  const set = new Set(base.flatMap(rolesThatSee))
-  set.add('architect')
-  // 805 (measured by the owner on his server, 2026-11-19): the element's own admin (`OWN_ADMIN_ROLE`, 778) enters its management
-  // branches — the branch lock lets it in, and a child page of that branch must not lock it out again. Its role is per element (the
-  // node gives the number), so no page's data can name it: the branch's own roles are added here.
-  const branch = segments[0] === '(protectedLayer)' ? segments[1] : ''
-  if (branch === 'admin' || branch === 'staff' || branch === 'finance') for (const r of PROTECTED_GROUP_ROLES[branch]) set.add(r)
-  return [...set]
+  const branch = segments[0] === '(protectedLayer)' ? segments[1] ?? '' : ''
+  return pageLock({ own: folderRole(page, segments), metaRoles: page.meta.roles ?? [], branch, rolesThatSee, groups: PROTECTED_GROUP_ROLES })
 }
 
 function contentOf(page: TreePage, lang: string, segments: string[]) {
