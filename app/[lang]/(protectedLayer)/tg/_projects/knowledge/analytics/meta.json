@@ -8,5 +8,21 @@
  "line": {
   "en": "Check ideas with numbers, not with feelings.",
   "ru": "Проверяйте идеи цифрами, а не чувством."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Numbers for investors",
+    "ru": "Цифры для инвесторов"
+   },
+   "to": "investors"
+  },
+  {
+   "what": {
+    "en": "The budget",
+    "ru": "Бюджет"
+   },
+   "to": "economy"
+  }
+ ]
 }

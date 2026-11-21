@@ -8,5 +8,28 @@
  "line": {
   "en": "Accounts, taking payments, transfers and their safety.",
   "ru": "Счета, приём оплат, переводы и их безопасность."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The business's income and budget",
+    "ru": "Доходы и бюджет бизнеса"
+   },
+   "to": "economy"
+  },
+  {
+   "what": {
+    "en": "Personal payments",
+    "ru": "Личные платежи"
+   },
+   "to": "finance"
+  },
+  {
+   "what": {
+    "en": "Crypto wallets",
+    "ru": "Криптокошельки"
+   },
+   "to": "web3"
+  }
+ ]
 }

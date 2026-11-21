@@ -8,5 +8,28 @@
  "line": {
   "en": "Where the goods come from and on what terms.",
   "ru": "Откуда приходит товар и на каких условиях."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Your own equipment",
+    "ru": "Ваше оборудование"
+   },
+   "to": "production"
+  },
+  {
+   "what": {
+    "en": "Logistics of your trips",
+    "ru": "Логистика ваших поездок"
+   },
+   "to": "travel"
+  },
+  {
+   "what": {
+    "en": "Contractors of work",
+    "ru": "Подрядчики на работы"
+   },
+   "to": "team"
+  }
+ ]
 }

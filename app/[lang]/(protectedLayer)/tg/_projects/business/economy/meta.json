@@ -8,5 +8,28 @@
  "line": {
   "en": "The money of the business: income, costs, budget and taxes.",
   "ru": "Деньги дела: доходы, расходы, бюджет и налоги."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Your personal money",
+    "ru": "Личные деньги"
+   },
+   "to": "finance"
+  },
+  {
+   "what": {
+    "en": "Payment services and accounts",
+    "ru": "Платёжные сервисы и счета"
+   },
+   "to": "fintech"
+  },
+  {
+   "what": {
+    "en": "Taxes as documents",
+    "ru": "Налоги как документы"
+   },
+   "to": "legal"
+  }
+ ]
 }

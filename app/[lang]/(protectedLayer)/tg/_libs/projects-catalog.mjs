@@ -1,7 +1,7 @@
 // The rules of the Mini App's projects catalog (node step 821), plain JavaScript so its test runs in node without the app:
 // what a valid catalog is, which pages of the site name a project, and how a project's numbers are counted. `projects.ts` draws
 // with these; `projects-catalog.test.mjs` proves them (npm run test:tg-projects).
-import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const SLUG = /^[a-z0-9][a-z0-9-]{0,60}$/
@@ -113,7 +113,23 @@ export function treeProblems(tree, langs = ['en', 'ru']) {
     }
   }
   const compiled = compileTree(tree, true)
-  return [...out, ...catalogProblems(compiled, langs)]
+  return [...out, ...catalogProblems(compiled, langs), ...neighbourProblems(compiled, langs)]
+}
+
+/** 826: the person's «not here → the neighbour» of every group (its «Справка»): each entry has words in every language and leads to a
+ *  section, a group (one slug space) or the Mini App's Cron — never to itself or nowhere. */
+export function neighbourProblems(catalog, langs = ['en', 'ru']) {
+  const out = []
+  const sections = catalog?.sections ?? []
+  const known = new Set(['cron', ...sections.map((s) => s.slug), ...sections.flatMap((s) => (s.groups ?? []).map((g) => g.slug))])
+  for (const g of sections.flatMap((s) => s.groups ?? [])) {
+    if (!Array.isArray(g.neighbours) || !g.neighbours.length) { out.push(`group «${g.slug}»: no neighbours (its «Справка» says what goes elsewhere)`); continue }
+    for (const [i, n] of g.neighbours.entries()) {
+      for (const l of langs) if (typeof n?.what?.[l] !== 'string' || !n.what[l].trim()) out.push(`group «${g.slug}» neighbour ${i + 1}: no «${l}»`)
+      if (!known.has(n?.to) || n.to === g.slug) out.push(`group «${g.slug}» neighbour ${i + 1}: «${n?.to}» leads nowhere`)
+    }
+  }
+  return out
 }
 
 /** The static catalog — sections and groups in their order, without items (`withItems` — the items too, for the checks). */
@@ -129,6 +145,7 @@ export function compileTree(tree, withItems = false) {
         icon: gm?.icon ?? 'folder',
         title: gm?.title,
         line: gm?.line,
+        neighbours: Array.isArray(gm?.neighbours) ? gm.neighbours : [],
         ...(withItems ? { items: readItems(tree, s, g) } : {}),
       })),
     })),
@@ -145,4 +162,53 @@ export function readItems(tree, section, group) {
     if (ok) seen.add(it.slug)
     return ok
   })
+}
+
+// ── 826: THE PERSON ADDS AN ITEM («＋ Добавить» on a group's screen; the owner, Telegram 503, 505, 506: «кнопки добавить который будет
+// вызывать модальное окно для добавления новый соцсети … Кнопку удалить не делаем кнопку редактировать не делаем если сделали опечатку то
+// исправляем при помощи Claude Code Agent»). Pure: the door `tg/api/items` reads, calls `addItem`, writes with `writeItems`. ────────────
+
+/** At most this many items in one group — a list a person still reads on a phone. */
+export const ITEM_LIMIT = 60
+
+const CYRILLIC = { а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n',
+  о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu',
+  я: 'ya', і: 'i', ї: 'yi', є: 'ye', ґ: 'g', ў: 'u' }
+
+/** The address part of a name: Cyrillic spelled in Latin letters, accents dropped, anything else a hyphen; nothing left — «item». */
+export function slugFrom(title) {
+  const latin = [...String(title ?? '').toLowerCase()].map((c) => CYRILLIC[c] ?? c).join('').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  const slug = latin.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60).replace(/-+$/g, '')
+  return slug || 'item'
+}
+
+/** One line of the person's words: no control characters, single spaces. */
+const oneLine = (v) => String(v ?? '').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim()
+
+/** A new item from the person's words, or why not: `no-title`, `title-long` (60), `line-long` (120), `full` (ITEM_LIMIT), `taken`
+ *  (the same name in any language). The words go into every given language as they are — a translation pass may refine them later. */
+export function addItem(items, { title, line }, langs = ['en', 'ru'], at = new Date()) {
+  const t = oneLine(title)
+  const l = oneLine(line)
+  if (!t) return { error: 'no-title' }
+  if ([...t].length > 60) return { error: 'title-long' }
+  if ([...l].length > 120) return { error: 'line-long' }
+  if (items.length >= ITEM_LIMIT) return { error: 'full' }
+  const same = (v) => typeof v === 'string' && v.trim().toLowerCase() === t.toLowerCase()
+  if (items.some((it) => Object.values(it?.title ?? {}).some(same))) return { error: 'taken' }
+  const base = slugFrom(t)
+  let slug = base
+  for (let n = 2; items.some((it) => it?.slug === slug); n++) slug = `${base.slice(0, 56).replace(/-+$/g, '')}-${n}`
+  const words = (v) => Object.fromEntries([...new Set(['en', ...langs])].map((x) => [x, v]))
+  const item = { slug, title: words(t), ...(l ? { line: words(l) } : {}), added: { by: 'person', at: at.toISOString() } }
+  return { item, items: [...items, item] }
+}
+
+/** The group's items.json, written whole and at once (a temporary file renamed over it): a reader never sees half a list. */
+export function writeItems(tree, section, group, items) {
+  const file = join(tree, section, group, 'items.json')
+  const tmp = `${file}.${process.pid}.${Date.now()}.tmp`
+  writeFileSync(tmp, `${JSON.stringify(items, null, 1)}\n`)
+  renameSync(tmp, file)
+  return file
 }

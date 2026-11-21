@@ -8,5 +8,28 @@
  "line": {
   "en": "The catalog and the client's way from interest to payment.",
   "ru": "Каталог и путь клиента от интереса до оплаты."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "What the product is and costs",
+    "ru": "Что такое продукт и сколько стоит"
+   },
+   "to": "product"
+  },
+  {
+   "what": {
+    "en": "People who already bought",
+    "ru": "Те, кто уже купил"
+   },
+   "to": "customers"
+  },
+  {
+   "what": {
+    "en": "Paid traffic",
+    "ru": "Платный трафик"
+   },
+   "to": "marketing"
+  }
+ ]
 }

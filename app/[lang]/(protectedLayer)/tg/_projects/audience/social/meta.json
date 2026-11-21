@@ -8,5 +8,28 @@
  "line": {
   "en": "Your channels and what you publish there.",
   "ru": "Ваши каналы и публикации в них."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The raw material of posts: images, video, texts",
+    "ru": "Сырьё для постов: картинки, видео, тексты"
+   },
+   "to": "content"
+  },
+  {
+   "what": {
+    "en": "Mailings",
+    "ru": "Рассылки"
+   },
+   "to": "mailings"
+  },
+  {
+   "what": {
+    "en": "Ads",
+    "ru": "Реклама"
+   },
+   "to": "marketing"
+  }
+ ]
 }

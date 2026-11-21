@@ -8,5 +8,28 @@
  "line": {
   "en": "Everything you read, collected and want to find again.",
   "ru": "Всё, что вы прочли, собрали и хотите найти снова."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "News while fresh",
+    "ru": "Свежие новости"
+   },
+   "to": "watch"
+  },
+  {
+   "what": {
+    "en": "Study plans",
+    "ru": "Планы учёбы"
+   },
+   "to": "career"
+  },
+  {
+   "what": {
+    "en": "Prompts",
+    "ru": "Промпты"
+   },
+   "to": "automation"
+  }
+ ]
 }

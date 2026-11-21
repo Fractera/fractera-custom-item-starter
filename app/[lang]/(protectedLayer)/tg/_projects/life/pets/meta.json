@@ -8,5 +8,21 @@
  "line": {
   "en": "Health, care and shopping for your pets.",
   "ru": "Здоровье, уход и покупки для ваших питомцев."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Family dates",
+    "ru": "Семейные даты"
+   },
+   "to": "family"
+  },
+  {
+   "what": {
+    "en": "Household shopping",
+    "ru": "Покупки для дома"
+   },
+   "to": "home"
+  }
+ ]
 }

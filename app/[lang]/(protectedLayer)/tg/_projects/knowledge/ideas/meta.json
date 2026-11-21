@@ -8,5 +8,21 @@
  "line": {
   "en": "The place where ideas are not lost.",
   "ru": "Место, где идеи не теряются."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Tasks with a date",
+    "ru": "Задачи со сроком"
+   },
+   "to": "focus"
+  },
+  {
+   "what": {
+    "en": "Checked hypotheses",
+    "ru": "Проверенные гипотезы"
+   },
+   "to": "analytics"
+  }
+ ]
 }

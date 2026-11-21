@@ -8,5 +8,21 @@
  "line": {
   "en": "Your money: spending, savings, investing and payments.",
   "ru": "Ваши деньги: траты, накопления, инвестиции и платежи."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The business's money",
+    "ru": "Деньги бизнеса"
+   },
+   "to": "economy"
+  },
+  {
+   "what": {
+    "en": "Crypto",
+    "ru": "Криптовалюта"
+   },
+   "to": "web3"
+  }
+ ]
 }

@@ -8,5 +8,21 @@
  "line": {
   "en": "Tools and links that work for you.",
   "ru": "Инструменты и связки, которые работают за вас."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Models and agents as a subject",
+    "ru": "Модели и агенты как тема"
+   },
+   "to": "ai"
+  },
+  {
+   "what": {
+    "en": "AI staff with a job",
+    "ru": "ИИ-сотрудники с задачей"
+   },
+   "to": "digital-staff"
+  }
+ ]
 }

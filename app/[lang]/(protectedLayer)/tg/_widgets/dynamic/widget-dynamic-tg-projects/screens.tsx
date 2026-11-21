@@ -1,9 +1,15 @@
 // @local — the catalog's own screens of the Mini App's projects (node step 821): a section, a direction (group) and its item, drawn at
 // addresses that have no folder (`childRoute({ virtual })` in lib/branch-page.tsx). The item's screen is the owner's 434: three numbers,
-// «Открыть сайт» (its pages live on the site) and «Перейти в чат».
+// «Открыть сайт» (its pages live on the site) and «Перейти в чат». 826: a direction's screen ends its card with «＋ Добавить» (a new item
+// with no build) and the page with «Справка» (what goes elsewhere, how the screen works) — the owner, Telegram 503, 505, 506.
 
+import Link from "next/link"
+import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
 import { Button } from "@/components/ui/button"
+import { Eyebrow, Small } from "@/components/ui/typography"
 import type { VirtualScreen } from "@/lib/branch-page"
+import { TgAddItem } from "../../../_components/tg-add-item.client"
+import { TgHelp } from "../../../_components/tg-help.client"
 import { TgHead } from "../../../_components/tg-head.client"
 import { TgGroup, TgNote, TgRows } from "../../../_components/tg-list"
 import { TgToChat } from "../../../_components/tg-to-chat.client"
@@ -42,7 +48,40 @@ function GroupScreen({ section, group, ui, lang }: { section: ProjectSection; gr
         <Stats counts={group} lang={lang} ui={ui} />
         <TgGroup>
           <TgRows rows={group.items.map((it) => ({ title: it.title, hint: it.line, href: it.href, aside: it.pages ? String(it.pages) : null }))} />
+          <TgAddItem dialogUi={appDialogUi(lang)} divided={group.items.length > 0} group={group.slug} groupTitle={group.title} lang={lang} ui={ui.add} />
         </TgGroup>
+        <TgHelp dialogUi={appDialogUi(lang)} label={ui.help.button} title={fill(ui.help.title, { group: group.title })}>
+          <GroupHelp group={group} ui={ui} />
+        </TgHelp>
+      </div>
+    </div>
+  )
+}
+
+/** 826: the window of «Справка» — what lives here, what goes to a neighbour (each a link to it), how the screen works. */
+function GroupHelp({ group, ui }: { group: ProjectGroup; ui: ProjectsUi }) {
+  return (
+    <div className="flex flex-col gap-5" data-block="tg-help-body">
+      {group.line ? <Small className="text-foreground">{group.line}</Small> : null}
+      {group.neighbours.length ? (
+        <div className="flex flex-col gap-2" data-block="tg-help-not-here">
+          <Eyebrow className="text-muted-foreground tracking-wider">{ui.help.notHere}</Eyebrow>
+          <ul className="flex flex-col gap-2" data-block="tg-help-not-here-list">
+            {group.neighbours.map((n) => (
+              <li className="flex flex-wrap items-baseline gap-x-1.5 text-[length:var(--fs-small)] leading-snug" data-block="tg-help-neighbour" key={`${n.href}-${n.what}`}>
+                <span>{n.what}</span>
+                <span aria-hidden className="text-muted-foreground">→</span>
+                <Link className="text-primary underline-offset-2 hover:underline" href={n.href}>{n.title ?? ui.help.cron}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      <div className="flex flex-col gap-2" data-block="tg-help-how">
+        <Eyebrow className="text-muted-foreground tracking-wider">{ui.help.how}</Eyebrow>
+        <ul className="flex list-disc flex-col gap-1.5 pl-5 text-[length:var(--fs-small)] leading-snug text-muted-foreground" data-block="tg-help-points">
+          {ui.help.points.map((p) => <li data-block="tg-help-point" key={p}>{p}</li>)}
+        </ul>
       </div>
     </div>
   )

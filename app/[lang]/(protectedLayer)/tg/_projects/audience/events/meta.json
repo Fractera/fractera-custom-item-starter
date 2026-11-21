@@ -8,5 +8,21 @@
  "line": {
   "en": "Broadcasts, meetings and reasons to be heard.",
   "ru": "Эфиры, встречи и поводы рассказать о себе."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The material of a broadcast",
+    "ru": "Материалы трансляции"
+   },
+   "to": "content"
+  },
+  {
+   "what": {
+    "en": "Trends to react to",
+    "ru": "Тренды, на которые стоит отреагировать"
+   },
+   "to": "watch"
+  }
+ ]
 }

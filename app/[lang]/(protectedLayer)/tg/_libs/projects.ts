@@ -14,13 +14,17 @@ import { countsOf, readItems, sitePages, treeDir } from "./projects-catalog.mjs"
 
 type Words = { en: string; [lang: string]: string | undefined }
 type RawItem = { slug: string; title: Words; line?: Words }
-type RawGroup = { slug: string; icon?: string; title: Words; line?: Words }
+type RawNeighbour = { what: Words; to: string }
+type RawGroup = { slug: string; icon?: string; title: Words; line?: Words; neighbours?: RawNeighbour[] }
 type RawSection = { slug: string; icon?: string; title: Words; groups: RawGroup[] }
 
 /** pages — pages of the site that name the project; active — its calendar entries that are on; today — the ones that run today. */
 export type Counts = { pages: number; active: number; today: number }
 export type ProjectItem = Counts & { slug: string; title: string; line: string | null; href: string; site: string | null }
-export type ProjectGroup = Counts & { slug: string; icon: string; title: string; line: string | null; href: string; section: string; items: ProjectItem[] }
+/** 826: «not here → the neighbour» of a group's «Справка»: the words, and where they lead — a section, a group, or the Mini App's Cron
+ *  (`title` null: the screen names it). */
+export type ProjectNeighbour = { what: string; title: string | null; href: string }
+export type ProjectGroup = Counts & { slug: string; icon: string; title: string; line: string | null; href: string; section: string; items: ProjectItem[]; neighbours: ProjectNeighbour[] }
 export type ProjectSection = Counts & { slug: string; icon: string; title: string; href: string; groups: ProjectGroup[] }
 export type ProjectPlace =
   | { kind: "section"; section: ProjectSection }
@@ -46,6 +50,14 @@ export function projects(lang: string): ProjectSection[] {
   const count = (key: string): Counts => countsOf(key, site, cal)
   const base = `/${lang}/tg/projects`
   const tree = treeDir(elementRoot())
+  const named = new Map<string, { title: string; href: string }>([
+    ...SECTIONS.map((x) => [x.slug, { title: pick(x.title, lang) ?? x.slug, href: `${base}/${x.slug}` }] as const),
+    ...SECTIONS.flatMap((x) => x.groups.map((g) => [g.slug, { title: pick(g.title, lang) ?? g.slug, href: `${base}/${g.slug}` }] as const)),
+  ])
+  const neighbour = (n: RawNeighbour): ProjectNeighbour => {
+    const to = named.get(n.to)
+    return { what: pick(n.what, lang) ?? "", title: to?.title ?? null, href: to?.href ?? `/${lang}/tg/cron` }
+  }
   return SECTIONS.map((s) => {
     const groups = s.groups.map((g) => ({
       ...count(g.slug),
@@ -55,6 +67,7 @@ export function projects(lang: string): ProjectSection[] {
       line: pick(g.line, lang),
       href: `${base}/${g.slug}`,
       section: s.slug,
+      neighbours: (g.neighbours ?? []).map(neighbour),
       items: (readItems(tree, s.slug, g.slug) as RawItem[]).map((it) => ({
         ...count(`${g.slug}/${it.slug}`),
         slug: it.slug,

@@ -8,5 +8,21 @@
  "line": {
   "en": "How people recognise you and how you sound.",
   "ru": "Как вас узнают и как вы звучите."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Single posts and media",
+    "ru": "Отдельные посты и медиа"
+   },
+   "to": "content"
+  },
+  {
+   "what": {
+    "en": "Ads",
+    "ru": "Реклама"
+   },
+   "to": "marketing"
+  }
+ ]
 }

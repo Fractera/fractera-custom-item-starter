@@ -8,5 +8,28 @@
  "line": {
   "en": "Where people come from and what it costs.",
   "ru": "Откуда приходят люди и сколько это стоит."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Organic posts",
+    "ru": "Обычные посты без бюджета"
+   },
+   "to": "social"
+  },
+  {
+   "what": {
+    "en": "The brand itself",
+    "ru": "Сам бренд"
+   },
+   "to": "brand"
+  },
+  {
+   "what": {
+    "en": "The sales funnel after the click",
+    "ru": "Воронка продаж после клика"
+   },
+   "to": "sales"
+  }
+ ]
 }

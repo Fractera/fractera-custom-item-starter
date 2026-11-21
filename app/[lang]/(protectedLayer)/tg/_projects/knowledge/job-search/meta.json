@@ -8,5 +8,21 @@
  "line": {
   "en": "Applications, interviews and offers in one place.",
   "ru": "Отклики, собеседования и сравнение офферов в одном месте."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Your CV and study",
+    "ru": "Резюме и учёба"
+   },
+   "to": "career"
+  },
+  {
+   "what": {
+    "en": "Hiring people for you",
+    "ru": "Найм людей к вам"
+   },
+   "to": "hr"
+  }
+ ]
 }

@@ -8,5 +8,21 @@
  "line": {
   "en": "The software, clouds and access the work rests on.",
   "ru": "Софт, облака и доступы, на которых держится работа."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "AI tools and bots",
+    "ru": "ИИ-инструменты и боты"
+   },
+   "to": "automation"
+  },
+  {
+   "what": {
+    "en": "Subscriptions you sell",
+    "ru": "Подписки, которые продаёте вы"
+   },
+   "to": "subscriptions"
+  }
+ ]
 }

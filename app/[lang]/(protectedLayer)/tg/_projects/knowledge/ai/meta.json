@@ -8,5 +8,21 @@
  "line": {
   "en": "Models, agents and everything new in AI.",
   "ru": "Модели, агенты и всё новое в мире ИИ."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Ready AI tools you use",
+    "ru": "Готовые ИИ-инструменты, которыми вы пользуетесь"
+   },
+   "to": "automation"
+  },
+  {
+   "what": {
+    "en": "AI workers of the business",
+    "ru": "ИИ-сотрудники бизнеса"
+   },
+   "to": "digital-staff"
+  }
+ ]
 }

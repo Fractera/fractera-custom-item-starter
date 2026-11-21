@@ -8,5 +8,28 @@
  "line": {
   "en": "The services you give people, from the request to the result.",
   "ru": "Услуги, которые вы оказываете людям, от заявки до результата."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "A product sold as a thing",
+    "ru": "Продукт, который продаётся как вещь"
+   },
+   "to": "product"
+  },
+  {
+   "what": {
+    "en": "Bookings of your own life",
+    "ru": "Записи вашей личной жизни"
+   },
+   "to": "life"
+  },
+  {
+   "what": {
+    "en": "Contractors who help you",
+    "ru": "Подрядчики, которые вам помогают"
+   },
+   "to": "team"
+  }
+ ]
 }

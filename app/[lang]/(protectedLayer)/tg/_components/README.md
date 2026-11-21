@@ -23,3 +23,7 @@ Delete the branch folder and nothing else in the element breaks: then the compon
 - `tg-shell.client.tsx` — the frame: the top bar (☰ and the current screen's title), the left drawer (the element, the two modes,
   groups, categories opening downward, «Open the element's site»). It draws `../_data/menu.json`; it never holds a menu of its own —
   the same file feeds the core's «Working process» (`../README.md`, «One menu — two windows»).
+- `tg-add-item.client.tsx` — «＋ Добавить», the last row of a direction's card (node step 826): the window (name, one line) → the door
+  `../api/items` appends the person's item to the direction's `items.json`; no build, no delete, no rename (those are the agent's).
+- `tg-help.client.tsx` — «Справка» at the bottom of a direction's screen (826): a quiet button; its window holds what the server drew —
+  what goes to a neighbour (`neighbours` of the direction's `meta.json`, each a link) and how the screen works.

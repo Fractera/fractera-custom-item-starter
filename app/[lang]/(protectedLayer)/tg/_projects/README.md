@@ -10,3 +10,7 @@ agent: what goes here, what goes to a neighbour, how work joins it. Read the gro
   соцсети») is one entry — `slug`, `title`, `line` in en and ru — with no build: seen within 30 s, at once after `npm run pages:refresh`.
 - **Work** of a project is a page of the site or of «Администрирование» whose `meta.json` says `"project": "<group>/<item>"`, and a
   calendar entry with the same `project` (skill `telegram-mini-app`, «Projects»).
+- **The person adds items themselves** (core step 826): «＋ Добавить» on a direction's screen writes one entry into its `items.json`
+  (`added: { by: "person", at }`) — commit it with your next work; deleting or renaming is yours, on their word. **«Справка»** of a
+  direction shows its `neighbours` (`meta.json`: `{ what: { en, ru }, to: <section | group | "cron"> }`) — a new group needs them too;
+  `npm run tg:projects` names a missing or broken one.

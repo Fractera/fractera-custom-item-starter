@@ -8,5 +8,21 @@
  "line": {
   "en": "The subscriptions you sell to your clients.",
   "ru": "Подписки, которые вы продаёте своим клиентам."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Subscriptions you pay for: services, software",
+    "ru": "Подписки, за которые платите вы: сервисы, программы"
+   },
+   "to": "tools"
+  },
+  {
+   "what": {
+    "en": "One-off prices",
+    "ru": "Разовые цены"
+   },
+   "to": "product"
+  }
+ ]
 }

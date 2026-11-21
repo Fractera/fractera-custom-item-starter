@@ -8,5 +8,21 @@
  "line": {
   "en": "Menus, recipes, shopping and diet.",
   "ru": "Меню, рецепты, покупки и рацион."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Health and training",
+    "ru": "Здоровье и тренировки"
+   },
+   "to": "self"
+  },
+  {
+   "what": {
+    "en": "Household goods",
+    "ru": "Товары для дома"
+   },
+   "to": "home"
+  }
+ ]
 }

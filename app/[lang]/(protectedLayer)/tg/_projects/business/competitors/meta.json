@@ -8,5 +8,28 @@
  "line": {
   "en": "What others do and how you are better.",
   "ru": "Что делают другие и чем вы лучше."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Your own numbers",
+    "ru": "Ваши собственные цифры"
+   },
+   "to": "economy"
+  },
+  {
+   "what": {
+    "en": "Hypotheses checked by numbers",
+    "ru": "Гипотезы, проверенные цифрами"
+   },
+   "to": "analytics"
+  },
+  {
+   "what": {
+    "en": "Trends of the niche",
+    "ru": "Тренды ниши"
+   },
+   "to": "watch"
+  }
+ ]
 }

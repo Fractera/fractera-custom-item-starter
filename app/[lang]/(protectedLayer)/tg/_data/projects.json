@@ -19,7 +19,30 @@
      "line": {
       "en": "What you sell, what it costs and where it grows.",
       "ru": "Что вы продаёте, сколько это стоит и куда растёт."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Prices of subscriptions you sell",
+        "ru": "Цены подписок, которые вы продаёте"
+       },
+       "to": "subscriptions"
+      },
+      {
+       "what": {
+        "en": "The client's way to payment",
+        "ru": "Путь клиента к оплате"
+       },
+       "to": "sales"
+      },
+      {
+       "what": {
+        "en": "A service you perform yourself",
+        "ru": "Услуга, которую вы оказываете сами"
+       },
+       "to": "my-services"
+      }
+     ]
     },
     {
      "slug": "my-services",
@@ -31,7 +54,30 @@
      "line": {
       "en": "The services you give people, from the request to the result.",
       "ru": "Услуги, которые вы оказываете людям, от заявки до результата."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "A product sold as a thing",
+        "ru": "Продукт, который продаётся как вещь"
+       },
+       "to": "product"
+      },
+      {
+       "what": {
+        "en": "Bookings of your own life",
+        "ru": "Записи вашей личной жизни"
+       },
+       "to": "life"
+      },
+      {
+       "what": {
+        "en": "Contractors who help you",
+        "ru": "Подрядчики, которые вам помогают"
+       },
+       "to": "team"
+      }
+     ]
     },
     {
      "slug": "sales",
@@ -43,7 +89,30 @@
      "line": {
       "en": "The catalog and the client's way from interest to payment.",
       "ru": "Каталог и путь клиента от интереса до оплаты."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "What the product is and costs",
+        "ru": "Что такое продукт и сколько стоит"
+       },
+       "to": "product"
+      },
+      {
+       "what": {
+        "en": "People who already bought",
+        "ru": "Те, кто уже купил"
+       },
+       "to": "customers"
+      },
+      {
+       "what": {
+        "en": "Paid traffic",
+        "ru": "Платный трафик"
+       },
+       "to": "marketing"
+      }
+     ]
     },
     {
      "slug": "customers",
@@ -55,7 +124,30 @@
      "line": {
       "en": "Who buys from you and how to keep each of them.",
       "ru": "Кто у вас покупает и как удержать каждого."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Leads not yet paying",
+        "ru": "Те, кто ещё не купил"
+       },
+       "to": "sales"
+      },
+      {
+       "what": {
+        "en": "Mailings to them",
+        "ru": "Рассылки для покупателей"
+       },
+       "to": "mailings"
+      },
+      {
+       "what": {
+        "en": "Your own contacts and partners",
+        "ru": "Ваши контакты и партнёры"
+       },
+       "to": "community"
+      }
+     ]
     },
     {
      "slug": "suppliers",
@@ -67,7 +159,30 @@
      "line": {
       "en": "Where the goods come from and on what terms.",
       "ru": "Откуда приходит товар и на каких условиях."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Your own equipment",
+        "ru": "Ваше оборудование"
+       },
+       "to": "production"
+      },
+      {
+       "what": {
+        "en": "Logistics of your trips",
+        "ru": "Логистика ваших поездок"
+       },
+       "to": "travel"
+      },
+      {
+       "what": {
+        "en": "Contractors of work",
+        "ru": "Подрядчики на работы"
+       },
+       "to": "team"
+      }
+     ]
     },
     {
      "slug": "production",
@@ -79,7 +194,23 @@
      "line": {
       "en": "How your product is made: equipment, materials, quality.",
       "ru": "Как делается ваш товар: оборудование, материалы, качество."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Equipment as property you own",
+        "ru": "Оборудование как имущество"
+       },
+       "to": "assets"
+      },
+      {
+       "what": {
+        "en": "Suppliers of materials",
+        "ru": "Поставщики материалов"
+       },
+       "to": "suppliers"
+      }
+     ]
     },
     {
      "slug": "subscriptions",
@@ -91,7 +222,23 @@
      "line": {
       "en": "The subscriptions you sell to your clients.",
       "ru": "Подписки, которые вы продаёте своим клиентам."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Subscriptions you pay for: services, software",
+        "ru": "Подписки, за которые платите вы: сервисы, программы"
+       },
+       "to": "tools"
+      },
+      {
+       "what": {
+        "en": "One-off prices",
+        "ru": "Разовые цены"
+       },
+       "to": "product"
+      }
+     ]
     },
     {
      "slug": "competitors",
@@ -103,7 +250,30 @@
      "line": {
       "en": "What others do and how you are better.",
       "ru": "Что делают другие и чем вы лучше."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Your own numbers",
+        "ru": "Ваши собственные цифры"
+       },
+       "to": "economy"
+      },
+      {
+       "what": {
+        "en": "Hypotheses checked by numbers",
+        "ru": "Гипотезы, проверенные цифрами"
+       },
+       "to": "analytics"
+      },
+      {
+       "what": {
+        "en": "Trends of the niche",
+        "ru": "Тренды ниши"
+       },
+       "to": "watch"
+      }
+     ]
     },
     {
      "slug": "economy",
@@ -115,7 +285,30 @@
      "line": {
       "en": "The money of the business: income, costs, budget and taxes.",
       "ru": "Деньги дела: доходы, расходы, бюджет и налоги."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Your personal money",
+        "ru": "Личные деньги"
+       },
+       "to": "finance"
+      },
+      {
+       "what": {
+        "en": "Payment services and accounts",
+        "ru": "Платёжные сервисы и счета"
+       },
+       "to": "fintech"
+      },
+      {
+       "what": {
+        "en": "Taxes as documents",
+        "ru": "Налоги как документы"
+       },
+       "to": "legal"
+      }
+     ]
     },
     {
      "slug": "investors",
@@ -127,7 +320,23 @@
      "line": {
       "en": "Everything to show those who will invest.",
       "ru": "Всё, что нужно показать тем, кто вложит деньги."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Raw numbers and dashboards",
+        "ru": "Сырые цифры и дашборды"
+       },
+       "to": "analytics"
+      },
+      {
+       "what": {
+        "en": "The budget",
+        "ru": "Бюджет"
+       },
+       "to": "economy"
+      }
+     ]
     },
     {
      "slug": "fintech",
@@ -139,7 +348,30 @@
      "line": {
       "en": "Accounts, taking payments, transfers and their safety.",
       "ru": "Счета, приём оплат, переводы и их безопасность."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The business's income and budget",
+        "ru": "Доходы и бюджет бизнеса"
+       },
+       "to": "economy"
+      },
+      {
+       "what": {
+        "en": "Personal payments",
+        "ru": "Личные платежи"
+       },
+       "to": "finance"
+      },
+      {
+       "what": {
+        "en": "Crypto wallets",
+        "ru": "Криптокошельки"
+       },
+       "to": "web3"
+      }
+     ]
     },
     {
      "slug": "legal",
@@ -151,7 +383,23 @@
      "line": {
       "en": "Contracts, taxes, rights and licences.",
       "ru": "Договоры, налоги, права и разрешения."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The money for taxes",
+        "ru": "Деньги на налоги"
+       },
+       "to": "economy"
+      },
+      {
+       "what": {
+        "en": "What you own",
+        "ru": "То, чем вы владеете"
+       },
+       "to": "assets"
+      }
+     ]
     },
     {
      "slug": "assets",
@@ -163,7 +411,30 @@
      "line": {
       "en": "What you own: property, shares, brands, digital assets.",
       "ru": "Чем вы владеете: недвижимость, доли, бренды, цифровые активы."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Contracts and licences",
+        "ru": "Договоры и лицензии"
+       },
+       "to": "legal"
+      },
+      {
+       "what": {
+        "en": "Crypto",
+        "ru": "Криптовалюта"
+       },
+       "to": "web3"
+      },
+      {
+       "what": {
+        "en": "Personal savings",
+        "ru": "Личные сбережения"
+       },
+       "to": "finance"
+      }
+     ]
     },
     {
      "slug": "team",
@@ -175,7 +446,30 @@
      "line": {
       "en": "Who does the work with you.",
       "ru": "Кто делает работу вместе с вами."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Staff on payroll",
+        "ru": "Сотрудники в штате"
+       },
+       "to": "hr"
+      },
+      {
+       "what": {
+        "en": "AI staff",
+        "ru": "ИИ-сотрудники"
+       },
+       "to": "digital-staff"
+      },
+      {
+       "what": {
+        "en": "Suppliers of goods",
+        "ru": "Поставщики товаров"
+       },
+       "to": "suppliers"
+      }
+     ]
     },
     {
      "slug": "hr",
@@ -187,7 +481,30 @@
      "line": {
       "en": "Staff, schedules, pay and growth of people.",
       "ru": "Штат, графики, зарплаты и развитие людей."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Freelancers and partners",
+        "ru": "Фрилансеры и партнёры"
+       },
+       "to": "team"
+      },
+      {
+       "what": {
+        "en": "AI workers",
+        "ru": "ИИ-сотрудники"
+       },
+       "to": "digital-staff"
+      },
+      {
+       "what": {
+        "en": "Job offers you seek yourself",
+        "ru": "Вакансии, которые ищете вы сами"
+       },
+       "to": "job-search"
+      }
+     ]
     },
     {
      "slug": "digital-staff",
@@ -199,7 +516,30 @@
      "line": {
       "en": "AI staff that work for you around the clock.",
       "ru": "ИИ-сотрудники, которые работают на вас круглые сутки."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "People on payroll",
+        "ru": "Люди в штате"
+       },
+       "to": "hr"
+      },
+      {
+       "what": {
+        "en": "Prompts and tools themselves",
+        "ru": "Сами промпты и инструменты"
+       },
+       "to": "automation"
+      },
+      {
+       "what": {
+        "en": "AI as a subject",
+        "ru": "ИИ как тема"
+       },
+       "to": "ai"
+      }
+     ]
     }
    ]
   },
@@ -221,7 +561,30 @@
      "line": {
       "en": "Your channels and what you publish there.",
       "ru": "Ваши каналы и публикации в них."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The raw material of posts: images, video, texts",
+        "ru": "Сырьё для постов: картинки, видео, тексты"
+       },
+       "to": "content"
+      },
+      {
+       "what": {
+        "en": "Mailings",
+        "ru": "Рассылки"
+       },
+       "to": "mailings"
+      },
+      {
+       "what": {
+        "en": "Ads",
+        "ru": "Реклама"
+       },
+       "to": "marketing"
+      }
+     ]
     },
     {
      "slug": "platform",
@@ -233,7 +596,23 @@
      "line": {
       "en": "The places where your texts and site live.",
       "ru": "Площадки, где живут ваши тексты и сайт."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Social networks",
+        "ru": "Соцсети"
+       },
+       "to": "social"
+      },
+      {
+       "what": {
+        "en": "Domains and hosting access",
+        "ru": "Домены и доступы к хостингу"
+       },
+       "to": "tools"
+      }
+     ]
     },
     {
      "slug": "content",
@@ -245,7 +624,30 @@
      "line": {
       "en": "Everything your publications are made of.",
       "ru": "Всё, из чего делаются ваши публикации."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Publishing on social networks",
+        "ru": "Публикация в соцсетях"
+       },
+       "to": "social"
+      },
+      {
+       "what": {
+        "en": "The site and text platforms",
+        "ru": "Сайт и площадки для текстов"
+       },
+       "to": "platform"
+      },
+      {
+       "what": {
+        "en": "The brand's voice rules",
+        "ru": "Правила голоса бренда"
+       },
+       "to": "brand"
+      }
+     ]
     },
     {
      "slug": "mailings",
@@ -257,7 +659,23 @@
      "line": {
       "en": "Letters and messages that warm people up and bring them back.",
       "ru": "Письма и сообщения, которые греют и возвращают людей."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Posts on social networks",
+        "ru": "Посты в соцсетях"
+       },
+       "to": "social"
+      },
+      {
+       "what": {
+        "en": "Who your customers are",
+        "ru": "Кто ваши покупатели"
+       },
+       "to": "customers"
+      }
+     ]
     },
     {
      "slug": "marketing",
@@ -269,7 +687,30 @@
      "line": {
       "en": "Where people come from and what it costs.",
       "ru": "Откуда приходят люди и сколько это стоит."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Organic posts",
+        "ru": "Обычные посты без бюджета"
+       },
+       "to": "social"
+      },
+      {
+       "what": {
+        "en": "The brand itself",
+        "ru": "Сам бренд"
+       },
+       "to": "brand"
+      },
+      {
+       "what": {
+        "en": "The sales funnel after the click",
+        "ru": "Воронка продаж после клика"
+       },
+       "to": "sales"
+      }
+     ]
     },
     {
      "slug": "brand",
@@ -281,7 +722,23 @@
      "line": {
       "en": "How people recognise you and how you sound.",
       "ru": "Как вас узнают и как вы звучите."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Single posts and media",
+        "ru": "Отдельные посты и медиа"
+       },
+       "to": "content"
+      },
+      {
+       "what": {
+        "en": "Ads",
+        "ru": "Реклама"
+       },
+       "to": "marketing"
+      }
+     ]
     },
     {
      "slug": "community",
@@ -293,7 +750,30 @@
      "line": {
       "en": "The people around you: clubs, contacts, partners.",
       "ru": "Люди вокруг вас: клубы, контакты, партнёры."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Customers",
+        "ru": "Покупатели"
+       },
+       "to": "customers"
+      },
+      {
+       "what": {
+        "en": "Your team",
+        "ru": "Ваша команда"
+       },
+       "to": "team"
+      },
+      {
+       "what": {
+        "en": "Family and friends",
+        "ru": "Семья и друзья"
+       },
+       "to": "family"
+      }
+     ]
     },
     {
      "slug": "events",
@@ -305,7 +785,23 @@
      "line": {
       "en": "Broadcasts, meetings and reasons to be heard.",
       "ru": "Эфиры, встречи и поводы рассказать о себе."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The material of a broadcast",
+        "ru": "Материалы трансляции"
+       },
+       "to": "content"
+      },
+      {
+       "what": {
+        "en": "Trends to react to",
+        "ru": "Тренды, на которые стоит отреагировать"
+       },
+       "to": "watch"
+      }
+     ]
     },
     {
      "slug": "watch",
@@ -317,7 +813,30 @@
      "line": {
       "en": "News and trends of your niche while they are fresh.",
       "ru": "Новости и тренды вашей ниши, пока они свежие."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Competitors' products",
+        "ru": "Продукты конкурентов"
+       },
+       "to": "competitors"
+      },
+      {
+       "what": {
+        "en": "AI news",
+        "ru": "Новости ИИ"
+       },
+       "to": "ai"
+      },
+      {
+       "what": {
+        "en": "Your own ideas",
+        "ru": "Ваши собственные идеи"
+       },
+       "to": "ideas"
+      }
+     ]
     }
    ]
   },
@@ -339,7 +858,23 @@
      "line": {
       "en": "The place where ideas are not lost.",
       "ru": "Место, где идеи не теряются."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Tasks with a date",
+        "ru": "Задачи со сроком"
+       },
+       "to": "focus"
+      },
+      {
+       "what": {
+        "en": "Checked hypotheses",
+        "ru": "Проверенные гипотезы"
+       },
+       "to": "analytics"
+      }
+     ]
     },
     {
      "slug": "focus",
@@ -351,7 +886,23 @@
      "line": {
       "en": "Goals, tasks and the rhythm that moves them.",
       "ru": "Цели, задачи и ритм, который их двигает."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Loose ideas",
+        "ru": "Сырые идеи"
+       },
+       "to": "ideas"
+      },
+      {
+       "what": {
+        "en": "Recurring jobs on a schedule",
+        "ru": "Повторяющиеся задачи по расписанию"
+       },
+       "to": "cron"
+      }
+     ]
     },
     {
      "slug": "analytics",
@@ -363,7 +914,23 @@
      "line": {
       "en": "Check ideas with numbers, not with feelings.",
       "ru": "Проверяйте идеи цифрами, а не чувством."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Numbers for investors",
+        "ru": "Цифры для инвесторов"
+       },
+       "to": "investors"
+      },
+      {
+       "what": {
+        "en": "The budget",
+        "ru": "Бюджет"
+       },
+       "to": "economy"
+      }
+     ]
     },
     {
      "slug": "knowledge-base",
@@ -375,7 +942,30 @@
      "line": {
       "en": "Everything you read, collected and want to find again.",
       "ru": "Всё, что вы прочли, собрали и хотите найти снова."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "News while fresh",
+        "ru": "Свежие новости"
+       },
+       "to": "watch"
+      },
+      {
+       "what": {
+        "en": "Study plans",
+        "ru": "Планы учёбы"
+       },
+       "to": "career"
+      },
+      {
+       "what": {
+        "en": "Prompts",
+        "ru": "Промпты"
+       },
+       "to": "automation"
+      }
+     ]
     },
     {
      "slug": "tools",
@@ -387,7 +977,23 @@
      "line": {
       "en": "The software, clouds and access the work rests on.",
       "ru": "Софт, облака и доступы, на которых держится работа."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "AI tools and bots",
+        "ru": "ИИ-инструменты и боты"
+       },
+       "to": "automation"
+      },
+      {
+       "what": {
+        "en": "Subscriptions you sell",
+        "ru": "Подписки, которые продаёте вы"
+       },
+       "to": "subscriptions"
+      }
+     ]
     },
     {
      "slug": "automation",
@@ -399,7 +1005,23 @@
      "line": {
       "en": "Tools and links that work for you.",
       "ru": "Инструменты и связки, которые работают за вас."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Models and agents as a subject",
+        "ru": "Модели и агенты как тема"
+       },
+       "to": "ai"
+      },
+      {
+       "what": {
+        "en": "AI staff with a job",
+        "ru": "ИИ-сотрудники с задачей"
+       },
+       "to": "digital-staff"
+      }
+     ]
     },
     {
      "slug": "ai",
@@ -411,7 +1033,23 @@
      "line": {
       "en": "Models, agents and everything new in AI.",
       "ru": "Модели, агенты и всё новое в мире ИИ."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Ready AI tools you use",
+        "ru": "Готовые ИИ-инструменты, которыми вы пользуетесь"
+       },
+       "to": "automation"
+      },
+      {
+       "what": {
+        "en": "AI workers of the business",
+        "ru": "ИИ-сотрудники бизнеса"
+       },
+       "to": "digital-staff"
+      }
+     ]
     },
     {
      "slug": "web3",
@@ -423,7 +1061,23 @@
      "line": {
       "en": "Wallets, assets, contracts and Web3 communities.",
       "ru": "Кошельки, активы, контракты и сообщества Web3."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Fiat accounts and acquiring",
+        "ru": "Обычные счета и эквайринг"
+       },
+       "to": "fintech"
+      },
+      {
+       "what": {
+        "en": "Personal investing",
+        "ru": "Личные инвестиции"
+       },
+       "to": "finance"
+      }
+     ]
     },
     {
      "slug": "career",
@@ -435,7 +1089,23 @@
      "line": {
       "en": "Your growth: study, portfolio, the next step.",
       "ru": "Ваш рост: учёба, портфолио, следующая ступень."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Applications and interviews",
+        "ru": "Отклики и собеседования"
+       },
+       "to": "job-search"
+      },
+      {
+       "what": {
+        "en": "General learning",
+        "ru": "Общее обучение"
+       },
+       "to": "self"
+      }
+     ]
     },
     {
      "slug": "job-search",
@@ -447,7 +1117,23 @@
      "line": {
       "en": "Applications, interviews and offers in one place.",
       "ru": "Отклики, собеседования и сравнение офферов в одном месте."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Your CV and study",
+        "ru": "Резюме и учёба"
+       },
+       "to": "career"
+      },
+      {
+       "what": {
+        "en": "Hiring people for you",
+        "ru": "Найм людей к вам"
+       },
+       "to": "hr"
+      }
+     ]
     }
    ]
   },
@@ -469,7 +1155,23 @@
      "line": {
       "en": "Health, body, mind and habits: everything that keeps you in shape.",
       "ru": "Здоровье, тело, голова и привычки: всё, что держит вас в форме."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Study for a career",
+        "ru": "Учёба ради карьеры"
+       },
+       "to": "career"
+      },
+      {
+       "what": {
+        "en": "Food and diet",
+        "ru": "Питание и диета"
+       },
+       "to": "food"
+      }
+     ]
     },
     {
      "slug": "finance",
@@ -481,7 +1183,23 @@
      "line": {
       "en": "Your money: spending, savings, investing and payments.",
       "ru": "Ваши деньги: траты, накопления, инвестиции и платежи."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The business's money",
+        "ru": "Деньги бизнеса"
+       },
+       "to": "economy"
+      },
+      {
+       "what": {
+        "en": "Crypto",
+        "ru": "Криптовалюта"
+       },
+       "to": "web3"
+      }
+     ]
     },
     {
      "slug": "family",
@@ -493,7 +1211,23 @@
      "line": {
       "en": "Dates, gifts, children and shared plans.",
       "ru": "Даты, подарки, дети и общие планы."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "The home itself",
+        "ru": "Сам дом"
+       },
+       "to": "home"
+      },
+      {
+       "what": {
+        "en": "Trips together",
+        "ru": "Совместные поездки"
+       },
+       "to": "travel"
+      }
+     ]
     },
     {
      "slug": "home",
@@ -505,7 +1239,23 @@
      "line": {
       "en": "Your home, its devices, repairs and daily life.",
       "ru": "Дом, его устройства, ремонт и быт."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Property as an asset",
+        "ru": "Недвижимость как актив"
+       },
+       "to": "assets"
+      },
+      {
+       "what": {
+        "en": "Groceries and recipes",
+        "ru": "Продукты и рецепты"
+       },
+       "to": "food"
+      }
+     ]
     },
     {
      "slug": "food",
@@ -517,7 +1267,23 @@
      "line": {
       "en": "Menus, recipes, shopping and diet.",
       "ru": "Меню, рецепты, покупки и рацион."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Health and training",
+        "ru": "Здоровье и тренировки"
+       },
+       "to": "self"
+      },
+      {
+       "what": {
+        "en": "Household goods",
+        "ru": "Товары для дома"
+       },
+       "to": "home"
+      }
+     ]
     },
     {
      "slug": "travel",
@@ -529,7 +1295,23 @@
      "line": {
       "en": "Routes, stays, documents and trip budgets.",
       "ru": "Маршруты, жильё, документы и бюджет поездок."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Relocation of a business",
+        "ru": "Переезд бизнеса"
+       },
+       "to": "business"
+      },
+      {
+       "what": {
+        "en": "Personal budget",
+        "ru": "Личный бюджет"
+       },
+       "to": "finance"
+      }
+     ]
     },
     {
      "slug": "car",
@@ -541,7 +1323,23 @@
      "line": {
       "en": "Service, costs and everything about your car.",
       "ru": "Обслуживание, расходы и всё, что связано с машиной."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Trips and routes",
+        "ru": "Поездки и маршруты"
+       },
+       "to": "travel"
+      },
+      {
+       "what": {
+        "en": "Insurance of other property",
+        "ru": "Страховка другого имущества"
+       },
+       "to": "assets"
+      }
+     ]
     },
     {
      "slug": "pets",
@@ -553,7 +1351,23 @@
      "line": {
       "en": "Health, care and shopping for your pets.",
       "ru": "Здоровье, уход и покупки для ваших питомцев."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Family dates",
+        "ru": "Семейные даты"
+       },
+       "to": "family"
+      },
+      {
+       "what": {
+        "en": "Household shopping",
+        "ru": "Покупки для дома"
+       },
+       "to": "home"
+      }
+     ]
     },
     {
      "slug": "hobby",
@@ -565,7 +1379,23 @@
      "line": {
       "en": "What you do for the soul.",
       "ru": "То, что вы делаете для души."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Music, films and books you consume",
+        "ru": "Музыка, фильмы и книги, которые вы смотрите и слушаете"
+       },
+       "to": "media"
+      },
+      {
+       "what": {
+        "en": "Games",
+        "ru": "Игры"
+       },
+       "to": "games"
+      }
+     ]
     },
     {
      "slug": "media",
@@ -577,7 +1407,23 @@
      "line": {
       "en": "What to watch, read and hear, and what you think of it.",
       "ru": "Что посмотреть, прочесть и послушать, и что вы об этом думаете."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Your own creative work",
+        "ru": "Ваше собственное творчество"
+       },
+       "to": "hobby"
+      },
+      {
+       "what": {
+        "en": "Content you publish",
+        "ru": "Контент, который вы публикуете"
+       },
+       "to": "content"
+      }
+     ]
     },
     {
      "slug": "games",
@@ -589,7 +1435,23 @@
      "line": {
       "en": "What to play, how to beat it and with whom.",
       "ru": "Во что играть, как пройти и с кем."
-     }
+     },
+     "neighbours": [
+      {
+       "what": {
+        "en": "Films and books",
+        "ru": "Фильмы и книги"
+       },
+       "to": "media"
+      },
+      {
+       "what": {
+        "en": "Hardware of the home",
+        "ru": "Техника для дома"
+       },
+       "to": "home"
+      }
+     ]
     }
    ]
   }

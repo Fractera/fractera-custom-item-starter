@@ -8,5 +8,21 @@
  "line": {
   "en": "The places where your texts and site live.",
   "ru": "Площадки, где живут ваши тексты и сайт."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Social networks",
+    "ru": "Соцсети"
+   },
+   "to": "social"
+  },
+  {
+   "what": {
+    "en": "Domains and hosting access",
+    "ru": "Домены и доступы к хостингу"
+   },
+   "to": "tools"
+  }
+ ]
 }

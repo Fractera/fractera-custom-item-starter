@@ -8,5 +8,28 @@
  "line": {
   "en": "Who does the work with you.",
   "ru": "Кто делает работу вместе с вами."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Staff on payroll",
+    "ru": "Сотрудники в штате"
+   },
+   "to": "hr"
+  },
+  {
+   "what": {
+    "en": "AI staff",
+    "ru": "ИИ-сотрудники"
+   },
+   "to": "digital-staff"
+  },
+  {
+   "what": {
+    "en": "Suppliers of goods",
+    "ru": "Поставщики товаров"
+   },
+   "to": "suppliers"
+  }
+ ]
 }

@@ -8,5 +8,21 @@
  "line": {
   "en": "Everything to show those who will invest.",
   "ru": "Всё, что нужно показать тем, кто вложит деньги."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Raw numbers and dashboards",
+    "ru": "Сырые цифры и дашборды"
+   },
+   "to": "analytics"
+  },
+  {
+   "what": {
+    "en": "The budget",
+    "ru": "Бюджет"
+   },
+   "to": "economy"
+  }
+ ]
 }

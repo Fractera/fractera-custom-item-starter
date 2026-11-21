@@ -8,5 +8,21 @@
  "line": {
   "en": "Your growth: study, portfolio, the next step.",
   "ru": "Ваш рост: учёба, портфолио, следующая ступень."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Applications and interviews",
+    "ru": "Отклики и собеседования"
+   },
+   "to": "job-search"
+  },
+  {
+   "what": {
+    "en": "General learning",
+    "ru": "Общее обучение"
+   },
+   "to": "self"
+  }
+ ]
 }

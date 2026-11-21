@@ -8,5 +8,28 @@
  "line": {
   "en": "News and trends of your niche while they are fresh.",
   "ru": "Новости и тренды вашей ниши, пока они свежие."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Competitors' products",
+    "ru": "Продукты конкурентов"
+   },
+   "to": "competitors"
+  },
+  {
+   "what": {
+    "en": "AI news",
+    "ru": "Новости ИИ"
+   },
+   "to": "ai"
+  },
+  {
+   "what": {
+    "en": "Your own ideas",
+    "ru": "Ваши собственные идеи"
+   },
+   "to": "ideas"
+  }
+ ]
 }

@@ -8,5 +8,28 @@
  "line": {
   "en": "AI staff that work for you around the clock.",
   "ru": "ИИ-сотрудники, которые работают на вас круглые сутки."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "People on payroll",
+    "ru": "Люди в штате"
+   },
+   "to": "hr"
+  },
+  {
+   "what": {
+    "en": "Prompts and tools themselves",
+    "ru": "Сами промпты и инструменты"
+   },
+   "to": "automation"
+  },
+  {
+   "what": {
+    "en": "AI as a subject",
+    "ru": "ИИ как тема"
+   },
+   "to": "ai"
+  }
+ ]
 }

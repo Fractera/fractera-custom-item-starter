@@ -8,5 +8,21 @@
  "line": {
   "en": "Health, body, mind and habits: everything that keeps you in shape.",
   "ru": "Здоровье, тело, голова и привычки: всё, что держит вас в форме."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Study for a career",
+    "ru": "Учёба ради карьеры"
+   },
+   "to": "career"
+  },
+  {
+   "what": {
+    "en": "Food and diet",
+    "ru": "Питание и диета"
+   },
+   "to": "food"
+  }
+ ]
 }

@@ -8,5 +8,28 @@
  "line": {
   "en": "Staff, schedules, pay and growth of people.",
   "ru": "Штат, графики, зарплаты и развитие людей."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Freelancers and partners",
+    "ru": "Фрилансеры и партнёры"
+   },
+   "to": "team"
+  },
+  {
+   "what": {
+    "en": "AI workers",
+    "ru": "ИИ-сотрудники"
+   },
+   "to": "digital-staff"
+  },
+  {
+   "what": {
+    "en": "Job offers you seek yourself",
+    "ru": "Вакансии, которые ищете вы сами"
+   },
+   "to": "job-search"
+  }
+ ]
 }

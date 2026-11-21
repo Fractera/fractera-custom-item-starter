@@ -8,5 +8,21 @@
  "line": {
   "en": "How your product is made: equipment, materials, quality.",
   "ru": "Как делается ваш товар: оборудование, материалы, качество."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Equipment as property you own",
+    "ru": "Оборудование как имущество"
+   },
+   "to": "assets"
+  },
+  {
+   "what": {
+    "en": "Suppliers of materials",
+    "ru": "Поставщики материалов"
+   },
+   "to": "suppliers"
+  }
+ ]
 }

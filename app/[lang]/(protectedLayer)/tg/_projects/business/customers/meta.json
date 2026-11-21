@@ -8,5 +8,28 @@
  "line": {
   "en": "Who buys from you and how to keep each of them.",
   "ru": "Кто у вас покупает и как удержать каждого."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Leads not yet paying",
+    "ru": "Те, кто ещё не купил"
+   },
+   "to": "sales"
+  },
+  {
+   "what": {
+    "en": "Mailings to them",
+    "ru": "Рассылки для покупателей"
+   },
+   "to": "mailings"
+  },
+  {
+   "what": {
+    "en": "Your own contacts and partners",
+    "ru": "Ваши контакты и партнёры"
+   },
+   "to": "community"
+  }
+ ]
 }

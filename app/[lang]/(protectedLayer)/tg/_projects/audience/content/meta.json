@@ -8,5 +8,28 @@
  "line": {
   "en": "Everything your publications are made of.",
   "ru": "Всё, из чего делаются ваши публикации."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Publishing on social networks",
+    "ru": "Публикация в соцсетях"
+   },
+   "to": "social"
+  },
+  {
+   "what": {
+    "en": "The site and text platforms",
+    "ru": "Сайт и площадки для текстов"
+   },
+   "to": "platform"
+  },
+  {
+   "what": {
+    "en": "The brand's voice rules",
+    "ru": "Правила голоса бренда"
+   },
+   "to": "brand"
+  }
+ ]
 }

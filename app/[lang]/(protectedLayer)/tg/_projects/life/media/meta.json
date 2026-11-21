@@ -8,5 +8,21 @@
  "line": {
   "en": "What to watch, read and hear, and what you think of it.",
   "ru": "Что посмотреть, прочесть и послушать, и что вы об этом думаете."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Your own creative work",
+    "ru": "Ваше собственное творчество"
+   },
+   "to": "hobby"
+  },
+  {
+   "what": {
+    "en": "Content you publish",
+    "ru": "Контент, который вы публикуете"
+   },
+   "to": "content"
+  }
+ ]
 }

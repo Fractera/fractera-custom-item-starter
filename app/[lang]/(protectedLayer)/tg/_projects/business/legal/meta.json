@@ -8,5 +8,21 @@
  "line": {
   "en": "Contracts, taxes, rights and licences.",
   "ru": "Договоры, налоги, права и разрешения."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The money for taxes",
+    "ru": "Деньги на налоги"
+   },
+   "to": "economy"
+  },
+  {
+   "what": {
+    "en": "What you own",
+    "ru": "То, чем вы владеете"
+   },
+   "to": "assets"
+  }
+ ]
 }

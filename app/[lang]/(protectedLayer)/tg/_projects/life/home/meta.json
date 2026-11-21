@@ -8,5 +8,21 @@
  "line": {
   "en": "Your home, its devices, repairs and daily life.",
   "ru": "Дом, его устройства, ремонт и быт."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Property as an asset",
+    "ru": "Недвижимость как актив"
+   },
+   "to": "assets"
+  },
+  {
+   "what": {
+    "en": "Groceries and recipes",
+    "ru": "Продукты и рецепты"
+   },
+   "to": "food"
+  }
+ ]
 }

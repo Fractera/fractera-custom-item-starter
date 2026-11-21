@@ -5,7 +5,7 @@ import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, write
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { catalogProblems, compileTree, countsOf, inside, readItems, sitePages, treeProblems } from './projects-catalog.mjs'
+import { addItem, catalogProblems, compileTree, countsOf, inside, ITEM_LIMIT, neighbourProblems, readItems, sitePages, slugFrom, treeProblems, writeItems } from './projects-catalog.mjs'
 
 let failures = 0
 const check = (label, ok, got) => { if (!ok) failures++; console.log(`${ok ? 'ok  ' : 'FAIL'} ${label}${ok ? '' : `\n     got  ${JSON.stringify(got).slice(0, 300)}`}`) }
@@ -70,6 +70,35 @@ try {
   check('T4 negative: «socialx» is not inside «social»', !inside('socialx', 'social') && inside('social/youtube', 'social'))
 } finally {
   rmSync(root, { recursive: true, force: true })
+}
+
+// 826: «＋ Добавить» — the person's item, and the «Справка» neighbours (the owner, Telegram 503, 505, 506)
+const n0 = neighbourProblems(compileTree(tree))
+check('T5 every direction has its neighbours for «Справка», each in en and ru and leading somewhere', n0.length === 0, n0)
+const lost = structuredClone(compileTree(tree)); lost.sections[1].groups[0].neighbours[0].to = 'nowhere'; delete lost.sections[0].groups[0].neighbours[0].what.ru
+const nBad = neighbourProblems(lost)
+check('T5 negative: a neighbour leading nowhere and one without «ru» are named', nBad.some((p) => p.includes('leads nowhere')) && nBad.some((p) => p.includes('no «ru»')), nBad)
+check('T6 a name becomes an address: Cyrillic in Latin, accents dropped, nothing left — «item»',
+  slugFrom('Мой Инстаграм!') === 'moy-instagram' && slugFrom('Ёжик') === 'ezhik' && slugFrom('Café') === 'cafe' && slugFrom('日本') === 'item' && slugFrom('X (Twitter)') === 'x-twitter')
+const at = new Date('2026-11-21T16:00:00Z')
+const have = [{ slug: 'instagram', title: { en: 'Instagram', ru: 'Instagram' } }, { slug: 'x-twitter', title: { en: 'Old' } }, 'a line the screen skips']
+const ok1 = addItem(have, { title: '  X   (Twitter)\n', line: 'Посты и треды' }, ['ru', 'de'], at)
+check('T6 a new item: one-line words in every language, a free address, «added by person», the old lines kept as they lay',
+  ok1.item?.slug === 'x-twitter-2' && ok1.item.title.en === 'X (Twitter)' && ok1.item.title.de === 'X (Twitter)' && ok1.item.line.ru === 'Посты и треды'
+  && ok1.item.added.by === 'person' && ok1.items.length === 4 && ok1.items[2] === 'a line the screen skips', ok1)
+check('T6 negative: an empty name, 61 characters, a 121-character line', addItem(have, { title: ' ' }).error === 'no-title'
+  && addItem(have, { title: 'x'.repeat(61) }).error === 'title-long' && addItem(have, { title: 'ok', line: 'y'.repeat(121) }).error === 'line-long')
+check('T6 negative: the same name in any case is «taken»; a full direction is «full»', addItem(have, { title: 'INSTAGRAM' }).error === 'taken'
+  && addItem(Array.from({ length: ITEM_LIMIT }, (_, i) => ({ slug: `i${i}`, title: { en: `I${i}` } })), { title: 'one more' }).error === 'full')
+const wt = mkdtempSync(join(tmpdir(), 'tg-items-'))
+try {
+  mkdirSync(join(wt, 'audience', 'social'), { recursive: true })
+  writeItems(wt, 'audience', 'social', ok1.items)
+  const back = readItems(wt, 'audience', 'social').map((i) => i.slug)
+  check('T6 written whole and read back at once (no build): the new item is there, the skipped line stays in the file', back.includes('x-twitter-2')
+    && JSON.parse(readFileSync(join(wt, 'audience', 'social', 'items.json'), 'utf8')).length === 4, back)
+} finally {
+  rmSync(wt, { recursive: true, force: true })
 }
 
 if (failures) { console.error(`===TEST_TG_PROJECTS_FAILED=== ${failures}`); process.exit(1) }

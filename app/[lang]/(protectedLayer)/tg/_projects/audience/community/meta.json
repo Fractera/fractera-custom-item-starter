@@ -8,5 +8,28 @@
  "line": {
   "en": "The people around you: clubs, contacts, partners.",
   "ru": "Люди вокруг вас: клубы, контакты, партнёры."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Customers",
+    "ru": "Покупатели"
+   },
+   "to": "customers"
+  },
+  {
+   "what": {
+    "en": "Your team",
+    "ru": "Ваша команда"
+   },
+   "to": "team"
+  },
+  {
+   "what": {
+    "en": "Family and friends",
+    "ru": "Семья и друзья"
+   },
+   "to": "family"
+  }
+ ]
 }

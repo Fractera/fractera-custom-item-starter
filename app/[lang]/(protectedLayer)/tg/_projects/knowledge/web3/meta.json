@@ -8,5 +8,21 @@
  "line": {
   "en": "Wallets, assets, contracts and Web3 communities.",
   "ru": "Кошельки, активы, контракты и сообщества Web3."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Fiat accounts and acquiring",
+    "ru": "Обычные счета и эквайринг"
+   },
+   "to": "fintech"
+  },
+  {
+   "what": {
+    "en": "Personal investing",
+    "ru": "Личные инвестиции"
+   },
+   "to": "finance"
+  }
+ ]
 }

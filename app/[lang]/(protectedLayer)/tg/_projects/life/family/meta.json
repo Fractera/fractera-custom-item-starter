@@ -8,5 +8,21 @@
  "line": {
   "en": "Dates, gifts, children and shared plans.",
   "ru": "Даты, подарки, дети и общие планы."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "The home itself",
+    "ru": "Сам дом"
+   },
+   "to": "home"
+  },
+  {
+   "what": {
+    "en": "Trips together",
+    "ru": "Совместные поездки"
+   },
+   "to": "travel"
+  }
+ ]
 }

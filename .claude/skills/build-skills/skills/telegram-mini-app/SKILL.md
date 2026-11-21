@@ -78,6 +78,11 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
   and the core's «Рабочий процесс» show it.
 - **Items are dynamic**: `items.json` of the group, read at run time. The person's own item («добавь Twitter в соцсети») = one entry —
   `slug`, `title` and `line` in every language — and **no build**: it shows within 30 s, at once after `npm run pages:refresh`.
+- **The person adds items with «＋ Добавить»** on a direction's screen (core step 826): the door `tg/api/items` writes the entry with
+  `added: { by: "person", at }` — `git status` shows it; commit it with your next work. There is no delete and no rename in the Mini
+  App by the owner's word: a typo or «убери пункт» is your job on the person's word — edit `items.json`, commit.
+- **«Справка»** at the bottom of a direction's screen shows its `neighbours` from `meta.json` (`{ what: { en, ru }, to }`, `to` — a
+  section, a group or `cron`): what goes elsewhere. A new group needs them; `npm run tg:projects` names a missing or broken one.
 - **A project's work is a page of the element's SITE or of «Администрирование»** — which one is yours and the person's choice (the owner,
   Telegram 434, 490). The page names its project in its `meta.json`: `"project": "<group>/<item>"` (or `"<group>"`) — the Mini App
   counts it under «страниц на сайте» and «Открыть сайт» opens it.

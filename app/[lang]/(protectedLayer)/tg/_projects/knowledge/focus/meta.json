@@ -8,5 +8,21 @@
  "line": {
   "en": "Goals, tasks and the rhythm that moves them.",
   "ru": "Цели, задачи и ритм, который их двигает."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Loose ideas",
+    "ru": "Сырые идеи"
+   },
+   "to": "ideas"
+  },
+  {
+   "what": {
+    "en": "Recurring jobs on a schedule",
+    "ru": "Повторяющиеся задачи по расписанию"
+   },
+   "to": "cron"
+  }
+ ]
 }

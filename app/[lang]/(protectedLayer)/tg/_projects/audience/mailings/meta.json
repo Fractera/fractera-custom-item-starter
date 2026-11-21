@@ -8,5 +8,21 @@
  "line": {
   "en": "Letters and messages that warm people up and bring them back.",
   "ru": "Письма и сообщения, которые греют и возвращают людей."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Posts on social networks",
+    "ru": "Посты в соцсетях"
+   },
+   "to": "social"
+  },
+  {
+   "what": {
+    "en": "Who your customers are",
+    "ru": "Кто ваши покупатели"
+   },
+   "to": "customers"
+  }
+ ]
 }

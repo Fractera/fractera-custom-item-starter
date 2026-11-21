@@ -8,5 +8,28 @@
  "line": {
   "en": "What you own: property, shares, brands, digital assets.",
   "ru": "Чем вы владеете: недвижимость, доли, бренды, цифровые активы."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Contracts and licences",
+    "ru": "Договоры и лицензии"
+   },
+   "to": "legal"
+  },
+  {
+   "what": {
+    "en": "Crypto",
+    "ru": "Криптовалюта"
+   },
+   "to": "web3"
+  },
+  {
+   "what": {
+    "en": "Personal savings",
+    "ru": "Личные сбережения"
+   },
+   "to": "finance"
+  }
+ ]
 }

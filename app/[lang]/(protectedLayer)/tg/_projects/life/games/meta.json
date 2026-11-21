@@ -8,5 +8,21 @@
  "line": {
   "en": "What to play, how to beat it and with whom.",
   "ru": "Во что играть, как пройти и с кем."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Films and books",
+    "ru": "Фильмы и книги"
+   },
+   "to": "media"
+  },
+  {
+   "what": {
+    "en": "Hardware of the home",
+    "ru": "Техника для дома"
+   },
+   "to": "home"
+  }
+ ]
 }

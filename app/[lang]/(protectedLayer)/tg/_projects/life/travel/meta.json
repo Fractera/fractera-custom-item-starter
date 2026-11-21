@@ -8,5 +8,21 @@
  "line": {
   "en": "Routes, stays, documents and trip budgets.",
   "ru": "Маршруты, жильё, документы и бюджет поездок."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Relocation of a business",
+    "ru": "Переезд бизнеса"
+   },
+   "to": "business"
+  },
+  {
+   "what": {
+    "en": "Personal budget",
+    "ru": "Личный бюджет"
+   },
+   "to": "finance"
+  }
+ ]
 }

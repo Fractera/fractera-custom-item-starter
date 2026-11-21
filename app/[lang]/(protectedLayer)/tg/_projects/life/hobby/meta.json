@@ -8,5 +8,21 @@
  "line": {
   "en": "What you do for the soul.",
   "ru": "То, что вы делаете для души."
- }
+ },
+ "neighbours": [
+  {
+   "what": {
+    "en": "Music, films and books you consume",
+    "ru": "Музыка, фильмы и книги, которые вы смотрите и слушаете"
+   },
+   "to": "media"
+  },
+  {
+   "what": {
+    "en": "Games",
+    "ru": "Игры"
+   },
+   "to": "games"
+  }
+ ]
 }
