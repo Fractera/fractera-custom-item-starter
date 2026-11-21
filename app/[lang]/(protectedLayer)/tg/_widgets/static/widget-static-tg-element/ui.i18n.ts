@@ -3,7 +3,7 @@ export type ElementUi = {
   title: string; line: string; soon: string
   site: string; openSite: string; openSiteHint: string; design: string; designHint: string; siteSettings: string; siteSettingsHint: string
   people: string; users: string; usersHint: string
-  agent: string; claude: string; claudeHint: string; bot: string; botHint: string
+  agent: string
   building: string; step: string; noStep: string; deploy: string; deployHint: string
 }
 
@@ -12,7 +12,7 @@ const en: ElementUi = {
   site: "Site", openSite: "Open the site", openSiteHint: "the element's public pages", design: "Design", designHint: "colours, fonts, the design skill",
   siteSettings: "Site settings", siteSettingsHint: "name, menu, languages, sign-in",
   people: "People", users: "Users", usersHint: "accounts and roles",
-  agent: "Agent", claude: "Claude Code subscription", claudeHint: "sign-in to its own account", bot: "Telegram bot", botHint: "the element's bot and its menu",
+  agent: "Agent",
   building: "Building", step: "Current step", noStep: "no steps yet", deploy: "Preview and deploy", deployHint: "accept or roll back",
 }
 
@@ -21,7 +21,7 @@ const ru: ElementUi = {
   site: "Сайт", openSite: "Открыть сайт", openSiteHint: "публичные страницы элемента", design: "Дизайн", designHint: "цвета, шрифты, навык дизайна",
   siteSettings: "Настройки сайта", siteSettingsHint: "название, меню, языки, вход",
   people: "Люди", users: "Пользователи", usersHint: "учётные записи и роли",
-  agent: "Агент", claude: "Подписка Claude Code", claudeHint: "вход в свой аккаунт", bot: "Telegram-бот", botHint: "бот элемента и его меню",
+  agent: "Агент",
   building: "Строительство", step: "Текущий шаг", noStep: "шагов пока нет", deploy: "Предпросмотр и развёртывание", deployHint: "принять или откатить",
 }
 

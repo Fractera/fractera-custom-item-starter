@@ -497,6 +497,29 @@
       }
     },
     {
+      "id": "ui-progress",
+      "kind": "primitive",
+      "path": "components/ui/progress.tsx",
+      "export": "Progress",
+      "what": {
+        "en": "A bar of how much is done or used — a percentage at a glance (the fill of an agent's context window, an upload).",
+        "ru": "Полоса «сколько сделано или занято» — процент с одного взгляда (заполнение окна контекста агента, загрузка)."
+      },
+      "how": "import { Progress } from \"@/components/ui/progress\" — one owner per kind; never a hand-built <progress> or div bar.",
+      "words": {
+        "en": [
+          "progress bar",
+          "percentage",
+          "fill gauge"
+        ],
+        "ru": [
+          "полоса прогресса",
+          "процент",
+          "шкала заполнения"
+        ]
+      }
+    },
+    {
       "id": "ui-scroll-area",
       "kind": "primitive",
       "path": "components/ui/scroll-area.tsx",

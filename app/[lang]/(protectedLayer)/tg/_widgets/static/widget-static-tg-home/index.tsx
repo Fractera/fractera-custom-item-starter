@@ -1,7 +1,10 @@
 // @local — the home screen of this element's Telegram Mini App (node step 821; the owner's mock v2 A, «идеально» 438): today from the
-// element's calendar, the agent's card (the core's — after its build), and the four sections with what each holds now.
+// element's calendar, the agent's card and its context window (an island asking the core through the branch's door), and the four
+// sections with what each holds now.
 
 import { metaForLang } from "@/config/app-config"
+import { TgAgent } from "../../../_components/tg-agent.client"
+import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
 import { TgGroup, TgRows } from "../../../_components/tg-list"
 import { calendarFacts, elementFacts, settingsFilled } from "../../../_libs/element-facts"
@@ -26,7 +29,7 @@ export function Widget({ lang }: { lang: string }) {
           <TgRows rows={[{ icon: "calendar-clock", title: today.length ? plural(ui.todayTasks, today.length, lang) : ui.todayNone, hint: nextLine, href: `${base}/cron` }]} />
         </TgGroup>
         <TgGroup title={ui.agent}>
-          <TgRows rows={[{ icon: "bot", title: ui.agentCard, hint: ui.agentHint, soon: ui.soon }]} />
+          <TgAgent lang={lang} ui={tgAgentUi(lang)} variant="home" />
         </TgGroup>
         <TgGroup title={ui.sections}>
           <TgRows

@@ -2,13 +2,12 @@
 // Telegram's own settings the owner chose for the Pult's family (Telegram 429, 431, 438). Bound to the /tg branch; rows are shadcn
 // Item, icons are lucide by name, colours are tokens (the page and card surfaces come from `[data-tg-app]` in styles/globals.css).
 
-import Link from "next/link"
 import type { ReactNode } from "react"
-import { ChevronRight, icons, type LucideIcon } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Item, ItemActions, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item"
+import { icons, type LucideIcon } from "lucide-react"
+import { ItemGroup } from "@/components/ui/item"
 import { Eyebrow } from "@/components/ui/typography"
 import { cn } from "@/lib/utils"
+import { TgRowView, type TgRowViewProps } from "./tg-row"
 
 const pascal = (name: string) => name.split("-").map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join("")
 
@@ -34,49 +33,14 @@ export function TgGroup({ title, aside, foot, children }: { title?: string | nul
   )
 }
 
-type RowProps = {
-  /** no icon — a text row (the items of a direction) */
+type RowProps = Omit<TgRowViewProps, "media" | "children"> & {
+  /** a lucide icon by its kebab name; no icon — a text row (the items of a direction) */
   icon?: string | null
-  title: string
-  hint?: string | null
-  /** a short value on the right: a count, a date */
-  aside?: string | null
-  /** an inner address of the Mini App, or the site (`external`) */
-  href?: string | null
-  external?: boolean
-  /** a row the element cannot open yet (the core builds it later) — named, never hidden */
-  soon?: string | null
-  /** the hairline above the row, under the text and never under the icon (Telegram's lists); the first row has none */
-  divided?: boolean
 }
 
-/** One row: a tile with the icon, the title and its quiet line, the value and a chevron; without `href` it is a still row. */
-export function TgRow({ icon, title, hint, aside, href, external, soon, divided }: RowProps) {
-  const body = (
-    <>
-      {icon ? <ItemMedia className="size-9 rounded-[10px] bg-muted text-foreground"><TgIcon name={icon} /></ItemMedia> : null}
-      <ItemContent className="min-w-0 gap-0.5">
-        <ItemTitle className="text-[length:var(--fs-body)] leading-snug">{title}</ItemTitle>
-        {hint ? <ItemDescription className="line-clamp-1 text-[length:var(--fs-small)]">{hint}</ItemDescription> : null}
-      </ItemContent>
-      <ItemActions className="gap-1.5 text-muted-foreground">
-        {soon ? <Badge data-block="zt4zc" variant="secondary">{soon}</Badge> : null}
-        {aside ? <span className="text-[length:var(--fs-small)] tabular-nums">{aside}</span> : null}
-        {href ? <ChevronRight aria-hidden className="size-4 opacity-60" /> : null}
-      </ItemActions>
-    </>
-  )
-  const row = cn(
-    "relative min-h-14 flex-nowrap gap-3 rounded-none px-4 py-2.5",
-    divided && "before:pointer-events-none before:absolute before:top-0 before:right-0 before:h-px before:bg-border",
-    divided && (icon ? "before:left-16" : "before:left-4"),
-  )
-  if (!href) return <Item className={cn(row, soon && "opacity-70")} size="sm">{body}</Item>
-  return (
-    <Item asChild className={cn(row, "hover:bg-muted/60 active:bg-muted")} size="sm">
-      {external ? <a href={href}>{body}</a> : <Link href={href}>{body}</Link>}
-    </Item>
-  )
+/** One row by an icon's name (a server screen); a browser island draws `TgRowView` with its own icon. */
+export function TgRow({ icon, ...rest }: RowProps) {
+  return <TgRowView {...rest} media={icon ? <TgIcon name={icon} /> : null} />
 }
 
 /** Rows with hairlines between them (each row draws the line above itself). */

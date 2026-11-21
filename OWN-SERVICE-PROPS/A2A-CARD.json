@@ -275,7 +275,9 @@
             "/api/own-service-props",
             "/[lang]/admin/api/settings/design",
             "/[lang]/admin/api/settings/brief",
-            "/[lang]/admin/api/settings/platform"
+            "/[lang]/admin/api/settings/platform",
+            "/[lang]/tg/api/agent",
+            "/[lang]/tg/api/context"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [

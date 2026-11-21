@@ -96,6 +96,8 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/admin/api/settings/platform/route.ts', 'дверь своих выключателей сайта: PLATFORM-CONFIG элемента при выключенной связи с CONFIG (579-2)'],
   ['app/[lang]/(protectedLayer)/admin/api/settings/design/route.ts', 'дверь своей мастерской оформления: DESIGN-CONFIG элемента при выключенной связи с «Дизайном» (579-1)'],
   ['app/[lang]/(protectedLayer)/admin/api/settings/brief/route.ts', 'бриф дизайна элемента — часть design паспорта (узел, шаг 706-4)'],
+  ['app/[lang]/(protectedLayer)/tg/api/agent/route.ts', 'дверь островка Mini App: свой агент элемента и его окно контекста — ядро отвечает только о себе (узел, шаг 821)'],
+  ['app/[lang]/(protectedLayer)/tg/api/context/route.ts', 'дверь «Перейти в чат» Mini App: раздел, из которого человек пришёл, для хука came-from ядра (узел, шаг 821)'],
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],
   // 712-1 (владелец 2026-11-09: «ядро всего лишь навсего представляет доступ к … настройкам которые сейчас существуют в элементе. То есть

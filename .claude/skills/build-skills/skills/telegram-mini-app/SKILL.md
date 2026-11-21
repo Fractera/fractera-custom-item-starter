@@ -38,8 +38,9 @@ Node step 778. The owner of the node, 2026-11-17:
 🔒 Data about people or money (accounts, orders, payments) comes only through such a door. Never put data into the page's static
 words (`en.json`, `ru.json`), never trust what the browser sends about who it is (Telegram's `initDataUnsafe` included).
 821: the facts of this element's own folder — the projects' numbers, the calendar, the settings' summaries — are drawn by the screen's
-widget on the server (cached 5 minutes): the edge lock keeps the page's HTML from anyone without the role, and nothing in them is
-another person's data.
+widget on the server (cached 5 minutes): on the own domain the edge lock keeps the page's HTML from anyone without the role; on a
+temporary address the panel is read-only to anyone with the link — the owner's conscious trade-off (`lib/auth/temporary-address.ts`).
+Nothing in them is another person's data. What the core knows (the agent) comes through the branch's own doors (below).
 
 Inside Telegram the person signs in once with the node's sign-in form, the same as on the computer.
 
@@ -81,6 +82,15 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
 - A direction that needs its own dashboard → a folder `tg/_pages/projects/<group>/` with a widget: a real folder wins over the
   catalog's screen.
 - Proofs: `npm run test:tg-projects` (the catalog whole; counts from the site and the calendar, with negatives) and eyes of the screen.
+
+## 3c. The core's facts and the chat (node step 821)
+
+- **The agent card** (home) and **the subscription and the bot** («Элемент») — the island `tg/_components/tg-agent.client.tsx` asks
+  the branch's door `GET /<lang>/tg/api/agent` (the admin category); the door asks the core `GET /api/node/my-agent` with this element's
+  own key — the core answers only about this element, never the node's composition or the architect's e-mail.
+- **«Перейти в чат»** posts the section the person leaves from to `POST /<lang>/tg/api/context` (`SERVICE_DATA_DIR/tg-context.json`),
+  then closes the Mini App; the core's hook `came-from` adds «⟦node · came-from …⟧» before the person's next words for 30 minutes.
+  Read that line: the person's words are about that section unless they name another.
 
 ## 4. Telegram's side
 

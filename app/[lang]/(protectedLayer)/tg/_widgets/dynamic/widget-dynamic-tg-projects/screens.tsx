@@ -60,7 +60,7 @@ function ItemScreen({ section, group, item, ui, lang }: { section: ProjectSectio
           <Button className="h-12 w-full rounded-xl text-[length:var(--fs-body)]" nativeButton={false} render={<a href={item.site ?? `/${lang}`} />} variant="secondary">
             {ui.openSite}
           </Button>
-          <TgToChat hint={ui.toChatHint} label={ui.toChat} />
+          <TgToChat hint={ui.toChatHint} label={ui.toChat} lang={lang} section={{ path: [ui.title, section.title, group.title, item.title], href: item.href }} />
         </div>
       </div>
     </div>
