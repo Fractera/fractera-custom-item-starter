@@ -22,3 +22,9 @@ A hint, not a law. Owner of the node, 2026-10-24: «Если нет то соо�
 4. The answer comes into your input as «Answer from the core to «<need>»: …» — found (who and which door), not built yet (the architect
    is asked), or ready. Found or ready — use it with `use-i2i`. Not built yet — nothing to wait for: say it in one line and finish as
    usual; when it is built, the core wakes you with «ready». `npm run need -- status` shows your needs and their stages at any time.
+5. **The ladder the core climbs for you** (core step 822; the owner of the node, 2026-11-21: «один узел как одно сообщество … Марина
+   покупает элемент за свои деньги для всех братьев это закон»): your brothers by their cards → Fractera's graph of ready elements →
+   Lagrix → a build. The two outside rungs are simulated until the core's steps 822-2 and 822-3 — when its answer says «simulated»,
+   tell your person exactly that. A ready element found for sale is your person's decision and their own payment, in the window the
+   core opens for them; whoever pays buys it for every element of the node, with no priority, and the core installs it. You never
+   search outside the node, buy, pay or install yourself; when it is ready you agree an API with it once (`use-i2i`).
