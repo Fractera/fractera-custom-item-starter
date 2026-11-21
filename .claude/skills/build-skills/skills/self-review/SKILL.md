@@ -50,8 +50,8 @@ No reason at all — say so: «nothing to improve». Do not invent a proposal fo
   person or inherited from the template) is not repeated; if the reason is new and weighty — name the earlier refusal or revert and
   ask whether something has changed.
 - **Not about this element** (the node's core, the agent kit, the template, a neighbour) — do not fix it here: put it into the
-  node's inbox `POST http://localhost:<core port>/api/node/review-inbox` (node key `X-Node-Key` = `SETTINGS_SECRET` from
-  `.env.local`, body as a UTF-8 file: `{ "from": "<element id>", "where": "<core | agent kit | template | neighbour …>",
+  node's inbox `POST http://localhost:<core port>/api/node/review-inbox` (your own key `X-Node-Key` = `SETTINGS_SECRET` from
+  `.env.local` — since core step 818-7c it is your ELEMENT_KEY, body as a UTF-8 file: `{ "from": "<element id>", "where": "<core | agent kit | template | neighbour …>",
   "signal": "<digest line>", "proposal": "<what to change>" }`; the core port — from the address in the «tell the node» line of
   your task or the core's `logs/runtime.json`) and tell the person: «this is not mine — passed to the node's inbox». Decisions on
   such findings are not written into `development-docs/owner-decisions-on-skill-changes.md`.

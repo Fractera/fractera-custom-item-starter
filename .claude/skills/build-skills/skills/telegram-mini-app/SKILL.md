@@ -90,6 +90,23 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
 - Proofs: `npm run test:tg-projects` (the tree whole, items read at run time, counts from the site, «Администрирование» and the
   calendar — with negatives) and eyes of the screen.
 
+## 3b-2. Focus — the section your person came from, parking, memory (node step 825)
+
+- **`⟦came from the section: …⟧`** before a message (the hook `came-from`, fresh 30 minutes after «Перейти в чат»): the words are about
+  that project. Read its group's `README.md`, then its pages (`project` in meta.json) and your memory of it:
+  `npm run memory -- recall "<their words>" --project <group>/<item>` — your own space of the node's memory plus the tagged pages.
+- **«Продолжим то, что начали в прошлый раз»** → recall with the project first, never ask the person to repeat. «Посмотри, что мы делали
+  несколько недель назад» → the same recall plus `git log --since` on the tagged pages; then build the new work from both.
+- **After work** that the person will want back — a post, a decision, a plan — keep one line: `npm run memory -- remember "<what and
+  why>" --project <group>/<item>`. A memory without the project is found only by luck.
+- **A switch mid-task** (a new section's line while a task is open) → park the open task in one line of `development-docs/current-step.md`
+  («parked: <task>, next: <step>») — in the working process, a `remember` with its project — and take the new one. Back to the first
+  section → read the parked line and go on.
+- **Clearing your context** — only when the previous task is closed and its state written; never to switch topic: a parked task lives
+  only in writing. The clear itself is the core's (`clear` is the main agent's command): write your state («prepare to reset» of the
+  node's commands), then `npm run tell-core -- "clear my context: <the task closed, what is next>"`.
+- **The memory sleeps** by default: `===MEMORY_ASLEEP===` → `npm run tell-core` with the line it prints; go on from the pages meanwhile.
+
 ## 3c. The core's facts and the chat (node step 821)
 
 - **The agent card** (home) and **the subscription and the bot** («Элемент») — the island `tg/_components/tg-agent.client.tsx` asks

@@ -34,9 +34,9 @@ Google and the other providers accept sign-in only on addresses registered with 
 Possible, not supported automatically, **not recommended**. The person would have to:
 1. connect and set up every provider again for this domain — at Google: authorized redirect `https://<domain>/api/auth/callback/google`
    and the domain itself;
-2. rework: `proxy.ts`, `lib/runtime-urls.ts`, `app/api/auth/callback/route.ts` (this element);
-   `WEB4-ITEMS/core/auth/lib/auth/auth.config.ts` (providers); `lib/domain/public-auth.cjs` in the core (cookies and allowed origins
-   of the sign-in service).
+2. rework: `proxy.ts`, `lib/runtime-urls.ts`, `app/api/auth/callback/route.ts` (this element) — yours; the sign-in element's
+   providers and the core's cookies and allowed origins are NOT yours: behind the wall (core step 811) you never open them — ask with
+   `npm run need` / `npm run tell-core`, their agents change them.
 The same text stands on the core page «Settings → Domain», orange card «Sign-in on your own domain» — send the person there.
 
 ## Check that sign-in is alive

@@ -37,7 +37,7 @@ import { readFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { NextRequest, NextResponse } from "next/server"
 
-const KEY = process.env.SETTINGS_SECRET ?? "" // the node key, in this element's .env.local
+const KEY = process.env.SETTINGS_SECRET ?? "" // this element's own key (since core step 818-7c it equals ELEMENT_KEY; no element holds the node's)
 const SELF = JSON.parse(readFileSync(join(process.cwd(), "OWN-SERVICE-PROPS", "OWN-SERVICE-PROPS.json"), "utf8")).id as string
 
 // The core's address — the same rule as scripts/core-door.mjs (NODE_DOMAIN_FILE → the core's logs/runtime.json).

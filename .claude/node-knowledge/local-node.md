@@ -25,7 +25,9 @@ nothing published. `npm run serve:unpublish` takes the node off the internet (it
   open port. From a phone anywhere the person writes to an element's agent, and it works on the computer at home.
 - **Agents, data and automations stay here:** the data element stores, the agents process, schedules and tasks run on the
   person's machine and subscription.
-- **i2i inside the node** — elements call each other's agreed APIs directly with the node key, no internet involved.
+- **i2i inside the node** — elements call each other's agreed APIs directly on the machine's loopback, no internet involved — each call with the key the core
+  gives for that one neighbour (`neighbourFetch`, core step 818-7); no element holds a key that opens every door, and behind the wall
+  (core step 811) no element reads another's folder or the core's.
 
 ## What it is good for
 

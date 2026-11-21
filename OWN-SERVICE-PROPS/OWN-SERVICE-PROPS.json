@@ -14,7 +14,8 @@
     "auth",
     "data",
     "config",
-    "design"
+    "design",
+    "memory"
   ],
   "messengers": {
     "h2a": true,
