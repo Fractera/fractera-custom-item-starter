@@ -62,10 +62,10 @@ function GroupScreen({ section, group, ui, lang }: { section: ProjectSection; gr
 function GroupHelp({ group, ui }: { group: ProjectGroup; ui: ProjectsUi }) {
   return (
     <div className="flex flex-col gap-5" data-block="tg-help-body">
-      {group.line ? <Small className="text-foreground">{group.line}</Small> : null}
+      {group.line ? <Small data-block="dg03b" className="text-foreground">{group.line}</Small> : null}
       {group.neighbours.length ? (
         <div className="flex flex-col gap-2" data-block="tg-help-not-here">
-          <Eyebrow className="text-muted-foreground tracking-wider">{ui.help.notHere}</Eyebrow>
+          <Eyebrow data-block="lsg7b" className="text-muted-foreground tracking-wider">{ui.help.notHere}</Eyebrow>
           <ul className="flex flex-col gap-2" data-block="tg-help-not-here-list">
             {group.neighbours.map((n) => (
               <li className="flex flex-wrap items-baseline gap-x-1.5 text-[length:var(--fs-small)] leading-snug" data-block="tg-help-neighbour" key={`${n.href}-${n.what}`}>
@@ -78,7 +78,7 @@ function GroupHelp({ group, ui }: { group: ProjectGroup; ui: ProjectsUi }) {
         </div>
       ) : null}
       <div className="flex flex-col gap-2" data-block="tg-help-how">
-        <Eyebrow className="text-muted-foreground tracking-wider">{ui.help.how}</Eyebrow>
+        <Eyebrow data-block="w94it" className="text-muted-foreground tracking-wider">{ui.help.how}</Eyebrow>
         <ul className="flex list-disc flex-col gap-1.5 pl-5 text-[length:var(--fs-small)] leading-snug text-muted-foreground" data-block="tg-help-points">
           {ui.help.points.map((p) => <li data-block="tg-help-point" key={p}>{p}</li>)}
         </ul>
