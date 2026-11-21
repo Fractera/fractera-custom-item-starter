@@ -90,9 +90,9 @@ const AGENT_PAGES: { page: string; label: Record<string, string> }[] = [
   { page: "openai", label: { en: "OpenAI key", ru: "Ключ OpenAI" } },
 ]
 const MAIN_AGENT: Record<string, string> = { en: "Main agent", ru: "Главный агент" }
-const OWN_WORDS: Record<string, { dashboard: string; projects: string }> = {
-  en: { dashboard: "Dashboard", projects: "Projects" },
-  ru: { dashboard: "Дашборд", projects: "Проекты" },
+const OWN_WORDS: Record<string, { dashboard: string; projects: string; none: string }> = {
+  en: { dashboard: "Dashboard", projects: "Projects", none: "No project pages built yet" },
+  ru: { dashboard: "Дашборд", projects: "Проекты", none: "Пока нет построенных страниц" },
 }
 
 /** The pages built for the person's projects, one link each: «<item>» (a second page of it — «<item> · 2»). */
@@ -113,7 +113,8 @@ function ownAgentLinks(lang: string): DrawerLink[] {
   const built = projectPages(lang)
   return [
     { href: `/${lang}`, label: w.dashboard, roles },
-    ...(built.length ? [{ href: `/${lang}#projects`, label: w.projects, roles, children: built }] : []),
+    // 834-11 (the owner, Telegram 664: «ты не представил ниже дашборд вкладку проекта»): always there — nothing built yet says so
+    { href: `/${lang}#projects`, label: w.projects, roles, children: built.length ? built : [{ href: "", label: w.none }] },
     ...(id && ARCHITECT_URL ? AGENT_PAGES.map((p) => ({ href: `${ARCHITECT_URL}/${lang}/element-agent/${id}/${p.page}`, label: p.label[lang] ?? p.label.en, roles })) : []),
   ]
 }

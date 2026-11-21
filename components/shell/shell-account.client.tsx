@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { Small } from "@/components/ui/typography"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
 import type { ShellLink, ShellSide } from "./shell-types"
@@ -66,10 +67,13 @@ function AccountDrawer({ side, labels, email, roles = [], links, logoutHref, att
                       {l.label}<ChevronDown className="transition-transform group-data-[state=open]:rotate-180" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="flex flex-col gap-0.5 border-l border-border ml-3 pl-2">
-                      {l.children.map((c) => (
+                      {/* 834-11: a child with no address is a line of words — «Проекты» with nothing built yet says so instead of hiding */}
+                      {l.children.map((c) => c.href ? (
                         <Link key={c.href} href={c.href} onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "w-full justify-start")}>
                           {c.label}
                         </Link>
+                      ) : (
+                        <Small key={c.label} className="px-3 py-1.5" data-block="shell-account-empty">{c.label}</Small>
                       ))}
                     </CollapsibleContent>
                   </Collapsible>
