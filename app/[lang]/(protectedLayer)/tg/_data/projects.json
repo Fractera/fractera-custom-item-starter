@@ -1,0 +1,2040 @@
+{
+ "_": "THE PROJECTS OF THIS ELEMENT (node step 821; the owner, Telegram 416–417, 424). Four sections, 46 groups, each with its items — the person sees them all from the first day, empty but ready («сама архитектура вдохновит его»). An item's address is /<lang>/tg/projects/<group>/<item>; the agent puts real work there as a page folder `../_pages/projects/<group>/<item>/` (skill telegram-mini-app, «Projects»). The person's own item («добавить») is a folder there too, with its own slug. Edit only here.",
+ "sections": [
+  {
+   "slug": "business",
+   "icon": "briefcase",
+   "title": {
+    "en": "Business",
+    "ru": "Дело"
+   },
+   "groups": [
+    {
+     "slug": "product",
+     "icon": "package",
+     "title": {
+      "en": "Product and services",
+      "ru": "Продукт и услуги"
+     },
+     "line": {
+      "en": "What you sell, what it costs and where it grows.",
+      "ru": "Что вы продаёте, сколько это стоит и куда растёт."
+     },
+     "items": [
+      {
+       "slug": "value",
+       "title": {
+        "en": "Description and value",
+        "ru": "Описание и ценность"
+       }
+      },
+      {
+       "slug": "pricing",
+       "title": {
+        "en": "Plans and prices",
+        "ru": "Тарифы и цены"
+       }
+      },
+      {
+       "slug": "roadmap",
+       "title": {
+        "en": "Roadmap",
+        "ru": "План развития (roadmap)"
+       }
+      },
+      {
+       "slug": "cases",
+       "title": {
+        "en": "Cases and reviews",
+        "ru": "Кейсы и отзывы"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "my-services",
+     "icon": "hand-helping",
+     "title": {
+      "en": "My services",
+      "ru": "Мои услуги"
+     },
+     "line": {
+      "en": "The services you give people, from the request to the result.",
+      "ru": "Услуги, которые вы оказываете людям, от заявки до результата."
+     },
+     "items": [
+      {
+       "slug": "formats",
+       "title": {
+        "en": "Kinds and formats",
+        "ru": "Виды услуг и форматы"
+       }
+      },
+      {
+       "slug": "briefs",
+       "title": {
+        "en": "Briefs and requests",
+        "ru": "Брифы и приём заявок"
+       }
+      },
+      {
+       "slug": "stages",
+       "title": {
+        "en": "Stages of the work",
+        "ru": "Этапы реализации"
+       }
+      },
+      {
+       "slug": "booking",
+       "title": {
+        "en": "Schedule and booking",
+        "ru": "Расписание и запись"
+       }
+      },
+      {
+       "slug": "quality",
+       "title": {
+        "en": "Quality standards and checklists",
+        "ru": "Стандарты и чек-листы качества"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "sales",
+     "icon": "shopping-cart",
+     "title": {
+      "en": "Sales",
+      "ru": "Продажи"
+     },
+     "line": {
+      "en": "The catalog and the client's way from interest to payment.",
+      "ru": "Каталог и путь клиента от интереса до оплаты."
+     },
+     "items": [
+      {
+       "slug": "catalog",
+       "title": {
+        "en": "Catalog",
+        "ru": "Каталог"
+       }
+      },
+      {
+       "slug": "funnel",
+       "title": {
+        "en": "Funnel and requests",
+        "ru": "Воронка и обработка заявок"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "customers",
+     "icon": "users",
+     "title": {
+      "en": "Customers",
+      "ru": "Покупатели"
+     },
+     "line": {
+      "en": "Who buys from you and how to keep each of them.",
+      "ru": "Кто у вас покупает и как удержать каждого."
+     },
+     "items": [
+      {
+       "slug": "new",
+       "title": {
+        "en": "New",
+        "ru": "Новые"
+       }
+      },
+      {
+       "slug": "regular",
+       "title": {
+        "en": "Regular",
+        "ru": "Постоянные"
+       }
+      },
+      {
+       "slug": "fading",
+       "title": {
+        "en": "Fading",
+        "ru": "Угасающие"
+       }
+      },
+      {
+       "slug": "vip",
+       "title": {
+        "en": "VIP and ambassadors",
+        "ru": "VIP и амбассадоры"
+       }
+      },
+      {
+       "slug": "feedback",
+       "title": {
+        "en": "Reviews and feedback",
+        "ru": "Отзывы и обратная связь"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "suppliers",
+     "icon": "truck",
+     "title": {
+      "en": "Suppliers",
+      "ru": "Поставщики"
+     },
+     "line": {
+      "en": "Where the goods come from and on what terms.",
+      "ru": "Откуда приходит товар и на каких условиях."
+     },
+     "items": [
+      {
+       "slug": "wholesale",
+       "title": {
+        "en": "Wholesale",
+        "ru": "Опт"
+       }
+      },
+      {
+       "slug": "retail",
+       "title": {
+        "en": "Retail",
+        "ru": "Розница"
+       }
+      },
+      {
+       "slug": "logistics",
+       "title": {
+        "en": "Logistics and terms",
+        "ru": "Логистика и условия"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "production",
+     "icon": "factory",
+     "title": {
+      "en": "Production",
+      "ru": "Производство"
+     },
+     "line": {
+      "en": "How your product is made: equipment, materials, quality.",
+      "ru": "Как делается ваш товар: оборудование, материалы, качество."
+     },
+     "items": [
+      {
+       "slug": "equipment",
+       "title": {
+        "en": "Equipment",
+        "ru": "Оборудование"
+       }
+      },
+      {
+       "slug": "materials",
+       "title": {
+        "en": "Materials",
+        "ru": "Материалы"
+       }
+      },
+      {
+       "slug": "technology",
+       "title": {
+        "en": "Technology and quality control",
+        "ru": "Технология и контроль качества"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "subscriptions",
+     "icon": "repeat",
+     "title": {
+      "en": "Subscriptions",
+      "ru": "Подписки"
+     },
+     "line": {
+      "en": "The subscriptions you sell to your clients.",
+      "ru": "Подписки, которые вы продаёте своим клиентам."
+     },
+     "items": [
+      {
+       "slug": "monthly",
+       "title": {
+        "en": "Monthly",
+        "ru": "Ежемесячная"
+       }
+      },
+      {
+       "slug": "yearly",
+       "title": {
+        "en": "Yearly / trial",
+        "ru": "Годовая / пробный доступ"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "competitors",
+     "icon": "telescope",
+     "title": {
+      "en": "Competitors",
+      "ru": "Конкуренты"
+     },
+     "line": {
+      "en": "What others do and how you are better.",
+      "ru": "Что делают другие и чем вы лучше."
+     },
+     "items": [
+      {
+       "slug": "product-research",
+       "title": {
+        "en": "Product research",
+        "ru": "Продуктовые исследования"
+       }
+      },
+      {
+       "slug": "financial-research",
+       "title": {
+        "en": "Financial research",
+        "ru": "Финансовые исследования"
+       }
+      },
+      {
+       "slug": "offers",
+       "title": {
+        "en": "Marketing and offers",
+        "ru": "Маркетинг и офферы"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "economy",
+     "icon": "calculator",
+     "title": {
+      "en": "Economy",
+      "ru": "Экономика"
+     },
+     "line": {
+      "en": "The money of the business: income, costs, budget and taxes.",
+      "ru": "Деньги дела: доходы, расходы, бюджет и налоги."
+     },
+     "items": [
+      {
+       "slug": "income",
+       "title": {
+        "en": "Income and costs",
+        "ru": "Доходы и расходы"
+       }
+      },
+      {
+       "slug": "budget",
+       "title": {
+        "en": "Budget and taxes",
+        "ru": "Бюджет и налоги"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "investors",
+     "icon": "trending-up",
+     "title": {
+      "en": "Investors",
+      "ru": "Инвесторы"
+     },
+     "line": {
+      "en": "Everything to show those who will invest.",
+      "ru": "Всё, что нужно показать тем, кто вложит деньги."
+     },
+     "items": [
+      {
+       "slug": "metrics",
+       "title": {
+        "en": "Metrics",
+        "ru": "Метрики"
+       }
+      },
+      {
+       "slug": "analytics",
+       "title": {
+        "en": "Analytics",
+        "ru": "Аналитика"
+       }
+      },
+      {
+       "slug": "pitch",
+       "title": {
+        "en": "Pitch deck and terms",
+        "ru": "Питч-дек и условия"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "fintech",
+     "icon": "credit-card",
+     "title": {
+      "en": "Fintech and payments",
+      "ru": "Финтех и платёжные сервисы"
+     },
+     "line": {
+      "en": "Accounts, taking payments, transfers and their safety.",
+      "ru": "Счета, приём оплат, переводы и их безопасность."
+     },
+     "items": [
+      {
+       "slug": "accounts",
+       "title": {
+        "en": "Bank accounts, cards and neobanks",
+        "ru": "Банковские счета, карты и необанки"
+       }
+      },
+      {
+       "slug": "acquiring",
+       "title": {
+        "en": "Payment gateways and acquiring",
+        "ru": "Платёжные шлюзы и приём оплат (эквайринг)"
+       }
+      },
+      {
+       "slug": "transfers",
+       "title": {
+        "en": "International transfers and exchange",
+        "ru": "Международные переводы и обмен валют"
+       }
+      },
+      {
+       "slug": "billing",
+       "title": {
+        "en": "Billing, instalments and recurring payments",
+        "ru": "Биллинг, рассрочки и рекуррентные платежи"
+       }
+      },
+      {
+       "slug": "loyalty",
+       "title": {
+        "en": "Finance trackers, cashback and loyalty",
+        "ru": "Финансовые трекеры, кэшбэк и программы лояльности"
+       }
+      },
+      {
+       "slug": "kyc",
+       "title": {
+        "en": "Account safety, limits and KYC",
+        "ru": "Безопасность счетов, лимиты и верификация (KYC)"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "legal",
+     "icon": "scale",
+     "title": {
+      "en": "Legal and documents",
+      "ru": "Юридическое и документы"
+     },
+     "line": {
+      "en": "Contracts, taxes, rights and licences.",
+      "ru": "Договоры, налоги, права и разрешения."
+     },
+     "items": [
+      {
+       "slug": "contracts",
+       "title": {
+        "en": "Contracts and offer",
+        "ru": "Договоры и оферта"
+       }
+      },
+      {
+       "slug": "taxes",
+       "title": {
+        "en": "Taxes and reporting",
+        "ru": "Налоги и отчётность"
+       }
+      },
+      {
+       "slug": "copyright",
+       "title": {
+        "en": "Copyright",
+        "ru": "Авторские права"
+       }
+      },
+      {
+       "slug": "licences",
+       "title": {
+        "en": "Licences and permits",
+        "ru": "Лицензии и разрешения"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "assets",
+     "icon": "landmark",
+     "title": {
+      "en": "Assets",
+      "ru": "Организация активов"
+     },
+     "line": {
+      "en": "What you own: property, shares, brands, digital assets.",
+      "ru": "Чем вы владеете: недвижимость, доли, бренды, цифровые активы."
+     },
+     "items": [
+      {
+       "slug": "property",
+       "title": {
+        "en": "Property and land",
+        "ru": "Недвижимость и земельные участки"
+       }
+      },
+      {
+       "slug": "shares",
+       "title": {
+        "en": "Business shares and securities",
+        "ru": "Доли в бизнесе и ценные бумаги"
+       }
+      },
+      {
+       "slug": "ip",
+       "title": {
+        "en": "Intellectual property, patents and brands",
+        "ru": "Интеллектуальная собственность, патенты и бренды"
+       }
+      },
+      {
+       "slug": "equipment",
+       "title": {
+        "en": "Equipment and tangible assets",
+        "ru": "Оборудование, техника и материальные ценности"
+       }
+      },
+      {
+       "slug": "digital",
+       "title": {
+        "en": "Digital assets, domains and accounts",
+        "ru": "Цифровые активы, домены и аккаунты"
+       }
+      },
+      {
+       "slug": "registry",
+       "title": {
+        "en": "Ownership registry, valuation and insurance",
+        "ru": "Реестр владения, оценка стоимости и страхование"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "team",
+     "icon": "handshake",
+     "title": {
+      "en": "Team and contractors",
+      "ru": "Команда и подрядчики"
+     },
+     "line": {
+      "en": "Who does the work with you.",
+      "ru": "Кто делает работу вместе с вами."
+     },
+     "items": [
+      {
+       "slug": "freelancers",
+       "title": {
+        "en": "Freelancers",
+        "ru": "Фрилансеры"
+       }
+      },
+      {
+       "slug": "partners",
+       "title": {
+        "en": "Partners",
+        "ru": "Партнёры"
+       }
+      },
+      {
+       "slug": "roles",
+       "title": {
+        "en": "Areas of responsibility",
+        "ru": "Зоны ответственности"
+       }
+      },
+      {
+       "slug": "hiring",
+       "title": {
+        "en": "Search and hiring",
+        "ru": "Поиск и найм"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "hr",
+     "icon": "user-cog",
+     "title": {
+      "en": "Staff and HR",
+      "ru": "Персонал и HR"
+     },
+     "line": {
+      "en": "Staff, schedules, pay and growth of people.",
+      "ru": "Штат, графики, зарплаты и развитие людей."
+     },
+     "items": [
+      {
+       "slug": "structure",
+       "title": {
+        "en": "Team structure and staffing",
+        "ru": "Структура команды и штатное расписание"
+       }
+      },
+      {
+       "slug": "onboarding",
+       "title": {
+        "en": "Onboarding and a knowledge base",
+        "ru": "Онбординг и база знаний для новичков"
+       }
+      },
+      {
+       "slug": "pay",
+       "title": {
+        "en": "Pay, bonuses and KPI",
+        "ru": "Зарплаты, премии и система KPI"
+       }
+      },
+      {
+       "slug": "shifts",
+       "title": {
+        "en": "Shifts, holidays and sick leave",
+        "ru": "Графики смен, отпуска и больничные"
+       }
+      },
+      {
+       "slug": "growth",
+       "title": {
+        "en": "Reviews, training and motivation",
+        "ru": "Оценка, обучение и мотивация сотрудников"
+       }
+      },
+      {
+       "slug": "vacancies",
+       "title": {
+        "en": "Talent pool and vacancies",
+        "ru": "Кадровый резерв и вакансии"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "digital-staff",
+     "icon": "bot",
+     "title": {
+      "en": "Digital staff",
+      "ru": "Цифровые сотрудники"
+     },
+     "line": {
+      "en": "AI staff that work for you around the clock.",
+      "ru": "ИИ-сотрудники, которые работают на вас круглые сутки."
+     },
+     "items": [
+      {
+       "slug": "sales-ai",
+       "title": {
+        "en": "AI sales and lead manager",
+        "ru": "AI-менеджер по продажам и обработке лидов"
+       }
+      },
+      {
+       "slug": "assistant",
+       "title": {
+        "en": "AI assistant (mail, calendar, digests)",
+        "ru": "AI-ассистент (почта, календарь, сводки)"
+       }
+      },
+      {
+       "slug": "support",
+       "title": {
+        "en": "AI support operator",
+        "ru": "AI-оператор поддержки клиентов"
+       }
+      },
+      {
+       "slug": "smm",
+       "title": {
+        "en": "AI content maker and SMM",
+        "ru": "AI-контент-мейкер и SMM-специалист"
+       }
+      },
+      {
+       "slug": "analyst",
+       "title": {
+        "en": "AI analyst and researcher",
+        "ru": "AI-аналитик и ресёрчер"
+       }
+      },
+      {
+       "slug": "rules",
+       "title": {
+        "en": "Instructions, roles and quality control",
+        "ru": "Инструкции, роли и контроль качества работы"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "audience",
+   "icon": "megaphone",
+   "title": {
+    "en": "Voice and audience",
+    "ru": "Голос и аудитория"
+   },
+   "groups": [
+    {
+     "slug": "social",
+     "icon": "share-2",
+     "title": {
+      "en": "Social networks",
+      "ru": "Соцсети"
+     },
+     "line": {
+      "en": "Your channels and what you publish there.",
+      "ru": "Ваши каналы и публикации в них."
+     },
+     "items": [
+      {
+       "slug": "instagram",
+       "title": {
+        "en": "Instagram",
+        "ru": "Instagram"
+       }
+      },
+      {
+       "slug": "youtube",
+       "title": {
+        "en": "YouTube",
+        "ru": "YouTube"
+       }
+      },
+      {
+       "slug": "telegram",
+       "title": {
+        "en": "Telegram",
+        "ru": "Telegram"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "platform",
+     "icon": "globe",
+     "title": {
+      "en": "Platform",
+      "ru": "Платформа"
+     },
+     "line": {
+      "en": "The places where your texts and site live.",
+      "ru": "Площадки, где живут ваши тексты и сайт."
+     },
+     "items": [
+      {
+       "slug": "medium",
+       "title": {
+        "en": "Medium",
+        "ru": "Медиум"
+       }
+      },
+      {
+       "slug": "site",
+       "title": {
+        "en": "Own site / landing",
+        "ru": "Свой сайт / лендинг"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "content",
+     "icon": "clapperboard",
+     "title": {
+      "en": "Content",
+      "ru": "Контент"
+     },
+     "line": {
+      "en": "Everything your publications are made of.",
+      "ru": "Всё, из чего делаются ваши публикации."
+     },
+     "items": [
+      {
+       "slug": "author",
+       "title": {
+        "en": "Author portrait",
+        "ru": "Портрет автора"
+       }
+      },
+      {
+       "slug": "images",
+       "title": {
+        "en": "Images",
+        "ru": "Картинки"
+       }
+      },
+      {
+       "slug": "video",
+       "title": {
+        "en": "Video",
+        "ru": "Видео"
+       }
+      },
+      {
+       "slug": "editing",
+       "title": {
+        "en": "Editing",
+        "ru": "Монтаж"
+       }
+      },
+      {
+       "slug": "music",
+       "title": {
+        "en": "Music",
+        "ru": "Музыка"
+       }
+      },
+      {
+       "slug": "clip",
+       "title": {
+        "en": "Clip",
+        "ru": "Клип"
+       }
+      },
+      {
+       "slug": "texts",
+       "title": {
+        "en": "Texts and scripts",
+        "ru": "Тексты и сценарии"
+       }
+      },
+      {
+       "slug": "covers",
+       "title": {
+        "en": "Covers and design",
+        "ru": "Обложки и дизайн"
+       }
+      },
+      {
+       "slug": "shorts",
+       "title": {
+        "en": "Short formats (Reels / Shorts)",
+        "ru": "Короткие форматы (Reels / Shorts)"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "mailings",
+     "icon": "mail",
+     "title": {
+      "en": "Mailings",
+      "ru": "Рассылки"
+     },
+     "line": {
+      "en": "Letters and messages that warm people up and bring them back.",
+      "ru": "Письма и сообщения, которые греют и возвращают людей."
+     },
+     "items": [
+      {
+       "slug": "email",
+       "title": {
+        "en": "Email",
+        "ru": "Имейл"
+       }
+      },
+      {
+       "slug": "whatsapp",
+       "title": {
+        "en": "WhatsApp",
+        "ru": "WhatsApp"
+       }
+      },
+      {
+       "slug": "telegram",
+       "title": {
+        "en": "Telegram",
+        "ru": "Telegram"
+       }
+      },
+      {
+       "slug": "funnels",
+       "title": {
+        "en": "Auto-funnels and warm-ups",
+        "ru": "Автоворонки и прогревы"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "marketing",
+     "icon": "target",
+     "title": {
+      "en": "Marketing and traffic",
+      "ru": "Маркетинг и трафик"
+     },
+     "line": {
+      "en": "Where people come from and what it costs.",
+      "ru": "Откуда приходят люди и сколько это стоит."
+     },
+     "items": [
+      {
+       "slug": "ads",
+       "title": {
+        "en": "Paid ads",
+        "ru": "Платная реклама"
+       }
+      },
+      {
+       "slug": "collabs",
+       "title": {
+        "en": "Collaborations and bloggers",
+        "ru": "Коллаборации и блогеры"
+       }
+      },
+      {
+       "slug": "promos",
+       "title": {
+        "en": "Promotions and special offers",
+        "ru": "Акции и спецпредложения"
+       }
+      },
+      {
+       "slug": "seo",
+       "title": {
+        "en": "Organic and SEO",
+        "ru": "Органика и SEO"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "brand",
+     "icon": "badge-check",
+     "title": {
+      "en": "Brand and packaging",
+      "ru": "Бренд и упаковка"
+     },
+     "line": {
+      "en": "How people recognise you and how you sound.",
+      "ru": "Как вас узнают и как вы звучите."
+     },
+     "items": [
+      {
+       "slug": "positioning",
+       "title": {
+        "en": "Positioning",
+        "ru": "Позиционирование"
+       }
+      },
+      {
+       "slug": "identity",
+       "title": {
+        "en": "Visual identity",
+        "ru": "Фирменный стиль"
+       }
+      },
+      {
+       "slug": "tov",
+       "title": {
+        "en": "Tone of voice",
+        "ru": "Тон голоса (ToV)"
+       }
+      },
+      {
+       "slug": "personal",
+       "title": {
+        "en": "Personal brand",
+        "ru": "Личный бренд"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "community",
+     "icon": "users-round",
+     "title": {
+      "en": "Community and networking",
+      "ru": "Комьюнити и нетворкинг"
+     },
+     "line": {
+      "en": "The people around you: clubs, contacts, partners.",
+      "ru": "Люди вокруг вас: клубы, контакты, партнёры."
+     },
+     "items": [
+      {
+       "slug": "clubs",
+       "title": {
+        "en": "Clubs and chats",
+        "ru": "Клубы и чаты"
+       }
+      },
+      {
+       "slug": "contacts",
+       "title": {
+        "en": "Useful contacts",
+        "ru": "Полезные контакты"
+       }
+      },
+      {
+       "slug": "affiliate",
+       "title": {
+        "en": "Affiliate programs",
+        "ru": "Партнёрские программы"
+       }
+      },
+      {
+       "slug": "experts",
+       "title": {
+        "en": "Experts",
+        "ru": "База экспертов"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "events",
+     "icon": "calendar-clock",
+     "title": {
+      "en": "Events",
+      "ru": "Мероприятия и события"
+     },
+     "line": {
+      "en": "Broadcasts, meetings and reasons to be heard.",
+      "ru": "Эфиры, встречи и поводы рассказать о себе."
+     },
+     "items": [
+      {
+       "slug": "webinars",
+       "title": {
+        "en": "Webinars and broadcasts",
+        "ru": "Вебинары и эфиры"
+       }
+      },
+      {
+       "slug": "conferences",
+       "title": {
+        "en": "Conferences and meetings",
+        "ru": "Конференции и встречи"
+       }
+      },
+      {
+       "slug": "launch",
+       "title": {
+        "en": "Launch checklists",
+        "ru": "Чек-листы запуска"
+       }
+      },
+      {
+       "slug": "newsjacking",
+       "title": {
+        "en": "News hooks calendar",
+        "ru": "Календарь инфоповодов"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "watch",
+     "icon": "radar",
+     "title": {
+      "en": "Watchtower",
+      "ru": "Дозорный"
+     },
+     "line": {
+      "en": "News and trends of your niche while they are fresh.",
+      "ru": "Новости и тренды вашей ниши, пока они свежие."
+     },
+     "items": [
+      {
+       "slug": "cnn",
+       "title": {
+        "en": "CNN",
+        "ru": "CNN"
+       }
+      },
+      {
+       "slug": "trends",
+       "title": {
+        "en": "Niche trends and news",
+        "ru": "Тренды и новости ниши"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "knowledge",
+   "icon": "library",
+   "title": {
+    "en": "Knowledge and tools",
+    "ru": "Знания и инструменты"
+   },
+   "groups": [
+    {
+     "slug": "ideas",
+     "icon": "lightbulb",
+     "title": {
+      "en": "Ideas",
+      "ru": "Идеи"
+     },
+     "line": {
+      "en": "The place where ideas are not lost.",
+      "ru": "Место, где идеи не теряются."
+     },
+     "items": [
+      {
+       "slug": "business",
+       "title": {
+        "en": "Business",
+        "ru": "Бизнес"
+       }
+      },
+      {
+       "slug": "personal",
+       "title": {
+        "en": "Content and personal projects",
+        "ru": "Контент и личные проекты"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "focus",
+     "icon": "list-checks",
+     "title": {
+      "en": "Tasks and focus",
+      "ru": "Задачи и фокус"
+     },
+     "line": {
+      "en": "Goals, tasks and the rhythm that moves them.",
+      "ru": "Цели, задачи и ритм, который их двигает."
+     },
+     "items": [
+      {
+       "slug": "goals",
+       "title": {
+        "en": "Goals for the month / year",
+        "ru": "Цели на месяц / год"
+       }
+      },
+      {
+       "slug": "current",
+       "title": {
+        "en": "Current tasks",
+        "ru": "Текущие задачи"
+       }
+      },
+      {
+       "slug": "routine",
+       "title": {
+        "en": "Routine",
+        "ru": "Регулярная рутина"
+       }
+      },
+      {
+       "slug": "sprints",
+       "title": {
+        "en": "Sprints and deadlines",
+        "ru": "Спринты и дедлайны"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "analytics",
+     "icon": "flask-conical",
+     "title": {
+      "en": "Analytics and hypotheses",
+      "ru": "Аналитика и гипотезы"
+     },
+     "line": {
+      "en": "Check ideas with numbers, not with feelings.",
+      "ru": "Проверяйте идеи цифрами, а не чувством."
+     },
+     "items": [
+      {
+       "slug": "tests",
+       "title": {
+        "en": "Test ideas",
+        "ru": "Идеи для тестов"
+       }
+      },
+      {
+       "slug": "ab",
+       "title": {
+        "en": "A/B experiments",
+        "ru": "A/B-эксперименты"
+       }
+      },
+      {
+       "slug": "dashboards",
+       "title": {
+        "en": "Dashboards and reports",
+        "ru": "Дашборды и отчёты"
+       }
+      },
+      {
+       "slug": "insights",
+       "title": {
+        "en": "Conclusions and insights",
+        "ru": "Выводы и инсайты"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "knowledge-base",
+     "icon": "book-open",
+     "title": {
+      "en": "Knowledge base",
+      "ru": "База знаний"
+     },
+     "line": {
+      "en": "Everything you read, collected and want to find again.",
+      "ru": "Всё, что вы прочли, собрали и хотите найти снова."
+     },
+     "items": [
+      {
+       "slug": "references",
+       "title": {
+        "en": "References and inspiration",
+        "ru": "Референсы и вдохновение"
+       }
+      },
+      {
+       "slug": "books",
+       "title": {
+        "en": "Books and courses",
+        "ru": "Книги и курсы"
+       }
+      },
+      {
+       "slug": "guides",
+       "title": {
+        "en": "Guides and checklists",
+        "ru": "Гайды и чек-листы"
+       }
+      },
+      {
+       "slug": "archive",
+       "title": {
+        "en": "Archive",
+        "ru": "Архив материалов"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "tools",
+     "icon": "wrench",
+     "title": {
+      "en": "Tools and services",
+      "ru": "Инструменты и сервисы"
+     },
+     "line": {
+      "en": "The software, clouds and access the work rests on.",
+      "ru": "Софт, облака и доступы, на которых держится работа."
+     },
+     "items": [
+      {
+       "slug": "software",
+       "title": {
+        "en": "Software",
+        "ru": "Рабочий софт"
+       }
+      },
+      {
+       "slug": "cloud",
+       "title": {
+        "en": "Clouds and storage",
+        "ru": "Облака и хранилища"
+       }
+      },
+      {
+       "slug": "domains",
+       "title": {
+        "en": "Domains and hosting",
+        "ru": "Домены и хостинг"
+       }
+      },
+      {
+       "slug": "access",
+       "title": {
+        "en": "Access and passwords",
+        "ru": "Доступы и пароли"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "automation",
+     "icon": "workflow",
+     "title": {
+      "en": "AI tools and automation",
+      "ru": "Нейросети и автоматизация"
+     },
+     "line": {
+      "en": "Tools and links that work for you.",
+      "ru": "Инструменты и связки, которые работают за вас."
+     },
+     "items": [
+      {
+       "slug": "ai-tools",
+       "title": {
+        "en": "AI tools",
+        "ru": "AI-инструменты"
+       }
+      },
+      {
+       "slug": "prompts",
+       "title": {
+        "en": "Prompt library",
+        "ru": "Библиотека промптов"
+       }
+      },
+      {
+       "slug": "bots",
+       "title": {
+        "en": "Chat bots and scripts",
+        "ru": "Чат-боты и скрипты"
+       }
+      },
+      {
+       "slug": "integrations",
+       "title": {
+        "en": "Service integrations",
+        "ru": "Связки сервисов"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "ai",
+     "icon": "sparkles",
+     "title": {
+      "en": "Artificial intelligence",
+      "ru": "Искусственный интеллект"
+     },
+     "line": {
+      "en": "Models, agents and everything new in AI.",
+      "ru": "Модели, агенты и всё новое в мире ИИ."
+     },
+     "items": [
+      {
+       "slug": "llm",
+       "title": {
+        "en": "Chats and language models",
+        "ru": "Чаты и языковые модели"
+       }
+      },
+      {
+       "slug": "system-prompts",
+       "title": {
+        "en": "Prompts and system instructions",
+        "ru": "Библиотека промптов и системных инструкций"
+       }
+      },
+      {
+       "slug": "generation",
+       "title": {
+        "en": "Images, video and sound generation",
+        "ru": "Генерация картинок, видео и звука"
+       }
+      },
+      {
+       "slug": "agents",
+       "title": {
+        "en": "AI agents and automation scenarios",
+        "ru": "AI-агенты и сценарии автоматизации"
+       }
+      },
+      {
+       "slug": "rag",
+       "title": {
+        "en": "Knowledge bases and model training (RAG)",
+        "ru": "Базы знаний и обучение моделей (RAG)"
+       }
+      },
+      {
+       "slug": "news",
+       "title": {
+        "en": "News, reviews and AI selections",
+        "ru": "Новости, обзоры и подборки нейросетей"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "web3",
+     "icon": "blocks",
+     "title": {
+      "en": "Blockchain and Web3",
+      "ru": "Блокчейн и Web3"
+     },
+     "line": {
+      "en": "Wallets, assets, contracts and Web3 communities.",
+      "ru": "Кошельки, активы, контракты и сообщества Web3."
+     },
+     "items": [
+      {
+       "slug": "wallets",
+       "title": {
+        "en": "Wallets, exchanges and key storage",
+        "ru": "Криптокошельки, биржи и хранение ключей"
+       }
+      },
+      {
+       "slug": "defi",
+       "title": {
+        "en": "Portfolio, staking and DeFi",
+        "ru": "Портфель активов, стейкинг и DeFi"
+       }
+      },
+      {
+       "slug": "contracts",
+       "title": {
+        "en": "Smart contracts, tokenomics and launches",
+        "ru": "Смарт-контракты, токеномика и запуск проектов"
+       }
+      },
+      {
+       "slug": "nft",
+       "title": {
+        "en": "NFT, DAO and Web3 communities",
+        "ru": "NFT, DAO и Web3-сообщества"
+       }
+      },
+      {
+       "slug": "airdrops",
+       "title": {
+        "en": "Testnets, airdrops and on-chain analytics",
+        "ru": "Тестнеты, аирдропы и ончейн-аналитика"
+       }
+      },
+      {
+       "slug": "networks",
+       "title": {
+        "en": "Networks, fees and bridges",
+        "ru": "Блокчейн-сети, комиссии и кроссчейн-мосты"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "career",
+     "icon": "graduation-cap",
+     "title": {
+      "en": "Career and study",
+      "ru": "Карьера и учёба"
+     },
+     "line": {
+      "en": "Your growth: study, portfolio, the next step.",
+      "ru": "Ваш рост: учёба, портфолио, следующая ступень."
+     },
+     "items": [
+      {
+       "slug": "cv",
+       "title": {
+        "en": "CV and portfolio",
+        "ru": "Резюме и портфолио"
+       }
+      },
+      {
+       "slug": "jobs",
+       "title": {
+        "en": "Job search and interviews",
+        "ru": "Поиск работы и собеседования"
+       }
+      },
+      {
+       "slug": "study",
+       "title": {
+        "en": "University, courses and exams",
+        "ru": "Университет, курсы и экзамены"
+       }
+      },
+      {
+       "slug": "grades",
+       "title": {
+        "en": "Growth plan and grades",
+        "ru": "План развития и грейды"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "job-search",
+     "icon": "search",
+     "title": {
+      "en": "Job search",
+      "ru": "Поиск работы и трудоустройство"
+     },
+     "line": {
+      "en": "Applications, interviews and offers in one place.",
+      "ru": "Отклики, собеседования и сравнение офферов в одном месте."
+     },
+     "items": [
+      {
+       "slug": "boards",
+       "title": {
+        "en": "Job boards (LinkedIn, HeadHunter, niche boards)",
+        "ru": "Площадки (LinkedIn, HeadHunter, профильные биржи)"
+       }
+      },
+      {
+       "slug": "letters",
+       "title": {
+        "en": "CV, cover letters and portfolio",
+        "ru": "Резюме, сопроводительные письма и портфолио"
+       }
+      },
+      {
+       "slug": "pipeline",
+       "title": {
+        "en": "Applications pipeline and statuses",
+        "ru": "Воронка откликов и статусы вакансий"
+       }
+      },
+      {
+       "slug": "interviews",
+       "title": {
+        "en": "Interview prep and test tasks",
+        "ru": "Подготовка к собеседованиям и тестовые задания"
+       }
+      },
+      {
+       "slug": "offers",
+       "title": {
+        "en": "Comparing offers",
+        "ru": "Сравнение офферов и условий"
+       }
+      },
+      {
+       "slug": "recruiters",
+       "title": {
+        "en": "Recruiters and referrals",
+        "ru": "Контакты рекрутеров и рекомендации"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "life",
+   "icon": "heart",
+   "title": {
+    "en": "Life",
+    "ru": "Жизнь"
+   },
+   "groups": [
+    {
+     "slug": "self",
+     "icon": "heart-pulse",
+     "title": {
+      "en": "Self-improvement",
+      "ru": "Самосовершенствование"
+     },
+     "line": {
+      "en": "Health, body, mind and habits: everything that keeps you in shape.",
+      "ru": "Здоровье, тело, голова и привычки: всё, что держит вас в форме."
+     },
+     "items": [
+      {
+       "slug": "health",
+       "title": {
+        "en": "Health",
+        "ru": "Здоровье"
+       }
+      },
+      {
+       "slug": "psychology",
+       "title": {
+        "en": "Psychology",
+        "ru": "Психология"
+       }
+      },
+      {
+       "slug": "sport",
+       "title": {
+        "en": "Sport",
+        "ru": "Спорт"
+       }
+      },
+      {
+       "slug": "habits",
+       "title": {
+        "en": "Habits and routine",
+        "ru": "Привычки и режим"
+       }
+      },
+      {
+       "slug": "learning",
+       "title": {
+        "en": "Learning and skills",
+        "ru": "Обучение и навыки"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "finance",
+     "icon": "piggy-bank",
+     "title": {
+      "en": "Personal finance and investing",
+      "ru": "Личные финансы и инвестиции"
+     },
+     "line": {
+      "en": "Your money: spending, savings, investing and payments.",
+      "ru": "Ваши деньги: траты, накопления, инвестиции и платежи."
+     },
+     "items": [
+      {
+       "slug": "budget",
+       "title": {
+        "en": "Budget and spending",
+        "ru": "Бюджет и личные траты"
+       }
+      },
+      {
+       "slug": "savings",
+       "title": {
+        "en": "Savings and goals",
+        "ru": "Накопления и финансовые цели"
+       }
+      },
+      {
+       "slug": "investing",
+       "title": {
+        "en": "Investing, stocks and crypto",
+        "ru": "Инвестиции, акции и крипта"
+       }
+      },
+      {
+       "slug": "payments",
+       "title": {
+        "en": "Loans and regular payments",
+        "ru": "Кредиты и регулярные платежи"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "family",
+     "icon": "heart-handshake",
+     "title": {
+      "en": "Family and relationships",
+      "ru": "Семья и отношения"
+     },
+     "line": {
+      "en": "Dates, gifts, children and shared plans.",
+      "ru": "Даты, подарки, дети и общие планы."
+     },
+     "items": [
+      {
+       "slug": "dates",
+       "title": {
+        "en": "Important dates and gift ideas",
+        "ru": "Важные даты и идеи подарков"
+       }
+      },
+      {
+       "slug": "household",
+       "title": {
+        "en": "Family budget and chores",
+        "ru": "Семейный бюджет и дела"
+       }
+      },
+      {
+       "slug": "kids",
+       "title": {
+        "en": "Children and activities",
+        "ru": "Дети, кружки и развитие"
+       }
+      },
+      {
+       "slug": "plans",
+       "title": {
+        "en": "Shared plans and leisure",
+        "ru": "Совместные планы и досуг"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "home",
+     "icon": "house",
+     "title": {
+      "en": "Home and smart home",
+      "ru": "Дом и умный дом"
+     },
+     "line": {
+      "en": "Your home, its devices, repairs and daily life.",
+      "ru": "Дом, его устройства, ремонт и быт."
+     },
+     "items": [
+      {
+       "slug": "scenarios",
+       "title": {
+        "en": "Automation scenarios",
+        "ru": "Сценарии автоматизации"
+       }
+      },
+      {
+       "slug": "devices",
+       "title": {
+        "en": "Devices and sensors",
+        "ru": "Устройства и датчики"
+       }
+      },
+      {
+       "slug": "renovation",
+       "title": {
+        "en": "Renovation and interior",
+        "ru": "Ремонт и интерьер"
+       }
+      },
+      {
+       "slug": "upkeep",
+       "title": {
+        "en": "Upkeep",
+        "ru": "Быт и обслуживание"
+       }
+      },
+      {
+       "slug": "shopping",
+       "title": {
+        "en": "Home shopping",
+        "ru": "Покупки для дома"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "food",
+     "icon": "utensils-crossed",
+     "title": {
+      "en": "Food and recipes",
+      "ru": "Питание и рецепты"
+     },
+     "line": {
+      "en": "Menus, recipes, shopping and diet.",
+      "ru": "Меню, рецепты, покупки и рацион."
+     },
+     "items": [
+      {
+       "slug": "menu",
+       "title": {
+        "en": "Weekly menu",
+        "ru": "Меню на неделю"
+       }
+      },
+      {
+       "slug": "recipes",
+       "title": {
+        "en": "Recipe book",
+        "ru": "Книга рецептов"
+       }
+      },
+      {
+       "slug": "shopping",
+       "title": {
+        "en": "Shopping list",
+        "ru": "Список покупок"
+       }
+      },
+      {
+       "slug": "nutrition",
+       "title": {
+        "en": "Calories and nutrition",
+        "ru": "Калории, БЖУ и рацион"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "travel",
+     "icon": "plane",
+     "title": {
+      "en": "Travel and relocation",
+      "ru": "Путешествия и релокация"
+     },
+     "line": {
+      "en": "Routes, stays, documents and trip budgets.",
+      "ru": "Маршруты, жильё, документы и бюджет поездок."
+     },
+     "items": [
+      {
+       "slug": "routes",
+       "title": {
+        "en": "Routes and tickets",
+        "ru": "Маршруты и билеты"
+       }
+      },
+      {
+       "slug": "stays",
+       "title": {
+        "en": "Stays and hotels",
+        "ru": "Жильё и отели"
+       }
+      },
+      {
+       "slug": "wishlist",
+       "title": {
+        "en": "Places wishlist",
+        "ru": "Вишлист стран и мест"
+       }
+      },
+      {
+       "slug": "packing",
+       "title": {
+        "en": "Packing lists and documents",
+        "ru": "Чек-листы сборов и документы"
+       }
+      },
+      {
+       "slug": "budget",
+       "title": {
+        "en": "Trip budget",
+        "ru": "Бюджет поездок"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "car",
+     "icon": "car",
+     "title": {
+      "en": "Car and transport",
+      "ru": "Авто и транспорт"
+     },
+     "line": {
+      "en": "Service, costs and everything about your car.",
+      "ru": "Обслуживание, расходы и всё, что связано с машиной."
+     },
+     "items": [
+      {
+       "slug": "service",
+       "title": {
+        "en": "Service, repairs and mileage",
+        "ru": "ТО, ремонт и пробег"
+       }
+      },
+      {
+       "slug": "insurance",
+       "title": {
+        "en": "Insurance, taxes and fines",
+        "ru": "Страховки, налоги и штрафы"
+       }
+      },
+      {
+       "slug": "fuel",
+       "title": {
+        "en": "Fuel and washing",
+        "ru": "Расходы на топливо и мойку"
+       }
+      },
+      {
+       "slug": "parts",
+       "title": {
+        "en": "Tuning and parts",
+        "ru": "Тюнинг и запчасти"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "pets",
+     "icon": "paw-print",
+     "title": {
+      "en": "Pets",
+      "ru": "Питомцы"
+     },
+     "line": {
+      "en": "Health, care and shopping for your pets.",
+      "ru": "Здоровье, уход и покупки для ваших питомцев."
+     },
+     "items": [
+      {
+       "slug": "health",
+       "title": {
+        "en": "Health, vaccines and tests",
+        "ru": "Здоровье, прививки и анализы"
+       }
+      },
+      {
+       "slug": "care",
+       "title": {
+        "en": "Food, care and routine",
+        "ru": "Корм, уход и режим"
+       }
+      },
+      {
+       "slug": "vets",
+       "title": {
+        "en": "Vets and grooming",
+        "ru": "Ветклиники и груминг"
+       }
+      },
+      {
+       "slug": "training",
+       "title": {
+        "en": "Training and shopping",
+        "ru": "Дрессировка и покупки"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "hobby",
+     "icon": "palette",
+     "title": {
+      "en": "Creativity and hobbies",
+      "ru": "Творчество и хобби"
+     },
+     "line": {
+      "en": "What you do for the soul.",
+      "ru": "То, что вы делаете для души."
+     },
+     "items": [
+      {
+       "slug": "music",
+       "title": {
+        "en": "Music and instruments",
+        "ru": "Музыка и инструменты"
+       }
+      },
+      {
+       "slug": "art",
+       "title": {
+        "en": "Drawing, photo and design",
+        "ru": "Рисование, фото и дизайн"
+       }
+      },
+      {
+       "slug": "diy",
+       "title": {
+        "en": "Crafts and DIY",
+        "ru": "Рукоделие и DIY"
+       }
+      },
+      {
+       "slug": "collecting",
+       "title": {
+        "en": "Collecting",
+        "ru": "Коллекционирование"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "media",
+     "icon": "film",
+     "title": {
+      "en": "Films, books and music",
+      "ru": "Кино, книги и музыка"
+     },
+     "line": {
+      "en": "What to watch, read and hear, and what you think of it.",
+      "ru": "Что посмотреть, прочесть и послушать, и что вы об этом думаете."
+     },
+     "items": [
+      {
+       "slug": "films",
+       "title": {
+        "en": "Films and series",
+        "ru": "Фильмы и сериалы"
+       }
+      },
+      {
+       "slug": "books",
+       "title": {
+        "en": "Books and notes",
+        "ru": "Книги и конспекты"
+       }
+      },
+      {
+       "slug": "music",
+       "title": {
+        "en": "Music and podcasts",
+        "ru": "Музыка и подкасты"
+       }
+      },
+      {
+       "slug": "ratings",
+       "title": {
+        "en": "Recommendations and ratings",
+        "ru": "Рекомендации и оценки"
+       }
+      }
+     ]
+    },
+    {
+     "slug": "games",
+     "icon": "gamepad-2",
+     "title": {
+      "en": "Games",
+      "ru": "Игры и гейминг"
+     },
+     "line": {
+      "en": "What to play, how to beat it and with whom.",
+      "ru": "Во что играть, как пройти и с кем."
+     },
+     "items": [
+      {
+       "slug": "backlog",
+       "title": {
+        "en": "Backlog",
+        "ru": "Бэклог (во что поиграть)"
+       }
+      },
+      {
+       "slug": "guides",
+       "title": {
+        "en": "Walkthroughs, guides and builds",
+        "ru": "Прохождения, гайды и билды"
+       }
+      },
+      {
+       "slug": "esports",
+       "title": {
+        "en": "Esports and tournaments",
+        "ru": "Киберспорт и турниры"
+       }
+      },
+      {
+       "slug": "squad",
+       "title": {
+        "en": "Streams, clans and teammates",
+        "ru": "Стримы, кланы и напарники"
+       }
+      },
+      {
+       "slug": "hardware",
+       "title": {
+        "en": "Hardware and consoles",
+        "ru": "Железо, консоли и девайсы"
+       }
+      },
+      {
+       "slug": "gamedev",
+       "title": {
+        "en": "Game dev and mods",
+        "ru": "Геймдев и моды"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
