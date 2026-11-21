@@ -255,6 +255,7 @@
           },
           "private": [
             "/api/health",
+            "/api/tg",
             "/api/core-origin",
             "/api/auth",
             "/api/config-image",

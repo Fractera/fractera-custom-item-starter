@@ -15,7 +15,12 @@ A branch of the element's frame (node step 778). The owner, 2026-11-17: «В ф�
 - **Closed by the element's admin role.** Only the architect and this element's own admin (`lib/roles.ts` → `OWN_ADMIN_ROLE`, one of
   `elementAdmin001…elementAdmin980`, its number in the node's registry) get in. The lock stands at the edge (`proxy.ts`, «ворота страниц
   управления элементом»): a guest who types the address gets the sign-in form and comes back here, a signed-in person without the role
-  goes to the home page with a notice — the page's HTML never leaves for either. Inside Telegram the person signs in once, the same way.
+  goes to the home page with a notice — the page's HTML never leaves for either.
+- **Inside Telegram — no sign-in form** (node step 832-6; the owner of the node, Telegram 628: «Telegram сам защищает. Убрать это всё»).
+  The gate sends a visitor with no session to `/api/tg/open`: it reads Telegram's signed launch (`#tgWebAppData`), trades it at
+  `POST /api/tg/session` — checked with this element's own bot token and its bot's admitted people (`lib/auth/telegram-ticket.mjs`) —
+  for the HttpOnly ticket `fractera-telegram` (24 h), which `getSession` reads as this element's own admin. An ordinary browser has no
+  launch data and goes on to the sign-in form, as before; a Telegram account the bot did not admit gets one line, no form.
 - **No site chrome.** `data-tg-app` on the layout's wrapper hides the site's header, footer, menus, banners and badges
   (`styles/globals.css`, the rule with `[data-site-chrome]`); the element's own design tokens stay — its look is its own.
 - **Telegram's own header wears the element's background.** `_components/tg-bridge.client.tsx` tells Telegram the app is ready, expands

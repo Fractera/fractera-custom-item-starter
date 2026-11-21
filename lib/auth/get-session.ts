@@ -5,6 +5,8 @@ import { shouldBypassAuth } from "@/lib/auth/auth-bypass"
 import { isOwnerAtMachine } from "@/lib/auth/owner-at-machine"
 import { isTemporaryPublicAddress } from "@/lib/auth/temporary-address"
 import { ownId } from "@/lib/own-id"
+import { OWN_ADMIN_ROLE } from "@/lib/roles"
+import { readTicket, ticketOfCookie } from "@/lib/auth/telegram-ticket.mjs"
 
 export type AppSession = {
   userId: string
@@ -17,6 +19,8 @@ export type AppSession = {
    * всем подряд.
    */
   viaMachine?: true
+  /** 832-6: let in by the Mini App's Telegram ticket — this element's own admin, no e-mail. */
+  viaTelegram?: true
 }
 
 export async function getSession(req?: NextRequest): Promise<AppSession | null> {
@@ -79,6 +83,11 @@ export async function getSession(req?: NextRequest): Promise<AppSession | null> 
   const authUrl =
     nodeAuthUrl() ?? ''
   const cookie = req?.headers.get('cookie') ?? ''
+  // 832-6 (the owner of the node, Telegram 628: «Telegram сам защищает. Убрать это всё»): the Mini App's Telegram ticket — a person this
+  // element's bot admitted, signed with this element's own key (`lib/auth/telegram-ticket.mjs`) — is this element's own admin. Only
+  // here and only this element: never the architect, never a neighbour's role.
+  const tg = OWN_ADMIN_ROLE ? readTicket(ticketOfCookie(cookie), process.env.SETTINGS_SECRET?.trim() ?? '') : null
+  if (tg) return { userId: `telegram-${tg}`, email: `telegram-${tg}@telegram`, roles: [OWN_ADMIN_ROLE], viaTelegram: true }
   // 🔒 328-3: БИЛЕТ ЕДИНОГО ВХОДА — на собственном домене элемента кука службы входа не живёт; человека знает центр по
   // билету, который `/api/auth/callback` поставил своей кукой. Погашенный билет (выход в центре) — дальше обычный путь.
   const ticket = ticketFrom(cookie)

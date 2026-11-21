@@ -11,7 +11,8 @@ const dir = () => {
   return d ? join(d, "channel", "telegram") : null
 }
 
-function token(): string {
+/** 832-6: the element's own bot token — also checks its Mini App's launches (`app/api/tg/session`). Never leaves the server. */
+export function token(): string {
   const d = dir()
   if (!d) return ""
   try {
@@ -22,7 +23,8 @@ function token(): string {
   }
 }
 
-function allowed(): string[] {
+/** The Telegram ids its bot admitted (`access.json` → `allowFrom`). */
+export function allowed(): string[] {
   const d = dir()
   if (!d) return []
   try {

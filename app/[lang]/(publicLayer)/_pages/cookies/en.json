@@ -11,6 +11,7 @@
       "**NEXT_LOCALE** — the language you chose; 1 year.",
       "**fractera-theme**, **fractera-app-width** — light or dark theme and the page width; 1 year. A copy is kept in your browser's storage too.",
       "**fractera-ticket** — keeps you signed in; only after you sign in; 30 days; not readable by scripts on the page.",
+      "**fractera-telegram** — opens the element's app in Telegram without a password; only for people the element's bot admitted; 24 hours; not readable by scripts on the page.",
       "**fractera-cookie-consent** — your answer in the cookie banner; kept in your browser's storage, not sent anywhere."
     ], "bid": "ck4ls" },
     { "kind": "widget-static-policy-analytics", "bid": "ck5ga" },

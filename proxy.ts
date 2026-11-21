@@ -100,6 +100,9 @@ const PUBLIC_API_PREFIXES = [
   // 518-7: поиск по страницам отзывов — то же, что и так видно в списке `/reviews`. Запись (POST, DELETE) стережёт сам обработчик:
   // ключ элемента или вход архитектора.
   "/api/reviews",
+  // 832-6: the Mini App's way in — `open` carries no data, `session` is guarded by Telegram's signature with this element's bot token.
+  "/api/tg/open",
+  "/api/tg/session",
 ];
 
 // Non-content root pages that live at the ROOT and never take a language prefix
@@ -241,7 +244,9 @@ async function apiAuthGate(request: NextRequest): Promise<NextResponse> {
         const sessionToken =
           request.cookies.get("authjs.session-token") ??
           request.cookies.get("__Secure-authjs.session-token") ??
-          request.cookies.get("fractera-ticket");
+          request.cookies.get("fractera-ticket") ??
+          // 832-6: the Mini App's Telegram ticket; `getSession` checks its signature, the gate only its presence (as for the two above)
+          request.cookies.get("fractera-telegram");
 
         if (!sessionToken) {
           return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -611,6 +616,16 @@ async function elementAdminPagesGate(request: NextRequest): Promise<NextResponse
     home.search = "?no-access=1";
     return NextResponse.redirect(home);
   }
+  // 832-6 (the owner of the node, Telegram 628: «Telegram сам защищает. Убрать это всё»): the Mini App opens without a sign-in form — a
+  // visitor with no session goes first to `/api/tg/open`, which trades Telegram's signed launch for this element's Telegram ticket and
+  // comes back. Only an ordinary browser (no launch data) returns with `tg=none` and goes on to the sign-in form below, as before.
+  if (rest[0] === "tg" && back.get("tg") !== "none") {
+    const open = request.nextUrl.clone();
+    open.pathname = "/api/tg/open";
+    open.search = `?next=${encodeURIComponent(`${pathname}${search}`)}`;
+    return NextResponse.redirect(open);
+  }
+  back.delete("tg");
   back.set("signed-in", "1");
   const path = `${pathname}?${back.toString()}`;
   // Свой домен элемента: вход через код центра узла, возврат — на эту же страницу (только путь этого сайта).
