@@ -43,8 +43,8 @@
   },
   "source": {
     "from": "core",
-    "tool": "voice-input",
+    "tool": "tool-voice-input",
     "version": "1.1.1",
-    "bodyHash": "8cc1f53601244b56"
+    "bodyHash": "dc6aca4367a99359"
   }
 }

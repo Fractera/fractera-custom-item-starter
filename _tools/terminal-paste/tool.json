@@ -47,7 +47,7 @@
   },
   "source": {
     "from": "core",
-    "tool": "terminal-paste",
+    "tool": "tool-terminal-paste",
     "version": "1.0.0",
     "bodyHash": "2dd1ccbcb0edc713"
   }
