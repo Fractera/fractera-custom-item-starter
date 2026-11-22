@@ -3,14 +3,7 @@
   "parts": [
     {
       "id": "app-dialog",
-      "kind": "tool",
-      "title": {
-        "en": "Modal window",
-        "ru": "Модальное окно"
-      },
-      "version": "1.0.0",
-      "parts": [],
-      "scope": "any",
+      "kind": "composite",
       "path": "components/dialog/app-dialog.client.tsx",
       "export": "AppDialog",
       "what": {
