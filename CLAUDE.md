@@ -191,6 +191,10 @@ server, client or combined function. One page changes nothing: it is still a ser
   send it with `reply`) and only then tell the node you are done (`/api/agents/done`).
 - **A finished task ends with the evidence, not a promise:** each check from your plan, what it showed (the command and its line, the
   live answer) and what was not checked and why.
+- **A build is weighed before it starts** (the owner of the node, 2026-11-22:
+  «с минимальным расходом токенов и времени»): before a rebuild or a deploy — the cases the change touches (this computer and a server;
+  your address as born, renamed, on an own domain), each with its proof, and what else in your plan could ride in the same build; one
+  build for all of it, a question to your person when the wait or the choice is theirs (skill `before-a-build`).
 - **A built surface is seen before it is shown:** a page, a section, a menu you built or changed — `npm run eyes -- <its address>`, the
   screenshot looked at, «covered» and console errors read (skill `use-eyes`), then shown to your person. The person's Chrome with the
   Claude extension is only for acting in someone else's interface (skill `connect-own-domain`).
