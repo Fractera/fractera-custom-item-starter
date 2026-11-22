@@ -1,6 +1,6 @@
 # The agent kit — a copy of the core's (node step 836)
 
-Copied by `npm run agent-kit:template` from the core of Fractera/web4-node-starter-kit at `297dfc69`. Never edit these files
+Copied by `npm run agent-kit:template` from the core of Fractera/web4-node-starter-kit at `6047e1cb`. Never edit these files
 here: a fix goes into the core's kit (`app/[lang]/(architectLayer)/architect/kits/_agent-kit`) and comes back by the same command.
 Only `client/kit-place.ts` is the element's own (the core's `element/kit-place.ts`): the doors of this element and the socket.
 
@@ -23,7 +23,7 @@ Only `client/kit-place.ts` is the element's own (the core's `element/kit-place.t
 | `components/agent-kit/client/sleeping-card.client.tsx` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/sleeping-card.client.tsx` | 695ebd7f1503 |
 | `components/agent-kit/client/telegram-channel.client.tsx` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/telegram-channel.client.tsx` | 1b77bf2cf28d |
 | `components/agent-kit/client/telegram-remove.client.tsx` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/telegram-remove.client.tsx` | 07f61cf72db1 |
-| `components/agent-kit/client/terminal-auth.mjs` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/terminal-auth.mjs` | 94174f03376b |
+| `components/agent-kit/client/terminal-auth.mjs` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/terminal-auth.mjs` | 96e25e5fbe7c |
 | `components/agent-kit/client/terminal-paste.mjs` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/terminal-paste.mjs` | f49eef9f360a |
 | `components/agent-kit/client/xterm-terminal.client.tsx` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/client/xterm-terminal.client.tsx` | beca33ebd444 |
 | `components/agent-kit/words/agent-links.i18n.ts` | `app/[lang]/(architectLayer)/architect/kits/_agent-kit/core/words/agent-links.i18n.ts` | aa55a910d8a4 |
