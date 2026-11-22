@@ -27,7 +27,8 @@ if (!projects) { console.error('===TG_PROJECTS_TREE=== menu.json has no «projec
 projects.children = catalog.sections.map((s) => ({ slug: `projects/${s.slug}`, title: s.title }))
 const menuText = `${JSON.stringify(menu, null, 2)}\n`
 
-const read = (f) => { try { return readFileSync(f, 'utf8') } catch { return '' } }
+// Windows checks out text with CRLF (the CI's windows-latest, 2026-11-22: ===TG_PROJECTS_STALE=== on unchanged files): compare by content.
+const read = (f) => { try { return readFileSync(f, 'utf8').replace(/\r\n/g, '\n') } catch { return '' } }
 const stale = [[join(data, 'projects.json'), catalogText], [menuFile, menuText]].filter(([f, t]) => read(f) !== t)
 if (check) {
   if (stale.length) {
