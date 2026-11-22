@@ -194,7 +194,7 @@
         "from": "core",
         "tool": "tool-voice-input",
         "version": "1.1.1",
-        "bodyHash": "dc6aca4367a99359"
+        "bodyHash": "8cc1f53601244b56"
       },
       "what": {
         "en": "A small button beside a field: hold it and it records, release it and the recording goes off to be transcribed. While recording, a 40-pixel bar shows the incoming sound with the elapsed time in its middle. It remembers the caret — the transcript lands where the cursor stood, not at the end of the field.",
