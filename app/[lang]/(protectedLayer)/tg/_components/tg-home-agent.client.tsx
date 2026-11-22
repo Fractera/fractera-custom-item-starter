@@ -75,7 +75,6 @@ export function TgHomeAgent({ lang, ui }: { lang: string; ui: TgAgentUi }) {
     </div>
   )
   const asks = got.asks ?? []
-  const natives = got.natives ?? []
   return (
     <div className="flex flex-col gap-6" data-block="tg-home-agent">
       <Small data-block="tg-home-online" className="-mt-4 flex items-center gap-1.5 px-4">
@@ -110,7 +109,31 @@ export function TgHomeAgent({ lang, ui }: { lang: string; ui: TgAgentUi }) {
           {w(got.limits?.sevenDay ?? null, ui.sevenDay)}
         </div>
       </Group>
-      {natives.length ? (
+      <Group title={ui.asks}>
+        <div className="flex flex-col rounded-xl bg-[var(--tg-card)]" data-block="tg-home-asks">
+          {asks.length ? asks.map((x, i) => (
+            <p data-block="tgh11" className={cn("px-4 py-3 text-[length:var(--fs-body)]", i > 0 && "border-border border-t")} key={`${x.at}-${i}`}>{x.text}</p>
+          )) : <Small data-block="tgh12" className="px-4 py-3">{ui.asksNone}</Small>}
+        </div>
+      </Group>
+    </div>
+  )
+}
+
+/** 841 (the owner, Telegram 963, 992, 993): «Нативные элементы» — the node's native elements, two cards and «Ещё · N», at the very bottom of
+ *  home: the least used part. Its own question to the branch's door; nothing to open. */
+export function TgNatives({ lang, ui }: { lang: string; ui: TgAgentUi }) {
+  const [natives, setNatives] = useState<{ name: string; description: string | null; on: boolean }[]>([])
+  useEffect(() => {
+    let live = true
+    fetch(`/${lang}/tg/api/agent`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((b: { ok?: boolean; natives?: { name: string; description: string | null; on: boolean }[] }) => { if (live && b?.ok) setNatives(b.natives ?? []) })
+      .catch(() => {})
+    return () => { live = false }
+  }, [lang])
+  return (
+    natives.length ? (
         <Group title={ui.natives}>
           <Collapsible className="flex flex-col overflow-hidden rounded-xl bg-[var(--tg-card)]" data-block="tg-home-natives">
             {natives.slice(0, 2).map((n, i) => <Native i={i} key={n.name} n={n} ui={ui} />)}
@@ -123,14 +146,6 @@ export function TgHomeAgent({ lang, ui }: { lang: string; ui: TgAgentUi }) {
             ) : null}
           </Collapsible>
         </Group>
-      ) : null}
-      <Group title={ui.asks}>
-        <div className="flex flex-col rounded-xl bg-[var(--tg-card)]" data-block="tg-home-asks">
-          {asks.length ? asks.map((x, i) => (
-            <p data-block="tgh11" className={cn("px-4 py-3 text-[length:var(--fs-body)]", i > 0 && "border-border border-t")} key={`${x.at}-${i}`}>{x.text}</p>
-          )) : <Small data-block="tgh12" className="px-4 py-3">{ui.asksNone}</Small>}
-        </div>
-      </Group>
-    </div>
+      ) : null
   )
 }

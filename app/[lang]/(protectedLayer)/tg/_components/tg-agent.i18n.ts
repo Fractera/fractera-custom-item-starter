@@ -32,7 +32,7 @@ const ru: TgAgentUi = {
   noWindow: "разговора ещё не было", noAnswer: "ядро сейчас не отвечает — попробуйте позже",
   subscription: "Подписка Claude Code", own: "свой аккаунт", node: "подписка узла", notSigned: "вход ещё не выполнен",
   bot: "Telegram-бот", noBot: "ещё не подключён",
-  natives: "Встроенные элементы", more: "Ещё · {n}", less: "Свернуть", off: "выключен",
+  natives: "Нативные элементы", more: "Ещё · {n}", less: "Свернуть", off: "выключен",
   online: "элемент в сети · обновлено {time}", windowOf: "Контекстное окно · {size} токенов", usedOf: "занято {used} из {size}", asks: "Ждёт вас",
   asksNone: "Ничего не ждёт — всё сделано ✓", badge: { coding: "работает", waiting: "ждёт", sleeping: "спит" },
   fuel: "Топливо подписки", fiveHour: "5 часов", sevenDay: "7 дней", resets: "сброс {time}", notMeasured: "ещё не замерен", change: "Сменить",

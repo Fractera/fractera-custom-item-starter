@@ -3,7 +3,7 @@
 // through the branch's door), and the four sections on coloured tiles with what each holds now (today's calendar lives in Cron's line).
 
 import { metaForLang } from "@/config/app-config"
-import { TgHomeAgent } from "../../../_components/tg-home-agent.client"
+import { TgHomeAgent, TgNatives } from "../../../_components/tg-home-agent.client"
 import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
 import { TgIntro } from "../../../_components/tg-intro.client"
@@ -39,6 +39,7 @@ export function Widget({ lang }: { lang: string }) {
             ]}
           />
         </TgGroup>
+        <TgNatives lang={lang} ui={tgAgentUi(lang)} />
       </div>
     </div>
   )
