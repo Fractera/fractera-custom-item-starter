@@ -14,7 +14,7 @@
         "en": "Build log",
         "ru": "Журнал сборки"
       },
-      "version": "1.0.0",
+      "version": "1.0.1",
       "parts": [],
       "scope": "panel",
       "path": "components/deploy/core-terminal.client.tsx",
@@ -39,7 +39,7 @@
       "source": {
         "from": "core",
         "tool": "core-terminal",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "bodyHash": "197bcf2d55b8c74f"
       },
       "usedBy": [
@@ -126,13 +126,13 @@
         "en": "Voice input",
         "ru": "Голосовой ввод"
       },
-      "version": "1.1.1",
+      "version": "1.1.2",
       "parts": [],
       "scope": "any",
       "source": {
         "from": "core",
         "tool": "tool-voice-input",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "bodyHash": "8cc1f53601244b56"
       },
       "what": {
@@ -189,7 +189,7 @@
       "parts": [
         {
           "id": "tool-voice-input",
-          "version": "1.1.1"
+          "version": "1.1.2"
         }
       ],
       "scope": "any",

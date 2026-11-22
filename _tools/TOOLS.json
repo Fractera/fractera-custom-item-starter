@@ -55,13 +55,13 @@
       "id": "voice-input",
       "entry": "client/voice-input.client.tsx",
       "dir": "_tools/voice-input",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "parts": [],
       "scope": "any",
       "source": {
         "from": "core",
         "tool": "tool-voice-input",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "bodyHash": "8cc1f53601244b56"
       },
       "needs": [

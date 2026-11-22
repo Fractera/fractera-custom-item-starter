@@ -1,6 +1,6 @@
 # The agent kit — a copy of the core's (node step 836)
 
-Copied by `npm run agent-kit:template` from the core of Fractera/web4-node-starter-kit at `ffc4ddd7`. Never edit these files
+Copied by `npm run agent-kit:template` from the core of Fractera/web4-node-starter-kit at `297dfc69`. Never edit these files
 here: a fix goes into the core's kit (`app/[lang]/(architectLayer)/architect/kits/_agent-kit`) and comes back by the same command.
 Only `client/kit-place.ts` is the element's own (the core's `element/kit-place.ts`): the doors of this element and the socket.
 
