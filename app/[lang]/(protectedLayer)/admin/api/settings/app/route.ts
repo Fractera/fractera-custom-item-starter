@@ -1,10 +1,10 @@
 // @api read and change this element own site settings when CONFIG is off
 import { NextRequest, NextResponse } from "next/server"
 import { revalidatePath } from "next/cache"
-import { getSession } from "@/lib/auth/get-session"
 import { getAppConfig } from "@/config/app-config"
 import { linkOn } from "@/lib/own-site"
 import { writeAppPatch } from "@/lib/architect/site-config-writer"
+import { adminOfElement } from "../../../_libs/admin-door"
 
 // СВОИ НАСТРОЙКИ ЭЛЕМЕНТА (шаг 324-8). Решение владельца 2026-09-28: отключившись от CONFIG, элемент должен иметь свои
 // записи и тот же интерфейс настроек — «повторить интерфейс настроек app CONFIG … всё скопировать и адаптировать»;
@@ -20,11 +20,8 @@ export const dynamic = "force-dynamic"
 
 // 580-4: архитектор и администратор этого приложения (владелец 2026-10-24: «расширяем право доступа для администрирования
 // администратору этой организации»); чужого администратора служба входа на сайт приложения не пускает.
-async function architect(req: NextRequest): Promise<200 | 401 | 403> {
-  const s = await getSession(req)
-  if (!s) return 401
-  return (s.roles ?? []).some((r) => r === "architect" || r === "admin") ? 200 : 403
-}
+// 840-5: the administration category — the architect and this element's own admin (`../../../_libs/admin-door.ts`).
+const architect = adminOfElement
 
 export async function GET(req: NextRequest) {
   const a = await architect(req)

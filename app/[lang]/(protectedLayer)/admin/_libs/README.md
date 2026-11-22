@@ -16,3 +16,5 @@ Code without markup that only the **admin** branch uses: reading and shaping its
 ## Rule of thumb
 
 If a function would make sense in another branch tomorrow, it belongs in `lib/` today.
+
+- `admin-door.ts` — the lock of the branch's doors (840-5): the architect and this element's own admin, a Telegram ticket included.

@@ -1,10 +1,10 @@
 // @api read and change this element own site switches when CONFIG is off
 import { NextRequest, NextResponse } from "next/server"
 import { revalidatePath } from "next/cache"
-import { getSession } from "@/lib/auth/get-session"
 import { getPlatformConfig } from "@/config/platform-config"
 import { linkOn } from "@/lib/own-site"
 import { writeFeaturesPatch } from "@/lib/architect/site-config-writer"
+import { adminOfElement } from "../../../_libs/admin-door"
 
 // СВОИ ВЫКЛЮЧАТЕЛИ САЙТА ЭЛЕМЕНТА (шаг 579-2). Слово владельца 2026-10-23: «когда пользователь выбирает режим завод приложений
 // ему нужно место в котором он точно также настраивает все эти вещи»; переключатели функций — «Перенести (Рекомендую)».
@@ -19,11 +19,8 @@ import { writeFeaturesPatch } from "@/lib/architect/site-config-writer"
 // `app/api/settings/features` (`lib/architect/site-config-writer.ts`).
 export const dynamic = "force-dynamic"
 
-async function architect(req: NextRequest): Promise<200 | 401 | 403> {
-  const s = await getSession(req)
-  if (!s) return 401
-  return (s.roles ?? []).some((r) => r === "architect" || r === "admin") ? 200 : 403
-}
+// 840-5: the administration category — the architect and this element's own admin (`../../../_libs/admin-door.ts`).
+const architect = adminOfElement
 
 const flat = () => ({ ...getPlatformConfig().features })
 

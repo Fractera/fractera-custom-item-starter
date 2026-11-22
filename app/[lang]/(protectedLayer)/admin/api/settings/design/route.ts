@@ -1,8 +1,8 @@
 // @api read and change this element's own design
 import { NextRequest, NextResponse } from "next/server"
 import { revalidatePath } from "next/cache"
-import { getSession } from "@/lib/auth/get-session"
 import { readRawDesignConfig, writeDesignPatch } from "@/lib/architect/design-config-writer"
+import { adminOfElement } from "../../../_libs/admin-door"
 
 // СВОЁ ОФОРМЛЕНИЕ ЭЛЕМЕНТА (шаг 579-1). Слово владельца 2026-10-23: «когда пользователь отключает дизайн нужно иметь внутри
 // приложения такую конструкцию которая позволяет внутри одного элемента делать все то же самое». Редакторы —
@@ -19,11 +19,8 @@ import { readRawDesignConfig, writeDesignPatch } from "@/lib/architect/design-co
 // Дверь ядра по ключу `app/api/settings/design` (280-6) не тронута — её зовёт ядро.
 export const dynamic = "force-dynamic"
 
-async function architect(req: NextRequest): Promise<200 | 401 | 403> {
-  const s = await getSession(req)
-  if (!s) return 401
-  return (s.roles ?? []).some((r) => r === "architect" || r === "admin") ? 200 : 403
-}
+// 840-5: the administration category — the architect and this element's own admin (`../../../_libs/admin-door.ts`).
+const architect = adminOfElement
 
 export async function GET(req: NextRequest) {
   const a = await architect(req)
