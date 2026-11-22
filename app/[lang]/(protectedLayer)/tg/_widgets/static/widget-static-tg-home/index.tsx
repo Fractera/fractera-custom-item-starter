@@ -1,9 +1,9 @@
-// @local — the home screen of this element's Telegram Mini App (node step 821; the owner's mock v2 A, «идеально» 438): today from the
-// element's calendar, the agent's card and its context window (an island asking the core through the branch's door), and the four
-// sections with what each holds now.
+// @local — the home screen of this element's Telegram Mini App (node step 821; the owner's mock v2 A, «идеально» 438; 840-4 — its top is the
+// Pult's top, Telegram 971): «Как начать» until «Прочитано», the agent's card, «Топливо подписки» and «Ждёт вас» (an island asking the core
+// through the branch's door), and the four sections on coloured tiles with what each holds now (today's calendar lives in Cron's line).
 
 import { metaForLang } from "@/config/app-config"
-import { TgAgent } from "../../../_components/tg-agent.client"
+import { TgHomeAgent } from "../../../_components/tg-home-agent.client"
 import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
 import { TgIntro } from "../../../_components/tg-intro.client"
@@ -18,25 +18,15 @@ export function Widget({ lang }: { lang: string }) {
   const ui = homeUi(lang)
   const base = `/${lang}/tg`
   const cal = calendarFacts()
-  const today = cal.entries.filter((e) => e.today)
   const on = cal.entries.filter((e) => e.on)
   const p = projectsSummary(lang)
   const facts = elementFacts()
-  const nextLine = cal.next ? fill(ui.next, { time: cal.next.time, name: cal.next.name ?? cal.next.message ?? cal.next.id }) : ui.calm
   return (
     <div className="flex flex-col gap-5 pb-10" data-block="tg-home" data-app-column="">
-      <TgHead line={ui.line} title={metaForLang(lang).siteName} />
+      <TgHead line={ui.line} refresh={ui.refresh} title={metaForLang(lang).siteName} />
       <div className="flex flex-col gap-6 px-3" data-block="tg-home-body">
+        <TgHomeAgent lang={lang} ui={tgAgentUi(lang)} />
         <TgIntro ui={tgIntroUi(lang)} />
-        <TgGroup title={ui.today}>
-          <TgRows rows={[{ icon: "calendar-clock", title: today.length ? plural(ui.todayTasks, today.length, lang) : ui.todayNone, hint: nextLine, href: `${base}/cron` }]} />
-        </TgGroup>
-        <TgGroup title={ui.agent}>
-          <TgAgent lang={lang} ui={tgAgentUi(lang)} variant="home" />
-        </TgGroup>
-        <TgGroup title={tgAgentUi(lang).fuel}>
-          <TgAgent lang={lang} ui={tgAgentUi(lang)} variant="fuel" />
-        </TgGroup>
         <TgGroup title={ui.sections}>
           <TgRows
             rows={[

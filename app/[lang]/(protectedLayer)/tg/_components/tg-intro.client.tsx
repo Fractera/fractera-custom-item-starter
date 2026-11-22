@@ -15,6 +15,7 @@ export function TgIntroText({ ui }: { ui: TgIntroUi }) {
     <div className="flex flex-col gap-2 text-[length:var(--fs-body)] leading-normal" data-block="tg-intro-text">
       <p data-block="tgi01">{ui.start}</p>
       <p data-block="tgi02" className="text-muted-foreground">{ui.build}</p>
+      <p data-block="tgi04" className="text-muted-foreground">{ui.kinds}</p>
       <p data-block="tgi03" className="font-medium">{ui.wish}</p>
     </div>
   )

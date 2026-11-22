@@ -8,6 +8,7 @@ import { ItemGroup } from "@/components/ui/item"
 import { Eyebrow } from "@/components/ui/typography"
 import { cn } from "@/lib/utils"
 import { TgRowView, type TgRowViewProps } from "./tg-row"
+import { toneOf } from "./tg-tone"
 
 const pascal = (name: string) => name.split("-").map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join("")
 
@@ -33,14 +34,16 @@ export function TgGroup({ title, aside, foot, children }: { title?: string | nul
   )
 }
 
-type RowProps = Omit<TgRowViewProps, "media" | "children"> & {
+type RowProps = Omit<TgRowViewProps, "media" | "children" | "tone"> & {
+  /** 840-4: the tile's colour; none — chosen by the icon's name */
+  tone?: TgRowViewProps["tone"]
   /** a lucide icon by its kebab name; no icon — a text row (the items of a direction) */
   icon?: string | null
 }
 
 /** One row by an icon's name (a server screen); a browser island draws `TgRowView` with its own icon. */
-export function TgRow({ icon, ...rest }: RowProps) {
-  return <TgRowView {...rest} media={icon ? <TgIcon name={icon} /> : null} />
+export function TgRow({ icon, tone, ...rest }: RowProps) {
+  return <TgRowView {...rest} media={icon ? <TgIcon name={icon} /> : null} tone={icon ? (tone ?? toneOf(icon)) : null} />
 }
 
 /** Rows with hairlines between them (each row draws the line above itself). */

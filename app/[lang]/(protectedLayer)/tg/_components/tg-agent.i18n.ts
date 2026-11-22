@@ -6,6 +6,7 @@ export type TgAgentUi = {
   subscription: string; own: string; node: string; notSigned: string; bot: string; noBot: string
   /** 840-4 (the owner, Telegram 954): the fuel under the agent's card and its model choice */
   fuel: string; fiveHour: string; sevenDay: string; resets: string; notMeasured: string; change: string
+  online: string; windowOf: string; usedOf: string; asks: string; asksNone: string; badge: { coding: string; waiting: string; sleeping: string }
   modelPick: string; effortPick: string; effortFixed: string; switchTo: string; switching: string; willSwitch: string; asleepNoSwitch: string; switchFailed: string
 }
 
@@ -15,6 +16,8 @@ const en: TgAgentUi = {
   noWindow: "no conversation yet", noAnswer: "the core does not answer now — try again later",
   subscription: "Claude Code subscription", own: "its own account", node: "the node's subscription", notSigned: "not signed in yet",
   bot: "Telegram bot", noBot: "not connected yet",
+  online: "element online · updated {time}", windowOf: "Context window · {size} tokens", usedOf: "{used} of {size} used", asks: "Waiting for you",
+  asksNone: "Nothing waits — all done ✓", badge: { coding: "working", waiting: "waiting", sleeping: "asleep" },
   fuel: "Subscription fuel", fiveHour: "5 hours", sevenDay: "7 days", resets: "resets {time}", notMeasured: "not measured yet", change: "Change",
   modelPick: "Model", effortPick: "Effort", effortFixed: "This model runs on effort medium.", switchTo: "Switch", switching: "Switching…",
   willSwitch: "I switch to {m} when the current turn ends", asleepNoSwitch: "The agent is asleep — write to it, and the model can be changed.",
@@ -27,6 +30,8 @@ const ru: TgAgentUi = {
   noWindow: "разговора ещё не было", noAnswer: "ядро сейчас не отвечает — попробуйте позже",
   subscription: "Подписка Claude Code", own: "свой аккаунт", node: "подписка узла", notSigned: "вход ещё не выполнен",
   bot: "Telegram-бот", noBot: "ещё не подключён",
+  online: "элемент в сети · обновлено {time}", windowOf: "Контекстное окно · {size} токенов", usedOf: "занято {used} из {size}", asks: "Ждёт вас",
+  asksNone: "Ничего не ждёт — всё сделано ✓", badge: { coding: "работает", waiting: "ждёт", sleeping: "спит" },
   fuel: "Топливо подписки", fiveHour: "5 часов", sevenDay: "7 дней", resets: "сброс {time}", notMeasured: "ещё не замерен", change: "Сменить",
   modelPick: "Модель", effortPick: "Усилие", effortFixed: "У этой модели усилие medium.", switchTo: "Переключить", switching: "Переключаю…",
   willSwitch: "Переключусь на {m}, когда закончу текущий ход", asleepNoSwitch: "Агент спит — напишите ему, и модель можно будет сменить.",

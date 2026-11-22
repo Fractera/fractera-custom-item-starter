@@ -7,10 +7,13 @@ import { ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/ui/item"
 import { cn } from "@/lib/utils"
+import { TILE, type TgTone } from "./tg-tone"
 
 export type TgRowViewProps = {
   /** the icon, already drawn; none — a text row (the items of a direction) */
   media?: ReactNode
+  /** 840-4: the tile's colour (the mock A–D) — a white glyph on it; none — the quiet grey tile */
+  tone?: TgTone | null
   title: string
   hint?: string | null
   /** a short value on the right: a count, a date */
@@ -26,10 +29,10 @@ export type TgRowViewProps = {
   children?: ReactNode
 }
 
-export function TgRowView({ media, title, hint, aside, href, external, soon, divided, children }: TgRowViewProps) {
+export function TgRowView({ media, tone, title, hint, aside, href, external, soon, divided, children }: TgRowViewProps) {
   const body = (
     <>
-      {media ? <ItemMedia className="size-9 rounded-[10px] bg-muted text-foreground">{media}</ItemMedia> : null}
+      {media ? <ItemMedia className={cn("size-9 rounded-[10px]", tone ? `${TILE[tone]} text-(--tg-tile-fg)` : "bg-muted text-foreground")}>{media}</ItemMedia> : null}
       <ItemContent className="min-w-0 gap-0.5">
         <ItemTitle className="text-[length:var(--fs-body)] leading-snug">{title}</ItemTitle>
         {hint ? <ItemDescription className="line-clamp-1 text-[length:var(--fs-small)]">{hint}</ItemDescription> : null}

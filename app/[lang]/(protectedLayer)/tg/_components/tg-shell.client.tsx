@@ -10,6 +10,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { TILE, toneOf } from "./tg-tone"
 import type { TgItem, TgMode, TgUi } from "../_libs/tg-menu"
 
 // The owner, 2026-11-18 (Telegram 741–743): «мне нужен интерфейс в котором … шаги могут открываться вниз … папка проекты … папка
@@ -102,7 +103,7 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
 
 function Tile({ icon, on }: { icon: string; on: boolean }) {
   const I = ICONS[icon] ?? Circle
-  return <span className={cn("grid size-9 shrink-0 place-items-center rounded-[10px] bg-muted text-foreground", on && "bg-background shadow-[inset_0_0_0_1px_var(--border)]")}><I className="size-5" /></span>
+  return <span className={cn("grid size-9 shrink-0 place-items-center rounded-[10px] text-(--tg-tile-fg)", TILE[toneOf(icon)], on && "shadow-[0_0_0_2px_var(--tg-card),0_0_0_4px_var(--ring)]")}><I className="size-5" /></span>
 }
 
 /** A category opens downward: its own things (projects, authors, services) and the line that adds one. */

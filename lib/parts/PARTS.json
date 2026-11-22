@@ -747,6 +747,7 @@
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/clamped-chips.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/index.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/user-dialog.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-row.tsx",
         "components/ai-elements/chain-of-thought.tsx",
         "components/ai-elements/tool.tsx",
@@ -971,7 +972,7 @@
         ]
       },
       "usedBy": [
-        "app/[lang]/(protectedLayer)/tg/_components/tg-agent.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-shell.client.tsx",
         "components/agent-kit/client/agent-terminal.client.tsx",
         "components/ai-elements/chain-of-thought.tsx",
@@ -1391,7 +1392,7 @@
         ]
       },
       "usedBy": [
-        "app/[lang]/(protectedLayer)/tg/_components/tg-agent.client.tsx"
+        "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx"
       ]
     },
     {
@@ -1526,7 +1527,8 @@
       },
       "usedBy": [
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/skeleton.tsx",
-        "app/[lang]/(protectedLayer)/tg/_components/tg-agent.client.tsx"
+        "app/[lang]/(protectedLayer)/tg/_components/tg-agent.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx"
       ]
     },
     {
@@ -1764,6 +1766,7 @@
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/index.client.tsx",
         "app/[lang]/(protectedLayer)/admin/_widgets/dynamic/widget-dynamic-users-table/server-table-tools.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-head.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-list.tsx",
         "app/[lang]/(protectedLayer)/tg/_widgets/dynamic/widget-dynamic-tg-projects/screens.tsx",
         "app/[lang]/(publicLayer)/_widgets/static/widget-static-policy-analytics/index.tsx",

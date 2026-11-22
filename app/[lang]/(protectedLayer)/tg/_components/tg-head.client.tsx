@@ -4,15 +4,18 @@
 // the drawer lives in `tg-shell.client.tsx`; a screen with this head hides the shell's fallback bar.
 
 import Link from "next/link"
-import { ChevronLeft, Menu } from "lucide-react"
+import { ChevronLeft, Menu, RotateCw } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { H1, Small } from "@/components/ui/typography"
 import { useTgMenu } from "./tg-shell.client"
 
-type Props = { title: string; line?: string | null; back?: { href: string; label: string } | null }
+/** 840-4: `refresh` — the label of ↻ on the right (the Pult's head): the page asks the server again and its islands ask their doors. */
+type Props = { title: string; line?: string | null; back?: { href: string; label: string } | null; refresh?: string | null }
 
-export function TgHead({ title, line, back }: Props) {
+export function TgHead({ title, line, back, refresh }: Props) {
   const menu = useTgMenu()
+  const router = useRouter()
   return (
     <div className="flex flex-col gap-1 px-4 pt-3 pb-1" data-block="tg-head" data-tg-head="">
       {back ? (
@@ -25,7 +28,12 @@ export function TgHead({ title, line, back }: Props) {
         <Button aria-label={menu.label} className="size-10 shrink-0 rounded-xl bg-[var(--tg-card)]" onClick={menu.open} size="icon" variant="ghost">
           <Menu aria-hidden className="size-5" />
         </Button>
-        <H1 data-block="k2z11" className="min-w-0 text-balance">{title}</H1>
+        <H1 data-block="k2z11" className="min-w-0 flex-1 text-balance">{title}</H1>
+        {refresh ? (
+          <Button aria-label={refresh} className="size-10 shrink-0 rounded-full bg-[var(--tg-card)] text-primary" onClick={() => { router.refresh(); window.dispatchEvent(new Event("tg-refresh")) }} size="icon" variant="ghost">
+            <RotateCw aria-hidden className="size-5" />
+          </Button>
+        ) : null}
       </div>
       {line ? <Small data-block="fcinc" className="pl-[52px] text-pretty">{line}</Small> : null}
     </div>

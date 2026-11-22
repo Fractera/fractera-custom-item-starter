@@ -1147,6 +1147,18 @@ html[data-app-width="narrow"] { --app-w: 64rem; }
 :root:has([data-tg-app]) {
   --tg-page: var(--muted);
   --tg-card: var(--card);
+  /* 840-4 (the owner's mock A–D, Telegram 942, 968): the saturated tiles of Telegram's own settings — a white glyph on a colour per row.
+     The palette of this branch lives here only; rows name a tone (tg/_components/tg-tone.ts), never a colour. */
+  --tg-tile-fg: #ffffff;
+  --tg-tile-blue: #2f80ed;
+  --tg-tile-orange: #f59e0b;
+  --tg-tile-purple: #a855f7;
+  --tg-tile-green: #22c55e;
+  --tg-tile-pink: #ec4899;
+  --tg-tile-teal: #14b8c4;
+  --tg-tile-indigo: #6366f1;
+  --tg-tile-red: #ef4444;
+  --tg-tile-gray: #8e8e93;
 }
 .dark:has([data-tg-app]) {
   --tg-page: var(--background);
