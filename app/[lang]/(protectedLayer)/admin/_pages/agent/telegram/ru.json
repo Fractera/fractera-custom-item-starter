@@ -1,0 +1,11 @@
+{
+  "title": "Telegram-бот",
+  "description": "Свой бот этого элемента: с его агентом говорите из Telegram.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-telegram",
+      "bid": "ag7k4"
+    }
+  ]
+}

@@ -7,7 +7,6 @@ const ARCHITECT_TITLE: Record<string, string> = {
   ru: "Группа страниц архитектора",
 }
 import { ARCHITECT_LAYER_ROLES, PROTECTED_GROUP_ROLES } from "@/lib/roles"
-import { ownId } from "@/lib/own-id"
 import { projects } from "@/app/[lang]/(protectedLayer)/tg/_libs/projects"
 
 // РАБОЧИЕ РАЗДЕЛЫ, которые ящик аккаунта показывает вошедшему.
@@ -81,13 +80,13 @@ const OWNER_PAGES: { path: string; label: Record<string, string> }[] = [
 // 834-5/6 (the owner of the node, Telegram 641, 644, 646, 648): the element's own admin manages its agent from this drawer and watches its
 // projects on a wide screen — «управляет она через Telegram а просматривает она на широком компьютере». For the architect and this
 // element's own admin: «Дашборд» (the element's home), «Проекты» (only the pages already built for a project — the Mini App's map, with
-// nothing empty), then its agent's four pages in the core's bare frame `/<lang>/element-agent/<id>/<page>` (core step 834-4): only this
-// element, nothing else of the node.
+// nothing empty), then its agent's pages — 836-2 (the owner of the node, 2026-11-22: «они должны были жить внутри элементы»): in THIS
+// element's admin branch `/<lang>/admin/agent/<page>`, behind its own sign-in; the core's frame of 834-4 is gone. The OpenAI key
+// page comes back when it has a home here (it is the core's environment panel today).
 const AGENT_PAGES: { page: string; label: Record<string, string> }[] = [
   { page: "subscription", label: { en: "Claude Code subscription", ru: "Подписка Claude Code" } },
   { page: "terminal", label: { en: "Terminal", ru: "Терминал" } },
   { page: "telegram", label: { en: "Telegram bot", ru: "Telegram-бот" } },
-  { page: "openai", label: { en: "OpenAI key", ru: "Ключ OpenAI" } },
 ]
 const MAIN_AGENT: Record<string, string> = { en: "Main agent", ru: "Главный агент" }
 const OWN_WORDS: Record<string, { dashboard: string; projects: string; none: string }> = {
@@ -109,13 +108,12 @@ function projectPages(lang: string): DrawerLink[] {
 function ownAgentLinks(lang: string): DrawerLink[] {
   const w = OWN_WORDS[lang] ?? OWN_WORDS.en
   const roles = PROTECTED_GROUP_ROLES.admin
-  const id = ownId()
   const built = projectPages(lang)
   return [
     { href: `/${lang}`, label: w.dashboard, roles },
     // 834-11 (the owner, Telegram 664: «ты не представил ниже дашборд вкладку проекта»): always there — nothing built yet says so
     { href: `/${lang}#projects`, label: w.projects, roles, children: built.length ? built : [{ href: "", label: w.none }] },
-    ...(id && ARCHITECT_URL ? AGENT_PAGES.map((p) => ({ href: `${ARCHITECT_URL}/${lang}/element-agent/${id}/${p.page}`, label: p.label[lang] ?? p.label.en, roles })) : []),
+    ...AGENT_PAGES.map((p) => ({ href: `/${lang}/admin/agent/${p.page}`, label: p.label[lang] ?? p.label.en, roles })),
   ]
 }
 

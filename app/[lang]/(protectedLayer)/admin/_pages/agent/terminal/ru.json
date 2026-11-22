@@ -1,0 +1,11 @@
+{
+  "title": "Терминал",
+  "description": "Агент этого элемента за работой: запустить, дать задачу, смотреть.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-terminal",
+      "bid": "ag7k3"
+    }
+  ]
+}

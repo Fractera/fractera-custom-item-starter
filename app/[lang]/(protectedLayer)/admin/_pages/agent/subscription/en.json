@@ -1,0 +1,11 @@
+{
+  "title": "Claude Code subscription",
+  "description": "Which Claude account this element's agent works on, and the sign-in.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-subscription",
+      "bid": "ag7k2"
+    }
+  ]
+}

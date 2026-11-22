@@ -12,6 +12,10 @@ import { Widget as SiteFeatures } from './dynamic/widget-dynamic-site-features'
 import { Widget as SiteHeader } from './dynamic/widget-dynamic-site-header'
 import { Widget as SiteFooter } from './dynamic/widget-dynamic-site-footer'
 import { Widget as SiteCookieBanner } from './dynamic/widget-dynamic-site-cookie-banner'
+import { Widget as AgentLinks } from './dynamic/widget-dynamic-agent-links'
+import { Widget as AgentSubscription } from './dynamic/widget-dynamic-agent-subscription'
+import { Widget as AgentTerminal } from './dynamic/widget-dynamic-agent-terminal'
+import { Widget as AgentTelegram } from './dynamic/widget-dynamic-agent-telegram'
 
 // ВИДЖЕТЫ ЭТОЙ ВЕТКИ (владелец 2026-10-07: «удалили маршрут — проект чистый»). Страница ветки называет виджет в `meta.json` →
 // `"widget"`; ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
@@ -32,4 +36,10 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-dynamic-site-header': (lang) => <SiteHeader lang={lang} />,
   'widget-dynamic-site-footer': (lang) => <SiteFooter lang={lang} />,
   'widget-dynamic-site-cookie-banner': (lang) => <SiteCookieBanner lang={lang} />,
+  // 836-2 (the owner of the node, 2026-11-22: «они должны были жить внутри элементы … пере используй их как есть»): this element's agent —
+  // the core's kit widgets as they are, behind this element's own sign-in (`_pages/agent`).
+  'widget-dynamic-agent-links': (lang) => <AgentLinks lang={lang} />,
+  'widget-dynamic-agent-subscription': (lang) => <AgentSubscription lang={lang} />,
+  'widget-dynamic-agent-terminal': (lang) => <AgentTerminal lang={lang} />,
+  'widget-dynamic-agent-telegram': (lang) => <AgentTelegram lang={lang} />,
 }

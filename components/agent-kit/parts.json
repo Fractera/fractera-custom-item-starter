@@ -1,0 +1,34 @@
+{
+  "_": "Cards of the reusable parts of this folder. One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "agent-kit-links",
+      "kind": "composite",
+      "title": {
+        "en": "Agent pages: next steps",
+        "ru": "Страницы агента: дальше"
+      },
+      "path": "components/agent-kit/agent-links.tsx",
+      "export": "AgentNextLinks",
+      "what": {
+        "en": "The links between this element's agent pages (terminal, Telegram) and the «install Telegram» note — the core's kit, copied.",
+        "ru": "Ссылки между страницами агента этого элемента (терминал, Telegram) и заметка «нужен Telegram» — копия комплекта ядра."
+      },
+      "how": "<AgentNextLinks links={{ terminal, telegram }} words={agentLinksWords(lang)} /> · <TelegramAppNeeded words={agentLinksWords(lang)} />",
+      "words": {
+        "en": [
+          "agent",
+          "terminal",
+          "telegram",
+          "links"
+        ],
+        "ru": [
+          "агент",
+          "терминал",
+          "телеграм",
+          "ссылки"
+        ]
+      }
+    }
+  ]
+}

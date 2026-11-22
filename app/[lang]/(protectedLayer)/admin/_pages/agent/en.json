@@ -1,0 +1,11 @@
+{
+  "title": "Agent",
+  "description": "This element's agent: its Claude Code subscription, its terminal and its Telegram bot.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-links",
+      "bid": "ag7k1"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "_": "Cards of the reusable parts of this folder. One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "open-on-this-computer",
+      "kind": "composite",
+      "path": "components/node-state/open-on-this-computer.client.tsx",
+      "export": "ForbiddenWithExit, OpenOnThisComputerButton",
+      "what": {
+        "en": "A refusal on the temporary address with its way out: the reason and a button that opens the same page on this computer's address.",
+        "ru": "Отказ на временном адресе с выходом: причина и кнопка, открывающая ту же страницу по адресу этого компьютера."
+      },
+      "how": "<ForbiddenWithExit lang /> where a page is only for the architect at this computer.",
+      "words": {
+        "en": [
+          "forbidden",
+          "open on this computer"
+        ],
+        "ru": [
+          "отказ",
+          "открыть на этом компьютере",
+          "нет доступа"
+        ]
+      },
+      "source": {
+        "from": "core",
+        "tool": "open-on-this-computer",
+        "bodyHash": "bad1350e2b21e213"
+      }
+    },
+    {
+      "id": "node-place-reader",
+      "kind": "composite",
+      "path": "components/node-state/use-node-place.client.ts",
+      "export": "useNodePlace, askNodePlace, NodePlaceAnswer",
+      "what": {
+        "en": "Where the node lives — a person's computer or a dedicated server — for the browser, from one /api/node/place request per page shared by every widget; also the live servers this computer launched.",
+        "ru": "Где живёт узел — компьютер человека или выделенный сервер — для браузера, из одного запроса /api/node/place на страницу, общего для всех виджетов; плюс живые серверы, запущенные этим компьютером."
+      },
+      "how": "const place = useNodePlace() — undefined while asking, null when the node did not answer; place.kind === \"server\" hides the computer's alarms.",
+      "words": {
+        "en": [
+          "computer or server",
+          "where the node lives",
+          "node place",
+          "launched server"
+        ],
+        "ru": [
+          "компьютер или сервер",
+          "где живёт узел",
+          "место узла",
+          "запущенный сервер"
+        ]
+      },
+      "source": {
+        "from": "core",
+        "tool": "node-place-reader",
+        "bodyHash": "8b1e51077461636e"
+      }
+    }
+  ]
+}

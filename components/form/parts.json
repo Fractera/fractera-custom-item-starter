@@ -1,0 +1,55 @@
+{
+  "_": "Cards of the reusable parts of this folder. One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "voice-control",
+      "kind": "tool",
+      "title": {
+        "en": "Voice input control",
+        "ru": "Голосовой ввод"
+      },
+      "version": "1.1.1",
+      "parts": [
+        {
+          "id": "tool-voice-input",
+          "version": "1.1.1"
+        }
+      ],
+      "scope": "any",
+      "path": "components/form/voice-control.client.tsx",
+      "export": "VoiceControl",
+      "what": {
+        "en": "The control with voice: a field, the microphone, the equaliser bar and the transcript — the one engine under VoiceField and VoiceTextarea.",
+        "ru": "Элемент с голосом: поле, микрофон, полоса эквалайзера и расшифровка — один двигатель под VoiceField и VoiceTextarea."
+      },
+      "how": "Prefer VoiceField (one line) or VoiceTextarea (several lines); VoiceControl only for a settings row with its own heading.",
+      "words": {
+        "en": [
+          "voice input",
+          "microphone",
+          "speech to text",
+          "dictation"
+        ],
+        "ru": [
+          "голосовой ввод",
+          "микрофон",
+          "диктовка",
+          "расшифровка речи"
+        ]
+      },
+      "replaces": [
+        "@/_tools/voice-input/client/voice-input.client"
+      ],
+      "needs": [
+        "openai-key"
+      ],
+      "internal": true,
+      "source": {
+        "from": "core",
+        "tool": "voice-control",
+        "version": "1.1.1",
+        "bodyHash": "55ab7393fd06cf88"
+      }
+    }
+  ]
+}

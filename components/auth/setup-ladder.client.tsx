@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { Check, Copy, TriangleAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +14,7 @@ import { H3, Small } from "@/components/ui/typography"
 // с одинаковыми ступенями, собранные врозь, расходятся молча: в одном поправят
 // отступ или подпись кнопки копирования, во втором — нет, и никто этого не
 // заметит, потому что оба по отдельности выглядят правильно. Требование владельца
-// того же дня — переиспользовать проверенный компонент, а не строить похожий рядом.
+// того же дня — переиспользовать проверенная секция, а не строить похожий рядом.
 //
 // 🔒 ЗДЕСЬ ТОЛЬКО ФОРМА, А НЕ СЛОВА. Каждый экран приносит свои строки: общий
 // модуль не знает ни одного слова, иначе он стал бы словарём, который тянет в
@@ -23,8 +23,8 @@ import { H3, Small } from "@/components/ui/typography"
 /** Ступень лестницы: номер в кружке, заголовок и содержимое. */
 export function Step({ n, title, children }: { n: number; title: string; children: ReactNode }) {
   return (
-    <section className="rounded-lg border border-border bg-card p-4" data-step={n}>
-      <H3 className="mb-2 flex items-center gap-2" variant="ui">
+    <section data-block="ekhs1" className="rounded-lg border border-border bg-card p-4" data-step={n}>
+      <H3 data-block="f8zmn" className="mb-2 flex items-center gap-2" variant="ui">
         <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">
           {n}
         </span>
@@ -51,24 +51,22 @@ export function RouteLine({ items, hint }: { items: { title: string; text: strin
   const current = picked === null ? null : items[picked]
   return (
     <TooltipProvider delayDuration={100}>
-      <div className="mt-3" data-route-line>
+      <div data-block="kqhbq" className="mt-3" data-route-line>
         {/* Прокрутка внутри карточки, а не у страницы: на узком экране линия
             длиннее ширины, и страница не должна ехать вбок. */}
-        <ol className="flex items-start overflow-x-auto pb-2">
+        <ol data-block="vjlvk" className="flex items-start overflow-x-auto pb-2">
           {items.map((it, i) => (
-            <li key={it.title} className="flex shrink-0 items-center">
+            <li data-block="lvhsh" key={it.title} className="flex shrink-0 items-center">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="bare" size="bare"
+                  <Button
                     type="button"
+                    size="icon"
+                    variant={picked === i ? "default" : "outline"}
                     onClick={() => setPicked(picked === i ? null : i)}
                     aria-pressed={picked === i}
                     aria-label={`${i + 1}. ${it.title}`}
-                    className={`inline-flex size-7 items-center justify-center rounded-full border text-xs transition-colors ${
-                      picked === i
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border bg-muted text-foreground hover:border-primary"
-                    }`}
+                    className="size-7 rounded-full text-xs"
                   >
                     {i + 1}
                   </Button>
@@ -83,14 +81,14 @@ export function RouteLine({ items, hint }: { items: { title: string; text: strin
           ))}
         </ol>
         {current ? (
-          <div className="mt-2 rounded-md border border-border px-3 py-2 text-sm" role="status">
+          <div data-block="b8qzw" className="mt-2 rounded-md border border-border px-3 py-2 text-sm" role="status">
             <span className="block font-medium text-foreground">
               {(picked ?? 0) + 1}. {current.title}
             </span>
             <span className="block text-muted-foreground">{current.text}</span>
           </div>
         ) : (
-          <Small className="mt-1 block text-muted-foreground">{hint}</Small>
+          <Small data-block="ih4kl" className="mt-1 block text-muted-foreground">{hint}</Small>
         )}
       </div>
     </TooltipProvider>
@@ -105,7 +103,7 @@ export function RouteLine({ items, hint }: { items: { title: string; text: strin
  */
 export function LimitsNote({ title, text, more, href }: { title: string; text: string; more: string; href: string }) {
   return (
-    <p
+    <p data-block="aw4lk"
       className="flex gap-2 rounded-md border border-warning/50 bg-warning/10 px-3 py-2 text-sm"
       data-limits-note
       role="note"
@@ -125,9 +123,9 @@ export function LimitsNote({ title, text, more, href }: { title: string; text: s
 /** Маркированный список внутри ступени. */
 export function StepPoints({ items }: { items: string[] }) {
   return (
-    <ul className="mt-2 flex list-disc flex-col gap-1 pl-5 text-foreground text-sm">
+    <ul data-block="aywk9" className="mt-2 flex list-disc flex-col gap-1 pl-5 text-foreground text-sm">
       {items.map((t) => (
-        <li key={t}>{t}</li>
+        <li data-block="vrshk" key={t}>{t}</li>
       ))}
     </ul>
   )
@@ -141,6 +139,7 @@ export function CopyRow({
   note,
   copy,
   copied,
+  editable = false,
 }: {
   id: string
   label: string
@@ -148,19 +147,27 @@ export function CopyRow({
   note?: string
   copy: string
   copied: string
+  /** The owner, 2026-11-19: the bot's suggested name and username «могли быть отредактированы при необходимости» — the field takes the
+   *  person's own text and «Копировать» copies what stands in it now. */
+  editable?: boolean
 }) {
   const [done, setDone] = useState(false)
+  const [text, setText] = useState(value)
+  useEffect(() => { setText(value) }, [value])
+  const shown = editable ? text : value
   return (
-    <div className="mt-3 flex flex-col gap-1">
+    <div data-block="buxs0" className="mt-3 flex flex-col gap-1">
       <Label htmlFor={id}>{label}</Label>
-      <div className="flex gap-2">
-        <Input id={id} readOnly value={value} className="font-mono text-xs" />
+      <div data-block="wmz4j" className="flex gap-2">
+        {editable
+          ? <Input id={id} value={text} onChange={(e) => setText(e.target.value)} className="font-mono" spellCheck={false} autoCapitalize="none" autoCorrect="off" />
+          : <Input id={id} readOnly value={value} className="font-mono text-xs" />}
         <Button
           type="button"
           variant="outline"
           onClick={async () => {
             try {
-              await navigator.clipboard.writeText(value)
+              await navigator.clipboard.writeText(shown)
               setDone(true)
               window.setTimeout(() => setDone(false), 2000)
             } catch {
@@ -173,7 +180,7 @@ export function CopyRow({
           <span className="ml-2">{done ? copied : copy}</span>
         </Button>
       </div>
-      {note && <Small className="text-muted-foreground">{note}</Small>}
+      {note && <Small data-block="hautt" className="text-muted-foreground">{note}</Small>}
     </div>
   )
 }

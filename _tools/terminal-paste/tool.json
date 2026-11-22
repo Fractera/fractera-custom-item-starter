@@ -1,0 +1,54 @@
+{
+  "id": "terminal-paste",
+  "entry": "client/terminal-paste-dialog.client.tsx",
+  "version": "1.0.0",
+  "parts": [
+    {
+      "id": "app-dialog",
+      "version": "1.0.0"
+    },
+    {
+      "id": "voice-control",
+      "version": "1.1.1"
+    }
+  ],
+  "scope": "panel",
+  "needs": [
+    "browser",
+    "openai-key"
+  ],
+  "npmDeps": [],
+  "usedBy": [
+    "architect/kits/_agent-kit/core/client/agent-terminal"
+  ],
+  "en": {
+    "title": "Paste into the terminal",
+    "what": "The window that puts text into an agent's terminal: a large field that takes typing, pasting and voice, and two buttons — insert, or insert and send. Without a running session the buttons wait and the text stays in the window.",
+    "how": "AppDialog with VoiceControl as a textarea: dictation lands where the caret stood and adds to the text instead of replacing it; without an OpenAI key the voice line links to the key field. The window does not know the socket: its owner receives onInsert(send) and does the bracketed paste itself, so control characters and the Enter stay the terminal's business.",
+    "value": "The terminal cannot paste by itself, and a person who has just dictated a task often wants to add one more thought before sending. One window for every terminal of the node — the element's page, a service's page and the drawer beside the Preview — instead of a copy inside each."
+  },
+  "ru": {
+    "title": "Вставка в терминал",
+    "what": "Окно, которое кладёт текст в терминал агента: большое поле для набора, вставки и голоса и две кнопки — вставить или вставить и отправить. Пока сессия не запущена, кнопки ждут, а текст остаётся в окне.",
+    "how": "AppDialog с VoiceControl в виде области: надиктованное встаёт туда, где стоял курсор, и дописывается, а не заменяет; без ключа OpenAI строка голоса ведёт на поле ключа. Сокета окно не знает: его владелец получает onInsert(send) и сам делает вставку в режиме bracketed paste, поэтому управляющие символы и Enter остаются заботой терминала.",
+    "value": "Терминал сам вставлять не умеет, а человек, только что надиктовавший задачу, часто хочет добавить ещё одну мысль перед отправкой. Одно окно для всех терминалов узла — страницы элемента, страницы службы и ящика рядом с Preview — вместо копии внутри каждого."
+  },
+  "words": {
+    "en": [
+      "paste window",
+      "paste into terminal",
+      "send text to terminal"
+    ],
+    "ru": [
+      "окно вставки",
+      "вставить в терминал",
+      "отправить текст в терминал"
+    ]
+  },
+  "source": {
+    "from": "core",
+    "tool": "terminal-paste",
+    "version": "1.0.0",
+    "bodyHash": "2dd1ccbcb0edc713"
+  }
+}

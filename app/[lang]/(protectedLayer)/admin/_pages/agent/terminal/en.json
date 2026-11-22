@@ -1,0 +1,11 @@
+{
+  "title": "Terminal",
+  "description": "This element's agent at work: start it, give it a task, watch it.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-terminal",
+      "bid": "ag7k3"
+    }
+  ]
+}

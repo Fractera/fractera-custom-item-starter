@@ -1,0 +1,11 @@
+{
+  "title": "Подписка Claude Code",
+  "description": "На каком аккаунте Claude работает агент этого элемента, и вход в него.",
+  "keywords": "",
+  "body": [
+    {
+      "kind": "widget-dynamic-agent-subscription",
+      "bid": "ag7k2"
+    }
+  ]
+}

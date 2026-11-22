@@ -255,6 +255,7 @@
           },
           "private": [
             "/api/health",
+            "/api/agent-kit",
             "/api/tg",
             "/api/core-origin",
             "/api/auth",

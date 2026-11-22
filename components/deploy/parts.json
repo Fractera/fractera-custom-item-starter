@@ -1,0 +1,41 @@
+{
+  "_": "Cards of the reusable parts of this folder. One card per part; the map is lib/parts/PARTS.json.",
+  "parts": [
+    {
+      "id": "core-terminal",
+      "kind": "tool",
+      "title": {
+        "en": "Build log",
+        "ru": "Журнал сборки"
+      },
+      "version": "1.0.0",
+      "parts": [],
+      "scope": "panel",
+      "path": "components/deploy/core-terminal.client.tsx",
+      "export": "CoreTerminal",
+      "what": {
+        "en": "The live log of a core build or a node update under the deploy board: asks the core, then the build reader while the core is down, then says the core is rising.",
+        "ru": "Живой журнал сборки ядра или обновления узла под доской развёртываний: спрашивает ядро, при закрытой крышке — чтеца сборки, потом говорит «ядро поднимается»."
+      },
+      "how": "Render <CoreTerminal /> with its words from core-terminal.i18n where a core build or a node update is started.",
+      "words": {
+        "en": [
+          "build log",
+          "core build progress",
+          "node update log"
+        ],
+        "ru": [
+          "журнал сборки",
+          "ход сборки ядра",
+          "лог обновления узла"
+        ]
+      },
+      "source": {
+        "from": "core",
+        "tool": "core-terminal",
+        "version": "1.0.0",
+        "bodyHash": "197bcf2d55b8c74f"
+      }
+    }
+  ]
+}

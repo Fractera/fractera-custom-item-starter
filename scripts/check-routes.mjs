@@ -85,6 +85,7 @@ const ALLOWED = new Map([
   ['app/api/auth/guest-leave/route.ts', 'гость удаляет свою запись и уходит (331-2)'],
   ['app/api/settings/platform/route.ts', 'архитектор закрывает индикатор ширины (333-4)'],
   ['app/api/core-origin/route.ts', 'адрес ядра своего узла (324-6)'],
+  ['app/api/agent-kit/[...path]/route.ts', 'this element\'s agent pages reach the core\'s agent machinery with the element\'s own key (node step 836-2)'],
   ['app/api/me/route.ts', 'кто вошёл'],
   ['app/api/media-proxy/[...path]/route.ts', 'медиа через узел'],
   ['app/api/media/[id]/file/route.ts', 'файл медиа'],
