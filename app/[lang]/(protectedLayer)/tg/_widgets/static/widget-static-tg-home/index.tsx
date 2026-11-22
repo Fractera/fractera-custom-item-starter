@@ -6,6 +6,8 @@ import { metaForLang } from "@/config/app-config"
 import { TgAgent } from "../../../_components/tg-agent.client"
 import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
+import { TgIntro } from "../../../_components/tg-intro.client"
+import { tgIntroUi } from "../../../_components/tg-intro.i18n"
 import { TgGroup, TgRows } from "../../../_components/tg-list"
 import { calendarFacts, elementFacts, settingsFilled } from "../../../_libs/element-facts"
 import { projectsSummary } from "../../../_libs/projects"
@@ -25,11 +27,15 @@ export function Widget({ lang }: { lang: string }) {
     <div className="flex flex-col gap-5 pb-10" data-block="tg-home" data-app-column="">
       <TgHead line={ui.line} title={metaForLang(lang).siteName} />
       <div className="flex flex-col gap-6 px-3" data-block="tg-home-body">
+        <TgIntro ui={tgIntroUi(lang)} />
         <TgGroup title={ui.today}>
           <TgRows rows={[{ icon: "calendar-clock", title: today.length ? plural(ui.todayTasks, today.length, lang) : ui.todayNone, hint: nextLine, href: `${base}/cron` }]} />
         </TgGroup>
         <TgGroup title={ui.agent}>
           <TgAgent lang={lang} ui={tgAgentUi(lang)} variant="home" />
+        </TgGroup>
+        <TgGroup title={tgAgentUi(lang).fuel}>
+          <TgAgent lang={lang} ui={tgAgentUi(lang)} variant="fuel" />
         </TgGroup>
         <TgGroup title={ui.sections}>
           <TgRows

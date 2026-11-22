@@ -121,6 +121,18 @@
                 "en": "Instruction, owner, project, skills",
                 "ru": "Инструкция, владелец, проект, навыки"
               }
+            },
+            {
+              "slug": "start",
+              "icon": "help",
+              "title": {
+                "en": "How to start",
+                "ru": "Как начать"
+              },
+              "hint": {
+                "en": "Projects, the chat, building and the working process",
+                "ru": "Проекты, чат, строительство и рабочий процесс"
+              }
             }
           ]
         }

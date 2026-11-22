@@ -73,3 +73,22 @@ export async function sendToOwner(text: string): Promise<{ ok: boolean; detail: 
   }
   return { ok: true, detail: `telegram message_id ${sent.join(", ")}` }
 }
+
+/** 840-4: one message from the element's own bot to one Telegram id its bot admitted — never to anyone else. */
+export async function sendTo(chat: string, text: string): Promise<{ ok: boolean; detail: string }> {
+  const t = token()
+  if (!t) return { ok: false, detail: "telegram bot not connected" }
+  if (!/^\d{1,20}$/.test(chat) || !allowed().includes(chat)) return { ok: false, detail: "not admitted" }
+  try {
+    const r = await fetch(`https://api.telegram.org/bot${t}/sendMessage`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ chat_id: chat, text }),
+      signal: AbortSignal.timeout(10_000),
+    })
+    const j = (await r.json().catch(() => ({}))) as { ok?: boolean; description?: string }
+    return j.ok ? { ok: true, detail: "sent" } : { ok: false, detail: `telegram: ${j.description ?? r.status}` }
+  } catch (e) {
+    return { ok: false, detail: `telegram: ${(e as Error).message}` }
+  }
+}

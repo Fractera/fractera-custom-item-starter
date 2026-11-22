@@ -27,3 +27,11 @@ Delete the branch folder and nothing else in the element breaks: then the compon
   `../api/items` appends the person's item to the direction's `items.json`; no build, no delete, no rename (those are the agent's).
 - `tg-help.client.tsx` — «Справка» at the bottom of a direction's screen (826): a quiet button; its window holds what the server drew —
   what goes to a neighbour (`neighbours` of the direction's `meta.json`, each a link) and how the screen works.
+- `tg-agent.client.tsx` — the element's own agent (840-4): its card opens the model choice (`tg-model-pick.client.tsx`: Opus with its effort,
+  Sonnet, Haiku; the switch waits for the agent's turn) and «Топливо подписки» — the context window, 5 hours and 7 days of the account it
+  runs on; one answer of `../api/agent` feeds both home groups.
+- `tg-intro.client.tsx` — «Как начать» (840-4): the first text on the home screen until «Прочитано» (kept in this browser); the drawer's
+  screen `start` shows the same text.
+- `tg-to-chat.client.tsx` — «Перейти в чат»: the door `../api/context` keeps the section for the agent's hook and makes this element's own
+  bot write «📍 Вы пришли из раздела: …» into the chat (840-4: Telegram cannot prefill the chat's field).
+- Telegram's Back (840-4, `tg-bridge.client.tsx`): heard through all three receivers Telegram's clients call, it opens the screen above.

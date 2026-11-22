@@ -5,6 +5,7 @@ import { Widget as Cron } from './static/widget-static-tg-cron'
 import { Widget as Element } from './static/widget-static-tg-element'
 import { Widget as Home } from './static/widget-static-tg-home'
 import { Widget as Settings } from './static/widget-static-tg-settings'
+import { Widget as Start } from './static/widget-static-tg-start'
 
 // ВИДЖЕТЫ ВЕТКИ «tg» — Mini App элемента в Telegram (шаг узла 821). Страница ветки называет виджет в своей последовательности `body`;
 // ищется он только здесь. Удалили ветку — список ушёл вместе с ней.
@@ -19,6 +20,8 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-static-tg-element': (lang) => <Element lang={lang} />,
   // 821: «Настройки» — инструкция, владелец, проект, навыки, подписки, MCP.
   'widget-static-tg-settings': (lang) => <Settings lang={lang} />,
+  // 840-4: «Как начать» — the first text of the Mini App, always reachable from the drawer.
+  'widget-static-tg-start': (lang) => <Start lang={lang} />,
 }
 
 /** 821: экраны каталога без своей папки — раздел, направление, пункт (`/tg/projects/<…>`); настоящая папка сильнее. */

@@ -1,0 +1,10 @@
+{
+  "title": "How to start",
+  "description": "What to do first in this element's Mini App: a topic in Projects, the chat with the agent, building and the working process.",
+  "body": [
+    {
+      "kind": "widget-static-tg-start",
+      "bid": "st8a4"
+    }
+  ]
+}

@@ -803,6 +803,8 @@
         "app/[lang]/(protectedLayer)/tg/_components/tg-add-item.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-head.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-help.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-intro.client.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-model-pick.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-to-chat.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_widgets/dynamic/widget-dynamic-tg-projects/screens.tsx",
         "app/[lang]/_components/cookie-banner/cookie-banner.client.tsx",
@@ -865,6 +867,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/tg/_components/tg-model-pick.client.tsx",
         "components/ai-elements/message.tsx",
         "components/form/voice-control.client.tsx"
       ]
@@ -968,6 +971,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/tg/_components/tg-agent.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-shell.client.tsx",
         "components/agent-kit/client/agent-terminal.client.tsx",
         "components/ai-elements/chain-of-thought.tsx",
