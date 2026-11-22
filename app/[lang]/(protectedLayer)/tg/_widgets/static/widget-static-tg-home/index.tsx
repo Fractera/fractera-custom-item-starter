@@ -7,6 +7,7 @@ import { TgHomeAgent } from "../../../_components/tg-home-agent.client"
 import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
 import { TgIntro } from "../../../_components/tg-intro.client"
+import { TgSearch } from "../../../_components/tg-search.client"
 import { tgIntroUi } from "../../../_components/tg-intro.i18n"
 import { TgGroup, TgRows } from "../../../_components/tg-list"
 import { calendarFacts, elementFacts, settingsFilled } from "../../../_libs/element-facts"
@@ -25,6 +26,7 @@ export function Widget({ lang }: { lang: string }) {
     <div className="flex flex-col gap-5 pb-10" data-block="tg-home" data-app-column="">
       <TgHead line={ui.line} refresh={ui.refresh} title={metaForLang(lang).siteName} />
       <div className="flex flex-col gap-6 px-3" data-block="tg-home-body">
+        <TgSearch lang={lang} ui={ui.search} />
         <TgHomeAgent lang={lang} ui={tgAgentUi(lang)} />
         <TgIntro ui={tgIntroUi(lang)} />
         <TgGroup title={ui.sections}>

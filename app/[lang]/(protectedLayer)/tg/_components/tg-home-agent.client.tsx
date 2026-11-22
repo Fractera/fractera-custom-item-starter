@@ -17,7 +17,7 @@ import type { TgAgentUi } from "./tg-agent.i18n"
 import { TgModelPick } from "./tg-model-pick.client"
 
 type Window = { used: number; resetsAt: string | null } | null
-type Answer = { agent: Agent & { email?: string | null }; live: boolean; context: { percent: number; size: number | null; used?: number | null } | null; limits: { fiveHour: Window; sevenDay: Window } | null; asks?: { text: string; at: string }[] }
+type Answer = { agent: Agent & { email?: string | null }; live: boolean; context: { percent: number; size: number | null; used?: number | null } | null; limits: { fiveHour: Window; sevenDay: Window } | null; asks?: { text: string; at: string }[]; natives?: { name: string; description: string | null; on: boolean }[] }
 
 const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (h, k: string) => (k in v ? String(v[k]) : h))
 /** The Pult's rule of the context colour: calm to half, warm to three quarters, hot after. */
@@ -31,6 +31,16 @@ function Group({ title, children }: { title: string; children: React.ReactNode }
       <Eyebrow data-block="tgh01" className="px-4 text-muted-foreground tracking-wider">{title}</Eyebrow>
       {children}
     </section>
+  )
+}
+
+/** 841: one native element — the name, what it does, and «выключен» when it sleeps; cards only, nothing to open. */
+function Native({ n, i, ui }: { n: { name: string; description: string | null; on: boolean }; i: number; ui: TgAgentUi }) {
+  return (
+    <div className={cn("flex flex-col gap-0.5 px-4 py-3", i > 0 && "border-border border-t")} data-block="tg-home-native">
+      <span className="flex items-center justify-between gap-2 font-medium text-[length:var(--fs-body)]">{n.name}{n.on ? null : <Badge data-block="sqtur" variant="secondary">{ui.off}</Badge>}</span>
+      {n.description ? <Small data-block="tgh13" className="line-clamp-2">{n.description}</Small> : null}
+    </div>
   )
 }
 
@@ -65,6 +75,7 @@ export function TgHomeAgent({ lang, ui }: { lang: string; ui: TgAgentUi }) {
     </div>
   )
   const asks = got.asks ?? []
+  const natives = got.natives ?? []
   return (
     <div className="flex flex-col gap-6" data-block="tg-home-agent">
       <Small data-block="tg-home-online" className="-mt-4 flex items-center gap-1.5 px-4">
@@ -99,6 +110,20 @@ export function TgHomeAgent({ lang, ui }: { lang: string; ui: TgAgentUi }) {
           {w(got.limits?.sevenDay ?? null, ui.sevenDay)}
         </div>
       </Group>
+      {natives.length ? (
+        <Group title={ui.natives}>
+          <Collapsible className="flex flex-col overflow-hidden rounded-xl bg-[var(--tg-card)]" data-block="tg-home-natives">
+            {natives.slice(0, 2).map((n, i) => <Native i={i} key={n.name} n={n} ui={ui} />)}
+            <CollapsibleContent data-block="t8f6i" className="flex flex-col">{natives.slice(2).map((n, i) => <Native i={i + 2} key={n.name} n={n} ui={ui} />)}</CollapsibleContent>
+            {natives.length > 2 ? (
+              <CollapsibleTrigger className="group border-border border-t px-4 py-3 text-left text-[length:var(--fs-body)] text-primary">
+                <span className="group-data-[state=open]:hidden">{fill(ui.more, { n: natives.length - 2 })}</span>
+                <span className="hidden group-data-[state=open]:inline">{ui.less}</span>
+              </CollapsibleTrigger>
+            ) : null}
+          </Collapsible>
+        </Group>
+      ) : null}
       <Group title={ui.asks}>
         <div className="flex flex-col rounded-xl bg-[var(--tg-card)]" data-block="tg-home-asks">
           {asks.length ? asks.map((x, i) => (

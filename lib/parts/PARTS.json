@@ -1203,6 +1203,7 @@
         ]
       },
       "usedBy": [
+        "app/[lang]/(protectedLayer)/tg/_components/tg-search.client.tsx",
         "components/ai-elements/prompt-input.tsx"
       ]
     },
@@ -1768,6 +1769,7 @@
         "app/[lang]/(protectedLayer)/tg/_components/tg-head.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-home-agent.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_components/tg-list.tsx",
+        "app/[lang]/(protectedLayer)/tg/_components/tg-search.client.tsx",
         "app/[lang]/(protectedLayer)/tg/_widgets/dynamic/widget-dynamic-tg-projects/screens.tsx",
         "app/[lang]/(publicLayer)/_widgets/static/widget-static-policy-analytics/index.tsx",
         "app/[lang]/(publicLayer)/_widgets/static/widget-static-reference-title/index.tsx",

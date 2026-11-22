@@ -35,3 +35,7 @@ Delete the branch folder and nothing else in the element breaks: then the compon
 - `tg-to-chat.client.tsx` — «Перейти в чат»: the door `../api/context` keeps the section for the agent's hook and makes this element's own
   bot write «📍 Вы пришли из раздела: …» into the chat (840-4: Telegram cannot prefill the chat's field).
 - Telegram's Back (840-4, `tg-bridge.client.tsx`): heard through all three receivers Telegram's clients call, it opens the screen above.
+- `tg-search.client.tsx` — the search at the top of home (841): the question goes to this element's own agent through `../api/search`
+  (the core wakes it with `reason: "mini-app-search"`), its bot writes «🔎 Ищу: …», the Mini App closes; the answer comes in the chat —
+  the path in Projects, or the core's ladder (the node's elements, native elements, the Fractera marketplace — search v1, Lagrix).
+- `tg-home-agent.client.tsx` — the home top, the Pult's top (840-4), and «Встроенные элементы» (841): two cards and «Ещё · N».

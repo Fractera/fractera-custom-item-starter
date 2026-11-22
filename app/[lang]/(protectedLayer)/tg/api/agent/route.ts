@@ -10,17 +10,18 @@ export const dynamic = "force-dynamic"
 
 const NO_STORE = { "Cache-Control": "no-store" }
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ lang: string }> }) {
   const who = await adminOfMiniApp(req)
   if (who !== 200) return NextResponse.json({ ok: false }, { status: who, headers: NO_STORE })
   const core = coreUrl()
   const key = process.env.SETTINGS_SECRET?.trim()
   if (!core || !key) return NextResponse.json({ ok: false, reason: "no-core" }, { status: 503, headers: NO_STORE })
   try {
-    const r = await fetch(`${core}/api/node/my-agent`, { headers: { "x-node-key": key }, cache: "no-store", signal: AbortSignal.timeout(8_000) })
-    const b = (await r.json().catch(() => null)) as { ok?: boolean; reason?: string; agent?: unknown; live?: boolean; context?: unknown; limits?: unknown } | null
+    const { lang } = await params
+    const r = await fetch(`${core}/api/node/my-agent?lang=${lang === "ru" ? "ru" : "en"}`, { headers: { "x-node-key": key }, cache: "no-store", signal: AbortSignal.timeout(8_000) })
+    const b = (await r.json().catch(() => null)) as { ok?: boolean; reason?: string; agent?: unknown; live?: boolean; context?: unknown; limits?: unknown; asks?: unknown; natives?: unknown } | null
     if (!r.ok || !b?.ok) return NextResponse.json({ ok: false, reason: b?.reason ?? `core-${r.status}` }, { status: 502, headers: NO_STORE })
-    return NextResponse.json({ ok: true, agent: b.agent, live: b.live === true, context: b.context ?? null, limits: b.limits ?? null }, { headers: NO_STORE })
+    return NextResponse.json({ ok: true, agent: b.agent, live: b.live === true, context: b.context ?? null, limits: b.limits ?? null, asks: b.asks ?? [], natives: b.natives ?? [] }, { headers: NO_STORE })
   } catch {
     return NextResponse.json({ ok: false, reason: "core-silent" }, { status: 502, headers: NO_STORE })
   }

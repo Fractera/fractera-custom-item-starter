@@ -280,7 +280,8 @@
             "/[lang]/admin/api/settings/platform",
             "/[lang]/tg/api/agent",
             "/[lang]/tg/api/context",
-            "/[lang]/tg/api/items"
+            "/[lang]/tg/api/items",
+            "/[lang]/tg/api/search"
           ],
           "a2aEndpoint": "/api/a2a",
           "a2aSkills": [
