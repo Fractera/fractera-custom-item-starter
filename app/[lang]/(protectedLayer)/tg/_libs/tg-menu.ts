@@ -5,11 +5,12 @@ import menu from "../_data/menu.json"
 
 type Words = { en: string; [lang: string]: string }
 type RawChild = { slug: string; title: Words; note?: Words }
-type RawItem = { slug: string; icon?: string; title: Words; hint?: Words; children?: RawChild[]; add?: Words }
+type RawItem = { slug: string; kind?: string; href?: string; icon?: string; title: Words; hint?: Words; children?: RawChild[]; add?: Words }
 type RawMenu = { ui: Record<string, Words>; modes: Array<{ id: string; title: Words; groups: Array<{ title?: Words; items: RawItem[] }> }>; common?: RawItem[] }
 
 export type TgChild = { slug: string; title: string; note: string | null }
-export type TgItem = { slug: string; icon: string; title: string; hint: string | null; children: TgChild[] | null; add: string | null }
+/** 848: `kind` — what the item is for (`check:tg-menu`); `href` — a `nav` item's real page of this element, opened as it is. */
+export type TgItem = { slug: string; kind: string | null; href: string | null; icon: string; title: string; hint: string | null; children: TgChild[] | null; add: string | null }
 export type TgGroup = { title: string | null; items: TgItem[] }
 export type TgMode = { id: string; title: string; groups: TgGroup[] }
 export type TgUi = { open: string; close: string; role: string; site: string; modes: string }
@@ -23,6 +24,8 @@ export function tgMenu(lang: string): { modes: TgMode[]; common: TgItem[]; ui: T
   const ui = Object.fromEntries(Object.entries(raw.ui).map(([k, w]) => [k, pick(w, lang) ?? ""])) as TgUi
   const item = (it: RawItem): TgItem => ({
     slug: it.slug,
+    kind: typeof it.kind === "string" ? it.kind : null,
+    href: typeof it.href === "string" && it.href.startsWith("/") ? it.href : null,
     icon: it.icon ?? "circle",
     title: pick(it.title, lang) ?? it.slug,
     hint: pick(it.hint, lang),

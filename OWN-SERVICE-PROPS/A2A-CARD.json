@@ -183,6 +183,59 @@
                 "401": "bad_key"
               },
               "callers": []
+            },
+            {
+              "skill": "pages",
+              "protocol": "http",
+              "method": "GET",
+              "path": "/api/pages",
+              "key": "node-key",
+              "input": {
+                "lang": "ru"
+              },
+              "output": {
+                "ok": true,
+                "lang": "ru",
+                "pages": [
+                  {
+                    "path": "/privacy",
+                    "branch": "public",
+                    "title": "Конфиденциальность",
+                    "access": "guest"
+                  },
+                  {
+                    "path": "/admin/agent/telegram",
+                    "branch": "admin",
+                    "title": "Telegram-бот",
+                    "access": [
+                      "architect",
+                      "elementAdmin001"
+                    ]
+                  }
+                ],
+                "miniApp": {
+                  "path": "/tg",
+                  "access": [
+                    "architect",
+                    "elementAdmin001"
+                  ],
+                  "items": 6,
+                  "kinds": {
+                    "stats": 1,
+                    "chat": 1,
+                    "schedule": 1,
+                    "nav": 1,
+                    "control": 1,
+                    "help": 1
+                  }
+                }
+              },
+              "errors": {
+                "401": "bad_key",
+                "403": "node_only",
+                "422": "no_app"
+              },
+              "callers": []
             }
           ],
           "consumes": [
@@ -472,6 +525,26 @@
         "http-door"
       ],
       "examples": [],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "pages",
+      "name": "List this element's pages and who may open each one",
+      "description": "The element's pages — every address a person can open — and who may open each (guest or roles), plus its Telegram Mini App with its items counted by kind; for the core's `npm run pages` (node step 848-7). Not over A2A: an HTTP door — GET /api/pages (extension https://fractera.ai/a2a/ext/node/v1, «doors»)",
+      "tags": [
+        "http-door",
+        "pages",
+        "roles",
+        "mini-app"
+      ],
+      "examples": [
+        "GET /api/pages?lang=ru — the pages of this element with their access"
+      ],
       "inputModes": [
         "application/json"
       ],

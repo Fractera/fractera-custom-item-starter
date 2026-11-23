@@ -39,8 +39,9 @@ export function TgShell({ lang, siteName, site, modes, common, ui, children }: P
   const current = all.flatMap((it) => [it, ...(it.children ?? [])]).find((it) => it.slug === slug)
   const active = modes.find((m) => m.id === mode) ?? modes[0]
   const href = (s: string) => (s ? `${base}/${s}` : base)
+  // 848: a `nav` item opens this element's real page (`/<lang><href>`) — the person acts there, by role; a screen of /tg otherwise.
   const row = (it: TgItem) => it.children ? <Category href={href} item={it} key={it.slug} onGo={() => setOpen(false)} slug={slug} /> : (
-    <Link className={cn(ROW, it.slug === slug && CURRENT)} href={href(it.slug)} key={it.slug} onClick={() => setOpen(false)}>
+    <Link className={cn(ROW, it.slug === slug && CURRENT)} href={it.href ? `/${lang}${it.href}` : href(it.slug)} key={it.slug} onClick={() => setOpen(false)}>
       <Tile icon={it.icon} on={it.slug === slug} />
       <span className="flex min-w-0 flex-col">
         <span className="font-medium text-[15px] leading-tight">{it.title}</span>

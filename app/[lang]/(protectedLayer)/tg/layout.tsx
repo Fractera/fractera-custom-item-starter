@@ -2,7 +2,7 @@ import { AccessGate } from "@/components/auth/access-gate.client"
 import { PROTECTED_GROUP_ROLES } from "@/lib/roles"
 import { accessGateUi } from "@/components/auth/access-gate.i18n"
 import { appDialogUi } from "@/components/dialog/app-dialog.i18n"
-import { metaForLang } from "@/config/app-config"
+import { elementName } from "./_libs/element-name"
 import { TgBridge } from "./_components/tg-bridge.client"
 import { TgShell } from "./_components/tg-shell.client"
 import { tgMenu } from "./_libs/tg-menu"
@@ -21,7 +21,7 @@ export default async function Layout(
     <AccessGate roles={PROTECTED_GROUP_ROLES.admin} lang={lang} ui={accessGateUi(lang)} dialogUi={appDialogUi(lang)}>
       <div data-block="tg-app" data-tg-app="" className="min-h-dvh bg-[var(--tg-page)] text-foreground">
         <TgBridge home={`/${lang}/tg`} />
-        <TgShell common={common} lang={lang} modes={modes} site={`/${lang}`} siteName={metaForLang(lang).siteName} ui={ui}>{children}</TgShell>
+        <TgShell common={common} lang={lang} modes={modes} site={`/${lang}`} siteName={elementName(lang)} ui={ui}>{children}</TgShell>
       </div>
     </AccessGate>
   )

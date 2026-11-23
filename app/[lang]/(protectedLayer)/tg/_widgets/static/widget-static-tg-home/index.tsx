@@ -2,7 +2,7 @@
 // Pult's top, Telegram 971): «Как начать» until «Прочитано», the agent's card, «Топливо подписки» and «Ждёт вас» (an island asking the core
 // through the branch's door), and the four sections on coloured tiles with what each holds now (today's calendar lives in Cron's line).
 
-import { metaForLang } from "@/config/app-config"
+import { elementName } from "../../../_libs/element-name"
 import { TgHomeAgent, TgNatives } from "../../../_components/tg-home-agent.client"
 import { tgAgentUi } from "../../../_components/tg-agent.i18n"
 import { TgHead } from "../../../_components/tg-head.client"
@@ -24,7 +24,7 @@ export function Widget({ lang }: { lang: string }) {
   const facts = elementFacts()
   return (
     <div className="flex flex-col gap-5 pb-10" data-block="tg-home" data-app-column="">
-      <TgHead line={ui.line} refresh={ui.refresh} title={metaForLang(lang).siteName} />
+      <TgHead line={ui.line} refresh={ui.refresh} title={elementName(lang)} />
       <div className="flex flex-col gap-6 px-3" data-block="tg-home-body">
         <TgSearch lang={lang} ui={ui.search} />
         <TgHomeAgent lang={lang} ui={tgAgentUi(lang)} />

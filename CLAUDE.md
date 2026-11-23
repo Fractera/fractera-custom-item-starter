@@ -51,7 +51,8 @@ server, client or combined function. One page changes nothing: it is still a ser
   Your admin holds your own role — one of `elementAdmin001…elementAdmin980`, the node gives its number (`lib/roles.ts` →
   `OWN_ADMIN_ROLE`); your management branches (`admin`, `staff`, `finance`) and your Mini App `app/[lang]/(protectedLayer)/tg/` open
   to it and to the architect, locked at the edge (`proxy.ts`). The Mini App is your face in Telegram, opened by your bot's menu
-  button (skill `telegram-mini-app`).
+  button (skill `telegram-mini-app`): one person's remote — navigation to your real pages, a jump to the chat on a section's topic,
+  short statistics, the schedule, search and build-control forms; never a copy of a page or of an app's function (core step 848).
 - **Your person's focus — the map of Projects** (the owner of the node, 2026-11-21, core step 825). When your folder has the Mini App
   (`app/[lang]/(protectedLayer)/tg/`), its tree `tg/_projects/<section>/<group>/` is the map of your person's work: sections and
   groups are fixed folders, each with a `README.md` of what goes there and what goes to a neighbour — read it before you put work

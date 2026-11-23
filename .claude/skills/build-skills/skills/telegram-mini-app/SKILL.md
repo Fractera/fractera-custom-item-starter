@@ -16,6 +16,17 @@ Node step 778. The owner of the node, 2026-11-17:
 - «этот маршрут точно должен быть защищен … той самой ролью»;
 - «только он и архитектор всего проекта могут видеть приватные маршруты».
 
+## 0. The purpose — one person's remote (node step 848; the owner of the node, 2026-11-23)
+
+- **What it is for, and only this:** navigation to the project's pages · a jump from a section to the chat on its topic · short
+  statistics and results · the tasks on a schedule · search (this element, the node's elements, Fractera's f2f marketplace, later
+  Lagrix). It grows by sections, categories and items, by analytics, and by build-control forms (a key, the model, switches).
+- **Never** a copy of a page, its mobile version or an app's function: the person acts on the real page of the project, by their role
+  — a `nav` item leads there. A card that shows a number is fine; a screen that lets the person do the page's work is not.
+- **One Mini App — one person.** Two people of one app (Marina and her assistant) are two remotes by their roles; anything that runs
+  Claude for the second person runs on their own Claude subscription only (Anthropic's terms) — ask your person and the core, never
+  share one account.
+
 ## 1. What it is, and what it is not
 
 - **The element's face inside Telegram, for its administrator.** The bot's menu button opens `https://<this element's address>/tg`;
@@ -64,7 +75,16 @@ Inside Telegram the person signs in once with the node's sign-in form, the same 
 - One mode (the owner, Telegram 412, 2026-11-21): «Главная» · «Проекты» (opens into its four sections, `add` «Все направления») ·
   «Cron» (one calendar for every project) · «Элемент» (site, people, agent, building) · «Настройки» (instruction, owner, project, skills,
   subscriptions, MCP). `common` stays empty in the shape the core reads. The A2A screens return when the network lives.
-- Proofs of a menu change: `npm run test:tg-menu` and eyes of the drawer open at 390 px in both themes.
+- **Every item says what it is for** — `kind`: `nav` (a link to a real page of this element: `href` like `/admin/orders`, optional
+  `roles`), `chat` (sections leading to the chat on their topic — «Проекты»), `stats`, `schedule`, `search`, `control`, `help`. The
+  drawer opens a `nav` item's page as it is; everything else is a screen of `/tg`. `npm run check:tg-menu` names an item without a kind,
+  a link to no page, an `href` on a non-`nav` item and a screen folder outside the menu — a warning on this tag, a failure from the
+  next one; its samples — `npm run test:check-tg-menu`.
+- **The pages a `nav` item may lead to** are the list of the door `GET /api/pages` (`npm run test:pages`; the core's `npm run pages`
+  reads the same door): every address with its access — guest, or the roles of its lock (`lib/page-lock.mjs`).
+- **The name at the top** is the element's (`tg/_libs/element-name.ts`): the site name the person gave → the name the core gave the
+  element → the passport's name → the site name as it stands.
+- Proofs of a menu change: `npm run test:tg-menu`, `npm run check:tg-menu` and eyes of the drawer open at 390 px in both themes.
 
 ## 3b. Projects — where the person's work lives (node steps 821, 824)
 

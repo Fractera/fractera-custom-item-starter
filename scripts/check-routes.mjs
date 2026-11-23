@@ -113,6 +113,7 @@ const ALLOWED = new Map([
   ['app/api/tg/open/route.ts', 'the Mini App\'s first stop: Telegram\'s launch data → the ticket (node step 832-6)'],
   ['app/api/tg/session/route.ts', 'Telegram\'s signed launch → this element\'s Telegram ticket (node step 832-6)'],
   ['app/api/tg-menu/route.ts', 'door tg-menu: the Mini App menu for the core\'s Working process (door:add, node step 548-16)'],
+  ['app/api/pages/route.ts', 'door pages: list this element\'s pages and who may open each one (door:add, node step 548-16)'],
 ])
 
 const found = []
