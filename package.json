@@ -20,6 +20,7 @@
     "reply-core": "node scripts/ask-core.mjs --reply",
     "recommend": "node scripts/recommend.mjs",
     "tell-core": "node scripts/ask-core.mjs --tell",
+    "deploy:self": "node scripts/deploy-self.mjs",
     "reset": "node scripts/ask-core.mjs --reset",
     "ask-person": "node scripts/ask-person.mjs",
     "browser": "node scripts/browser.mjs",
