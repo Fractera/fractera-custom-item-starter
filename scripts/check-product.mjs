@@ -41,6 +41,7 @@
 
 import fs from "node:fs"
 import path from "node:path"
+import { treeProblems } from "./quiz-tree.mjs"
 
 const argRoot = process.argv.indexOf("--root")
 const ROOT = argRoot > 0 ? path.resolve(process.argv[argRoot + 1]) : path.resolve(import.meta.dirname, "..")
@@ -131,6 +132,9 @@ for (const q of Array.isArray(quiz?.openQuestions) ? quiz.openQuestions : [])
   for (const a of Array.isArray(q.about) ? q.about : []) if (ANY_ITEM.test(a) && !ids.has(a)) problems.push(`open question ${q.id}: about ${a}, which is not in the quiz`)
 for (const s of Array.isArray(quiz?.slices) ? quiz.slices : [])
   for (const a of Array.isArray(s.items) ? s.items : []) if (!ids.has(a)) problems.push(`slice ${s.id}: ${a} is not in the quiz`)
+
+// 852: the quiz as a tree walked in breadth — numbers, marks, depth 1–5, freedom 0–100 %, the four questions always asked (scripts/quiz-tree.mjs).
+for (const p of treeProblems(quiz)) problems.push(p)
 
 const filled = (v) => typeof v === "string" && v.trim() !== ""
 const stages = Array.isArray(quiz?.stages) ? quiz.stages : []

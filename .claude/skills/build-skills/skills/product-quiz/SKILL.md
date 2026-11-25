@@ -36,6 +36,12 @@ Two kinds of file, both JSON, so the core's page and `npm run check:product` rea
   `slices` [{id `L-NN`, name, items}] — they are read as stages. A product like an existing one also has `references` — the
   similar products, their areas, the scenarios they show and what cannot be seen from outside; its form and rules are in the skill
   `product-clone`.
+- **The tree** (core step 852; Roma 2026-11-24 — the marketplace's quiz «went deep into one branch and asked about everything»):
+  `tree` [{`n` "1", "1.2", "2.3.4"… by place, `title` 2–4 words, `q` the question, `a` the answer, `mark` `answered` (the person) ·
+  `agent` (filled by you) · `open`, `children`}], `depth` 1–5 (default 3), `freedom` 0–100 — the share of nodes below level 1 you
+  fill yourself (default 75), `version` {n, date}. Level 1 = the modules of the product. `npm run quiz:tree` prints it numbered with
+  its marks and the counts per level; `npm run quiz:tree -- next` names the next node by the breadth rule; `npm run check:product`
+  refuses a tree that broke it.
 - `modules/<slug>.json` — {slug, title, text, items}. An item: `id` (`S-NN` scenario · `R-NN` rule · `E-NN` entity), `kind`,
   `title`, `text`, `actor` (scenarios), `acceptance` (an observable fact: «the list narrows when a word is typed»), `dependsOn`
   (item ids), `status` (`draft` · `confirmed`), `confirmed` {date, said} when confirmed, `builtBefore` only for work done before
@@ -108,12 +114,23 @@ The test is one question: **does it change what the product does for someone?** 
    how that product works; copy none of its content (node step 538). A package or an SDK is studied the same way. **Everything a study
    brings is another product's**: a source to learn from, never this element's code, pages, routes or data, and never an item of the
    quiz until the person wants it.
-4. **One question at a time.** Never a list of twenty. Lead with your own assumption from the request and the passport
+4. **A tree, walked in breadth** (Roma's method, 2026-11-24). Before the first question ask once — depth (1–5, default 3; say the
+   volume and its price in tokens in words: level 5 may mean thousands of questions) and freedom F (0–100 %, default 75 %: 0 — every
+   question goes to the person, 100 — the person answers only level 1) — and write both into `quiz.json`; the person may change them
+   by words at any time. Then **level 1 first, all of it**: the branches of the whole task, each a module, agreed with the person.
+   Then every branch to level 2 (a new branch is caught up to the same level), then level 3 the same way — **never follow one answer
+   down its branch while another branch is not at that level** (`npm run quiz:tree -- next` names the node). Below level 1 fill the F
+   share yourself, marked `agent` — but **money, ownership, publication and secrets are asked of the person at any F**, each with your
+   recommendation. At the last level: the counts per level and one question — deeper everywhere, or in one branch.
+   **Every turn ends with the whole tree** — the output of `npm run quiz:tree` (numbered, 2–4 words each, ✓ the person · ◇ you · ○
+   open) and the link to your quiz page in the core (`<the node's architect address>/<lang>/<your id>/product-design/quiz`, «Скачать
+   результат» there gives the PDF): the person corrects by number — «for 2.3.4 add …» lands exactly in 2.3.4.
+   **One question at a time inside a level.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.
 5. **Choices as numbered text** («1 — …, 2 — …, 3 — your own»): the Telegram plugin drops buttons, and text arrives everywhere.
-6. **Order:** the vision (who, what pain, what counts as success) → the actors → the scenarios → the rules they need → the open
-   questions → the stages.
+6. **Order:** the vision (who, what pain, what counts as success) → the tree's level 1 (the modules) → the tree in breadth, from which
+   the actors, scenarios, rules and open questions are written → the stages.
 7. **Stages 0 … N, each working on its own — planned on two levels** (owner of the node, 2026-10-22 and 2026-10-23: «планирование
    каждого следующего этапа на предварительном уровне в общих характеристиках может быть создано сразу же … Но при этом детальное
    проектирование каждого этапа запускается только после завершения предыдущего этапа»). **First level, at once** — right after the
