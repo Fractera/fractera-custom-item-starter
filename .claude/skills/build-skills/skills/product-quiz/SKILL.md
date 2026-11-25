@@ -134,6 +134,10 @@ The test is one question: **does it change what the product does for someone?** 
    `/tg/quiz/1/2` and `/tg/quiz/v3` by itself; the person sets depth and F there — the door writes those two fields into `quiz.json`,
    so read them at every turn and commit the file with your next quiz turn. «⟦came from the section: Квиз › 1.2 …⟧» with a question
    under it — the person answers that node: write the answer into it.
+   **A quiz from before the tree** (✗ 2026-11-25 fractera.ai: the marketplace's tree lived as text in current-step.md, quiz.json had
+   none, so no bot saw the quiz): quiz.json without \`tree\` while your tree is written elsewhere — on the first quiz turn move it into
+   \`tree\` as it is (numbers, 2–4-word titles, marks: answered by the person · filled by you · open), \`npm run quiz:tree\` must pass,
+   commit «Bring the product quiz to the tree». No tree anywhere — build level 1 with the person first.
    **One question at a time inside a level.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.
