@@ -100,6 +100,7 @@ const ALLOWED = new Map([
   ['app/[lang]/(protectedLayer)/tg/api/agent/route.ts', 'дверь островка Mini App: свой агент элемента и его окно контекста — ядро отвечает только о себе (узел, шаг 821)'],
   ['app/[lang]/(protectedLayer)/tg/api/context/route.ts', 'дверь «Перейти в чат» Mini App: раздел, из которого человек пришёл, для хука came-from ядра (узел, шаг 821)'],
   ['app/[lang]/(protectedLayer)/tg/api/search/route.ts', 'дверь поиска Mini App: вопрос человека своему агенту элемента, свой бот пишет «🔎 Ищу: …» (узел, шаг 841; владелец, Telegram 963)'],
+  ['app/[lang]/(protectedLayer)/tg/api/quiz/route.ts', 'дверь «Квиз» Mini App: глубина и автоматизация продуктового квиза — два поля quiz.json, дерево не трогает (ядро, шаг 852-7; Рома, Telegram 1299)'],
   ['app/[lang]/(protectedLayer)/tg/api/items/route.ts', 'дверь «＋ Добавить» Mini App: человек дописывает пункт в items.json направления, без сборки (узел, шаг 826)'],
   ['app/api/settings/changed/route.ts', 'сигнал CONFIG и «Дизайна»'],
   ['app/api/settings/design/route.ts', 'дверь дизайна элемента'],

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { Widget as Projects } from './dynamic/widget-dynamic-tg-projects'
 import { projectScreen } from './dynamic/widget-dynamic-tg-projects/screens'
+import { Widget as Quiz } from './dynamic/widget-dynamic-tg-quiz'
+import { quizScreen } from './dynamic/widget-dynamic-tg-quiz/screens'
 import { Widget as Cron } from './static/widget-static-tg-cron'
 import { Widget as Element } from './static/widget-static-tg-element'
 import { Widget as Home } from './static/widget-static-tg-home'
@@ -14,6 +16,8 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-static-tg-home': (lang) => <Home lang={lang} />,
   // 821: «Проекты» — четыре раздела, 46 направлений (_data/projects.json), сортировка по страницам сайта и задачам Cron.
   'widget-dynamic-tg-projects': (lang) => <Projects lang={lang} />,
+  // 852-7: «Квиз» — the product quiz: analytics, depth and automation, open questions, the tree, versions (development-docs/product/quiz.json).
+  'widget-dynamic-tg-quiz': (lang) => <Quiz lang={lang} />,
   // 821: «Cron» — общий календарь всех проектов (data/cron.json).
   'widget-static-tg-cron': (lang) => <Cron lang={lang} />,
   // 821: «Элемент» — сайт, люди, агент, строительство.
@@ -24,5 +28,6 @@ export const WIDGETS: Record<string, (lang: string) => ReactNode> = {
   'widget-static-tg-start': (lang) => <Start lang={lang} />,
 }
 
-/** 821: экраны каталога без своей папки — раздел, направление, пункт (`/tg/projects/<…>`); настоящая папка сильнее. */
-export const VIRTUAL = (slug: string, lang: string) => projectScreen(slug, lang)
+/** 821: экраны каталога без своей папки — раздел, направление, пункт (`/tg/projects/<…>`); настоящая папка сильнее.
+ *  852-6: узлы квиза `/tg/quiz/1/2` и его версии `/tg/quiz/v3` — адреса делает само дерево. */
+export const VIRTUAL = (slug: string, lang: string) => quizScreen(slug, lang) ?? projectScreen(slug, lang)

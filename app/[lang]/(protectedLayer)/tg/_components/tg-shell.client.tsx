@@ -5,7 +5,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { createContext, type ReactNode, useContext, useState } from "react"
-import { Boxes, CalendarClock, CalendarDays, ChevronDown, ChevronRight, Circle, CircleHelp, CreditCard, Folder, Globe, House, Inbox, LayoutGrid, type LucideIcon, Menu, PenLine, Plus, Settings, Star, Store, Wallet } from "lucide-react"
+import { Boxes, CalendarClock, CalendarDays, ChevronDown, ChevronRight, Circle, CircleHelp, CreditCard, Folder, Globe, House, Inbox, LayoutGrid, type LucideIcon, Menu, Network, PenLine, Plus, Settings, Star, Store, Wallet } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -17,7 +17,7 @@ import type { TgItem, TgMode, TgUi } from "../_libs/tg-menu"
 // авторы» · «верхнее меню … рабочее пространство для собственных проектов … А2А web4 взаимодействия» · «подписки с выпадающим
 // списком. И крон автоматизация». Design (interface-design): one hand on a phone, Telegram's own settings lists as the native feel; the
 // current page is the focal point (muted fill + a primary bar); rows 56 px, children 44 px; depth by borders only; tokens only.
-const ICONS: Record<string, LucideIcon> = { home: House, card: CreditCard, calendar: CalendarDays, clock: CalendarClock, grid: LayoutGrid, element: Boxes, settings: Settings, help: CircleHelp, store: Store, inbox: Inbox, star: Star, wallet: Wallet, folder: Folder, pen: PenLine }
+const ICONS: Record<string, LucideIcon> = { home: House, card: CreditCard, calendar: CalendarDays, clock: CalendarClock, grid: LayoutGrid, element: Boxes, settings: Settings, help: CircleHelp, store: Store, inbox: Inbox, star: Star, wallet: Wallet, folder: Folder, pen: PenLine, network: Network }
 
 // 821: a screen draws its own head (the large title with ☰ beside it, `tg-head.client.tsx`); the head opens the drawer through this.
 const MenuCtx = createContext<{ open: () => void; label: string }>({ open: () => {}, label: "" })

@@ -89,6 +89,19 @@
               }
             },
             {
+              "slug": "quiz",
+              "kind": "stats",
+              "icon": "network",
+              "title": {
+                "en": "Quiz",
+                "ru": "Квиз"
+              },
+              "hint": {
+                "en": "The product tree, depth, open questions",
+                "ru": "Дерево продукта, глубина, открытые вопросы"
+              }
+            },
+            {
               "slug": "cron",
               "kind": "schedule",
               "icon": "clock",

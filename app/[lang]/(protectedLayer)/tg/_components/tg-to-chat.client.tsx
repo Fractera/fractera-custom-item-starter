@@ -19,8 +19,9 @@ async function go(lang: string, section?: Section | null) {
   tgPost("web_app_close")
 }
 
-/** The section the person leaves for the chat: its titles and its address in the Mini App (node step 821, the owner's 434). */
-type Section = { path: string[]; href: string }
+/** The section the person leaves for the chat: its titles and its address in the Mini App (node step 821, the owner's 434); `ask` —
+ *  the question the bot writes under the path (852-7, a quiz node). */
+type Section = { path: string[]; href: string; ask?: string | null }
 
 export function TgToChat({ label, hint, lang, section }: { label: string; hint: string; lang: string; section?: Section | null }) {
   const [inside, setInside] = useState(false)

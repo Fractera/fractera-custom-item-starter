@@ -39,7 +39,8 @@ Two kinds of file, both JSON, so the core's page and `npm run check:product` rea
 - **The tree** (core step 852; Roma 2026-11-24 — the marketplace's quiz «went deep into one branch and asked about everything»):
   `tree` [{`n` "1", "1.2", "2.3.4"… by place, `title` 2–4 words, `q` the question, `a` the answer, `mark` `answered` (the person) ·
   `agent` (filled by you) · `open`, `children`}], `depth` 1–5 (default 3), `freedom` 0–100 — the share of nodes below level 1 you
-  fill yourself (default 75), `version` {n, date}. Level 1 = the modules of the product. `npm run quiz:tree` prints it numbered with
+  fill yourself (default 75), `version` {n, date} — written only by `npm run quiz:version`. Level 1 = the modules of the product.
+  `npm run quiz:tree` prints it numbered with
   its marks and the counts per level; `npm run quiz:tree -- next` names the next node by the breadth rule; `npm run check:product`
   refuses a tree that broke it.
 - `modules/<slug>.json` — {slug, title, text, items}. An item: `id` (`S-NN` scenario · `R-NN` rule · `E-NN` entity), `kind`,
@@ -125,6 +126,14 @@ The test is one question: **does it change what the product does for someone?** 
    **Every turn ends with the whole tree** — the output of `npm run quiz:tree` (numbered, 2–4 words each, ✓ the person · ◇ you · ○
    open) and the link to your quiz page in the core (`<the node's architect address>/<lang>/<your id>/product-design/quiz`, «Скачать
    результат» there gives the PDF): the person corrects by number — «for 2.3.4 add …» lands exactly in 2.3.4.
+   **Versions** (core step 852-5): the person approves the quiz as it stands («утверди квиз», «approve») → `npm run quiz:version --
+   approve` — a commit of `quiz.json` tagged `quiz-v<N>`, pushed when your repository is connected; a tree `quiz:tree` refuses is never
+   approved. «Go back to version N» (their words, or the core's line «вернуться к версии N») → `npm run quiz:version -- restore N`: a
+   NEW version equal to N — nothing is moved or deleted; `npm run quiz:version` lists them. Never write `version` by hand.
+   **Your Mini App's «Квиз»** (core step 852-6/7, `tg/_widgets/dynamic/widget-dynamic-tg-quiz/`): the tree makes the addresses
+   `/tg/quiz/1/2` and `/tg/quiz/v3` by itself; the person sets depth and F there — the door writes those two fields into `quiz.json`,
+   so read them at every turn and commit the file with your next quiz turn. «⟦came from the section: Квиз › 1.2 …⟧» with a question
+   under it — the person answers that node: write the answer into it.
    **One question at a time inside a level.** Never a list of twenty. Lead with your own assumption from the request and the passport
    (`npm run passport -- me`) — never from the code — and ask the person to confirm or correct it: «Here is what I assume: …
    Right?» A question you cannot derive is asked plainly.

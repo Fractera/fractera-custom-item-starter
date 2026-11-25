@@ -334,6 +334,7 @@
             "/[lang]/tg/api/agent",
             "/[lang]/tg/api/context",
             "/[lang]/tg/api/items",
+            "/[lang]/tg/api/quiz",
             "/[lang]/tg/api/search"
           ],
           "a2aEndpoint": "/api/a2a",

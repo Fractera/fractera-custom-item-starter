@@ -23,6 +23,7 @@ const BY_ICON: Record<string, TgTone> = {
   element: "purple", boxes: "purple", settings: "gray", help: "teal", globe: "blue", palette: "purple", "sliders-horizontal": "gray",
   users: "green", hammer: "gray", rocket: "green", "scroll-text": "indigo", "user-round": "teal", briefcase: "orange", sparkles: "orange",
   "credit-card": "green", plug: "gray", bot: "blue", gauge: "teal", hourglass: "orange", "calendar-range": "indigo", send: "blue",
+  network: "indigo",
 }
 const ROUND: TgTone[] = ["blue", "green", "purple", "orange", "pink", "teal", "indigo", "red"]
 

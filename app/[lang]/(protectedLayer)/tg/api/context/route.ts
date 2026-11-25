@@ -17,23 +17,25 @@ import { chatLine } from "../../_libs/chat-line"
 export const dynamic = "force-dynamic"
 
 const NO_STORE = { "Cache-Control": "no-store" }
-const HREF = /^\/[a-z]{2}\/tg(\/[a-z0-9-]{1,60}){0,4}$/
+// 852-7: a quiz node lives up to six segments down (`quiz/1/2/3/4/5`, depth 5).
+const HREF = /^\/[a-z]{2}\/tg(\/[a-z0-9-]{1,60}){0,6}$/
 export async function POST(req: NextRequest, { params }: { params: Promise<{ lang: string }> }) {
   const who = await adminOfMiniApp(req)
   if (who !== 200) return NextResponse.json({ ok: false }, { status: who, headers: NO_STORE })
   const dir = process.env.SERVICE_DATA_DIR?.trim()
   if (!dir) return NextResponse.json({ ok: false, reason: "no-data-dir" }, { status: 503, headers: NO_STORE })
-  let body: { path?: unknown; href?: unknown }
+  let body: { path?: unknown; href?: unknown; ask?: unknown }
   try { body = await req.json() } catch { return NextResponse.json({ ok: false, reason: "bad-body" }, { status: 400, headers: NO_STORE }) }
   const path = Array.isArray(body.path) ? body.path.filter((p): p is string => typeof p === "string").map((p) => p.slice(0, 60)).slice(0, 6) : []
   const href = typeof body.href === "string" && HREF.test(body.href) ? body.href : null
+  const ask = typeof body.ask === "string" && body.ask.trim() ? body.ask.trim().slice(0, 400) : null
   if (!path.length || !href) return NextResponse.json({ ok: false, reason: "bad-section" }, { status: 400, headers: NO_STORE })
   mkdirSync(dir, { recursive: true })
-  writeFileSync(join(dir, "tg-context.json"), JSON.stringify({ path, href, at: new Date().toISOString() }) + "\n")
+  writeFileSync(join(dir, "tg-context.json"), JSON.stringify({ path, href, ...(ask ? { ask } : {}), at: new Date().toISOString() }) + "\n")
   const session = await getSession(req)
   const tg = session?.userId?.startsWith("telegram-") ? session.userId.slice("telegram-".length) : null
   const { lang } = await params
-  const sent = tg ? await sendTo(tg, chatLine(lang, path)) : { ok: false, detail: "not from Telegram" }
+  const sent = tg ? await sendTo(tg, chatLine(lang, path, ask)) : { ok: false, detail: "not from Telegram" }
   if (!sent.ok) console.log(`[tg/context] the chat line not sent — ${sent.detail}`)
   return NextResponse.json({ ok: true, line: sent.ok }, { headers: NO_STORE })
 }

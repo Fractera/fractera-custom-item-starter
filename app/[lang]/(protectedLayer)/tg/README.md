@@ -37,7 +37,7 @@ A branch of the element's frame (node step 778). The owner, 2026-11-17: «В ф�
 | `_data/` | the words of the root: `meta.json`, `en.json` (required), `ru.json`; **`menu.json` — the ONE menu of the Mini App and of the core's «Working process»** (below); **`projects.json` — the catalog of Projects: 4 sections, 46 directions** (821) |
 | `_components/` | the branch's own components: `tg-bridge.client.tsx` (Telegram's header, theme and Back button), `tg-shell.client.tsx` (the left drawer), `tg-head.client.tsx` (☰ beside a screen's large title), `tg-list.tsx` (the grouped lists), `tg-to-chat.client.tsx` («Перейти в чат») |
 | `_libs/` | the branch's own logic without markup: `tg-menu.ts` (the menu in one language), `projects.ts` + `projects-catalog.mjs` (the catalog and its numbers; test `npm run test:tg-projects`), `element-facts.ts` (what the element knows about itself), `words.ts` (plurals) |
-| `_widgets/` | the branch's widgets: `static/widget-static-tg-{home,cron,element,settings}`, `dynamic/widget-dynamic-tg-projects` (with the catalog's screens) |
+| `_widgets/` | the branch's widgets: `static/widget-static-tg-{home,cron,element,settings}`, `dynamic/widget-dynamic-tg-projects` (with the catalog's screens), `dynamic/widget-dynamic-tg-quiz` (852: the product quiz — analytics, depth and F, open questions, versions; the tree's own screens `/tg/quiz/1/2`, `/tg/quiz/v3`) |
 | `_pages/<slug>/` | the Mini App's screens — data only, one folder per screen |
 
 ## One menu — two windows (node steps 789, 790)

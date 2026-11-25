@@ -1,0 +1,10 @@
+{
+  "title": "Quiz",
+  "description": "The element's product quiz: the tree, its depth and automation, the open questions and the approved versions.",
+  "body": [
+    {
+      "kind": "widget-dynamic-tg-quiz",
+      "bid": "q7z2k"
+    }
+  ]
+}
