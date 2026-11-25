@@ -30,6 +30,9 @@ export function Widget({ lang }: { lang: string }) {
     )
   }
   const stats = quizStats(quiz)
+  // 852-7 (✗ fc4vk 2026-11-25: a draft of the older form — vision and stages, no tree — read «every question has an answer» over an empty
+  // tree): a quiz with no level-1 branch yet says so, keeps the dials (depth and F are asked before the first question) and hides the zeros.
+  const started = stats.questions > 0
   const open = openNodes(quiz)
   const versions = quizVersions()
   const line = quiz.version ? fill(ui.version, { n: quiz.version.n, date: quiz.version.date ?? "" }) : ui.draft
@@ -37,8 +40,9 @@ export function Widget({ lang }: { lang: string }) {
     <div className="flex flex-col gap-5 pb-10" data-block="tg-quiz" data-app-column="">
       <TgHead line={quiz.title ? `${quiz.title} · ${line}` : line} title={ui.title} />
       <div className="flex flex-col gap-6 px-3" data-block="tg-quiz-body">
-        <Analytics stats={stats} ui={ui} />
+        {started ? <Analytics stats={stats} ui={ui} /> : <TgNote>{ui.treeNone}</TgNote>}
         <QuizDials depth={stats.depth} freedom={stats.freedom} lang={lang} ui={ui.dials} />
+        {started ? (<>
         <TgGroup
           aside={open.length ? String(open.length) : null}
           foot={open.length > SHOWN ? (
@@ -53,6 +57,7 @@ export function Widget({ lang }: { lang: string }) {
         <TgGroup aside={String(stats.branches)} title={ui.treeTitle}>
           <TgRows rows={(quiz.tree ?? []).map((n) => nodeRow(n, lang))} />
         </TgGroup>
+        </>) : null}
         <TgGroup title={ui.versionsTitle}>
           {versions.length
             ? <TgRows rows={versions.map((v) => ({ title: `v${v.n}`, hint: v.date, href: `${href}/v${v.n}`, aside: quiz.version?.n === v.n ? "●" : null }))} />

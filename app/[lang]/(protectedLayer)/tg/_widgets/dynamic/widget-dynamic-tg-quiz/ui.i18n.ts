@@ -9,6 +9,7 @@ export type QuizUi = {
   version: string
   empty: string
   emptyHint: string
+  treeNone: string
   statBranches: string
   statDepth: string
   statQuestions: string
@@ -48,6 +49,7 @@ const en: QuizUi = {
   version: "Version {n} · {date}",
   empty: "The product quiz has not started yet.",
   emptyHint: "Say in the chat: «start the product quiz» — the agent asks the level-1 modules first, then goes deeper level by level.",
+  treeNone: "There is a draft of the quiz, but its tree has not started: no level-1 module yet. Say in the chat «continue the quiz as a tree» — the agent agrees the modules with you first.",
   statBranches: "branches",
   statDepth: "depth",
   statQuestions: "questions",
@@ -91,6 +93,7 @@ const ru: QuizUi = {
   version: "Версия {n} · {date}",
   empty: "Продуктовый квиз ещё не начат.",
   emptyHint: "Скажите в чате: «начни продуктовый квиз» — агент сначала спросит модули первого уровня, потом пойдёт вглубь уровень за уровнем.",
+  treeNone: "Черновик квиза есть, но дерево ещё не начато: модулей первого уровня пока нет. Скажите в чате «продолжи квиз деревом» — агент сначала согласует с вами модули.",
   statBranches: "ветки",
   statDepth: "глубина",
   statQuestions: "вопросы",
