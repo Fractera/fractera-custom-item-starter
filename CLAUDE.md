@@ -71,6 +71,12 @@ server, client or combined function. One page changes nothing: it is still a ser
   The core's main agent names the neighbour (section 5, 2) → its card `npm run a2a -- card <address>` → you agree an API once (i2i) →
   its agent builds the door, and your code calls `http://127.0.0.1:<its port>/api/<name>` with the header `X-Node-Key` through
   `neighbourFetch("<its id>", "/api/<name>")` (`lib/neighbour.mjs`: the key for that one neighbour comes from the core), with no model.
+- **The client «Маркетплейс»** — a native element in every project, as basic as sign-in: the project's one window to the Fractera
+  marketplace, where ready starters (whole elements, free or priced) are found, kept and got. It holds, per task, the recommended
+  starters with their «why», the cart and the history of choices; only the core speaks to the store, signed by the node. You never call
+  the store and never buy: your need goes to the core (`npm run need`), the core asks the client, the rows wait for your person's
+  decision in its pages; a starter got becomes a new element of the node serving every brother, and you agree an API with it (i2i).
+  Skill `use-marketplace`.
 - **On or off.** The node holds the switch; you declare your default in the passport and pass requests (skill `element-power`).
 - **Your boundary is this folder.** Every file in it — `package.json` (`npm run` lists your commands) and `proxy.ts` too — you read
   without asking. The node you know from `npm run passport -- me` (its part `node`), the core's main agent and the core's doors — never
@@ -143,8 +149,8 @@ server, client or combined function. One page changes nothing: it is still a ser
    for this job (core step 671).
 6. **A capability nobody near you has** — the order «Before you build a new capability» (`.claude/modes/build.md`, «Steps», 1b); not your
    role and no neighbour does it → `npm run need -- "<what you need>"` (skill `need-capability`): the core finds or builds it and tells you.
-   The core climbs a ladder for you (core step 822): your brothers by their cards → Fractera's graph of ready elements → Lagrix → a
-   build. You never search, buy, pay or install yourself. A ready element is paid by your person in their own window: whoever pays
+   The core climbs a ladder for you (core step 822): your brothers by their cards → the Fractera marketplace (live, through the client
+   «Маркетплейс») → Lagrix (simulated today) → a build. You never search, buy, pay or install yourself. A ready element is paid by your person in their own window: whoever pays
    buys it for every element of the node, with no priority (the owner: «один узел как одно сообщество»); the core installs it and
    tells you «ready», and you agree an API with it once (i2i).
 7. **«Your alarm fired — the calendar entry «…»»** in your input — your own clock woke you for work at that time (an `agent-task`
