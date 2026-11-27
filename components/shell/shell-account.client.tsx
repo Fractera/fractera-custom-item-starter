@@ -41,7 +41,19 @@ function AccountDrawer({ side, labels, email, roles = [], links, logoutHref, att
   const isArchitect = roles.includes("architect") || roles.includes("admin")
   const { attention, refresh } = useAttention(isArchitect ? attentionUrl : undefined)
   const waiting = hasAttention(attention) && !!attentionWords
-  const openDrawer = () => { setOpen(true); refresh() }
+  // 862-12 (шаг ядра; владелец узла 2026-11-27, Telegram 1670): общие пункты ящика от ядра — три страницы клиента «Маркетплейс» —
+  // спрашиваются при открытии (`/api/account-links`), только для людей проекта: архитектора, администратора и администратора элемента.
+  const [shared, setShared] = useState<{ key: string; label: string; href: string }[]>([])
+  const forProject = roles.some((r) => r === "architect" || r === "admin" || /^elementAdmin\d+$/.test(r))
+  const askShared = () => {
+    if (!forProject) return
+    const lang = (typeof document !== "undefined" && document.documentElement.lang) || "en"
+    fetch(`/api/account-links?lang=${encodeURIComponent(lang)}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((b: { links?: { key: string; label: string; href: string }[] }) => setShared(Array.isArray(b.links) ? b.links : []))
+      .catch(() => setShared([]))
+  }
+  const openDrawer = () => { setOpen(true); refresh(); askShared() }
 
   return (
     <>
@@ -88,6 +100,16 @@ function AccountDrawer({ side, labels, email, roles = [], links, logoutHref, att
                   >
                     {l.label}
                   </Link>
+                ))}
+              </nav>
+            )}
+            {shared.length > 0 && (
+              <nav className="mt-2 flex flex-col gap-0.5 border-t border-border pt-2" data-block="shell-account-shared">
+                {shared.map((l) => (
+                  // a link through the core's door leaves for another address — a plain full navigation
+                  <a key={l.key} href={l.href} onClick={() => setOpen(false)} className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "w-full justify-start")}>
+                    {l.label}
+                  </a>
                 ))}
               </nav>
             )}
