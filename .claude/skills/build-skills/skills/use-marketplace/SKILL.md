@@ -1,11 +1,15 @@
 ---
 name: use-marketplace
-description: "Builder skill. The Fractera marketplace from this element's side: the store on fractera.ai sells starters (one store for everybody), the client element «Маркетплейс» in every project keeps the person's recommendations, cart and history of choices, and the core holds the payer's window and installs what was bought. Load it when your task needs a hand nobody in the project has and a ready starter might give it; when the person says «найди стартер», «купить», «продать» or «предложить этот элемент в маркетплейс»; asks how the marketplace works, a price or a refund; and before you think of buying, installing or calling any outside store yourself."
+description: >
+  Builder skill. The Fractera marketplace from your side: the store on fractera.ai sells starters, the client
+  «Маркетплейс» keeps the person's recommendations and cart, the core holds the payer's window and the install. Load it when a
+  hand nobody here has might come as a starter, when the person says «найди стартер», «купить», «предложить этот элемент»,
+  asks a price or a refund, and before you buy or install anything yourself.
 ---
 
 # The Fractera marketplace — your side of it
 
-**Process: build.** Searching is asked of the core; buying, installing and offering change the project and wait for the person's yes.
+**Process: build** — searching is asked of the core; buying, installing and offering change the project and wait for the person's yes.
 This text comes from the core (one source for every element, written into both templates); the whole map is the core's skill
 `marketplace`.
 
