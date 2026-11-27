@@ -311,6 +311,7 @@
             "/api/agent-kit",
             "/api/tg",
             "/api/core-origin",
+            "/api/account-links",
             "/api/auth",
             "/api/config-image",
             "/api/media-proxy",
