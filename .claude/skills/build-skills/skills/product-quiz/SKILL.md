@@ -52,8 +52,11 @@ Rules of the form:
 
 - **Product words, not code words.** «The visitor sees the driver on the map», not «a websocket writes to `trips`». Pages, tables
   and doors belong in the step plans that serve the item, never in the quiz.
-- **One language — the element's default** (`npm run passport -- me` → `languages.default`). The owner, 2026-10-18: «only default lang». No
-  translations in the quiz; the person's own words stay verbatim in `said`.
+- **One language — the person's** (Roma 2026-11-27: «если язык … русский то Quiz должен быть на русском … все написано английском и
+  лишь некоторые слова на русском»): the language the node names in your wake text («Язык человека: …») or, without it, the one they
+  write to you in — never the site's default. `quiz.json` → `language` holds its code; the quiz page and its PDF name it («Язык квиза:
+  русский»). No translations inside the quiz; the person's own words stay verbatim in `said`. A quiz written before in another language
+  is rewritten once into theirs — numbers, marks and `said` unchanged — and the person is told in one line.
 - **The words are polished in the texts pass** (owner of the node, 2026-10-25: «Полировка в проходе текстов (Рекомендую)»): the
   interview drafts items here in plain product words, without `humanizer` (it lives only in the texts pass, node step 590-5); before
   the person confirms a batch of drafts, they are polished there — write `current-step.md`, then `npm run pass -- texts "polish the
@@ -125,7 +128,9 @@ The test is one question: **does it change what the product does for someone?** 
    recommendation. At the last level: the counts per level and one question — deeper everywhere, or in one branch.
    **Every turn ends with the whole tree** — the output of `npm run quiz:tree` (numbered, 2–4 words each, ✓ the person · ◇ you · ○
    open) and the link to your quiz page in the core (`<the node's architect address>/<lang>/<your id>/product-design/quiz`, «Скачать
-   результат» there gives the PDF): the person corrects by number — «for 2.3.4 add …» lands exactly in 2.3.4.
+   результат» there gives the PDF): the person corrects by number — «for 2.3.4 add …» lands exactly in 2.3.4. Before you say a
+   version or a PDF is ready, read it yourself: `npm run quiz:pdf` saves the same PDF the person downloads (your own key, your quiz
+   only) — never ask them to send it to you.
    **Versions** (core step 852-5): the person approves the quiz as it stands («утверди квиз», «approve») → `npm run quiz:version --
    approve` — a commit of `quiz.json` tagged `quiz-v<N>`, pushed when your repository is connected; a tree `quiz:tree` refuses is never
    approved. «Go back to version N» (their words, or the core's line «вернуться к версии N») → `npm run quiz:version -- restore N`: a

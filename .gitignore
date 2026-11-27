@@ -107,3 +107,6 @@ public/fonts/
 
 # REA studies of other products — the study pass (node step 594): someone else's code and pages, never in git
 /study/
+
+# 861-3: the quiz PDF an element reads itself (npm run quiz:pdf) — a copy, never versioned
+development-docs/product/quiz.pdf
