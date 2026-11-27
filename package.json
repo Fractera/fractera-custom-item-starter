@@ -79,6 +79,7 @@
     "check:dev-docs": "node scripts/check-dev-docs.mjs",
     "check:product": "node scripts/check-product.mjs",
     "quiz:pdf": "node scripts/quiz-pdf.mjs",
+    "github:self": "node scripts/github-self.mjs",
     "quiz:tree": "node scripts/quiz-tree.mjs",
     "quiz:version": "node scripts/quiz-version.mjs",
     "order:save": "node scripts/order-save.mjs",

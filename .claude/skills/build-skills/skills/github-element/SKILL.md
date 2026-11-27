@@ -30,11 +30,14 @@ computer: a new node is restored by cloning the person's repositories. A commit 
 ## How
 
 ```
-node "<node>/scripts/element-github-push.mjs" <element id>
+npm run github:self
 ```
 
-The exact path and id are in the GitHub rule of your launch prompt. It asks the core, which commits any rest and pushes with the
-key — never `git push` yourself, and never a token in a command. Tell the person the line it printed:
+From your own folder (core step 861-6): the core's door with your own key, your repository only — no boundary question. A template
+without that command uses the line of the GitHub rule in your launch prompt. The core commits any rest and pushes with the key —
+never `git push` yourself, and never a token in a command. Tell the person the line it printed. When the person must act (connect a
+key, press a button), never ask them to type a command with «!» — put a window: `npm run ask-person -- "<what to do>" --copy
+"<the command>"` (Roma 2026-11-27: «вводить команды руками это не то что нам нужно»).
 
 | Line | Tell the person |
 |---|---|
