@@ -8,7 +8,8 @@ import { storeHeaders } from "./data-service";
 // spaces are never reached; the node's main agent sees all. One passage found by meaning is simpler in the vector store — see ./vectors.
 // ✗ Until 654-6 this file asked a LightRAG server through the data element (`/service/rag/*`) that no node runs: every call 503.
 
-const GRAPH_URL = (process.env.GRAPH_URL ?? "").trim().replace(/\/+$/, "");
+// 869: read at call time — the live environment follows the element's .env.local (lib/live-env.mjs).
+const graphUrl = () => (process.env.GRAPH_URL ?? "").trim().replace(/\/+$/, "");
 
 export type GraphChunk = { content: string; source_id: string; file_path?: string };
 export type GraphEntity = { entity_name: string; entity_type: string; description: string; source_id: string; file_path?: string };
@@ -23,6 +24,7 @@ export type GraphRelationship = {
 };
 
 async function graphDoor<T>(door: string, body?: unknown): Promise<T> {
+  const GRAPH_URL = graphUrl();
   if (!GRAPH_URL) throw new Error("GRAPH_URL is empty — the node installer writes the graph element's address here");
   const res = await fetch(`${GRAPH_URL}/api/${door}`, {
     method: body === undefined ? "GET" : "POST",

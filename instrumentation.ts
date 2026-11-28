@@ -10,6 +10,9 @@
 // 314-2: имя подписчика — из паспорта элемента (`lib/own-id.ts`), а не "root": у источника одна запись на имя.
 export async function register() {
   if (process.env.NEXT_RUNTIME !== "nodejs") return
+  // 869: the element's .env.local is applied at start and followed — a key a screen writes is live without a deploy.
+  const { startLiveEnv } = await import("./lib/live-env.mjs")
+  startLiveEnv()
   const { startCron } = await import("./lib/cron/runner")
   startCron()
   const { ownId } = await import("./lib/own-id")

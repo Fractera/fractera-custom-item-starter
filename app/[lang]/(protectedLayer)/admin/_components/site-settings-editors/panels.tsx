@@ -14,11 +14,14 @@ import { groupsUi } from './groups.i18n'
 import { siteSettingsEditorWords } from './editor-words.i18n'
 import type { NavCandidate, NavItem, NavSlot } from './lib/nav'
 
-const SITE = (process.env.PROJECT_SITE_URL ?? '').replace(/\/+$/, '')
-const CORE = (process.env.ARCHITECT_URL ?? '').trim().replace(/\/+$/, '')
+// 869: read at call time — the addresses follow the element's live .env.local (lib/live-env.mjs).
+const siteUrl = () => (process.env.PROJECT_SITE_URL ?? '').replace(/\/+$/, '')
+const coreUrl = () => (process.env.ARCHITECT_URL ?? '').trim().replace(/\/+$/, '')
 
 function hrefs(lang: string) {
   const id = ownId()
+  const SITE = siteUrl()
+  const CORE = coreUrl()
   return {
     loginHref: SITE ? `${SITE}/login?lang=${lang}` : undefined,
     configHref: CORE ? `${CORE}/${lang}/architect/config` : undefined,
@@ -55,6 +58,7 @@ export function SiteMenuEditor({ lang, slot }: { lang: string; slot: NavSlot }) 
 export function SiteFeatureSwitches({ lang }: { lang: string }) {
   const w = siteSettingsEditorWords(lang)
   const f = w.features_words
+  const CORE = coreUrl()
   const core = CORE ? [{ label: f.linkCore, url: `${CORE}/${lang}/architect` }] : []
   // Свой адрес элемента — у узла (`domain.json`, поддомен в зоне узла); нет — ссылок на элемент нет.
   const OWN = (ownSiteUrl() ?? '').replace(/\/+$/, '')
